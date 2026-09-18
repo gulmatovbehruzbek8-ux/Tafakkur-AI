@@ -24,6 +24,7 @@ CP1 is **three separate 10-minute sessions**, one per mentor, back to back — t
 ## Scope for today — P0 (must be working before 14:00)
 1. **FastAPI backend + Ollama** — at least one endpoint returning a real model response. This is the single most important technical-mentor signal today.
 2. **3 dashboard skeletons** (Student / Professor / Admin) — routing + layout, even unstyled.
+2a. **Landing page** — this is a real website, not just internal dashboards. Needs a public-facing homepage (value prop, screenshots, "why this matters") since that's what mentors and judges see first.
 3. **Announcement Generator, end-to-end** — 3 bullet points in → formal AI-written post out. Simplest feature to get fully working live; use this as your CP1 demo centerpiece.
 4. **OneID login — MOCKED** — a login screen with fake verified-identity flow. Label it internally as demo auth, not real OneID.
 5. **HEMIS Connect — MOCKED** — a "Connect HEMIS" button that loads a seeded JSON (fake schedule/grades/attendance for 2–3 demo students). No real HEMIS API call.
@@ -54,3 +55,4 @@ Real OneID/HEMIS API, education map, complaint/ombudsman system, career navigato
 ## Tonight (19:00–21:00)
 - Push RAG tutor and auto-grader from skeleton toward working.
 - Start wiring dashboards to real backend endpoints instead of static mocks.
+- Optional but cheap: deploy the Next.js frontend to Vercel (free) for a live shareable link. Not required by the regs (only GitHub link + deck are due), but it's easy credibility with the business mentor. Ollama itself doesn't need to be public — keep it on the presenter's laptop for the live demo and tunnel to it with ngrok/Cloudflare Tunnel only if you want the hosted site to hit it remotely.

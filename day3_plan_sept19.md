@@ -20,9 +20,11 @@ Tie-break order if scores end up equal: CP2 score → domain mentor score → te
 2. **Auto-grader working** — upload assignment/rubric → AI score + written feedback.
 3. **Announcement Generator polished** — already working from yesterday; tighten UI/output quality.
 4. **All 3 dashboards wired to real backend** — no more static mocks except OneID/HEMIS.
+4a. **Landing page polished** — this is the front door of a real website; make sure it's presentable enough to open cold in front of a mentor or judge, not just the app screens.
 5. **AI Academic Passport (your wow feature)** — subject-mastery bars + one AI-generated insight, built on top of grader output + seeded data.
 6. **Deck v2** — update architecture/demo slides, sharpen the business model slide with real-ish numbers (pricing, target customer, market size if you can estimate it — this is scored directly by the business mentor), add a clearly separate "Roadmap" slide for OneID/HEMIS real integration, education map, complaint system, career navigator, national passport. Keep roadmap items OFF the "what we built" slides entirely.
 7. **GitHub repo** — clean commit history, README explaining what's real vs. mocked, pushed well before 14:00.
+8. **Live deploy (if you did the optional Vercel deploy last night)** — confirm the hosted link still works with today's backend changes; keep the ngrok/Cloudflare tunnel to Ollama running through CP2 and the final if you're relying on it.
 
 ## Explicitly still NOT today
 Real OneID/HEMIS API access, education map, ombudsman/complaint system, career navigator, voice AI — roadmap slide only.
