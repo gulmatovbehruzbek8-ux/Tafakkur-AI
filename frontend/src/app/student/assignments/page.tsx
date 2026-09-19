@@ -155,7 +155,7 @@ export default function AssignmentsPage() {
   };
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/assignments" />
       <TafakkurCompanion currentContext="Akademik Topshiriqlar (Assignments)" />
 
@@ -165,18 +165,18 @@ export default function AssignmentsPage() {
           {/* =========================================================================
               HEADER: LINEAR / THINGS 3 STYLE TASK HUB
               ========================================================================= */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 animate-fade-up">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-slate-900" />
+                <span className="w-2.5 h-2.5 rounded-full bg-slate-900 dark:bg-blue-500" />
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Vazifalar Boshqaruvi
                 </span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Topshiriqlar & Laboratoriyalar
               </h1>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                 Vaqt shkalasi va shoshilinchlik darajasiga ko'ra saralangan vazifalar maydoni
               </p>
             </div>
@@ -191,10 +191,10 @@ export default function AssignmentsPage() {
                 <button
                   key={tab.id}
                   onClick={() => setFilterStatus(tab.id as any)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                     filterStatus === tab.id
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                      ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-xs'
+                      : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                   }`}
                 >
                   {tab.label}
@@ -211,11 +211,11 @@ export default function AssignmentsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-                  <h2 className="font-display font-bold text-base text-slate-900 uppercase tracking-wide">
+                  <h2 className="font-display font-bold text-base text-slate-900 dark:text-white uppercase tracking-wide">
                     Bugun (Today) — Shoshilinch Muddat
                   </h2>
                 </div>
-                <span className="text-xs font-bold text-red-600 bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-lg font-mono">
+                <span className="text-xs font-bold text-red-600 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 px-2.5 py-0.5 rounded-lg font-mono">
                   {todayTasks.length} ta vazifa
                 </span>
               </div>
@@ -224,28 +224,28 @@ export default function AssignmentsPage() {
                 {todayTasks.map(task => (
                   <div
                     key={task.id}
-                    className="p-5 rounded-3xl bg-white border-2 border-red-400/80 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:border-red-500"
+                    className="p-5 rounded-3xl bg-white dark:bg-[#121215] border-2 border-red-400/80 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:border-red-500"
                   >
                     <div className="space-y-2 flex-1">
                       <div className="flex items-center gap-2.5 flex-wrap">
-                        <span className="font-mono text-xs font-bold text-red-700 bg-red-100/80 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-xs font-bold text-red-700 bg-red-100/80 dark:bg-red-950/60 dark:text-red-300 px-2 py-0.5 rounded-md">
                           {task.courseCode}
                         </span>
-                        <span className="text-xs font-semibold text-slate-500">
+                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                           {task.course}
                         </span>
                         <span className="text-slate-300">•</span>
-                        <span className="text-xs font-mono font-bold text-red-600 bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-lg flex items-center gap-1.5 animate-pulse">
+                        <span className="text-xs font-mono font-bold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 px-2.5 py-0.5 rounded-lg flex items-center gap-1.5 animate-pulse">
                           <span>⏳ Qolgan vaqt:</span>
                           <span>{formatCountdown(countdown)}</span>
                         </span>
                       </div>
 
-                      <h3 className="font-display font-bold text-base sm:text-lg text-slate-900">
+                      <h3 className="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white">
                         {task.title}
                       </h3>
 
-                      <p className="text-xs text-slate-600 leading-relaxed max-w-3xl">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
                         {task.instructions}
                       </p>
 
@@ -287,11 +287,11 @@ export default function AssignmentsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  <h2 className="font-display font-bold text-base text-slate-900 uppercase tracking-wide">
+                  <h2 className="font-display font-bold text-base text-slate-900 dark:text-white uppercase tracking-wide">
                     Shu Hafta (This Week)
                   </h2>
                 </div>
-                <span className="text-xs text-slate-500 font-mono">
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                   {thisWeekTasks.length} ta topshiriq
                 </span>
               </div>
@@ -300,56 +300,56 @@ export default function AssignmentsPage() {
                 {thisWeekTasks.map(task => (
                   <div
                     key={task.id}
-                    className="p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 transition-all"
+                    className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
                   >
                     <div className="space-y-1.5 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-mono text-xs font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-xs font-bold text-blue-800 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 px-2 py-0.5 rounded-md">
                           {task.courseCode}
                         </span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-slate-500 dark:text-slate-400">
                           {task.course}
                         </span>
-                        <span className="text-slate-300">•</span>
-                        <span className="text-xs font-mono text-slate-600">
+                        <span className="text-slate-300 dark:text-slate-600">•</span>
+                        <span className="text-xs font-mono text-slate-600 dark:text-slate-300">
                           📅 {task.deadline}
                         </span>
                       </div>
 
-                      <h3 className="font-display font-bold text-base text-slate-900">
+                      <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                         {task.title}
                       </h3>
 
-                      <p className="text-xs text-slate-600 leading-relaxed max-w-3xl">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
                         {task.instructions}
                       </p>
 
                       <div className="flex items-center gap-3 text-xs text-slate-400 pt-1">
                         <span>👤 {task.instructor}</span>
                         <span>•</span>
-                        <span className="font-semibold text-slate-600">{task.difficulty}</span>
+                        <span className="font-semibold text-slate-600 dark:text-slate-300">{task.difficulty}</span>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-2.5 shrink-0 self-end md:self-center">
                       {task.status === 'graded' ? (
                         <div className="flex items-center gap-2">
-                          <span className="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-800 font-display font-black text-sm font-mono border border-emerald-200">
+                          <span className="px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-display font-black text-sm font-mono border border-emerald-200 dark:border-emerald-800/60">
                             {task.score}
                           </span>
-                          <span className="text-xs text-emerald-600 font-bold">✓ Baholangan</span>
+                          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">✓ Baholangan</span>
                         </div>
                       ) : (
                         <>
                           <Link
                             href="/student/tutor"
-                            className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
+                            className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors"
                           >
                             AI konspekti
                           </Link>
                           <button
                             onClick={() => openSubmitDrawer(task)}
-                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition-colors shadow-xs"
+                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
                           >
                             Topshirish →
                           </button>
@@ -416,72 +416,72 @@ export default function AssignmentsPage() {
               ========================================================================= */}
           {submitModalOpen && selectedTask && (
             <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4">
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
                   <div>
-                    <span className="text-[10px] font-bold text-blue-700 uppercase tracking-wider block">
+                    <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block">
                       {selectedTask.courseCode} • {selectedTask.course}
                     </span>
-                    <h3 className="font-display text-lg font-bold text-slate-900">
+                    <h3 className="font-display text-lg font-bold text-slate-900 dark:text-white">
                       Topshiriqni topshirish
                     </h3>
                   </div>
                   <button
                     onClick={() => setSubmitModalOpen(false)}
-                    className="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center text-sm"
+                    className="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10 flex items-center justify-center text-sm"
                   >
                     ✕
                   </button>
                 </div>
 
                 {submissionSuccess ? (
-                  <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3">
-                    <span className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mx-auto font-bold">
+                  <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center space-y-3">
+                    <span className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-emerald-300 flex items-center justify-center text-xl mx-auto font-bold">
                       ✓
                     </span>
-                    <h4 className="font-display font-bold text-base text-emerald-950">
+                    <h4 className="font-display font-bold text-base text-emerald-950 dark:text-emerald-200">
                       Topshiriq muvaffaqiyatli topshirildi!
                     </h4>
-                    <p className="text-xs text-emerald-800">
+                    <p className="text-xs text-emerald-800 dark:text-emerald-300">
                       {selectedTask.title} o'qituvchi ({selectedTask.instructor}) tekshiruviga yuborildi.
                     </p>
                     <button
                       onClick={() => setSubmitModalOpen(false)}
-                      className="px-4 py-2 rounded-xl bg-emerald-700 text-white text-xs font-bold"
+                      className="px-4 py-2 rounded-xl bg-emerald-700 dark:bg-emerald-600 text-white text-xs font-bold"
                     >
                       Tushunarli
                     </button>
                   </div>
                 ) : (
                   <div className="space-y-4 text-xs">
-                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-                      <strong className="text-slate-800 block">{selectedTask.title}</strong>
-                      <p className="text-slate-600 leading-relaxed">{selectedTask.instructions}</p>
+                    <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 space-y-1">
+                      <strong className="text-slate-800 dark:text-white block">{selectedTask.title}</strong>
+                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed">{selectedTask.instructions}</p>
                     </div>
 
-                    <div className="p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-blue-500 text-center cursor-pointer bg-slate-50 transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mx-auto mb-1.5 font-bold">
+                    <div className="p-4 rounded-2xl border-2 border-dashed border-slate-300 dark:border-white/20 hover:border-blue-500 dark:hover:border-blue-400 text-center cursor-pointer bg-slate-50 dark:bg-white/[0.02] transition-colors">
+                      <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center mx-auto mb-1.5 font-bold">
                         📁
                       </div>
-                      <p className="font-bold text-slate-700">Fayllarni bu yerga tortib tashlang</p>
+                      <p className="font-bold text-slate-700 dark:text-slate-200">Fayllarni bu yerga tortib tashlang</p>
                       <p className="text-[11px] text-slate-400">PDF, C++, Python, ZIP arxivlar</p>
                     </div>
 
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         GitHub / GitLab repository yoki izoh:
                       </label>
                       <input
                         type="text"
                         defaultValue="https://github.com/bunyodbek/avl-tree-implementation"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-500 text-slate-800 text-xs"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.03] focus:bg-white dark:focus:bg-[#18181b] focus:outline-none focus:border-blue-500 text-slate-800 dark:text-white text-xs"
                       />
                     </div>
 
                     <div className="pt-2 flex items-center justify-between gap-3">
                       <button
                         onClick={() => setSubmitModalOpen(false)}
-                        className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                        className="px-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/10"
                       >
                         Bekor qilish
                       </button>

@@ -210,9 +210,9 @@ export default function TeacherGraderSignaturePage() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
             {/* Column 1: Submissions Roster */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-5 shadow-xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <h3 className="font-display font-bold text-sm text-slate-900">
+            <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-5 shadow-xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
+                <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white">
                   Talabalar ({DEMO_STUDENTS.length})
                 </h3>
                 <span className="text-[11px] font-mono text-slate-400">AI-22 guruhi</span>
@@ -232,8 +232,8 @@ export default function TeacherGraderSignaturePage() {
                       }}
                       className={`w-full p-3.5 rounded-2xl border text-left transition-all flex flex-col justify-between space-y-1.5 ${
                         isSelected
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                          : 'bg-slate-50/70 border-slate-200/80 hover:bg-white text-slate-800'
+                          ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                          : 'bg-slate-50/70 dark:bg-white/[0.02] border-slate-200/80 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 text-slate-800 dark:text-slate-200'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -243,18 +243,22 @@ export default function TeacherGraderSignaturePage() {
                             {approvedList[st.id]} ball ✓
                           </span>
                         ) : st.aiEvaluation ? (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 font-mono">
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono ${
+                            isSelected ? 'bg-white/20 text-white' : 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
+                          }`}>
                             AI: {st.aiEvaluation.score}
                           </span>
                         ) : (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-200 text-slate-600">
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${
+                            isSelected ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-300'
+                          }`}>
                             Kutilmoqda
                           </span>
                         )}
                       </div>
 
                       <div className={`text-[10px] flex items-center justify-between font-mono ${
-                        isSelected ? 'text-slate-300' : 'text-slate-400'
+                        isSelected ? 'text-blue-100' : 'text-slate-400'
                       }`}>
                         <span>ID: {st.id}</span>
                         <span>{st.submittedAt}</span>
@@ -268,30 +272,30 @@ export default function TeacherGraderSignaturePage() {
             {/* Column 2 & 3: Student Submission & Rubric */}
             <div className="lg:col-span-2 space-y-5">
               {/* Submission viewer */}
-              <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-xs space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 shadow-xs space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
                   <div>
-                    <h3 className="font-display font-bold text-base text-slate-900">
+                    <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                       Talabaning Topshirig'i
                     </h3>
-                    <p className="text-xs text-slate-500">
-                      Muallif: <strong className="text-slate-800">{selectedStudent.name}</strong> • {selectedStudent.group}
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Muallif: <strong className="text-slate-800 dark:text-white">{selectedStudent.name}</strong> • {selectedStudent.group}
                     </p>
                   </div>
 
-                  <span className="text-xs font-mono bg-slate-100 px-2.5 py-1 rounded-lg text-slate-600">
+                  <span className="text-xs font-mono bg-slate-100 dark:bg-white/10 px-2.5 py-1 rounded-lg text-slate-600 dark:text-slate-300">
                     Yuklangan: {selectedStudent.submittedAt}
                   </span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 font-mono text-xs text-slate-800 leading-relaxed whitespace-pre-line max-h-72 overflow-y-auto">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 font-mono text-xs text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line max-h-72 overflow-y-auto">
                   {selectedStudent.submissionText}
                 </div>
 
                 {/* Rubric View */}
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                    <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                       Baholash Mezonlari (Rubrika):
                     </label>
                     <span className="text-[11px] text-slate-400">100 ballik shkala</span>
@@ -300,25 +304,25 @@ export default function TeacherGraderSignaturePage() {
                     rows={3}
                     value={rubric}
                     onChange={(e) => setRubric(e.target.value)}
-                    className="w-full text-xs font-mono p-3 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600 resize-none text-slate-700"
+                    className="w-full text-xs font-mono p-3 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.02] focus:bg-white dark:focus:bg-[#18181b] focus:outline-none focus:border-blue-600 resize-none text-slate-700 dark:text-slate-200"
                   />
                 </div>
               </div>
 
               {/* Status Comparison Indicator */}
-              <div className="p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between text-xs">
+              <div className="p-4 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-white/10 flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="text-slate-500">Holat:</span>
+                  <span className="text-slate-500 dark:text-slate-400">Holat:</span>
                   {isApproved ? (
-                    <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-extrabold border border-emerald-300">
+                    <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-900 dark:text-emerald-300 font-extrabold border border-emerald-300 dark:border-emerald-800">
                       ✓ Professor tomonidan tasdiqlangan
                     </span>
                   ) : currentEval ? (
-                    <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-900 font-extrabold border border-blue-200">
+                    <span className="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/50 text-blue-900 dark:text-blue-300 font-extrabold border border-blue-200 dark:border-blue-800">
                       ⚡ AI tahlil qilgan (Tasdiqlash kutilmoqda)
                     </span>
                   ) : (
-                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-bold">
+                    <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 font-bold">
                       Kutilmoqda
                     </span>
                   )}
@@ -338,20 +342,20 @@ export default function TeacherGraderSignaturePage() {
             </div>
 
             {/* Column 4: AI Evaluation & Professor Decision */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-6 shadow-xs space-y-5">
-              <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
+            <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-5 sm:p-6 shadow-xs space-y-5">
+              <div className="pb-3 border-b border-slate-100 dark:border-white/10 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider block">
+                  <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block">
                     AI Grader Tavsiyasi
                   </span>
-                  <h3 className="font-display font-bold text-base text-slate-900">
+                  <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                     Baholash Xulosasi
                   </h3>
                 </div>
 
                 {currentEval && (
                   <div className="text-right">
-                    <span className="font-display font-black text-2xl text-slate-900 font-mono">
+                    <span className="font-display font-black text-2xl text-slate-900 dark:text-white font-mono">
                       {currentEval.score}
                     </span>
                     <span className="text-xs text-slate-400 font-mono">/100</span>
@@ -361,17 +365,17 @@ export default function TeacherGraderSignaturePage() {
 
               {currentEval ? (
                 <div className="space-y-3.5 text-xs">
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 leading-relaxed text-slate-700">
-                    <strong className="block text-slate-900 mb-0.5">Asoslash (Reasoning):</strong>
+                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/10 leading-relaxed text-slate-700 dark:text-slate-200">
+                    <strong className="block text-slate-900 dark:text-white mb-0.5">Asoslash (Reasoning):</strong>
                     {currentEval.reasoning}
                   </div>
 
                   <div className="space-y-1">
-                    <strong className="text-emerald-700 text-[11px] block uppercase font-bold">
+                    <strong className="text-emerald-700 dark:text-emerald-400 text-[11px] block uppercase font-bold">
                       ✓ Kuchli jihatlari:
                     </strong>
                     {currentEval.strengths.map((st, i) => (
-                      <p key={i} className="text-slate-600 text-[11px] flex items-start gap-1.5">
+                      <p key={i} className="text-slate-600 dark:text-slate-300 text-[11px] flex items-start gap-1.5">
                         <span className="text-emerald-500 font-bold">•</span>
                         <span>{st}</span>
                       </p>
@@ -379,11 +383,11 @@ export default function TeacherGraderSignaturePage() {
                   </div>
 
                   <div className="space-y-1">
-                    <strong className="text-amber-700 text-[11px] block uppercase font-bold">
+                    <strong className="text-amber-700 dark:text-amber-400 text-[11px] block uppercase font-bold">
                       ⚠️ Kamchiliklar / Tavsiyalar:
                     </strong>
                     {currentEval.weaknesses.map((w, i) => (
-                      <p key={i} className="text-slate-600 text-[11px] flex items-start gap-1.5">
+                      <p key={i} className="text-slate-600 dark:text-slate-300 text-[11px] flex items-start gap-1.5">
                         <span className="text-amber-500 font-bold">•</span>
                         <span>{w}</span>
                       </p>
@@ -391,7 +395,7 @@ export default function TeacherGraderSignaturePage() {
                   </div>
 
                   {/* Professor Decision Box */}
-                  <div className="pt-3 border-t border-slate-100 space-y-3">
+                  <div className="pt-3 border-t border-slate-100 dark:border-white/10 space-y-3">
                     <div>
                       <label className="text-[10px] font-bold uppercase text-slate-400 block mb-1">
                         Professor Yakuniy Qarori:
@@ -401,9 +405,9 @@ export default function TeacherGraderSignaturePage() {
                           type="number"
                           defaultValue={currentEval.score}
                           onChange={(e) => setCustomScore(Number(e.target.value))}
-                          className="w-20 px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono font-bold text-slate-900 text-sm focus:outline-none focus:border-blue-600"
+                          className="w-20 px-3 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/10 font-mono font-bold text-slate-900 dark:text-white text-sm focus:outline-none focus:border-blue-600"
                         />
-                        <span className="text-xs text-slate-500 font-mono">Ball (100 dan)</span>
+                        <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Ball (100 dan)</span>
                       </div>
                     </div>
 
@@ -416,7 +420,7 @@ export default function TeacherGraderSignaturePage() {
                       </button>
                       <button
                         onClick={() => alert("Talabaga qayta ishlash uchun xabar yuborildi.")}
-                        className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors"
+                        className="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200 font-bold text-xs transition-colors"
                       >
                         Qayta ishlash
                       </button>
@@ -426,7 +430,7 @@ export default function TeacherGraderSignaturePage() {
               ) : (
                 <div className="text-center py-12 text-slate-400 text-xs space-y-2">
                   <span className="text-2xl">⚡</span>
-                  <p className="font-semibold text-slate-600">Ish hali AI tomonidan baholanmagan</p>
+                  <p className="font-semibold text-slate-600 dark:text-slate-300">Ish hali AI tomonidan baholanmagan</p>
                   <p className="text-[11px]">Tahlilni boshlash uchun yuqoridagi tugmani bosing</p>
                 </div>
               )}

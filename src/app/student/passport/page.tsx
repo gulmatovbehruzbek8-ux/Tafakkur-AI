@@ -115,7 +115,7 @@ export default function AcademicPassportPage() {
   };
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/passport" />
       <TafakkurCompanion currentContext="Raqamli Akademik Pasport" />
 
@@ -213,44 +213,44 @@ export default function AcademicPassportPage() {
           {/* =========================================================================
               2. VERIFIED SKILLS & COMPETENCY RADAR
               ========================================================================= */}
-          <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Kompetensiyalar</span>
-                <h2 className="font-display text-xl font-bold text-slate-900 mt-0.5">
+                <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white mt-0.5">
                   Tasdiqlangan Ko'nikmalar & Malaka Matritsasi
                 </h2>
               </div>
-              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-600 self-start sm:self-auto">
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto">
                 HEMIS dars va laboratoriya natijalariga asoslangan
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {skills.map((s, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                <div key={idx} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
                         {s.category}
                       </span>
-                      <h4 className="font-display font-bold text-sm text-slate-900">
+                      <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white">
                         {s.name}
                       </h4>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold text-xs font-mono">
+                    <span className="px-2.5 py-1 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 font-bold text-xs font-mono">
                       {s.tag}
                     </span>
                   </div>
 
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between text-xs font-mono text-slate-500">
+                    <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400">
                       <span>O'zlashtirish:</span>
-                      <span className="font-bold text-slate-800">{s.level}%</span>
+                      <span className="font-bold text-slate-800 dark:text-slate-200">{s.level}%</span>
                     </div>
-                    <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                    <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                       <div
-                        className="bg-blue-600 h-full rounded-full"
+                        className="h-full rounded-full bg-blue-600 transition-all duration-500"
                         style={{ width: `${s.level}%` }}
                       />
                     </div>
@@ -261,35 +261,35 @@ export default function AcademicPassportPage() {
           </section>
 
           {/* =========================================================================
-              3. LIVING ACHIEVEMENTS TIMELINE (Yutuqlar Xronologiyasi)
+              3. VERIFIED CREDENTIALS & ACHIEVEMENTS TIMELINE
               ========================================================================= */}
-          <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Hayotiy Xronologiya</span>
-                <h2 className="font-display text-xl font-bold text-slate-900 mt-0.5">
+                <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white mt-0.5">
                   Akademik Yutuqlar & Sertifikatlar Xronologiyasi
                 </h2>
               </div>
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-slate-500 dark:text-slate-400">
                 Har bir yutuq alohida tekshiriluvchi raqamli sertifikatga ega
               </span>
             </div>
 
-            <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6">
+            <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-6">
               {achievements.map((ach) => (
                 <div key={ach.id} className="relative group">
                   {/* Milestone Marker */}
                   <span className="absolute -left-[31px] sm:-left-[39px] top-2 w-4 h-4 rounded-full bg-blue-600 border-2 border-white ring-4 ring-blue-500/20 group-hover:scale-125 transition-transform" />
 
-                  <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-slate-300 transition-all shadow-xs space-y-3">
+                  <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 hover:bg-white dark:hover:bg-slate-800/80 transition-all shadow-xs space-y-3">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <span className="font-mono text-xs font-bold text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200">
+                          <span className="font-mono text-xs font-bold text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700">
                             {ach.year}
                           </span>
-                          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
                             {ach.badge}
                           </span>
                           <span className="text-[11px] text-slate-400 font-mono">
@@ -297,31 +297,31 @@ export default function AcademicPassportPage() {
                           </span>
                         </div>
 
-                        <h3 className="font-display font-bold text-base text-slate-900">
+                        <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                           {ach.title}
                         </h3>
 
-                        <p className="text-xs text-slate-500 font-medium mt-0.5">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                           Tashkilotchi: {ach.organization}
                         </p>
                       </div>
 
                       <button
                         onClick={() => openShareModal(ach)}
-                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 self-start shrink-0"
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 self-start shrink-0 cursor-pointer"
                       >
                         <span>Ulashish</span>
                         <span className="font-mono">↗</span>
                       </button>
                     </div>
 
-                    <p className="text-xs text-slate-600 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                       {ach.description}
                     </p>
 
                     <div className="flex items-center gap-1.5 flex-wrap pt-1">
                       {ach.skills.map((sk, skIdx) => (
-                        <span key={skIdx} className="px-2 py-0.5 rounded bg-white text-slate-700 text-[10px] font-medium border border-slate-200">
+                        <span key={skIdx} className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-medium border border-slate-200 dark:border-slate-700">
                           #{sk}
                         </span>
                       ))}

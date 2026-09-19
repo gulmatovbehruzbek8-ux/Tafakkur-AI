@@ -91,12 +91,12 @@ export default function CommandPalette() {
   return (
     <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-start justify-center pt-20 p-4 animate-fade-in">
       <div 
-        className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col animate-scale-up"
+        className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl max-w-2xl w-full overflow-hidden flex flex-col animate-scale-up"
         onClick={e => e.stopPropagation()}
       >
         {/* Search Bar Input */}
-        <div className="p-4 bg-slate-50/90 border-b border-slate-200 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">
+        <div className="p-4 bg-slate-50/90 dark:bg-white/[0.03] border-b border-slate-200 dark:border-white/10 flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-700 dark:text-blue-400 flex items-center justify-center font-bold text-xs shrink-0">
             🔍
           </div>
           <input
@@ -109,9 +109,9 @@ export default function CommandPalette() {
             }}
             onKeyDown={handleKeyDownList}
             placeholder="Fanlar, topshiriqlar, tadbirlar yoki professorlarni qidiring... (masalan: 'BST', 'AI', 'Imtihon')"
-            className="flex-1 bg-transparent text-sm sm:text-base text-slate-900 focus:outline-none placeholder:text-slate-400 font-medium"
+            className="flex-1 bg-transparent text-sm sm:text-base text-slate-900 dark:text-white focus:outline-none placeholder:text-slate-400 font-medium"
           />
-          <span className="px-2 py-0.5 rounded-md bg-slate-200 text-slate-600 font-mono text-[11px] shrink-0">
+          <span className="px-2 py-0.5 rounded-md bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-400 font-mono text-[11px] shrink-0">
             ESC
           </span>
         </div>
@@ -119,8 +119,8 @@ export default function CommandPalette() {
         {/* Results List */}
         <div className="max-h-[380px] overflow-y-auto p-2 space-y-1">
           {filtered.length === 0 ? (
-            <div className="p-8 text-center text-xs text-slate-500">
-              "{query}" bo'yicha hech qanday natija topilmadi.
+            <div className="p-8 text-center text-xs text-slate-500 dark:text-slate-400">
+              &quot;{query}&quot; bo&apos;yicha hech qanday natija topilmadi.
             </div>
           ) : (
             filtered.map((item, idx) => {
@@ -131,21 +131,21 @@ export default function CommandPalette() {
                   onClick={() => handleSelect(item)}
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`p-3 rounded-2xl cursor-pointer flex items-center justify-between gap-3 transition-colors ${
-                    isSelected ? 'bg-slate-900 text-white' : 'hover:bg-slate-100 text-slate-800'
+                    isSelected ? 'bg-blue-600 text-white' : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-800 dark:text-slate-200'
                   }`}
                 >
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                        isSelected ? 'bg-blue-500 text-slate-950' : 'bg-slate-200 text-slate-700'
+                        isSelected ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-300'
                       }`}>
                         {item.category}
                       </span>
-                      <h4 className={`text-xs sm:text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-900'}`}>
+                      <h4 className={`text-xs sm:text-sm font-bold ${isSelected ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
                         {item.title}
                       </h4>
                     </div>
-                    <p className={`text-[11px] ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
+                    <p className={`text-[11px] ${isSelected ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'}`}>
                       {item.subtitle}
                     </p>
                   </div>
@@ -153,12 +153,12 @@ export default function CommandPalette() {
                   <div className="flex items-center gap-2 shrink-0">
                     {item.shortcut && (
                       <span className={`px-2 py-0.5 rounded font-mono text-[10px] ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+                        isSelected ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300'
                       }`}>
                         {item.shortcut}
                       </span>
                     )}
-                    <span className={`font-mono text-xs ${isSelected ? 'text-blue-400' : 'text-slate-400'}`}>
+                    <span className={`font-mono text-xs ${isSelected ? 'text-white' : 'text-slate-400'}`}>
                       ↵
                     </span>
                   </div>
@@ -169,13 +169,13 @@ export default function CommandPalette() {
         </div>
 
         {/* Footer info bar */}
-        <div className="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+        <div className="p-3 bg-slate-50 dark:bg-white/[0.02] border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-mono">
           <div className="flex items-center gap-3">
             <span>↑↓ Harakatlanish</span>
             <span>↵ Tanlash</span>
             <span>ESC Yopish</span>
           </div>
-          <span className="text-blue-700 font-bold">
+          <span className="text-blue-600 dark:text-blue-400 font-bold">
             TAFAKKUR AI UNIVERSAL SEARCH
           </span>
         </div>

@@ -578,7 +578,7 @@ export default function AdminSOWPage() {
   const totalChunks = resources.reduce((acc, r) => acc + (r.chunkCount || 10), 0);
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="admin" activeRoute="/admin/sow" />
       <TafakkurCompanion currentContext="SOW & AI Bilimlar Bazasi Boshqaruvi" />
 
@@ -823,7 +823,7 @@ export default function AdminSOWPage() {
                       <button
                         type="button"
                         onClick={() => handleOpenAddModule(subj.id)}
-                        className="px-3 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5"
+                        className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5"
                       >
                         <span>+ Modul qo&apos;shish</span>
                       </button>

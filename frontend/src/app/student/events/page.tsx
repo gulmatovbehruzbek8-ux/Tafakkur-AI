@@ -275,7 +275,7 @@ export default function EventsAndOlympiadsPage() {
   };
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/events" />
       <TafakkurCompanion currentContext="Tadbirlar & Olimpiadalar (Events & Olympiads)" />
 
@@ -531,7 +531,7 @@ export default function EventsAndOlympiadsPage() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(timelineItems[3])}
-                  className="px-3 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 font-bold text-xs shrink-0 transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 transition-colors"
                 >
                   Ko'rish →
                 </button>
@@ -551,7 +551,7 @@ export default function EventsAndOlympiadsPage() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(timelineItems[2])}
-                  className="px-3 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 font-bold text-xs shrink-0 transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 transition-colors"
                 >
                   Ko'rish →
                 </button>

@@ -106,7 +106,7 @@ export default function StudentSettingsPage() {
   };
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/settings" />
 
       <main className="tf-main pb-16">
@@ -151,17 +151,17 @@ export default function StudentSettingsPage() {
           </div>
 
           {/* SECTION 1: NOTIFICATIONS */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-6">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
                   🔔
                 </div>
                 <div>
-                  <h2 className="font-display font-bold text-slate-900 text-base sm:text-lg">
+                  <h2 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg">
                     Bildirishnomalar (Notifications)
                   </h2>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     Darslar, topshiriq muddatlari va universitet yangiliklaridan doimiy xabardor bo'ling
                   </p>
                 </div>
@@ -170,9 +170,9 @@ export default function StudentSettingsPage() {
               {/* Master Push Toggle Button */}
               <button
                 onClick={requestBrowserNotification}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
                   browserPermission === 'granted'
-                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60'
                     : 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
                 }`}
               >
@@ -182,90 +182,90 @@ export default function StudentSettingsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Allow All Notifications */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Barcha bildirishnomalarga ruxsat</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Tizim bo'yicha asosiy xabarnomalarni qabul qilish</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Barcha bildirishnomalarga ruxsat</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Tizim bo'yicha asosiy xabarnomalarni qabul qilish</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleToggle('allowNotifications')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.allowNotifications ? 'bg-blue-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.allowNotifications ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.allowNotifications ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
               </div>
 
               {/* Class Reminders */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Dars va ma'ruza eslatmalari</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Dars boshlanishidan 15 daqiqa oldin eslatish</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Dars va ma'ruza eslatmalari</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Dars boshlanishidan 15 daqiqa oldin eslatish</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyClassReminders')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyClassReminders ? 'bg-blue-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyClassReminders ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyClassReminders ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
               </div>
 
               {/* Deadlines */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Topshiriq va Deadline muddatlari</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Vazifa topshirish muddati tugashidan oldin ogohlantirish</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Topshiriq va Deadline muddatlari</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Vazifa topshirish muddati tugashidan oldin ogohlantirish</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyDeadlines')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyDeadlines ? 'bg-blue-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyDeadlines ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyDeadlines ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
               </div>
 
               {/* University Announcements */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Universitet va Dekanat e'lonlari</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Muhim yangiliklar, tadbirlar va olimpiadalar</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Universitet va Dekanat e'lonlari</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Muhim yangiliklar, tadbirlar va olimpiadalar</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyAnnouncements')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAnnouncements ? 'bg-blue-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAnnouncements ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyAnnouncements ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
               </div>
 
               {/* AI Tutor proactive tips */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm">AI Repetitor tavsiyalari</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Kunlik takrorlash va bo'shliqlar bo'yicha maslahatlar</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">AI Repetitor tavsiyalari</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Kunlik takrorlash va bo'shliqlar bo'yicha maslahatlar</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyAITutor')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAITutor ? 'bg-blue-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAITutor ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyAITutor ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
               </div>
 
               {/* Sound toggle */}
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-xs sm:text-sm">Ovozli signallar</h4>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Bildirishnoma vaqtida ovoz chiqarish</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Ovozli signallar</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Bildirishnoma vaqtida ovoz chiqarish</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => handleToggle('notifySound')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifySound ? 'bg-blue-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifySound ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifySound ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -274,16 +274,16 @@ export default function StudentSettingsPage() {
           </div>
 
           {/* SECTION 2: LANGUAGE */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
-            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-              <div className="w-10 h-10 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-6">
+            <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl">
                 🌐
               </div>
               <div>
-                <h2 className="font-display font-bold text-slate-900 text-base sm:text-lg">
+                <h2 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg">
                   Tilni Tanlash (Language)
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Platformaning interfeysi va AI javoblari uchun qulay tilni tanlang
                 </p>
               </div>
@@ -301,17 +301,17 @@ export default function StudentSettingsPage() {
                   <button
                     key={lang.id}
                     onClick={() => handleSelectLanguage(lang.id as any)}
-                    className={`p-4 rounded-2xl border text-left transition-all ${
+                    className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-blue-50/70 border-blue-500 ring-2 ring-blue-500/20 shadow-xs'
-                        : 'bg-white border-slate-200 hover:bg-slate-50'
+                        ? 'bg-blue-50/70 dark:bg-blue-950/40 border-blue-500 ring-2 ring-blue-500/20 shadow-xs'
+                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
                     }`}
                   >
                     <div className="text-2xl mb-2">{lang.flag}</div>
-                    <div className="font-display font-bold text-slate-900 text-sm">{lang.name}</div>
-                    <div className="text-[11px] text-slate-500 mt-0.5">{lang.sub}</div>
+                    <div className="font-display font-bold text-slate-900 dark:text-white text-sm">{lang.name}</div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{lang.sub}</div>
                     {isSelected && (
-                      <div className="mt-3 flex items-center gap-1.5 text-blue-700 text-xs font-bold">
+                      <div className="mt-3 flex items-center gap-1.5 text-blue-700 dark:text-blue-300 text-xs font-bold">
                         <span>✓ Faol til</span>
                       </div>
                     )}
@@ -322,16 +322,16 @@ export default function StudentSettingsPage() {
           </div>
 
           {/* SECTION 3: APPEARANCE */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
-            <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-              <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-6">
+            <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
                 🎨
               </div>
               <div>
-                <h2 className="font-display font-bold text-slate-900 text-base sm:text-lg">
+                <h2 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg">
                   Interfeys Ko'rinishi (Appearance)
                 </h2>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   Mavzu, rang sxemasi va ko'rinish rejimini belgilang
                 </p>
               </div>

@@ -136,7 +136,7 @@ export default function TeacherChatbot() {
           <div className="flex-1 tf-card-solid flex flex-col overflow-hidden">
             
             {/* Pedagogical Action Pills */}
-            <div className="px-5 py-3.5 bg-slate-50/70 border-b border-slate-100 overflow-x-auto shrink-0 flex items-center gap-2">
+            <div className="px-5 py-3.5 bg-slate-50/70 dark:bg-white/[0.02] border-b border-slate-100 dark:border-white/10 overflow-x-auto shrink-0 flex items-center gap-2">
               <span className="text-[11px] font-semibold text-slate-400 whitespace-nowrap">Pedagogik amallar:</span>
               <div className="flex gap-2">
                 {pedagogicalActions.map((action, idx) => (
@@ -144,7 +144,7 @@ export default function TeacherChatbot() {
                     key={idx}
                     onClick={() => handleSend(action)}
                     disabled={loading}
-                    className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-700 text-slate-600 transition-colors whitespace-nowrap shadow-2xs"
+                    className="text-xs px-3 py-1.5 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-700 dark:hover:text-blue-400 text-slate-600 dark:text-slate-300 transition-colors whitespace-nowrap shadow-2xs"
                   >
                     {action}
                   </button>
@@ -160,14 +160,14 @@ export default function TeacherChatbot() {
                   className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'ai' && (
-                    <div className="relative w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-2xs">
+                    <div className="relative w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-2xs">
                       <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                     </div>
                   )}
 
                   <div className={`max-w-[85%] md:max-w-[75%] space-y-1.5`}>
                     <div className="flex items-center gap-2 px-1 text-[11px] text-slate-400">
-                      <span className="font-semibold text-slate-600">
+                      <span className="font-semibold text-slate-600 dark:text-slate-300">
                         {msg.role === 'user' ? "Professor" : "Tafakkur AI (Professor Edition)"}
                       </span>
                       <span>•</span>
@@ -186,7 +186,7 @@ export default function TeacherChatbot() {
                       <div className="flex items-center gap-2 pt-0.5 px-1">
                         <button 
                           onClick={() => handleCopy(msg.id, msg.text)}
-                          className="text-[11px] text-slate-400 hover:text-blue-600 font-medium flex items-center gap-1 transition-colors"
+                          className="text-[11px] text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium flex items-center gap-1 transition-colors"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -207,11 +207,11 @@ export default function TeacherChatbot() {
 
               {loading && (
                 <div className="flex items-start gap-3">
-                  <div className="relative w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 overflow-hidden shadow-2xs">
+                  <div className="relative w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-2xs">
                     <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                   </div>
-                  <div className="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
-                    <span className="text-xs text-slate-500 font-medium">Tafakkur AI tahlil o'tkazmoqda</span>
+                  <div className="bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 p-3.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
+                    <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Tafakkur AI tahlil o'tkazmoqda</span>
                     <span className="flex gap-1 items-center ml-1">
                       <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce"></span>
                       <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></span>
@@ -224,7 +224,7 @@ export default function TeacherChatbot() {
             </div>
 
             {/* Input Composer */}
-            <div className="p-4 border-t border-slate-100 bg-white shrink-0">
+            <div className="p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#121215] shrink-0">
               <form 
                 onSubmit={(e) => { e.preventDefault(); handleSend(input); }} 
                 className="flex items-center gap-2.5"
@@ -235,13 +235,13 @@ export default function TeacherChatbot() {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     placeholder="Pedagogik so'rov yoki topshiriq rubrikasi haqida yozing..." 
-                    className="w-full pl-4 pr-10 py-3 bg-slate-50/70 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-all"
+                    className="w-full pl-4 pr-10 py-3 bg-slate-50/70 dark:bg-white/[0.04] rounded-xl border border-slate-200 dark:border-white/10 text-sm text-slate-800 dark:text-white placeholder-slate-400 focus:outline-none focus:bg-white dark:focus:bg-[#18181b] focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-all"
                   />
                   {input && (
                     <button 
                       type="button" 
                       onClick={() => setInput('')}
-                      className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 text-sm"
+                      className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm"
                     >
                       &times;
                     </button>
@@ -250,7 +250,7 @@ export default function TeacherChatbot() {
                 <button 
                   type="submit" 
                   disabled={loading || !input.trim()}
-                  className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm flex items-center gap-2 shrink-0"
+                  className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-500 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm flex items-center gap-2 shrink-0"
                 >
                   <span>Yuborish</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

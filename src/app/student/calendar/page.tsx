@@ -327,7 +327,7 @@ export default function BeautifulCalendarPage() {
   };
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/calendar" />
       <TafakkurCompanion currentContext={`Akademik Taqvim: ${selectedDay}-${MONTH_NAMES[currentMonthIndex].toLowerCase()} rejalari`} />
 
@@ -335,7 +335,7 @@ export default function BeautifulCalendarPage() {
         <div className="tf-container space-y-6">
 
           {!isLoggedIn && (
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 shadow-xs">
+            <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 dark:text-amber-200 shadow-xs">
               <div className="flex items-center gap-2.5">
                 <span className="text-base">🔒</span>
                 <span>
@@ -354,7 +354,7 @@ export default function BeautifulCalendarPage() {
           {/* =========================================================================
               1. HEADER: CONTROLS & MONTH NAVIGATOR
               ========================================================================= */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 animate-fade-up">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
@@ -362,10 +362,10 @@ export default function BeautifulCalendarPage() {
                   Universitet Taqvim Tizimi
                 </span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Akademik Taqvim & Vazifalar
               </h1>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                 Darslar, topshiriq muddatlari, imtihonlar va olimpiadalarning interaktiv jadvali
               </p>
             </div>
@@ -373,12 +373,12 @@ export default function BeautifulCalendarPage() {
             {/* View Mode Switcher + Month Controller + Add Event Button */}
             <div className="flex items-center gap-2.5 flex-wrap">
               {/* View Switcher */}
-              <div className="flex items-center bg-white p-1 rounded-2xl border border-slate-200 shadow-xs">
+              <div className="flex items-center bg-white dark:bg-[#121215] p-1 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
                 <button
                   type="button"
                   onClick={() => setViewMode('month')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                    viewMode === 'month' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                    viewMode === 'month' ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   Oylik (Month)
@@ -387,7 +387,7 @@ export default function BeautifulCalendarPage() {
                   type="button"
                   onClick={() => setViewMode('week')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                    viewMode === 'week' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                    viewMode === 'week' ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   Haftalik (Week)
@@ -396,7 +396,7 @@ export default function BeautifulCalendarPage() {
                   type="button"
                   onClick={() => setViewMode('day')}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-                    viewMode === 'day' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+                    viewMode === 'day' ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-xs' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   Kunlik (Day)
@@ -404,8 +404,8 @@ export default function BeautifulCalendarPage() {
               </div>
 
               {/* Month Navigator with functional Prev/Next Buttons */}
-              <div className="flex items-center gap-2 bg-white px-3.5 py-1.5 rounded-2xl border border-slate-200 shadow-xs">
-                <span className="font-display font-bold text-xs sm:text-sm text-slate-900 min-w-[125px] text-center select-none">
+              <div className="flex items-center gap-2 bg-white dark:bg-[#121215] px-3.5 py-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xs">
+                <span className="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white min-w-[125px] text-center select-none">
                   {MONTH_NAMES[currentMonthIndex]} {currentYear}
                 </span>
                 <div className="flex items-center gap-1 border-l border-slate-200 pl-2">
@@ -520,9 +520,9 @@ export default function BeautifulCalendarPage() {
           {viewMode === 'month' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-up">
               {/* Month Grid */}
-              <div className="lg:col-span-2 bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-6 shadow-xs space-y-4">
+              <div className="lg:col-span-2 bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-xs space-y-4">
                 {/* Days of week header */}
-                <div className="grid grid-cols-7 gap-1 text-center font-bold text-xs uppercase tracking-wider text-slate-400 pb-2 border-b border-slate-100">
+                <div className="grid grid-cols-7 gap-1 text-center font-bold text-xs uppercase tracking-wider text-slate-400 pb-2 border-b border-slate-100 dark:border-slate-800">
                   <span>Du</span>
                   <span>Se</span>
                   <span>Ch</span>
@@ -536,7 +536,7 @@ export default function BeautifulCalendarPage() {
                 <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
                   {/* Offset for first day */}
                   {Array.from({ length: startDayOffset }).map((_, idx) => (
-                    <div key={`offset-${idx}`} className="min-h-[85px] sm:min-h-[105px] p-2 rounded-2xl bg-slate-50/40 border border-transparent opacity-30" />
+                    <div key={`offset-${idx}`} className="min-h-[85px] sm:min-h-[105px] p-2 rounded-2xl bg-slate-50/40 dark:bg-slate-900/40 border border-transparent opacity-30" />
                   ))}
 
                   {Array.from({ length: daysInMonth }).map((_, i) => {
@@ -551,10 +551,10 @@ export default function BeautifulCalendarPage() {
                         onClick={() => setSelectedDay(dayNum)}
                         className={`min-h-[85px] sm:min-h-[105px] p-2 rounded-2xl border text-left flex flex-col justify-between transition-all cursor-pointer group ${
                           isSelected
-                            ? 'ring-2 ring-slate-900 border-slate-900 bg-slate-50/80 shadow-sm'
+                            ? 'ring-2 ring-blue-500 border-blue-500 bg-blue-50/50 dark:bg-blue-950/40 shadow-sm'
                             : isToday
-                              ? 'bg-blue-50/50 border-blue-400 shadow-2xs'
-                              : 'bg-white border-slate-200/70 hover:border-slate-300 hover:bg-slate-50/50'
+                              ? 'bg-blue-50/50 dark:bg-blue-950/30 border-blue-400 shadow-2xs'
+                              : 'bg-white dark:bg-[#18181b] border-slate-200/70 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:bg-slate-50/50 dark:hover:bg-slate-800/50'
                         }`}
                       >
                         <div className="flex items-center justify-between w-full">
@@ -562,14 +562,14 @@ export default function BeautifulCalendarPage() {
                             isToday
                               ? 'w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold'
                               : isSelected
-                                ? 'text-slate-950 font-black'
-                                : 'text-slate-600 group-hover:text-slate-900'
+                                ? 'text-blue-600 dark:text-blue-400 font-black'
+                                : 'text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white'
                           }`}>
                             {dayNum}
                           </span>
 
                           {isToday && (
-                            <span className="text-[9px] font-bold text-blue-700 hidden sm:inline-block">
+                            <span className="text-[9px] font-bold text-blue-700 dark:text-blue-400 hidden sm:inline-block">
                               Bugun
                             </span>
                           )}
@@ -605,13 +605,13 @@ export default function BeautifulCalendarPage() {
               </div>
 
               {/* Right Column: Selected Day Timeline */}
-              <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-xs flex flex-col space-y-5">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 shadow-xs flex flex-col space-y-5">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 block">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 block">
                       Kunlik Reja (Day View)
                     </span>
-                    <h3 className="font-display font-bold text-lg text-slate-900">
+                    <h3 className="font-display font-bold text-lg text-slate-900 dark:text-white">
                       {selectedDay}-{MONTH_NAMES[currentMonthIndex]}, {currentYear}
                     </h3>
                   </div>
@@ -702,13 +702,13 @@ export default function BeautifulCalendarPage() {
               WEEK VIEW
               ========================================================================= */}
           {viewMode === 'week' && (
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs space-y-6 animate-fade-up">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-white/10 p-6 shadow-xs space-y-6 animate-fade-up">
+              <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-slate-900">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     Haftalik Dars va Topshiriqlar Jadvali
                   </h3>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     Tanlangan hafta: {weekDays[0].dayNum}-{MONTH_NAMES[weekDays[0].monthIndex]} dan {weekDays[6].dayNum}-{MONTH_NAMES[weekDays[6].monthIndex]} gacha
                   </p>
                 </div>
@@ -716,14 +716,14 @@ export default function BeautifulCalendarPage() {
                   <button
                     type="button"
                     onClick={() => setSelectedDay(prev => Math.max(1, prev - 7))}
-                    className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold hover:bg-slate-50"
+                    className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300"
                   >
                     ← Oldingi hafta
                   </button>
                   <button
                     type="button"
                     onClick={() => setSelectedDay(prev => Math.min(daysInMonth, prev + 7))}
-                    className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold hover:bg-slate-50"
+                    className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-semibold hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300"
                   >
                     Keyingi hafta →
                   </button>
@@ -745,16 +745,16 @@ export default function BeautifulCalendarPage() {
                       }}
                       className={`rounded-2xl border p-3.5 space-y-3 cursor-pointer transition-all ${
                         isSelected 
-                          ? 'border-slate-900 bg-slate-50/90 ring-2 ring-slate-900/20' 
+                          ? 'border-blue-600 bg-blue-50/50 dark:bg-blue-950/40 ring-2 ring-blue-500/20' 
                           : isToday
-                          ? 'border-blue-500 bg-blue-50/40'
-                          : 'border-slate-200 bg-white hover:border-slate-300'
+                          ? 'border-blue-500 bg-blue-50/40 dark:bg-blue-950/20'
+                          : 'border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.02] hover:border-slate-300 dark:hover:border-white/20'
                       }`}
                     >
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/10">
                         <div>
                           <p className="text-[10px] font-bold uppercase text-slate-400">{dayData.dayName}</p>
-                          <p className="text-base font-bold text-slate-900 font-mono">{dayData.dayNum}</p>
+                          <p className="text-base font-bold text-slate-900 dark:text-white font-mono">{dayData.dayNum}</p>
                         </div>
                         {isToday && (
                           <span className="text-[9px] font-bold bg-blue-600 text-white px-1.5 py-0.5 rounded-md">
@@ -798,11 +798,11 @@ export default function BeautifulCalendarPage() {
               DAY VIEW (FULL HOURLY DETAIL)
               ========================================================================= */}
           {viewMode === 'day' && (
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-white/10 pb-4">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Kunlik Kun Tartibi</span>
-                  <h3 className="text-xl font-bold text-slate-900 font-display">
+                  <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Kunlik Kun Tartibi</span>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white font-display">
                     {selectedDay}-{MONTH_NAMES[currentMonthIndex]}, {currentYear}
                   </h3>
                 </div>
@@ -811,14 +811,14 @@ export default function BeautifulCalendarPage() {
                   <button
                     type="button"
                     onClick={() => setSelectedDay(prev => Math.max(1, prev - 1))}
-                    className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold hover:bg-slate-50"
+                    className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-bold hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300"
                   >
                     ← Oldingi kun
                   </button>
                   <button
                     type="button"
                     onClick={() => setSelectedDay(prev => Math.min(daysInMonth, prev + 1))}
-                    className="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold hover:bg-slate-50"
+                    className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 text-xs font-bold hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300"
                   >
                     Keyingi kun →
                   </button>
@@ -900,65 +900,65 @@ export default function BeautifulCalendarPage() {
           ========================================================================= */}
       {selectedEventModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-md w-full border border-slate-200 shadow-2xl p-6 space-y-5">
-            <div className="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl max-w-md w-full border border-slate-200 dark:border-white/10 shadow-2xl p-6 space-y-5">
+            <div className="flex items-start justify-between gap-3 border-b border-slate-100 dark:border-white/10 pb-3">
               <div className="space-y-1">
                 <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${getEventBadge(selectedEventModal.type)}`}>
                   {selectedEventModal.type === 'class' ? 'Dars mashg\'uloti' :
                    selectedEventModal.type === 'assignment' ? 'Topshiriq (Deadline)' :
                    selectedEventModal.type === 'exam' ? 'Nazorat Imtihoni' : 'Olimpiada / Tadbir'}
                 </span>
-                <h3 className="text-base font-bold text-slate-900 font-display leading-snug">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white font-display leading-snug">
                   {selectedEventModal.title}
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedEventModal(null)}
-                className="p-1.5 text-slate-400 hover:text-slate-600 rounded-xl hover:bg-slate-100"
+                className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10"
               >
                 ✕
               </button>
             </div>
 
-            <div className="space-y-2.5 text-xs text-slate-600">
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                <span className="font-semibold text-slate-500">Sana va Vaqt:</span>
-                <span className="font-bold text-slate-900 font-mono">
+            <div className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/10">
+                <span className="font-semibold text-slate-500 dark:text-slate-400">Sana va Vaqt:</span>
+                <span className="font-bold text-slate-900 dark:text-white font-mono">
                   {selectedEventModal.day}-{MONTH_NAMES[selectedEventModal.month]}, {selectedEventModal.time}
                 </span>
               </div>
 
               {selectedEventModal.room && (
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <span className="font-semibold text-slate-500">Auditoriya / Xona:</span>
-                  <span className="font-bold text-slate-900">{selectedEventModal.room}</span>
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/10">
+                  <span className="font-semibold text-slate-500 dark:text-slate-400">Auditoriya / Xona:</span>
+                  <span className="font-bold text-slate-900 dark:text-white">{selectedEventModal.room}</span>
                 </div>
               )}
 
               {selectedEventModal.instructor && (
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
-                  <span className="font-semibold text-slate-500">O&apos;qituvchi / Tashkilotchi:</span>
-                  <span className="font-bold text-slate-900">{selectedEventModal.instructor}</span>
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/10">
+                  <span className="font-semibold text-slate-500 dark:text-slate-400">O&apos;qituvchi / Tashkilotchi:</span>
+                  <span className="font-bold text-slate-900 dark:text-white">{selectedEventModal.instructor}</span>
                 </div>
               )}
 
               {selectedEventModal.description && (
-                <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 space-y-1">
-                  <span className="font-semibold text-slate-500 block">Tafsilotlar:</span>
-                  <p className="text-slate-700 leading-relaxed">{selectedEventModal.description}</p>
+                <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-100 dark:border-white/10 space-y-1">
+                  <span className="font-semibold text-slate-500 dark:text-slate-400 block">Tafsilotlar:</span>
+                  <p className="text-slate-700 dark:text-slate-200 leading-relaxed">{selectedEventModal.description}</p>
                 </div>
               )}
             </div>
 
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
+            <div className="pt-2 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-2">
               <button
                 type="button"
                 onClick={() => handleToggleComplete(selectedEventModal.id)}
                 className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-colors ${
                   selectedEventModal.completed 
-                    ? 'bg-emerald-100 text-emerald-800' 
-                    : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                    ? 'bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300' 
+                    : 'bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 text-slate-700 dark:text-slate-200'
                 }`}
               >
                 {selectedEventModal.completed ? '✓ Bajarildi' : 'Bajarildi deb belgilash'}
@@ -980,16 +980,16 @@ export default function BeautifulCalendarPage() {
           ========================================================================= */}
       {isAddEventOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-md w-full border border-slate-200 shadow-2xl p-6 space-y-5">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl max-w-md w-full border border-slate-200 dark:border-white/10 shadow-2xl p-6 space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-3">
               <div>
-                <h3 className="text-base font-bold text-slate-900">Yangi Voqea / Vazifa Qo&apos;shish</h3>
-                <p className="text-xs text-slate-500">{MONTH_NAMES[currentMonthIndex]} {currentYear} taqvimi uchun</p>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">Yangi Voqea / Vazifa Qo&apos;shish</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{MONTH_NAMES[currentMonthIndex]} {currentYear} taqvimi uchun</p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsAddEventOpen(false)}
-                className="p-1.5 text-slate-400 hover:text-slate-600 rounded-xl hover:bg-slate-100"
+                className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-white/10"
               >
                 ✕
               </button>
@@ -997,7 +997,7 @@ export default function BeautifulCalendarPage() {
 
             <form onSubmit={handleAddEventSubmit} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Vazifa / Tadbir Nomi
                 </label>
                 <input
@@ -1006,19 +1006,19 @@ export default function BeautifulCalendarPage() {
                   value={newTitle}
                   onChange={e => setNewTitle(e.target.value)}
                   placeholder="Masalan: Algoritmlardan oraliq nazorat"
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     Turi
                   </label>
                   <select
                     value={newType}
                     onChange={e => setNewType(e.target.value as any)}
-                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-white"
+                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
                   >
                     <option value="class">Dars mashg&apos;uloti</option>
                     <option value="assignment">Topshiriq (Deadline)</option>
@@ -1028,13 +1028,13 @@ export default function BeautifulCalendarPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     Sana ({MONTH_NAMES[currentMonthIndex]})
                   </label>
                   <select
                     value={newDay}
                     onChange={e => setNewDay(Number(e.target.value))}
-                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-white"
+                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200"
                   >
                     {Array.from({ length: daysInMonth }).map((_, i) => (
                       <option key={i + 1} value={i + 1}>
@@ -1046,7 +1046,7 @@ export default function BeautifulCalendarPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Vaqt oralig&apos;i
                 </label>
                 <input
@@ -1054,13 +1054,13 @@ export default function BeautifulCalendarPage() {
                   value={newTime}
                   onChange={e => setNewTime(e.target.value)}
                   placeholder="Masalan: 10:00 - 11:30 yoki 23:59"
-                  className="w-full text-xs p-2.5 rounded-xl border border-slate-200"
+                  className="w-full text-xs p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] text-slate-900 dark:text-white"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     Xona / Manzil
                   </label>
                   <input
@@ -1068,12 +1068,12 @@ export default function BeautifulCalendarPage() {
                     value={newRoom}
                     onChange={e => setNewRoom(e.target.value)}
                     placeholder="212-xona"
-                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200"
+                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] text-slate-900 dark:text-white"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                     O&apos;qituvchi
                   </label>
                   <input
@@ -1081,13 +1081,13 @@ export default function BeautifulCalendarPage() {
                     value={newInstructor}
                     onChange={e => setNewInstructor(e.target.value)}
                     placeholder="Prof. Olimjon"
-                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200"
+                    className="w-full text-xs p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] text-slate-900 dark:text-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
                   Izoh yoki talablar
                 </label>
                 <textarea
@@ -1095,15 +1095,15 @@ export default function BeautifulCalendarPage() {
                   value={newDescription}
                   onChange={e => setNewDescription(e.target.value)}
                   placeholder="Qo'shimcha eslatmalar..."
-                  className="w-full text-xs p-2.5 rounded-xl border border-slate-200"
+                  className="w-full text-xs p-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.04] text-slate-900 dark:text-white"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-white/10">
                 <button
                   type="button"
                   onClick={() => setIsAddEventOpen(false)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100"
+                  className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10"
                 >
                   Bekor qilish
                 </button>

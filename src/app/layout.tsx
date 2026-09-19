@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="uz"
       className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans text-ink">
+      <body className="min-h-full flex flex-col font-sans">
         <ThemeAndUIModeProvider>
           <CommandPalette />
           {children}

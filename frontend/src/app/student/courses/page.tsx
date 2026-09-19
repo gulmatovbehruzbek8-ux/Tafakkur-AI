@@ -221,7 +221,7 @@ export default function CoursesPage() {
   const course = COURSES[selectedCourseIndex] || COURSES[0];
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/courses" />
       <TafakkurCompanion currentContext={`Kurs Ishchi Maydoni: ${course.title}`} />
 
@@ -243,8 +243,8 @@ export default function CoursesPage() {
                   }}
                   className={`px-4 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap transition-all border flex items-center gap-2 ${
                     isSelected
-                      ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                      : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                      ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-600 shadow-sm'
+                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
                   }`}
                 >
                   <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-blue-400">
@@ -328,15 +328,15 @@ export default function CoursesPage() {
           {/* =========================================================================
               3. VISUAL LEARNING JOURNEY (5 MODULE ROADMAP)
               ========================================================================= */}
-          <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100">
+          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-white/10">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">O'quv Traektoriyasi</span>
-                <h2 className="font-display text-xl font-bold text-slate-900 mt-0.5">
+                <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white mt-0.5">
                   Modullar Ketma-ketligi & Bosqichlar
                 </h2>
               </div>
-              <span className="text-xs font-bold text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 self-start sm:self-auto">
+              <span className="text-xs font-bold text-blue-800 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/50 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-800 self-start sm:self-auto">
                 Hozir: {course.currentModuleTitle}
               </span>
             </div>
@@ -351,11 +351,11 @@ export default function CoursesPage() {
                     onClick={() => setSelectedModuleDetail(m)}
                     className={`p-4 rounded-2xl border text-left transition-all relative flex flex-col justify-between ${
                       m.status === 'completed'
-                        ? 'bg-emerald-50/40 border-emerald-200/80 hover:bg-emerald-50'
+                        ? 'bg-emerald-50/40 dark:bg-emerald-950/20 border-emerald-200/80 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/40'
                         : m.status === 'current'
-                          ? 'bg-blue-50/60 border-blue-300 shadow-sm ring-2 ring-blue-500/30'
-                          : 'bg-slate-50/60 border-slate-200/70 hover:bg-white'
-                    } ${isSelected ? 'ring-2 ring-slate-900' : ''}`}
+                          ? 'bg-blue-50/60 dark:bg-blue-950/40 border-blue-300 dark:border-blue-800 shadow-sm ring-2 ring-blue-500/30'
+                          : 'bg-slate-50/60 dark:bg-white/[0.02] border-slate-200/70 dark:border-white/10 hover:bg-white dark:hover:bg-white/5'
+                    } ${isSelected ? 'ring-2 ring-blue-600' : ''}`}
                   >
                     <div>
                       <div className="flex items-center justify-between gap-1 mb-2">
@@ -373,20 +373,20 @@ export default function CoursesPage() {
                           </span>
                         )}
                         {m.status === 'upcoming' && (
-                          <span className="w-5 h-5 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[10px] font-bold">
+                          <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-white/10 text-slate-500 dark:text-slate-400 flex items-center justify-center text-[10px] font-bold">
                             ○
                           </span>
                         )}
                       </div>
 
-                      <h4 className="font-display font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                      <h4 className="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white leading-snug">
                         {m.title}
                       </h4>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                      <span className="text-slate-500">{m.lessonsCount} ta dars</span>
-                      <span className="font-mono font-bold text-slate-700">{m.score || `${m.progressPercent}%`}</span>
+                    <div className="mt-4 pt-3 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-[11px]">
+                      <span className="text-slate-500 dark:text-slate-400">{m.lessonsCount} ta dars</span>
+                      <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{m.score || `${m.progressPercent}%`}</span>
                     </div>
                   </button>
                 );
@@ -432,7 +432,7 @@ export default function CoursesPage() {
                   </span>
                   <Link
                     href="/student/tutor"
-                    className="px-3.5 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 font-bold text-xs transition-colors"
+                    className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors"
                   >
                     Ushbu modulni AI bilan o'rganish →
                   </Link>
@@ -444,8 +444,8 @@ export default function CoursesPage() {
           {/* =========================================================================
               4. WORKSPACE TABS: ASSIGNMENTS, RESOURCES & SOW
               ========================================================================= */}
-          <div className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex items-center gap-2 border-b border-slate-100 dark:border-white/10 pb-3">
               {[
                 { id: 'modules', label: "Mavzular va Ma'ruzalar", icon: "📚" },
                 { id: 'assignments', label: "Laboratoriya & Topshiriqlar", icon: "📝" },
@@ -456,8 +456,8 @@ export default function CoursesPage() {
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
                     activeTab === tab.id
-                      ? 'bg-slate-900 text-white shadow-xs'
-                      : 'text-slate-600 hover:bg-slate-100'
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'
                   }`}
                 >
                   <span>{tab.icon}</span>
@@ -470,10 +470,10 @@ export default function CoursesPage() {
             {activeTab === 'assignments' && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between pb-2">
-                  <h3 className="font-display font-bold text-sm text-slate-900">
+                  <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white">
                     Barcha amaliy laboratoriya topshiriqlari ({course.assignments.length})
                   </h3>
-                  <span className="text-xs text-slate-500 font-mono">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                     Jami ballar jamg'armasi: 100 ball
                   </span>
                 </div>
@@ -482,14 +482,14 @@ export default function CoursesPage() {
                   {course.assignments.map((a) => (
                     <div
                       key={a.id}
-                      className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white transition-colors"
+                      className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white dark:hover:bg-white/5 transition-colors"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
                             a.status === 'graded'
-                              ? 'bg-emerald-100 text-emerald-800'
-                              : 'bg-red-100 text-red-800 animate-pulse'
+                              ? 'bg-emerald-100 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300'
+                              : 'bg-red-100 dark:bg-red-950/50 text-red-800 dark:text-red-300 animate-pulse'
                           }`}>
                             {a.status === 'graded' ? 'Baholangan' : 'Topshirish kutilmoqda'}
                           </span>
@@ -497,14 +497,14 @@ export default function CoursesPage() {
                             ⏳ Muddat: {a.deadline}
                           </span>
                         </div>
-                        <h4 className="font-display font-bold text-sm text-slate-900">
+                        <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white">
                           {a.title}
                         </h4>
                       </div>
 
                       <div className="flex items-center gap-3 self-end sm:self-center">
                         {a.score ? (
-                          <span className="font-display font-black text-sm text-emerald-700 bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200 font-mono">
+                          <span className="font-display font-black text-sm text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/50 px-3 py-1 rounded-xl border border-emerald-200 dark:border-emerald-800 font-mono">
                             {a.score}
                           </span>
                         ) : (
@@ -525,13 +525,13 @@ export default function CoursesPage() {
             {/* Tab 2: Modules Syllabus */}
             {activeTab === 'modules' && (
               <div className="space-y-4">
-                <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-slate-900 flex items-center justify-between">
+                <div className="p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/60 text-xs text-slate-900 dark:text-blue-200 flex items-center justify-between">
                   <span>
                     💡 <strong>O'quv qo'llanmasi:</strong> Barcha ma'ruzalar va amaliy mashg'ulotlar O'zbekiston Respublikasi Oliy ta'lim standarti hamda xalqaro ACM/IEEE Computer Science mezonlariga mos keladi.
                   </span>
                   <Link
                     href="/student/tutor"
-                    className="px-3 py-1.5 rounded-xl bg-blue-700 text-white font-bold text-xs shrink-0 ml-3"
+                    className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 ml-3"
                   >
                     AI bilan o'rganish
                   </Link>
@@ -539,14 +539,14 @@ export default function CoursesPage() {
 
                 <div className="space-y-3">
                   {course.modules.map((m) => (
-                    <div key={m.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                    <div key={m.id} className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-slate-700">{m.number}: {m.title}</span>
-                        <span className="text-xs font-mono text-slate-500">{m.lessonsCount} ta ma'ruza</span>
+                        <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{m.number}: {m.title}</span>
+                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{m.lessonsCount} ta ma'ruza</span>
                       </div>
-                      <div className="flex items-center gap-2 flex-wrap text-xs text-slate-600">
+                      <div className="flex items-center gap-2 flex-wrap text-xs text-slate-600 dark:text-slate-300">
                         {m.topics.map((t, idx) => (
-                          <span key={idx} className="bg-white px-2.5 py-1 rounded-lg border border-slate-200">
+                          <span key={idx} className="bg-white dark:bg-white/5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-white/10">
                             • {t}
                           </span>
                         ))}
@@ -560,7 +560,7 @@ export default function CoursesPage() {
             {/* Tab 3: Resources */}
             {activeTab === 'resources' && (
               <div className="space-y-3">
-                <h3 className="font-display font-bold text-sm text-slate-900 pb-1">
+                <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white pb-1">
                   Rasmiy darsliklar va elektron materiallar
                 </h3>
 
@@ -568,21 +568,21 @@ export default function CoursesPage() {
                   {course.resources.map((r, i) => (
                     <div
                       key={i}
-                      className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 hover:bg-white transition-colors"
+                      className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 flex items-center justify-between gap-3 hover:bg-white dark:hover:bg-white/5 transition-colors"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="w-9 h-9 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs">
+                        <span className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center font-bold text-xs">
                           PDF
                         </span>
                         <div>
-                          <h4 className="font-display font-bold text-xs sm:text-sm text-slate-900">{r.name}</h4>
+                          <h4 className="font-display font-bold text-xs sm:text-sm text-slate-900 dark:text-white">{r.name}</h4>
                           <span className="text-[11px] text-slate-400 font-mono">{r.type} • {r.size}</span>
                         </div>
                       </div>
 
                       <button
                         onClick={() => alert(`"${r.name}" yuklab olinmoqda...`)}
-                        className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-800 text-xs font-semibold shadow-2xs"
+                        className="px-3.5 py-1.5 rounded-xl bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-blue-500 text-slate-700 dark:text-slate-200 hover:text-blue-800 dark:hover:text-blue-300 text-xs font-semibold shadow-2xs"
                       >
                         Yuklab olish ⬇
                       </button>

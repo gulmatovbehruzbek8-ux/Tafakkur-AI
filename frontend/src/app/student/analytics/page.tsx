@@ -94,7 +94,7 @@ export default function AcademicAnalystPage() {
     : subjectBreakdowns.filter(s => s.code === selectedSubject);
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/analytics" />
       <TafakkurCompanion currentContext="Akademik Tahlilchi (Analyst)" />
 
@@ -133,7 +133,7 @@ export default function AcademicAnalystPage() {
                   onClick={() => setPerspective('student')}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                     perspective === 'student'
-                      ? 'bg-blue-600 text-slate-950 shadow-sm'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-white/80 hover:text-white'
                   }`}
                 >
@@ -143,7 +143,7 @@ export default function AcademicAnalystPage() {
                   onClick={() => setPerspective('class')}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                     perspective === 'class'
-                      ? 'bg-blue-600 text-slate-950 shadow-sm'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-white/80 hover:text-white'
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function AcademicAnalystPage() {
                   onClick={() => setPerspective('university')}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                     perspective === 'university'
-                      ? 'bg-blue-600 text-slate-950 shadow-sm'
+                      ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-white/80 hover:text-white'
                   }`}
                 >
@@ -204,53 +204,53 @@ export default function AcademicAnalystPage() {
                 </span>
               </div>
 
-              <div className="p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   Davomat
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl sm:text-4xl font-black text-blue-900 font-mono">
+                  <span className="font-display text-3xl sm:text-4xl font-black text-blue-900 dark:text-blue-300 font-mono">
                     {overviewMetrics.attendance.value}
                   </span>
-                  <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">
+                  <span className="text-xs font-bold text-blue-600 bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800/60">
                     ↑ {overviewMetrics.attendance.change}
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-500 block">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 block">
                   {overviewMetrics.attendance.period}
                 </span>
               </div>
 
-              <div className="p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   Topshiriqlar Muvaffaqiyati
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl sm:text-4xl font-black text-emerald-900 font-mono">
+                  <span className="font-display text-3xl sm:text-4xl font-black text-emerald-900 dark:text-emerald-300 font-mono">
                     {overviewMetrics.assignments.value}
                   </span>
-                  <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                  <span className="text-xs font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800/60">
                     {overviewMetrics.assignments.change}
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-500 block">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 block">
                   {overviewMetrics.assignments.period}
                 </span>
               </div>
 
-              <div className="p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   ECTS Bosqichi
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl sm:text-4xl font-black text-violet-900 font-mono">
+                  <span className="font-display text-3xl sm:text-4xl font-black text-violet-900 dark:text-violet-300 font-mono">
                     {overviewMetrics.ects.value}
                   </span>
-                  <span className="text-xs font-bold text-violet-600 bg-violet-50 px-2 py-0.5 rounded-md border border-violet-200">
+                  <span className="text-xs font-bold text-violet-600 bg-violet-50 dark:bg-violet-950/40 px-2 py-0.5 rounded-md border border-violet-200 dark:border-violet-800/60">
                     {overviewMetrics.ects.change}
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-500 block">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 block">
                   {overviewMetrics.ects.period}
                 </span>
               </div>
@@ -268,19 +268,19 @@ export default function AcademicAnalystPage() {
                   2-Qatlam: Aqlli Xulosalar (INSIGHTS)
                 </span>
               </div>
-              <span className="text-xs text-slate-500">Tafakkur AI tahliliy xulosalari</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Tafakkur AI tahliliy xulosalari</span>
             </div>
 
             <div className="space-y-3.5">
               {aiInsights.map((item) => (
                 <div
                   key={item.id}
-                  className={`p-5 rounded-3xl bg-white border shadow-xs transition-all ${
+                  className={`p-5 rounded-3xl bg-white dark:bg-[#121215] border shadow-xs transition-all ${
                     item.type === 'strength'
-                      ? 'border-emerald-200 hover:border-emerald-400'
+                      ? 'border-emerald-200 dark:border-emerald-800/60 hover:border-emerald-400'
                       : item.type === 'warning'
-                        ? 'border-amber-200 hover:border-amber-400'
-                        : 'border-blue-200 hover:border-blue-400'
+                        ? 'border-amber-200 dark:border-amber-800/60 hover:border-amber-400'
+                        : 'border-blue-200 dark:border-blue-800/60 hover:border-blue-400'
                   }`}
                 >
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
@@ -288,24 +288,24 @@ export default function AcademicAnalystPage() {
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider border ${
                           item.type === 'strength'
-                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                            ? 'bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60'
                             : item.type === 'warning'
-                              ? 'bg-amber-50 text-amber-800 border-amber-200'
-                              : 'bg-blue-50 text-blue-800 border-blue-200'
+                              ? 'bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800/60'
+                              : 'bg-blue-50 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800/60'
                         }`}>
                           {item.category}
                         </span>
-                        <h3 className="font-display font-bold text-base text-slate-900">
+                        <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                           {item.title}
                         </h3>
                       </div>
 
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                         {item.description}
                       </p>
 
-                      <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-700 flex items-center gap-2">
-                        <span className="font-bold text-blue-800">💡 Tavsiya:</span>
+                      <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200 flex items-center gap-2">
+                        <span className="font-bold text-blue-800 dark:text-blue-400">💡 Tavsiya:</span>
                         <span>{item.recommendation}</span>
                       </div>
                     </div>

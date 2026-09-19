@@ -69,7 +69,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     // Heading 3
                     if (trimmed.startsWith('### ')) {
                       return (
-                        <h4 key={lIdx} className="font-display font-bold text-sm md:text-base text-slate-900 mt-2 mb-1">
+                        <h4 key={lIdx} className="font-display font-bold text-sm md:text-base text-slate-900 dark:text-white mt-2 mb-1">
                           {renderInline(trimmed.substring(4))}
                         </h4>
                       );
@@ -79,7 +79,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     if (trimmed.startsWith('## ') || trimmed.startsWith('# ')) {
                       const text = trimmed.replace(/^#+\s*/, '');
                       return (
-                        <h3 key={lIdx} className="font-display font-bold text-base md:text-lg text-slate-900 mt-2 mb-1">
+                        <h3 key={lIdx} className="font-display font-bold text-base md:text-lg text-slate-900 dark:text-white mt-2 mb-1">
                           {renderInline(text)}
                         </h3>
                       );
@@ -88,8 +88,8 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     // Bullet items
                     if (trimmed.startsWith('• ') || trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
                       return (
-                        <div key={lIdx} className="flex items-start gap-2 pl-2">
-                          <span className="text-blue-600 font-bold shrink-0 mt-0.5">•</span>
+                        <div key={lIdx} className="flex items-start gap-2 pl-2 text-slate-800 dark:text-slate-200">
+                          <span className="text-blue-600 dark:text-blue-400 font-bold shrink-0 mt-0.5">•</span>
                           <span>{renderInline(trimmed.substring(2))}</span>
                         </div>
                       );
@@ -98,7 +98,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     // Citation or SOW Box highlight
                     if (trimmed.startsWith('📚') || trimmed.startsWith('📌') || trimmed.startsWith('✅') || trimmed.startsWith('⚠️')) {
                       return (
-                        <p key={lIdx} className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200 text-slate-800 text-xs font-medium my-1">
+                        <p key={lIdx} className="p-2.5 rounded-xl bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 text-slate-800 dark:text-blue-200 text-xs font-medium my-1">
                           {renderInline(trimmed)}
                         </p>
                       );
@@ -108,7 +108,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     if (!trimmed) return null;
 
                     return (
-                      <p key={lIdx} className="leading-relaxed">
+                      <p key={lIdx} className="leading-relaxed text-slate-800 dark:text-slate-200">
                         {renderInline(line)}
                       </p>
                     );
@@ -130,14 +130,14 @@ function renderInline(text: string): React.ReactNode[] {
   return tokens.map((token, i) => {
     if (token.startsWith('**') && token.endsWith('**')) {
       return (
-        <strong key={i} className="font-bold text-slate-900">
+        <strong key={i} className="font-bold text-slate-900 dark:text-white">
           {token.slice(2, -2)}
         </strong>
       );
     }
     if (token.startsWith('`') && token.endsWith('`')) {
       return (
-        <code key={i} className="px-1.5 py-0.5 rounded-md bg-slate-100 text-blue-800 font-mono text-xs border border-slate-200">
+        <code key={i} className="px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-blue-800 dark:text-blue-300 font-mono text-xs border border-slate-200 dark:border-slate-700">
           {token.slice(1, -1)}
         </code>
       );
