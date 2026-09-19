@@ -337,14 +337,14 @@ export default function AcademicPassportPage() {
               ========================================================================= */}
           {shareModalOpen && selectedAchievement && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-md w-full p-6 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                  <h3 className="font-display font-bold text-base text-slate-900">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-md w-full p-6 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-zinc-800">
+                  <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                     Yutuqni Ulashish & Tasdiqlash Kartasi
                   </h3>
                   <button
                     onClick={() => setShareModalOpen(false)}
-                    className="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center text-sm"
+                    className="w-7 h-7 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-800 flex items-center justify-center text-sm"
                   >
                     ✕
                   </button>
@@ -399,13 +399,13 @@ export default function AcademicPassportPage() {
                   <div className="grid grid-cols-2 gap-2">
                     <button
                       onClick={() => alert("LinkedIn sertifikati havolasi tayyorlandi.")}
-                      className="py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold border border-slate-200 transition-colors"
+                      className="py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-200 font-semibold border border-slate-200 dark:border-zinc-700 transition-colors"
                     >
                       LinkedIn-da ulashish
                     </button>
                     <button
                       onClick={() => alert("Raqamli sertifikat PDF shaklida yuklab olinmoqda...")}
-                      className="py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold border border-slate-200 transition-colors"
+                      className="py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-200 font-semibold border border-slate-200 dark:border-zinc-700 transition-colors"
                     >
                       PDF yuklab olish
                     </button>

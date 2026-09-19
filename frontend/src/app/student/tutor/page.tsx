@@ -629,17 +629,17 @@ def insert(root, key):
                         <span className="w-5 h-5 rounded-lg bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">
                           AI
                         </span>
-                        <span className="text-[11px] font-bold text-slate-700">Tafakkur Repetitor</span>
+                        <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200">Tafakkur Repetitor</span>
                         {m.mode && (
-                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800 uppercase">
+                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 uppercase">
                             {m.mode}
                           </span>
                         )}
                       </>
                     ) : (
                       <>
-                        <span className="text-[11px] font-bold text-slate-700">Bunyodbek Gulmatov</span>
-                        <span className="w-5 h-5 rounded-lg bg-slate-800 text-white flex items-center justify-center text-[10px] font-bold">
+                        <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200">Bunyodbek Gulmatov</span>
+                        <span className="w-5 h-5 rounded-lg bg-slate-800 dark:bg-slate-700 text-white flex items-center justify-center text-[10px] font-bold">
                           BG
                         </span>
                       </>

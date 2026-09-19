@@ -187,19 +187,19 @@ export default function AcademicAnalystPage() {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-5 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   Akademik GPA
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl sm:text-4xl font-black text-slate-900 font-mono">
+                  <span className="font-display text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono">
                     {overviewMetrics.gpa.value}
                   </span>
-                  <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                  <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md border border-emerald-200 dark:border-emerald-800/60">
                     ↑ {overviewMetrics.gpa.change}
                   </span>
                 </div>
-                <span className="text-[11px] text-slate-500 block">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 block">
                   {overviewMetrics.gpa.period}
                 </span>
               </div>
@@ -328,8 +328,8 @@ export default function AcademicAnalystPage() {
           {/* =========================================================================
               LAYER 3: DETAILS (UNDERLYING PERFORMANCE GRAPHS & COURSE MATRIX)
               ========================================================================= */}
-          <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-violet-600" />
@@ -337,7 +337,7 @@ export default function AcademicAnalystPage() {
                     3-Qatlam: Chuqur Tafsilotlar (DETAILS)
                   </span>
                 </div>
-                <h2 className="font-display text-xl font-bold text-slate-900 tracking-tight mt-0.5">
+                <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white tracking-tight mt-0.5">
                   Fanlar Kesimidagi Taqqoslash Matritsasi
                 </h2>
               </div>
@@ -347,7 +347,7 @@ export default function AcademicAnalystPage() {
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="px-3 py-1.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 font-semibold focus:outline-none focus:border-blue-500"
+                  className="px-3 py-1.5 bg-slate-50 dark:bg-zinc-800 rounded-xl border border-slate-200 dark:border-zinc-700 text-xs text-slate-700 dark:text-zinc-200 font-semibold focus:outline-none focus:border-blue-500"
                 >
                   <option value="all">Barcha Fanlar (4 ta)</option>
                   <option value="CS-201">Ma'lumotlar tuzilmasi (CS-201)</option>
@@ -361,29 +361,29 @@ export default function AcademicAnalystPage() {
             {/* Comparison Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredSubjects.map((sub) => (
-                <div key={sub.code} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
+                <div key={sub.code} className="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200/80 dark:border-zinc-800 space-y-4">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <span className="font-mono text-xs font-bold text-blue-800 bg-blue-100/70 px-2 py-0.5 rounded-md">
+                      <span className="font-mono text-xs font-bold text-blue-800 dark:text-blue-300 bg-blue-100/70 dark:bg-blue-950/60 px-2 py-0.5 rounded-md">
                         {sub.code}
                       </span>
-                      <h4 className="font-display font-bold text-base text-slate-900 mt-1">
+                      <h4 className="font-display font-bold text-base text-slate-900 dark:text-white mt-1">
                         {sub.name}
                       </h4>
-                      <p className="text-xs text-slate-500 mt-0.5">{sub.instructor}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{sub.instructor}</p>
                     </div>
-                    <span className="px-3 py-1 rounded-xl bg-white border border-slate-200 text-slate-800 font-bold text-xs font-mono">
+                    <span className="px-3 py-1 rounded-xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-800 dark:text-zinc-200 font-bold text-xs font-mono">
                       {sub.grade}
                     </span>
                   </div>
 
                   <div className="space-y-2 text-xs">
                     <div>
-                      <div className="flex items-center justify-between text-slate-600 mb-1">
+                      <div className="flex items-center justify-between text-slate-600 dark:text-slate-300 mb-1">
                         <span>O'zlashtirish balli:</span>
-                        <span className="font-bold text-slate-900 font-mono">{sub.score}%</span>
+                        <span className="font-bold text-slate-900 dark:text-white font-mono">{sub.score}%</span>
                       </div>
-                      <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-200 dark:bg-zinc-700 h-2 rounded-full overflow-hidden">
                         <div
                           className="bg-blue-600 h-full rounded-full"
                           style={{ width: `${sub.score}%` }}
@@ -392,11 +392,11 @@ export default function AcademicAnalystPage() {
                     </div>
 
                     <div>
-                      <div className="flex items-center justify-between text-slate-600 mb-1">
+                      <div className="flex items-center justify-between text-slate-600 dark:text-slate-300 mb-1">
                         <span>Davomat ko'rsatkichi:</span>
-                        <span className="font-bold text-slate-900 font-mono">{sub.attendance}%</span>
+                        <span className="font-bold text-slate-900 dark:text-white font-mono">{sub.attendance}%</span>
                       </div>
-                      <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div className="w-full bg-slate-200 dark:bg-zinc-700 h-2 rounded-full overflow-hidden">
                         <div
                           className="bg-blue-600 h-full rounded-full"
                           style={{ width: `${sub.attendance}%` }}
@@ -405,11 +405,11 @@ export default function AcademicAnalystPage() {
                     </div>
                   </div>
 
-                  <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs text-slate-500">
-                    <span>Vazifalar topshirish: <strong>{sub.taskSpeed}</strong></span>
+                  <div className="pt-2 border-t border-slate-200/60 dark:border-zinc-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                    <span>Vazifalar topshirish: <strong className="text-slate-700 dark:text-slate-200">{sub.taskSpeed}</strong></span>
                     <Link
                       href="/student/courses"
-                      className="text-blue-700 font-bold hover:underline"
+                      className="text-blue-700 dark:text-blue-400 font-bold hover:underline"
                     >
                       Kurs maydoniga o'tish →
                     </Link>

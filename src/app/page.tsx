@@ -207,16 +207,16 @@ export default function Home() {
       </section>
 
       {/* Features — Three AI Modules */}
-      <section id="imkoniyatlar" className="relative bg-[#f8fafc] text-slate-900 py-20 md:py-28 px-6 md:px-12 border-t border-slate-200">
+      <section id="imkoniyatlar" className="relative bg-[#0c0c0e] text-white py-20 md:py-28 px-6 md:px-12 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-bold mb-3">
               <span>●</span> Asosiy Funksional Modullar
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-slate-950">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-white">
               Ta’lim jarayonini tezlashtiradigan AI agentlar
             </h2>
-            <p className="mt-3 text-slate-600 text-sm md:text-base">
+            <p className="mt-3 text-slate-400 text-sm md:text-base">
               Talaba o'zlashtirishi, professor baholashi va dekanat hujjat aylanishi uchun yagona tizim.
             </p>
           </div>
@@ -225,13 +225,13 @@ export default function Home() {
             {features.map((f) => (
               <article
                 key={f.title}
-                className="bg-white rounded-2xl p-8 border border-slate-200/90 shadow-xs hover:-translate-y-1 hover:shadow-md hover:border-blue-300 transition-all duration-200"
+                className="bg-[#121215] rounded-2xl p-8 border border-white/10 shadow-lg hover:-translate-y-1 hover:border-blue-500/50 transition-all duration-200"
               >
-                <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center mb-6 text-2xl">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-white flex items-center justify-center mb-6 text-2xl">
                   {f.icon}
                 </div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-slate-900">{f.title}</h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{f.desc}</p>
+                <h3 className="font-display text-lg font-bold tracking-tight text-white">{f.title}</h3>
+                <p className="mt-2 text-sm text-slate-400 leading-relaxed">{f.desc}</p>
               </article>
             ))}
           </div>

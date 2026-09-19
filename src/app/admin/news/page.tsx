@@ -257,7 +257,7 @@ export default function AdminNewsPage() {
                 disabled={loading || !bulletPoints.trim()}
                 className={`w-full py-3.5 px-6 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-sm ${
                   loading || !bulletPoints.trim() 
-                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200' 
+                  ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed border border-slate-200 dark:border-slate-700' 
                   : 'bg-teal-600 hover:bg-teal-700 text-white shadow-teal-600/20 active:scale-[0.99]'
                 }`}
               >
@@ -414,9 +414,9 @@ export default function AdminNewsPage() {
                         </span>
                       )}
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                        ann.priority === 'urgent' ? 'bg-red-100 text-red-800 border border-red-200' :
-                        ann.priority === 'important' ? 'bg-amber-100 text-amber-800 border border-amber-200' :
-                        'bg-teal-100 text-teal-800 border border-teal-200'
+                        ann.priority === 'urgent' ? 'bg-red-100 dark:bg-red-950/50 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800' :
+                        ann.priority === 'important' ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' :
+                        'bg-teal-100 dark:bg-teal-950/50 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800'
                       }`}>
                         {ann.priority === 'urgent' ? "Favqulodda" : ann.priority === 'important' ? "Muhim" : "Standart"}
                       </span>

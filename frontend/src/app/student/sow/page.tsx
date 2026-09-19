@@ -160,7 +160,7 @@ function SOWContent() {
                     text: `Assalomu alaykum! Men **Tafakkur AI** — sizning **${sName}** fani bo'yicha shaxsiy repetitoringizman. Mavzular yoki topshiriqlar bo'yicha qanday savolingiz bor?` 
                   }]);
                 }}
-                className="bg-white border border-slate-200 rounded-xl text-slate-800 font-semibold px-4 py-2.5 text-xs outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 shadow-2xs cursor-pointer"
+                className="bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl text-slate-800 dark:text-zinc-200 font-semibold px-4 py-2.5 text-xs outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 shadow-2xs cursor-pointer"
               >
                 {subjects.map(sub => (
                   <option key={sub.id} value={sub.id}>{sub.name}</option>
@@ -172,8 +172,8 @@ function SOWContent() {
           <div className="space-y-6">
             {activeSubject.curriculum.map((mod, idx) => (
               <div key={idx} className="tf-card-solid p-6 md:p-7">
-                <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
-                  <h2 className="text-base font-bold text-slate-900 tracking-tight">{mod.module}</h2>
+                <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100 dark:border-zinc-800">
+                  <h2 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">{mod.module}</h2>
                   <span className="text-xs font-semibold text-slate-400">{mod.topics.length} ta mavzu</span>
                 </div>
                 <div className="space-y-3">
@@ -182,20 +182,20 @@ function SOWContent() {
                       key={tIdx} 
                       className={`p-4 rounded-xl border transition-all ${
                         topic.current 
-                          ? 'border-blue-300 bg-blue-50/50 shadow-xs' 
+                          ? 'border-blue-300 dark:border-blue-800/60 bg-blue-50/50 dark:bg-blue-950/40 shadow-xs' 
                           : topic.done 
-                            ? 'border-emerald-200/80 bg-emerald-50/20' 
-                            : 'border-slate-200/70 bg-slate-50/50'
+                            ? 'border-emerald-200/80 dark:border-emerald-800/60 bg-emerald-50/20 dark:bg-emerald-950/20' 
+                            : 'border-slate-200/70 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/40'
                       }`}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-mono text-slate-400">#{tIdx + 1}</span>
-                            <h3 className={`font-semibold text-sm ${topic.current ? 'text-slate-900' : 'text-slate-800'}`}>{topic.title}</h3>
+                            <h3 className={`font-semibold text-sm ${topic.current ? 'text-slate-900 dark:text-white' : 'text-slate-800 dark:text-slate-200'}`}>{topic.title}</h3>
                           </div>
                           {topic.task && (
-                            <p className="text-xs text-amber-800 font-medium mt-1.5 flex items-center gap-1.5">
+                            <p className="text-xs text-amber-800 dark:text-amber-300 font-medium mt-1.5 flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                               {topic.task}
                             </p>
@@ -203,13 +203,13 @@ function SOWContent() {
                         </div>
                         <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
                           {topic.done && (
-                            <span className="text-xs font-medium text-emerald-700 bg-emerald-100/70 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300 bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/60 px-2.5 py-0.5 rounded-full">
                               ✓ O'tildi
                             </span>
                           )}
                           {topic.current && (
                             <button 
-                              onClick={() => setChatOpen(true)}
+                              onClick={() => setChatOpen(true)} 
                               className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5"
                             >
                               <span>Tafakkur AI bilan o'rganish</span>
@@ -228,7 +228,7 @@ function SOWContent() {
 
         {/* Right: Slide-in Chatbot Context */}
         {chatOpen && (
-          <div className="w-full xl:w-[420px] shrink-0 bg-white rounded-2xl border border-slate-200 shadow-xl flex flex-col h-[640px] sticky top-8 overflow-hidden">
+          <div className="w-full xl:w-[420px] shrink-0 bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xl flex flex-col h-[640px] sticky top-8 overflow-hidden">
             <div className="bg-slate-900 text-white p-4 md:p-5 flex justify-between items-center">
               <div>
                 <div className="flex items-center gap-2">
@@ -246,13 +246,13 @@ function SOWContent() {
               </button>
             </div>
             
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50 dark:bg-zinc-900/60">
               {messages.map((msg, idx) => (
                 <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`p-3.5 rounded-2xl max-w-[85%] text-xs leading-relaxed ${
                     msg.role === 'user' 
                       ? 'bg-blue-600 text-white rounded-tr-xs' 
-                      : 'bg-white border border-slate-200 text-slate-800 rounded-tl-xs shadow-2xs'
+                      : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-800 dark:text-slate-200 rounded-tl-xs shadow-2xs'
                   }`}>
                     {msg.text}
                   </div>
@@ -260,14 +260,14 @@ function SOWContent() {
               ))}
             </div>
 
-            <div className="p-3 bg-white border-t border-slate-100">
+            <div className="p-3 bg-white dark:bg-[#121215] border-t border-slate-100 dark:border-zinc-800">
               <form onSubmit={handleChat} className="flex gap-2">
                 <input 
                   type="text" 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Mavzu bo'yicha savol bering..."
-                  className="flex-1 px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition-all"
+                  className="flex-1 px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-zinc-700 bg-slate-50/70 dark:bg-zinc-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-zinc-800 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition-all"
                 />
                 <button type="submit" className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors">
                   &rarr;

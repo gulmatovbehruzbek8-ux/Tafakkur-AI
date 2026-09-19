@@ -398,19 +398,19 @@ export default function PrincipalDashboard() {
               ========================================================================= */}
           {isAddModalOpen && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
                   <div>
-                    <h3 className="font-display font-bold text-slate-900 text-base">
+                    <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">
                       Yangi Fan va Guruhni Biriktirish
                     </h3>
-                    <p className="text-[11px] text-slate-500">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
                       O'quv rejasiga muvofiq yangi dars yuklamasini kiritish
                     </p>
                   </div>
                   <button
                     onClick={() => setIsAddModalOpen(false)}
-                    className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm transition-colors"
+                    className="w-8 h-8 rounded-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-500 dark:text-slate-300 flex items-center justify-center font-bold text-sm transition-colors"
                   >
                     ✕
                   </button>
@@ -418,59 +418,59 @@ export default function PrincipalDashboard() {
 
                 <form onSubmit={handleAddClassSubmit} className="space-y-3.5 text-xs">
                   <div>
-                    <label className="font-bold text-slate-700 block mb-1">Fan Nomi (Course Name) *</label>
+                    <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Fan Nomi (Course Name) *</label>
                     <input
                       type="text"
                       required
                       placeholder="Masalan: Kiberxavfsizlik asoslari"
                       value={newClass.name}
                       onChange={(e) => setNewClass(p => ({ ...p, name: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                      className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Guruh (Group) *</label>
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Guruh (Group) *</label>
                       <input
                         type="text"
                         required
                         placeholder="AI-24"
                         value={newClass.group}
                         onChange={(e) => setNewClass(p => ({ ...p, group: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Auditoriya / Xona</label>
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Mas'ul O'qituvchi *</label>
                       <input
                         type="text"
-                        placeholder="A-204"
-                        value={newClass.room}
-                        onChange={(e) => setNewClass(p => ({ ...p, room: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        required
+                        placeholder="Prof. Olimjon"
+                        value={newClass.teacher}
+                        onChange={(e) => setNewClass(p => ({ ...p, teacher: e.target.value }))}
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">O'qituvchi F.I.SH. *</label>
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Auditoriya / Xona</label>
                       <input
                         type="text"
-                        required
-                        placeholder="Prof. Olimjon Turdiyev"
-                        value={newClass.teacher}
-                        onChange={(e) => setNewClass(p => ({ ...p, teacher: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        placeholder="A-204"
+                        value={newClass.room}
+                        onChange={(e) => setNewClass(p => ({ ...p, room: e.target.value }))}
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Holat</label>
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Holat</label>
                       <select
                         value={newClass.status}
                         onChange={(e) => setNewClass(p => ({ ...p, status: e.target.value as any }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                       >
                         <option value="A'lo">A'lo</option>
                         <option value="Yaxshi">Yaxshi</option>
@@ -481,40 +481,40 @@ export default function PrincipalDashboard() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">SOW O'zlashtirish (%)</label>
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">SOW O'zlashtirish (%)</label>
                       <input
                         type="number"
                         min={0}
                         max={100}
                         value={newClass.progress}
                         onChange={(e) => setNewClass(p => ({ ...p, progress: Number(e.target.value) }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">Davomat (e.g. 24/25)</label>
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">Davomat (e.g. 24/25)</label>
                       <input
                         type="text"
                         value={newClass.attendance}
                         onChange={(e) => setNewClass(p => ({ ...p, attendance: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
                       />
                     </div>
                   </div>
 
-                  <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+                  <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-zinc-800">
                     <button
                       type="button"
                       onClick={() => setIsAddModalOpen(false)}
-                      className="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 font-bold text-slate-600 transition-colors"
+                      className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800 font-bold text-slate-600 dark:text-slate-300 transition-colors"
                     >
                       Bekor qilish
                     </button>
                     <button
                       type="submit"
-                      className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-sm shadow-teal-600/20"
+                      className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-sm"
                     >
-                      Biriktirish va Saqlash ✓
+                      Jadvalga Saqlash ✓
                     </button>
                   </div>
                 </form>
@@ -527,64 +527,64 @@ export default function PrincipalDashboard() {
               ========================================================================= */}
           {selectedClass && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
                   <div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200 font-bold">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/60 font-bold">
                       {selectedClass.group} GURUHI
                     </span>
-                    <h3 className="font-display font-bold text-slate-900 text-base sm:text-lg mt-1">
+                    <h3 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg mt-1">
                       {selectedClass.name}
                     </h3>
                   </div>
                   <button
                     onClick={() => setSelectedClass(null)}
-                    className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm transition-colors"
+                    className="w-8 h-8 rounded-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-500 dark:text-slate-300 flex items-center justify-center font-bold text-sm transition-colors"
                   >
                     ✕
                   </button>
                 </div>
 
                 <div className="space-y-3.5 text-xs">
-                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+                  <div className="p-3 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500">Biriktirilgan Professor:</span>
-                      <strong className="text-slate-800">{selectedClass.teacher}</strong>
+                      <span className="text-slate-500 dark:text-slate-400">Biriktirilgan Professor:</span>
+                      <strong className="text-slate-800 dark:text-slate-200">{selectedClass.teacher}</strong>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500">Auditoriya:</span>
-                      <span className="font-mono font-bold text-slate-700">{selectedClass.room || "A-204"}</span>
+                      <span className="text-slate-500 dark:text-slate-400">Auditoriya:</span>
+                      <span className="font-mono font-bold text-slate-700 dark:text-slate-300">{selectedClass.room || "A-204"}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500">Davomat ko'rsatkichi:</span>
-                      <span className="font-mono font-bold text-teal-700">{selectedClass.attendance}</span>
+                      <span className="text-slate-500 dark:text-slate-400">Davomat ko'rsatkichi:</span>
+                      <span className="font-mono font-bold text-teal-700 dark:text-teal-400">{selectedClass.attendance}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-500">O'zlashtirish darajasi:</span>
-                      <strong className="text-emerald-600">{selectedClass.progress}% ({selectedClass.status})</strong>
+                      <span className="text-slate-500 dark:text-slate-400">O'zlashtirish darajasi:</span>
+                      <strong className="text-emerald-600 dark:text-emerald-400">{selectedClass.progress}% ({selectedClass.status})</strong>
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-2xl bg-teal-50/50 border border-teal-100 space-y-1">
-                    <span className="text-[10px] font-bold text-teal-800 uppercase tracking-wider block">
+                  <div className="p-3.5 rounded-2xl bg-teal-50/50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-800/60 space-y-1">
+                    <span className="text-[10px] font-bold text-teal-800 dark:text-teal-300 uppercase tracking-wider block">
                       Oxirgi o'tilgan SOW mavzusi:
                     </span>
-                    <p className="text-slate-700 font-medium">
+                    <p className="text-slate-700 dark:text-slate-300 font-medium">
                       {selectedClass.recentTopic || "Mavzular taqvimi to'liq tasdiqlangan"}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-end gap-2">
+                <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-end gap-2">
                   <Link
                     href={`/admin/sow?subject=${selectedClass.name}`}
-                    className="px-4 py-2.5 rounded-xl border border-teal-200 text-teal-700 hover:bg-teal-50 font-bold transition-colors"
+                    className="px-4 py-2.5 rounded-xl border border-teal-200 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/50 font-bold transition-colors"
                   >
                     SOW Rejasini Ochish
                   </Link>
                   <button
                     onClick={() => setSelectedClass(null)}
-                    className="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors"
+                    className="px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-zinc-800 text-white font-bold hover:bg-slate-800 dark:hover:bg-zinc-700 transition-colors"
                   >
                     Yopish
                   </button>

@@ -42,7 +42,7 @@ export default function TeacherDashboard() {
   ];
 
   return (
-    <div className="tf-page bg-transparent text-slate-900 dark:text-slate-100">
+    <div className="tf-page">
       <Sidebar role="teacher" activeRoute="/teacher" />
       <TafakkurCompanion currentContext="O'qituvchi Boshqaruvi & AI Grader" />
 

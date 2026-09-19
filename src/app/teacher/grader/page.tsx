@@ -156,7 +156,7 @@ export default function TeacherGraderSignaturePage() {
   };
 
   return (
-    <div className="tf-page bg-transparent text-slate-900 dark:text-slate-100">
+    <div className="tf-page">
       <Sidebar role="teacher" activeRoute="/teacher/grader" />
       <TafakkurCompanion currentContext="AI Grader Imtihon va Baholash Maydoni" />
 

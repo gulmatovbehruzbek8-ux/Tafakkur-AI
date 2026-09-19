@@ -520,7 +520,7 @@ export default function AdminUsersPage() {
           {/* Filters & Search Toolbar */}
           <div className="tf-card-solid p-4 flex flex-col md:flex-row justify-between items-center gap-3">
             {/* Role Filter Tabs */}
-            <div className="flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl w-full md:w-auto">
+            <div className="flex items-center gap-1 bg-slate-100/80 dark:bg-zinc-800/80 p-1 rounded-xl w-full md:w-auto">
               {[
                 { key: 'all', label: 'Barchasi' },
                 { key: 'student', label: 'Talabalar' },
@@ -532,8 +532,8 @@ export default function AdminUsersPage() {
                   onClick={() => setFilterRole(tab.key as any)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     filterRole === tab.key 
-                      ? 'bg-white text-blue-700 shadow-2xs font-bold' 
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-white dark:bg-zinc-700 text-blue-700 dark:text-blue-300 shadow-2xs font-bold' 
+                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {tab.label}
@@ -548,7 +548,7 @@ export default function AdminUsersPage() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="F.I.SH., email, ID yoki guruh..."
-                className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50/70 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white text-slate-900 transition-all font-sans"
+                className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50/70 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-900 text-slate-900 dark:text-white transition-all font-sans"
               />
               <svg className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -566,7 +566,7 @@ export default function AdminUsersPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-slate-50/70 border-b border-slate-100 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                    <tr className="bg-slate-50/70 dark:bg-zinc-900/50 border-b border-slate-100 dark:border-zinc-800 text-[11px] font-semibold text-slate-400 dark:text-zinc-400 uppercase tracking-wider">
                       <th className="p-4 pl-6">Foydalanuvchi</th>
                       <th className="p-4">HEMIS ID</th>
                       <th className="p-4">Roli va Yo'nalishi</th>
@@ -575,7 +575,7 @@ export default function AdminUsersPage() {
                       <th className="p-4 pr-6 text-right">Amallar</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 text-sm">
+                  <tbody className="divide-y divide-slate-100 dark:divide-zinc-800 text-sm">
                     {filteredUsers.map(u => {
                       const p = u.profile || {};
                       const fullName = p.name || (p.firstName ? `${p.firstName} ${p.lastName || ''}`.trim() : u.username);
@@ -584,21 +584,21 @@ export default function AdminUsersPage() {
                       const idTag = isStudent ? (p.studentId || 'ID yo\'q') : isTeacher ? (p.teacherId || 'ID yo\'q') : 'ADMIN';
 
                       return (
-                        <tr key={u.id} className="hover:bg-slate-50/60 transition-colors">
+                        <tr key={u.id} className="hover:bg-slate-50/60 dark:hover:bg-zinc-800/40 transition-colors">
                           <td className="p-4 pl-6">
                             <div className="flex items-center gap-3">
                               <div className="w-9 h-9 rounded-full bg-blue-600 text-white font-semibold text-xs flex items-center justify-center shrink-0 shadow-xs">
                                 {fullName.charAt(0).toUpperCase()}
                               </div>
                               <div>
-                                <div className="font-semibold text-slate-900">{fullName}</div>
+                                <div className="font-semibold text-slate-900 dark:text-white">{fullName}</div>
                                 <div className="text-xs text-slate-400 font-mono">@{u.username}</div>
                               </div>
                             </div>
                           </td>
 
                           <td className="p-4">
-                            <span className="font-mono text-xs font-semibold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200/60">
+                            <span className="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-zinc-800 px-2.5 py-1 rounded-md border border-slate-200/60 dark:border-zinc-700">
                               {idTag}
                             </span>
                           </td>
@@ -606,14 +606,14 @@ export default function AdminUsersPage() {
                           <td className="p-4">
                             <div className="flex items-center gap-2">
                               <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
-                                u.role === 'admin' ? 'bg-rose-50 text-rose-700 border border-rose-200' :
-                                isTeacher ? 'bg-blue-50 text-blue-700 border border-blue-200' :
-                                'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                u.role === 'admin' ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60' :
+                                isTeacher ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' :
+                                'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60'
                               }`}>
                                 {u.role === 'admin' ? 'Admin' : isTeacher ? "O'qituvchi" : 'Talaba'}
                               </span>
                             </div>
-                            <div className="text-xs text-slate-500 mt-1">
+                            <div className="text-xs text-slate-500 dark:text-zinc-400 mt-1">
                               {isStudent && (
                                 <span>{p.group ? `${p.group} guruhi` : ''} {p.course ? `• ${p.course}` : ''}</span>
                               )}
@@ -624,15 +624,15 @@ export default function AdminUsersPage() {
                           </td>
 
                           <td className="p-4">
-                            <div className="text-xs text-slate-800 font-medium">{p.email || `${u.username}@tafakkur.uz`}</div>
-                            <div className="text-xs text-slate-400">{p.phone || '+998 -- --- -- --'}</div>
+                            <div className="text-xs text-slate-800 dark:text-zinc-200 font-medium">{p.email || `${u.username}@tafakkur.uz`}</div>
+                            <div className="text-xs text-slate-400 dark:text-zinc-400">{p.phone || '+998 -- --- -- --'}</div>
                           </td>
 
                           <td className="p-4">
                             <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                               p.status === 'Akademik ta\'til' || p.status === 'Ta\'tilda' 
-                                ? 'bg-amber-50 text-amber-800 border border-amber-200' 
-                                : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60' 
+                                : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60'
                             }`}>
                               <span className={`w-1.5 h-1.5 rounded-full ${
                                 p.status === 'Akademik ta\'til' || p.status === 'Ta\'tilda' ? 'bg-amber-500' : 'bg-emerald-500'
@@ -645,7 +645,7 @@ export default function AdminUsersPage() {
                             <div className="inline-flex items-center gap-1.5">
                               <button
                                 onClick={() => openEditModal(u)}
-                                className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-semibold transition-colors"
+                                className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-zinc-700 hover:text-blue-700 dark:hover:text-blue-300 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors"
                               >
                                 Tahrirlash
                               </button>
@@ -654,7 +654,7 @@ export default function AdminUsersPage() {
                                 <button
                                   onClick={() => handleMakeAdmin(u.id)}
                                   title="Admin huquqini berish"
-                                  className="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold transition-colors"
+                                  className="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-600 dark:text-slate-300 text-xs font-semibold transition-colors"
                                 >
                                   +Admin
                                 </button>
@@ -663,7 +663,7 @@ export default function AdminUsersPage() {
                               <button
                                 onClick={() => handleDeleteUser(u.id, u.username)}
                                 title="O'chirish"
-                                className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors"
+                                className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
                               >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -686,12 +686,12 @@ export default function AdminUsersPage() {
       {/* Modern Profile Edit / Add Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-50 p-4 backdrop-blur-xs overflow-y-auto">
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-3xl my-8 overflow-hidden">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl w-full max-w-3xl my-8 overflow-hidden">
             
             {/* Modal Header */}
-            <div className="p-6 md:p-7 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+            <div className="p-6 md:p-7 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-slate-50/50 dark:bg-zinc-900/60">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                   {editingUserId ? "Foydalanuvchi ma'lumotlari" : "Yangi a'zo ro'yxatga olish"}
                 </span>
                 <h2 className="font-display text-xl md:text-2xl font-bold text-ink tracking-tight mt-0.5">
@@ -701,7 +701,7 @@ export default function AdminUsersPage() {
               <button 
                 type="button" 
                 onClick={() => setIsModalOpen(false)} 
-                className="w-9 h-9 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 flex items-center justify-center text-lg font-bold transition-colors"
+                className="w-9 h-9 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/60 dark:hover:bg-zinc-800 flex items-center justify-center text-lg font-bold transition-colors"
               >
                 &times;
               </button>
@@ -711,7 +711,7 @@ export default function AdminUsersPage() {
               
               {/* Role Selector Header */}
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-2">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
                   Tizimdagi Roli *
                 </label>
                 <div className="grid grid-cols-3 gap-3">
@@ -726,11 +726,11 @@ export default function AdminUsersPage() {
                       onClick={() => setForm({ ...form, role: r.id })}
                       className={`p-3.5 rounded-2xl border text-left transition-all ${
                         form.role === r.id
-                          ? 'border-blue-600 bg-blue-50/70 shadow-xs'
-                          : 'border-slate-200 hover:border-slate-300 bg-slate-50/50'
+                          ? 'border-blue-600 bg-blue-50/70 dark:bg-blue-950/50 shadow-xs'
+                          : 'border-slate-200 dark:border-zinc-700 hover:border-slate-300 dark:hover:border-zinc-600 bg-slate-50/50 dark:bg-zinc-800/50'
                       }`}
                     >
-                      <div className={`text-xs font-bold ${form.role === r.id ? 'text-blue-700' : 'text-slate-800'}`}>
+                      <div className={`text-xs font-bold ${form.role === r.id ? 'text-blue-700 dark:text-blue-400' : 'text-slate-800 dark:text-slate-200'}`}>
                         {r.title}
                       </div>
                       <div className="text-[11px] text-slate-400 mt-0.5">{r.desc}</div>
@@ -740,15 +740,15 @@ export default function AdminUsersPage() {
               </div>
 
               {/* Section 1: Authentication & Contact */}
-              <div className="border-t border-slate-100 pt-5">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2">
+              <div className="border-t border-slate-100 dark:border-zinc-800 pt-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-600"></span>
                   1. Hisob va Shaxsiy Ma'lumotlar
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       F.I.SH. (To&apos;liq Ism va Familiya) *
                     </label>
                     <input 
@@ -768,12 +768,12 @@ export default function AdminUsersPage() {
                         }));
                       }}
                       placeholder="Masalan: Behruzbek Gulmatov"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 dark:bg-zinc-800/60 border border-slate-200 dark:border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Tizimdagi Login (Username)
                     </label>
                     <input 
@@ -781,12 +781,12 @@ export default function AdminUsersPage() {
                       value={form.username}
                       onChange={e => setForm({ ...form, username: e.target.value })}
                       placeholder="Masalan: b.gulmatov (avtomatik generatsiya)"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 dark:bg-zinc-800/60 border border-slate-200 dark:border-zinc-700 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Elektron Pochta
                     </label>
                     <input 
@@ -794,12 +794,12 @@ export default function AdminUsersPage() {
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="talaba@tafakkur.uz"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 dark:bg-zinc-800/60 border border-slate-200 dark:border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Telefon Raqami
                     </label>
                     <input 
@@ -807,13 +807,13 @@ export default function AdminUsersPage() {
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       placeholder="+998 90 123 45 67"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 dark:bg-zinc-800/60 border border-slate-200 dark:border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white transition-all"
                     />
                   </div>
 
                   {!editingUserId && (
                     <div className="md:col-span-2">
-                      <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                         Tizimga Kirish Paroli
                       </label>
                       <input 
@@ -821,7 +821,7 @@ export default function AdminUsersPage() {
                         value={form.password}
                         onChange={e => setForm({ ...form, password: e.target.value })}
                         placeholder="Standart parol: tafakkur2026 (bo'sh qoldirilsa avtomatik qo'yiladi)"
-                        className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
+                        className="w-full bg-slate-50/60 dark:bg-zinc-800/60 border border-slate-200 dark:border-zinc-700 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white transition-all"
                       />
                     </div>
                   )}
@@ -829,20 +829,20 @@ export default function AdminUsersPage() {
               </div>
 
               {/* Section 2: Role-Specific Details Shown on Profile Page */}
-              <div className="border-t border-slate-100 pt-5">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2">
+              <div className="border-t border-slate-100 dark:border-zinc-800 pt-5">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                   2. Profil Sahifasida Ko'rsatiladigan HEMIS Ma'lumotlari
                 </h3>
 
                 <div className="mb-4">
-                  <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     Holati (Status)
                   </label>
                   <select 
                     value={form.status}
                     onChange={e => setForm({ ...form, status: e.target.value })}
-                    className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
+                    className="w-full bg-slate-50/60 dark:bg-zinc-800/60 border border-slate-200 dark:border-zinc-700 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white dark:focus:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 dark:text-white transition-all"
                   >
                     <option value="Faol">Faol</option>
                     <option value="Akademik ta'til">Akademik ta'til</option>
@@ -853,9 +853,9 @@ export default function AdminUsersPage() {
 
                 {/* STUDENT SPECIFIC FIELDS */}
                 {(form.role === 'student' || form.role === 'oquvchi') && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-blue-50/40 p-5 rounded-2xl border border-blue-100">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-blue-50/40 dark:bg-blue-950/20 p-5 rounded-2xl border border-blue-100 dark:border-blue-900/40">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                         Talaba HEMIS ID Raqami *
                       </label>
                       <input 
@@ -864,12 +864,12 @@ export default function AdminUsersPage() {
                         value={form.studentId}
                         onChange={e => setForm({ ...form, studentId: e.target.value })}
                         placeholder="38491023"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                         Fakultet *
                       </label>
                       <input 
@@ -878,12 +878,12 @@ export default function AdminUsersPage() {
                         value={form.faculty}
                         onChange={e => setForm({ ...form, faculty: e.target.value })}
                         placeholder="Sun'iy Intellekt va Axborot Texnologiyalari"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                         Akademik Guruh *
                       </label>
                       <input 
@@ -892,18 +892,18 @@ export default function AdminUsersPage() {
                         value={form.group}
                         onChange={e => setForm({ ...form, group: e.target.value })}
                         placeholder="AI-22"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                         Ta'lim Bosqichi (Kurs) *
                       </label>
                       <select 
                         value={form.course}
                         onChange={e => setForm({ ...form, course: e.target.value })}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       >
                         <option value="1-bosqich">1-bosqich</option>
                         <option value="2-bosqich">2-bosqich</option>
@@ -914,7 +914,7 @@ export default function AdminUsersPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                         GPA Ko'rsatkichi (0.0 - 5.0)
                       </label>
                       <input 
@@ -922,18 +922,18 @@ export default function AdminUsersPage() {
                         value={form.gpa}
                         onChange={e => setForm({ ...form, gpa: e.target.value })}
                         placeholder="4.8"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider mb-1.5">
                         Ta'lim Shakli
                       </label>
                       <select 
                         value={form.educationType}
                         onChange={e => setForm({ ...form, educationType: e.target.value })}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       >
                         <option value="Kunduzgi">Kunduzgi</option>
                         <option value="Kechki">Kechki</option>
@@ -946,9 +946,9 @@ export default function AdminUsersPage() {
 
                 {/* TEACHER SPECIFIC FIELDS */}
                 {(form.role === 'teacher' || form.role === 'mentor') && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-emerald-50/40 p-5 rounded-2xl border border-emerald-100">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-emerald-50/40 dark:bg-emerald-950/20 p-5 rounded-2xl border border-emerald-100 dark:border-emerald-900/40">
                     <div>
-                      <label className="block text-xs font-semibold text-emerald-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-emerald-950 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
                         O'qituvchi HEMIS ID *
                       </label>
                       <input 
@@ -957,12 +957,12 @@ export default function AdminUsersPage() {
                         value={form.teacherId}
                         onChange={e => setForm({ ...form, teacherId: e.target.value })}
                         placeholder="PROF-9012"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-emerald-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-emerald-950 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
                         Fakultet *
                       </label>
                       <input 
@@ -971,12 +971,12 @@ export default function AdminUsersPage() {
                         value={form.faculty}
                         onChange={e => setForm({ ...form, faculty: e.target.value })}
                         placeholder="Sun'iy Intellekt va Axborot Texnologiyalari"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-emerald-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-emerald-950 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
                         Kafedra *
                       </label>
                       <input 
@@ -985,18 +985,18 @@ export default function AdminUsersPage() {
                         value={form.department}
                         onChange={e => setForm({ ...form, department: e.target.value })}
                         placeholder="Dasturiy ta'minot injiniringi"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-emerald-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-emerald-950 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
                         Lavozimi (Akademik Unvoni) *
                       </label>
                       <select 
                         value={form.position}
                         onChange={e => setForm({ ...form, position: e.target.value })}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
+                        className="w-full bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900 dark:text-white"
                       >
                         <option value="Katta o'qituvchi">Katta o'qituvchi</option>
                         <option value="Dotsent">Dotsent</option>
@@ -1010,25 +1010,25 @@ export default function AdminUsersPage() {
 
                 {/* ADMIN SPECIFIC */}
                 {form.role === 'admin' && (
-                  <div className="p-4 rounded-2xl bg-slate-100/70 border border-slate-200 text-xs text-slate-700">
+                  <div className="p-4 rounded-2xl bg-slate-100/70 dark:bg-zinc-800/70 border border-slate-200 dark:border-zinc-700 text-xs text-slate-700 dark:text-slate-300">
                     Administrator sifatida to'liq tizim ruxsatlari, foydalanuvchilar qo'shish va rektorat boshqaruv paneli beriladi.
                   </div>
                 )}
               </div>
 
               {/* Action Buttons */}
-              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100">
+              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100 dark:border-zinc-800">
                 <button 
                   type="button" 
                   onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs uppercase tracking-wider hover:bg-slate-200 transition-colors"
+                  className="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-slate-300 font-semibold text-xs uppercase tracking-wider hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors"
                 >
                   Bekor Qilish
                 </button>
                 <button 
                   type="submit" 
                   disabled={isSaving}
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-semibold text-xs uppercase tracking-wider disabled:opacity-50 transition-all shadow-sm shadow-xs"
+                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-semibold text-xs uppercase tracking-wider disabled:opacity-50 transition-all shadow-xs"
                 >
                   {isSaving ? "Saqlanmoqda..." : editingUserId ? "O'zgarishlarni Saqlash" : "Foydalanuvchini Yaratish"}
                 </button>

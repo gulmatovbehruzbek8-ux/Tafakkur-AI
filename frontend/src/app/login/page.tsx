@@ -360,7 +360,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   Login
                 </label>
                 <input 
@@ -374,7 +374,7 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                   Parol
                 </label>
                 <input 
@@ -389,7 +389,7 @@ export default function LoginPage() {
 
               {isRegistering && (
                 <div className="pt-1">
-                  <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
                     Profilingiz turi
                   </label>
                   <div className="grid grid-cols-2 gap-2">
@@ -405,8 +405,8 @@ export default function LoginPage() {
                         onClick={() => setSelectedRole(r.id as Role)}
                         className={`p-2.5 rounded-xl border text-xs font-semibold transition-all ${
                           selectedRole === r.id 
-                            ? 'border-blue-600 bg-blue-50 text-blue-800 shadow-sm' 
-                            : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-slate-50/50'
+                            ? 'border-blue-600 bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 shadow-sm' 
+                            : 'border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-slate-300 hover:border-slate-300 bg-slate-50/50 dark:bg-zinc-800/50'
                         }`}
                       >
                         {r.label}
@@ -432,7 +432,7 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-6 pt-5 border-t border-slate-100">
+            <div className="mt-6 pt-5 border-t border-slate-100 dark:border-zinc-800">
               <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-center mb-2.5">
                 Tezkor kirish (Demo):
               </p>
@@ -446,10 +446,10 @@ export default function LoginPage() {
                     key={d.u}
                     type="button"
                     onClick={() => handleQuickLogin(d.u)}
-                    className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-1 active:scale-95 shadow-xs"
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-zinc-700 hover:border-slate-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1 active:scale-95 shadow-xs"
                   >
                     <span>{d.label}</span>
-                    <span className="text-[10px] text-slate-500 font-bold">→</span>
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold">→</span>
                   </button>
                 ))}
               </div>

@@ -370,11 +370,11 @@ export default function AssignmentsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-slate-400" />
-                  <h2 className="font-display font-bold text-base text-slate-600 uppercase tracking-wide">
+                  <h2 className="font-display font-bold text-base text-slate-600 dark:text-slate-300 uppercase tracking-wide">
                     Keyinroq (Later) — Semestr Rejasi
                   </h2>
                 </div>
-                <span className="text-xs text-slate-400 font-mono">
+                <span className="text-xs text-slate-400 dark:text-slate-500 font-mono">
                   {laterTasks.length} ta topshiriq
                 </span>
               </div>
@@ -383,26 +383,26 @@ export default function AssignmentsPage() {
                 {laterTasks.map(task => (
                   <div
                     key={task.id}
-                    className="p-4 rounded-2xl bg-white/70 border border-slate-200/60 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-white transition-all text-xs"
+                    className="p-4 rounded-2xl bg-white/70 dark:bg-[#121215] border border-slate-200/60 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all text-xs"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                        <span className="font-mono font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/10 px-2 py-0.5 rounded">
                           {task.courseCode}
                         </span>
-                        <h4 className="font-bold text-slate-800 text-sm">{task.title}</h4>
-                        <span className="text-slate-400 font-mono">({task.deadline})</span>
+                        <h4 className="font-bold text-slate-800 dark:text-white text-sm">{task.title}</h4>
+                        <span className="text-slate-400 dark:text-slate-500 font-mono">({task.deadline})</span>
                       </div>
-                      <p className="text-slate-500 truncate max-w-2xl">{task.instructions}</p>
+                      <p className="text-slate-500 dark:text-slate-400 truncate max-w-2xl">{task.instructions}</p>
                     </div>
 
                     <div className="shrink-0 self-end md:self-center">
                       {task.status === 'graded' ? (
-                        <span className="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 font-bold font-mono">
+                        <span className="px-3 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold font-mono border border-emerald-200 dark:border-emerald-800/60">
                           {task.score}
                         </span>
                       ) : (
-                        <span className="text-slate-400 text-[11px] font-medium">Rejalashtirilgan</span>
+                        <span className="text-slate-400 dark:text-slate-500 text-[11px] font-medium">Rejalashtirilgan</span>
                       )}
                     </div>
                   </div>

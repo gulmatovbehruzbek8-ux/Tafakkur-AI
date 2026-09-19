@@ -286,13 +286,13 @@ export default function BeautifulCalendarPage() {
   const getEventBadge = (type: CalendarEvent['type']) => {
     switch (type) {
       case 'class':
-        return 'bg-blue-50 text-blue-700 border-blue-200';
+        return 'bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-800/60';
       case 'assignment':
-        return 'bg-rose-50 text-rose-700 border-rose-200 font-bold';
+        return 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-800/60 font-bold';
       case 'exam':
-        return 'bg-amber-50 text-amber-800 border-amber-200 font-bold';
+        return 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800/60 font-bold';
       case 'event':
-        return 'bg-purple-50 text-purple-800 border-purple-200';
+        return 'bg-purple-50 text-purple-800 border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800/60';
     }
   };
 
@@ -453,8 +453,8 @@ export default function BeautifulCalendarPage() {
                 onClick={() => setSelectedCategory('all')}
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all ${
                   selectedCategory === 'all'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    ? 'bg-slate-900 dark:bg-blue-600 text-white'
+                    : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-700'
                 }`}
               >
                 Barcha Voqealar ({monthEvents.length})
@@ -465,7 +465,7 @@ export default function BeautifulCalendarPage() {
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   selectedCategory === 'class'
                     ? 'bg-blue-600 text-white'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-700'
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-blue-500" />
@@ -477,7 +477,7 @@ export default function BeautifulCalendarPage() {
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   selectedCategory === 'assignment'
                     ? 'bg-rose-600 text-white'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-700'
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-rose-500" />
@@ -489,7 +489,7 @@ export default function BeautifulCalendarPage() {
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   selectedCategory === 'exam'
                     ? 'bg-amber-600 text-white'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-700'
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-amber-500" />
@@ -501,7 +501,7 @@ export default function BeautifulCalendarPage() {
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   selectedCategory === 'event'
                     ? 'bg-purple-600 text-white'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-zinc-300 hover:bg-slate-50 dark:hover:bg-zinc-700'
                 }`}
               >
                 <span className="w-2 h-2 rounded-full bg-purple-500" />
@@ -658,13 +658,13 @@ export default function BeautifulCalendarPage() {
                             />
                             <span className={ev.completed ? 'line-through text-slate-500' : ''}>{ev.time}</span>
                           </span>
-                          <span className="uppercase tracking-wider text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-white/80">
+                          <span className="uppercase tracking-wider text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-white/80 dark:bg-black/40 text-slate-700 dark:text-slate-200">
                             {ev.type === 'class' ? 'Dars' : ev.type === 'assignment' ? 'Topshiriq' : ev.type === 'exam' ? 'Imtihon' : 'Tadbir'}
                           </span>
                         </div>
 
-                        <h4 className={`font-display font-bold text-sm text-slate-900 leading-snug ${
-                          ev.completed ? 'line-through text-slate-500' : ''
+                        <h4 className={`font-display font-bold text-sm text-slate-900 dark:text-white leading-snug ${
+                          ev.completed ? 'line-through text-slate-500 dark:text-slate-400' : ''
                         }`}>
                           {ev.title}
                         </h4>
@@ -674,9 +674,9 @@ export default function BeautifulCalendarPage() {
                           {ev.instructor && <div>👤 {ev.instructor}</div>}
                         </div>
 
-                        <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-[11px]">
-                          <span className="text-slate-500 font-medium">Batafsil ko&apos;rish →</span>
-                          {ev.completed && <span className="text-emerald-700 font-bold">Bajarildi ✓</span>}
+                        <div className="pt-2 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-[11px]">
+                          <span className="text-slate-500 dark:text-slate-400 font-medium">Batafsil ko&apos;rish →</span>
+                          {ev.completed && <span className="text-emerald-700 dark:text-emerald-400 font-bold">Bajarildi ✓</span>}
                         </div>
                       </div>
                     ))}
@@ -828,8 +828,8 @@ export default function BeautifulCalendarPage() {
               {selectedDayEvents.length === 0 ? (
                 <div className="p-12 text-center text-slate-400 space-y-3">
                   <span className="text-4xl">🌟</span>
-                  <h4 className="text-sm font-bold text-slate-700">Ushbu kunga rejalashtirilgan vazifalar yo&apos;q</h4>
-                  <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                  <h4 className="text-sm font-bold text-slate-700 dark:text-slate-200">Ushbu kunga rejalashtirilgan vazifalar yo&apos;q</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                     Yangi dars, topshiriq yoki shaxsiy rejangizni kiritish uchun quyidagi tugmani bosing.
                   </p>
                   <button
@@ -863,15 +863,15 @@ export default function BeautifulCalendarPage() {
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
                             <span className="font-mono font-bold text-xs">{ev.time}</span>
-                            <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-white/80">
+                            <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-white/80 dark:bg-black/40 text-slate-700 dark:text-slate-200">
                               {ev.type}
                             </span>
                           </div>
-                          <h4 className={`text-base font-bold text-slate-900 ${ev.completed ? 'line-through text-slate-500' : ''}`}>
+                          <h4 className={`text-base font-bold text-slate-900 dark:text-white ${ev.completed ? 'line-through text-slate-500 dark:text-slate-400' : ''}`}>
                             {ev.title}
                           </h4>
                           {ev.description && (
-                            <p className="text-xs text-slate-600 font-sans">{ev.description}</p>
+                            <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">{ev.description}</p>
                           )}
                           <div className="flex items-center gap-4 text-xs opacity-80 pt-1">
                             {ev.room && <span>📍 {ev.room}</span>}
@@ -881,7 +881,7 @@ export default function BeautifulCalendarPage() {
                       </div>
 
                       <div className="flex items-center gap-2 self-end sm:self-center">
-                        <span className="text-xs font-bold text-slate-700 bg-white/80 px-3 py-1.5 rounded-xl border border-slate-200">
+                        <span className="text-xs font-bold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-zinc-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-zinc-700">
                           Batafsil →
                         </span>
                       </div>

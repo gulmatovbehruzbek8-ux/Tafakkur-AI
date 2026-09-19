@@ -378,11 +378,11 @@ export default function EventsAndOlympiadsPage() {
           {/* =========================================================================
               SIGNATURE FEATURE: HORIZONTAL CHRONOLOGICAL TIMELINE (HEART OF THE PAGE)
               ========================================================================= */}
-          <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up overflow-hidden">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up overflow-hidden">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <h2 className="font-display font-bold text-lg text-slate-900">
+                <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
                   Xronologik Voqealar Chizig'i (Academic Timeline)
                 </h2>
               </div>
@@ -417,34 +417,34 @@ export default function EventsAndOlympiadsPage() {
                       {/* Event Card Node */}
                       <div 
                         onClick={() => setSelectedItem(item)}
-                        className={`w-full p-5 rounded-3xl border transition-all cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 bg-white ${
+                        className={`w-full p-5 rounded-3xl border transition-all cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-[#121215] ${
                           item.type === 'olympiad'
-                            ? 'border-amber-300 hover:border-amber-500 ring-1 ring-amber-100'
-                            : 'border-slate-200 hover:border-blue-500'
+                            ? 'border-amber-300 dark:border-amber-700/60 hover:border-amber-500 ring-1 ring-amber-100 dark:ring-amber-900/30'
+                            : 'border-slate-200 dark:border-zinc-800 hover:border-blue-500'
                         }`}
                       >
                         <div className="space-y-2">
                           <div className="flex items-center justify-between gap-1">
-                            <span className="font-mono font-bold text-xs bg-slate-900 text-white px-2 py-0.5 rounded-md">
+                            <span className="font-mono font-bold text-xs bg-slate-900 dark:bg-blue-600 text-white px-2 py-0.5 rounded-md">
                               {item.displayDate}
                             </span>
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                              item.type === 'olympiad' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'
+                              item.type === 'olympiad' ? 'bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300' : 'bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300'
                             }`}>
                               {item.categoryTag}
                             </span>
                           </div>
 
-                          <h3 className="font-display font-bold text-sm text-slate-900 leading-snug line-clamp-2">
+                          <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white leading-snug line-clamp-2">
                             {item.title}
                           </h3>
 
-                          <p className="text-[11px] text-slate-500 line-clamp-1">
+                          <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
                             {item.subtitle}
                           </p>
 
-                          <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                            <span className="text-slate-600 font-mono">
+                          <div className="pt-2 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between text-[11px]">
+                            <span className="text-slate-600 dark:text-slate-300 font-mono">
                               ⏳ {item.daysRemaining > 0 ? `${item.daysRemaining} kun qoldi` : `${item.hoursRemaining} soat qoldi`}
                             </span>
 
@@ -564,19 +564,19 @@ export default function EventsAndOlympiadsPage() {
               ========================================================================= */}
           {selectedItem && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 animate-scale-up max-h-[90vh] overflow-y-auto">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 animate-scale-up max-h-[90vh] overflow-y-auto">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
                   <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900">
+                    <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300">
                       {selectedItem.categoryTag}
                     </span>
-                    <span className="font-mono text-xs font-bold text-slate-500">
+                    <span className="font-mono text-xs font-bold text-slate-500 dark:text-slate-400">
                       {selectedItem.displayDate}, 2026
                     </span>
                   </div>
                   <button
                     onClick={() => setSelectedItem(null)}
-                    className="w-8 h-8 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center text-sm"
+                    className="w-8 h-8 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-zinc-800 flex items-center justify-center text-sm"
                   >
                     ✕
                   </button>
@@ -591,7 +591,7 @@ export default function EventsAndOlympiadsPage() {
                   <div className="grid grid-cols-3 gap-2 text-center font-mono">
                     <div className="p-2.5 rounded-xl bg-white/10 border border-white/10">
                       <span className="font-display font-black text-2xl text-white block">
-                        {String(selectedItem.daysRemaining).padStart(2, '0')}
+                         {String(selectedItem.daysRemaining).padStart(2, '0')}
                       </span>
                       <span className="text-[9px] text-slate-300 uppercase">KUN</span>
                     </div>
@@ -611,37 +611,37 @@ export default function EventsAndOlympiadsPage() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="font-display font-extrabold text-xl sm:text-2xl text-slate-900 leading-tight">
+                  <h3 className="font-display font-extrabold text-xl sm:text-2xl text-slate-900 dark:text-white leading-tight">
                     {selectedItem.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                     {selectedItem.description}
                   </p>
 
                   <div className="grid grid-cols-2 gap-3 text-xs pt-1">
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800">
                       <span className="text-slate-400 text-[10px] font-bold uppercase block mb-0.5">Manzil</span>
-                      <span className="font-bold text-slate-800">{selectedItem.location}</span>
+                      <span className="font-bold text-slate-800 dark:text-slate-200">{selectedItem.location}</span>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800">
                       <span className="text-slate-400 text-[10px] font-bold uppercase block mb-0.5">Tashkilotchi</span>
-                      <span className="font-bold text-slate-800">{selectedItem.organizer}</span>
+                      <span className="font-bold text-slate-800 dark:text-slate-200">{selectedItem.organizer}</span>
                     </div>
 
                     {selectedItem.prize && (
-                      <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 col-span-2">
+                      <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-900 dark:text-amber-300 col-span-2">
                         <span className="text-[10px] font-bold uppercase block mb-0.5">Sovrin Jamg'armasi</span>
                         <span className="font-display font-black text-base">{selectedItem.prize}</span>
                       </div>
                     )}
                   </div>
 
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-100 space-y-2 text-xs">
-                    <strong className="text-slate-800 block">Dastur va Reglament (Agenda):</strong>
+                  <div className="p-4 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800 space-y-2 text-xs">
+                    <strong className="text-slate-800 dark:text-slate-200 block">Dastur va Reglament (Agenda):</strong>
                     {selectedItem.agenda.map((ag, i) => (
-                      <div key={i} className="text-slate-600 flex items-center gap-2">
+                      <div key={i} className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                         <span>{ag}</span>
                       </div>
@@ -649,7 +649,7 @@ export default function EventsAndOlympiadsPage() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+                <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between gap-3">
                   <button
                     onClick={() => {
                       toggleRegister(selectedItem.id);
@@ -665,7 +665,7 @@ export default function EventsAndOlympiadsPage() {
 
                   <Link
                     href="/student/calendar"
-                    className="px-4 py-3 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-bold text-slate-700 transition-colors"
+                    className="px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800 text-xs font-bold text-slate-700 dark:text-slate-300 transition-colors"
                   >
                     Taqvimga qo'shish 📅
                   </Link>
@@ -679,22 +679,22 @@ export default function EventsAndOlympiadsPage() {
               ========================================================================= */}
           {isAddModalOpen && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-slate-100 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">✨</span>
                     <div>
-                      <h3 className="font-display font-bold text-slate-900 text-base">
+                      <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">
                         Yangi Tadbir yoki Olimpiada Qo'shish
                       </h3>
-                      <p className="text-[11px] text-slate-500">
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400">
                         Talabalar va jamoalar uchun yangi akademik tadbir yaratish
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={() => setIsAddModalOpen(false)}
-                    className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm transition-colors"
+                    className="w-8 h-8 rounded-full bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-500 dark:text-slate-300 flex items-center justify-center font-bold text-sm transition-colors"
                   >
                     ✕
                   </button>
@@ -709,7 +709,7 @@ export default function EventsAndOlympiadsPage() {
                       className={`p-2.5 rounded-xl border font-bold flex items-center justify-center gap-2 transition-all ${
                         newEvent.type === 'event'
                           ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-xs'
-                          : 'bg-slate-50 text-slate-600 border-slate-200'
+                          : 'bg-slate-50 dark:bg-zinc-900/60 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-zinc-800'
                       }`}
                     >
                       <span>🎉 Tadbir / Seminar</span>
@@ -720,7 +720,7 @@ export default function EventsAndOlympiadsPage() {
                       className={`p-2.5 rounded-xl border font-bold flex items-center justify-center gap-2 transition-all ${
                         newEvent.type === 'olympiad'
                           ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-xs'
-                          : 'bg-slate-50 text-slate-600 border-slate-200'
+                          : 'bg-slate-50 dark:bg-zinc-900/60 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-zinc-800'
                       }`}
                     >
                       <span>⚔️ Olimpiada / Xakaton</span>
@@ -729,7 +729,7 @@ export default function EventsAndOlympiadsPage() {
 
                   {/* Title */}
                   <div>
-                    <label className="font-bold text-slate-700 block mb-1">
+                    <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                       Nomi (Sarlavha) *
                     </label>
                     <input
@@ -738,14 +738,14 @@ export default function EventsAndOlympiadsPage() {
                       placeholder="Masalan: AI & Data Science Xakatoni"
                       value={newEvent.title}
                       onChange={(e) => setNewEvent(p => ({ ...p, title: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                      className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-amber-500"
                     />
                   </div>
 
                   {/* Date & Location */}
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Sana *
                       </label>
                       <input
@@ -753,11 +753,11 @@ export default function EventsAndOlympiadsPage() {
                         required
                         value={newEvent.date}
                         onChange={(e) => setNewEvent(p => ({ ...p, date: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-amber-500"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Joylashuv
                       </label>
                       <input
@@ -765,7 +765,7 @@ export default function EventsAndOlympiadsPage() {
                         placeholder="UrDU Korpusi / Onlayn"
                         value={newEvent.location}
                         onChange={(e) => setNewEvent(p => ({ ...p, location: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-amber-500"
                       />
                     </div>
                   </div>
@@ -773,7 +773,7 @@ export default function EventsAndOlympiadsPage() {
                   {/* Prize / Subtitle */}
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         {newEvent.type === 'olympiad' ? "Sovrin Jamg'armasi" : "Qisqa shior"}
                       </label>
                       <input
@@ -781,11 +781,11 @@ export default function EventsAndOlympiadsPage() {
                         placeholder={newEvent.type === 'olympiad' ? "Masalan: 20,000,000 UZS" : "Workshop & Masterclass"}
                         value={newEvent.prize}
                         onChange={(e) => setNewEvent(p => ({ ...p, prize: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-amber-500"
                       />
                     </div>
                     <div>
-                      <label className="font-bold text-slate-700 block mb-1">
+                      <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                         Tashkilotchi
                       </label>
                       <input
@@ -793,14 +793,14 @@ export default function EventsAndOlympiadsPage() {
                         placeholder="UrDU, IT Park, AI Lab"
                         value={newEvent.organizer}
                         onChange={(e) => setNewEvent(p => ({ ...p, organizer: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-amber-500"
                       />
                     </div>
                   </div>
 
                   {/* Description */}
                   <div>
-                    <label className="font-bold text-slate-700 block mb-1">
+                    <label className="font-bold text-slate-700 dark:text-slate-300 block mb-1">
                       Tadbir Haqida Qisqacha
                     </label>
                     <textarea
@@ -808,16 +808,16 @@ export default function EventsAndOlympiadsPage() {
                       placeholder="Tadbirning maqsadi, ishtirokchilar uchun talablar va imkoniyatlar..."
                       value={newEvent.description}
                       onChange={(e) => setNewEvent(p => ({ ...p, description: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 resize-none"
+                      className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-amber-500 resize-none"
                     />
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-100">
+                  <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-zinc-800">
                     <button
                       type="button"
                       onClick={() => setIsAddModalOpen(false)}
-                      className="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 font-bold text-slate-600 transition-colors"
+                      className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800 font-bold text-slate-600 dark:text-slate-300 transition-colors"
                     >
                       Bekor qilish
                     </button>

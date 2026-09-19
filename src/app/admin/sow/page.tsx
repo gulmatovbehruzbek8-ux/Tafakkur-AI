@@ -633,18 +633,18 @@ export default function AdminSOWPage() {
               </div>
             </div>
 
-            <div className="tf-metric bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs">
+            <div className="tf-metric bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-zinc-800 rounded-2xl p-5 shadow-xs">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Vektor Bo&apos;laklar (Chunks)</span>
               <div className="mt-2.5 flex items-baseline gap-2">
-                <span className="text-3xl font-bold text-slate-900 font-mono">{totalChunks}</span>
-                <span className="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">Semantik</span>
+                <span className="text-3xl font-bold text-slate-900 dark:text-white font-mono">{totalChunks}</span>
+                <span className="text-[11px] font-semibold text-blue-600 bg-blue-50 dark:bg-blue-950/50 px-2 py-0.5 rounded-md">Semantik</span>
               </div>
             </div>
 
-            <div className="tf-metric bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs">
+            <div className="tf-metric bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-zinc-800 rounded-2xl p-5 shadow-xs">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Chatbot Bog&apos;lanishi</span>
               <div className="mt-2.5 flex items-baseline gap-2">
-                <span className="text-lg font-bold text-emerald-700 flex items-center gap-1.5">
+                <span className="text-lg font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                   100% Sinxron
                 </span>
@@ -654,7 +654,7 @@ export default function AdminSOWPage() {
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-2 border-b border-slate-200 pb-2 animate-fade-up delay-2">
+          <div className="flex items-center gap-2 border-b border-slate-200 dark:border-zinc-800 pb-2 animate-fade-up delay-2">
             {[
               { id: 'resources', label: "Yuklangan Resurslar (AI Bazasi)", count: resources.length },
               { id: 'curriculum', label: "O'quv Rejasi (SOW Daraxti)", count: subjects.length },
@@ -667,13 +667,13 @@ export default function AdminSOWPage() {
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 ${
                   activeTab === tab.id
                     ? 'bg-teal-700 text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800'
                 }`}
               >
                 <span>{tab.label}</span>
                 {tab.count !== null && (
                   <span className={`px-2 py-0.5 rounded-full text-[10px] ${
-                    activeTab === tab.id ? 'bg-teal-800 text-teal-100' : 'bg-slate-200 text-slate-700'
+                    activeTab === tab.id ? 'bg-teal-800 text-teal-100' : 'bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-slate-300'
                   }`}>
                     {tab.count}
                   </span>
@@ -686,7 +686,7 @@ export default function AdminSOWPage() {
           {activeTab === 'resources' && (
             <div className="space-y-4 animate-fade-up">
               {/* Filter and Search */}
-              <div className="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-3 shadow-xs">
+              <div className="bg-white dark:bg-[#121215] p-4 rounded-2xl border border-slate-200 dark:border-zinc-800 flex flex-col md:flex-row items-center justify-between gap-3 shadow-xs">
                 <div className="flex items-center gap-3 w-full md:w-auto">
                   <div className="relative w-full md:w-80">
                     <input
@@ -694,7 +694,7 @@ export default function AdminSOWPage() {
                       value={searchQuery}
                       onChange={e => setSearchQuery(e.target.value)}
                       placeholder="Resurs yoki fan nomi bo'yicha qidirish..."
-                      className="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                      className="w-full text-xs pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                     />
                     <svg className="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -704,7 +704,7 @@ export default function AdminSOWPage() {
                   <select
                     value={selectedSubjectFilter}
                     onChange={e => setSelectedSubjectFilter(e.target.value)}
-                    className="text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600 bg-white"
+                    className="text-xs px-3 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 focus:outline-hidden focus:border-blue-600 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white"
                   >
                     <option value="all">Barcha Fanlar</option>
                     {subjects.map(s => (
@@ -721,28 +721,28 @@ export default function AdminSOWPage() {
               {/* Resource Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredResources.map((res) => (
-                  <div key={res.id} className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs hover:border-teal-300 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+                  <div key={res.id} className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-xs hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
                     <div className="space-y-2.5">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${
-                            res.resourceType === 'syllabus' ? 'bg-blue-50 text-blue-800 border border-blue-200' :
-                            res.resourceType === 'lecture' ? 'bg-blue-50 text-blue-800 border border-blue-200' :
-                            res.resourceType === 'assignment' ? 'bg-amber-50 text-amber-800 border border-amber-200' :
-                            'bg-purple-50 text-purple-800 border border-purple-200'
+                            res.resourceType === 'syllabus' ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' :
+                            res.resourceType === 'lecture' ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60' :
+                            res.resourceType === 'assignment' ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60' :
+                            'bg-purple-50 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60'
                           }`}>
                             {res.resourceType === 'syllabus' ? 'Sillabus (SOW)' :
                              res.resourceType === 'lecture' ? "Ma'ruza Konspekti" :
                              res.resourceType === 'assignment' ? 'Topshiriq & Baholash' : 'Ko\'rsatma'}
                           </span>
-                          <span className="text-xs font-semibold text-slate-500 font-mono">
+                          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 font-mono">
                             {res.subjectName}
                           </span>
                         </div>
                         <button
                           type="button"
                           onClick={() => handleDeleteResource(res.id)}
-                          className="text-slate-400 hover:text-rose-600 p-1 rounded-md hover:bg-rose-50 transition-colors"
+                          className="text-slate-400 hover:text-rose-600 p-1 rounded-md hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
                           title="Resursni o'chirish"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -751,23 +751,23 @@ export default function AdminSOWPage() {
                         </button>
                       </div>
 
-                      <h3 className="font-bold text-slate-900 text-sm">{res.title}</h3>
-                      <p className="text-xs text-blue-700 font-medium">{res.moduleName}</p>
+                      <h3 className="font-bold text-slate-900 dark:text-white text-sm">{res.title}</h3>
+                      <p className="text-xs text-blue-700 dark:text-blue-400 font-medium">{res.moduleName}</p>
 
-                      <p className="text-xs text-slate-600 line-clamp-3 bg-slate-50 p-3 rounded-xl border border-slate-100 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 bg-slate-50 dark:bg-zinc-900/60 p-3 rounded-xl border border-slate-100 dark:border-zinc-800 font-sans leading-relaxed">
                         {res.content}
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between text-[11px] text-slate-400">
                       <div className="flex items-center gap-2">
-                        <svg className="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
-                        <span className="font-mono text-slate-600 font-medium">{res.fileName}</span>
+                        <span className="font-mono text-slate-600 dark:text-slate-400 font-medium">{res.fileName}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-bold font-mono">
+                        <span className="bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-md font-bold font-mono">
                           {res.chunkCount} bo&apos;lak
                         </span>
                         <span>{res.createdAt}</span>
@@ -783,13 +783,13 @@ export default function AdminSOWPage() {
           {activeTab === 'curriculum' && (
             <div className="space-y-6 animate-fade-up">
               {/* Header Action Bar */}
-              <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                     Rasmiy Universitet O&apos;quv Dasturlari (Curriculum Tree)
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     Fanlar, modullar va mavzular iyerarxiyasi. AI repetitor ushbu reja bo&apos;yicha talabalarga dars o&apos;tadi va amaliyot beradi.
                   </p>
                 </div>
@@ -810,7 +810,7 @@ export default function AdminSOWPage() {
               </div>
 
               {subjects.map((subj) => (
-                <div key={subj.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                <div key={subj.id} className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 overflow-hidden shadow-xs">
                   <div className="p-5 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <span className="text-[10px] uppercase font-bold tracking-widest text-teal-400">{subj.faculty}</span>
@@ -834,7 +834,7 @@ export default function AdminSOWPage() {
                     {subj.curriculum.map((mod, idx) => (
                       <div key={idx} className="space-y-3">
                         <div className="flex items-center justify-between">
-                          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                          <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-blue-600" />
                             {mod.module}
                           </h4>
@@ -846,38 +846,38 @@ export default function AdminSOWPage() {
                               setQuickTopicTitle('');
                               setQuickTopicTask('');
                             }}
-                            className="text-[11px] font-semibold text-blue-700 hover:text-slate-900 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-lg border border-blue-200 transition-colors flex items-center gap-1"
+                            className="text-[11px] font-semibold text-blue-700 dark:text-blue-400 hover:text-slate-900 dark:hover:text-white bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/50 px-2.5 py-1 rounded-lg border border-blue-200 dark:border-blue-800 transition-colors flex items-center gap-1"
                           >
                             <span>+ Mavzu qo&apos;shish</span>
                           </button>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-4 border-l-2 border-blue-100">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-4 border-l-2 border-blue-100 dark:border-blue-900/40">
                           {mod.topics.map((t, tIdx) => (
                             <div 
                               key={tIdx} 
                               className={`p-3.5 rounded-xl border text-xs flex items-start justify-between gap-3 ${
                                 t.current 
-                                  ? 'bg-blue-50/70 border-blue-200 text-slate-900 font-semibold' 
+                                  ? 'bg-blue-50/70 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800 text-slate-900 dark:text-white font-semibold' 
                                   : t.done 
-                                  ? 'bg-slate-50 border-slate-200/80 text-slate-700' 
-                                  : 'bg-white border-dashed border-slate-200 text-slate-500'
+                                  ? 'bg-slate-50 dark:bg-zinc-900/40 border-slate-200/80 dark:border-zinc-800 text-slate-700 dark:text-slate-300' 
+                                  : 'bg-white dark:bg-zinc-900/20 border-dashed border-slate-200 dark:border-zinc-700 text-slate-500 dark:text-slate-400'
                               }`}
                             >
                               <div className="space-y-1">
                                 <p>{t.title}</p>
                                 {t.task && (
-                                  <p className="text-[11px] font-normal text-blue-700 bg-white/80 px-2 py-0.5 rounded border border-blue-100 inline-block">
+                                  <p className="text-[11px] font-normal text-blue-700 dark:text-blue-300 bg-white/80 dark:bg-zinc-800 px-2 py-0.5 rounded border border-blue-100 dark:border-blue-900 inline-block">
                                     📌 {t.task}
                                   </p>
                                 )}
                               </div>
                               {t.done ? (
-                                <span className="text-emerald-600 font-bold">✓</span>
+                                <span className="text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
                               ) : t.current ? (
-                                <span className="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-0.5 rounded-full">Joriy</span>
+                                <span className="text-xs font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-950 px-2 py-0.5 rounded-full">Joriy</span>
                               ) : (
-                                <span className="text-slate-300 font-mono text-[10px]">Reja</span>
+                                <span className="text-slate-300 dark:text-slate-500 font-mono text-[10px]">Reja</span>
                               )}
                             </div>
                           ))}
@@ -892,16 +892,16 @@ export default function AdminSOWPage() {
 
           {/* TAB 3: LIVE AI CHATBOT TEST */}
           {activeTab === 'test' && (
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 md:p-8 space-y-6 shadow-xs animate-fade-up">
+            <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 md:p-8 space-y-6 shadow-xs animate-fade-up">
               <div>
-                <h2 className="text-base font-bold text-slate-900">⚡ AI Chatbot Grounding Sinov Laboratoriyasi</h2>
-                <p className="text-xs text-slate-500 mt-1">
+                <h2 className="text-base font-bold text-slate-900 dark:text-white">⚡ AI Chatbot Grounding Sinov Laboratoriyasi</h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                   Ushbu panelda yuklangan SOW resurslari bo&apos;yicha talabalar chatbotga beradigan savollarini oldindan sinab ko&apos;rishingiz mumkin.
                 </p>
               </div>
 
               <div className="space-y-3">
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                   Sinov uchun savol kiriting:
                 </label>
                 <div className="flex gap-2">
@@ -910,7 +910,7 @@ export default function AdminSOWPage() {
                     value={testQuestion}
                     onChange={e => setTestQuestion(e.target.value)}
                     placeholder="Masalan: 2-topshiriq muddati qachon?"
-                    className="flex-1 text-sm px-4 py-3 rounded-xl border border-slate-300 focus:outline-hidden focus:border-blue-600 font-sans"
+                    className="flex-1 text-sm px-4 py-3 rounded-xl border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-sans"
                   />
                   <button
                     type="button"
@@ -931,20 +931,20 @@ export default function AdminSOWPage() {
               </div>
 
               {testAnswer && (
-                <div className="p-5 rounded-2xl bg-blue-50/50 border border-blue-200 space-y-3 animate-fade-up">
+                <div className="p-5 rounded-2xl bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/60 space-y-3 animate-fade-up">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-slate-900 flex items-center gap-1.5">
+                    <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
                       Tafakkur AI Javobi
                     </span>
                     {testSource && (
-                      <span className="bg-white text-blue-800 border border-blue-200 px-2.5 py-1 rounded-full text-[11px] font-semibold font-mono">
+                      <span className="bg-white dark:bg-zinc-800 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 px-2.5 py-1 rounded-full text-[11px] font-semibold font-mono">
                         Manba: {testSource}
                       </span>
                     )}
                   </div>
 
-                  <div className="text-sm text-slate-800 whitespace-pre-wrap leading-relaxed font-sans bg-white p-4 rounded-xl border border-blue-100 shadow-2xs">
+                  <div className="text-sm text-slate-800 dark:text-slate-200 whitespace-pre-wrap leading-relaxed font-sans bg-white dark:bg-zinc-900 p-4 rounded-xl border border-blue-100 dark:border-blue-900/40 shadow-2xs">
                     {testAnswer}
                   </div>
                 </div>
@@ -958,16 +958,16 @@ export default function AdminSOWPage() {
       {/* UPLOAD SOW / RESOURCE MODAL */}
       {isUploadOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-xl w-full border border-slate-200 shadow-2xl p-6 md:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl max-w-xl w-full border border-slate-200 dark:border-zinc-800 shadow-2xl p-6 md:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Yangi SOW / Resurs Qo&apos;shish</h3>
-                <p className="text-xs text-slate-500 mt-0.5">Fayl yuklang yoki matnni to&apos;g&apos;ridan-to&apos;g&apos;ri joylashtiring</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Yangi SOW / Resurs Qo&apos;shish</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Fayl yuklang yoki matnni to&apos;g&apos;ridan-to&apos;g&apos;ri joylashtiring</p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsUploadOpen(false)}
-                className="p-2 text-slate-400 hover:text-slate-600 rounded-xl hover:bg-slate-100 transition-colors"
+                className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 ✕
               </button>
@@ -975,22 +975,22 @@ export default function AdminSOWPage() {
 
             {uploadSuccess ? (
               <div className="p-8 text-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl font-bold">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto text-xl font-bold">
                   ✓
                 </div>
-                <h4 className="text-base font-bold text-slate-900">Resurs muvaffaqiyatli indekslandi!</h4>
-                <p className="text-xs text-slate-500">Endi AI Chatbot ushbu resursdan to&apos;g&apos;ridan-to&apos;g&apos;ri javob beradi.</p>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">Resurs muvaffaqiyatli indekslandi!</h4>
+                <p className="text-xs text-slate-500 dark:text-slate-400">Endi AI Chatbot ushbu resursdan to&apos;g&apos;ridan-to&apos;g&apos;ri javob beradi.</p>
               </div>
             ) : (
               <form onSubmit={handleCreateResource} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     Fan / Kurs
                   </label>
                   <select
                     value={newSubjectId}
                     onChange={e => setNewSubjectId(e.target.value)}
-                    className="w-full text-xs p-3 rounded-xl border border-slate-200 bg-white focus:outline-hidden focus:border-blue-600"
+                    className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                   >
                     {subjects.map(s => (
                       <option key={s.id} value={s.id}>{s.name}</option>
@@ -1001,7 +1001,7 @@ export default function AdminSOWPage() {
 
                 {newSubjectId === 'custom' && (
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Yangi Fan Nomi
                     </label>
                     <input
@@ -1010,20 +1010,20 @@ export default function AdminSOWPage() {
                       value={newCustomSubject}
                       onChange={e => setNewCustomSubject(e.target.value)}
                       placeholder="Masalan: Kiberxavfsizlik Asoslari"
-                      className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                      className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                     />
                   </div>
                 )}
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Resurs Turi
                     </label>
                     <select
                       value={newType}
                       onChange={e => setNewType(e.target.value as any)}
-                      className="w-full text-xs p-3 rounded-xl border border-slate-200 bg-white focus:outline-hidden focus:border-blue-600"
+                      className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                     >
                       <option value="syllabus">📑 Sillabus / SOW</option>
                       <option value="lecture">📖 Ma&apos;ruza / Konspekt</option>
@@ -1033,7 +1033,7 @@ export default function AdminSOWPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                       Modul / Hafta
                     </label>
                     <input
@@ -1041,13 +1041,13 @@ export default function AdminSOWPage() {
                       value={newModule}
                       onChange={e => setNewModule(e.target.value)}
                       placeholder="Masalan: 3-Modul yoki 5-Hafta"
-                      className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                      className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     Resurs Sarlavhasi
                   </label>
                   <input
@@ -1056,12 +1056,12 @@ export default function AdminSOWPage() {
                     value={newTitle}
                     onChange={e => setNewTitle(e.target.value)}
                     placeholder="Masalan: 2-Topshiriq Talablari va Baholash Rubrikasi"
-                    className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                    className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                   />
                 </div>
 
                 {/* File input simulation */}
-                <div className="border-2 border-dashed border-slate-200 rounded-2xl p-4 text-center hover:border-blue-400 transition-colors bg-slate-50/50">
+                <div className="border-2 border-dashed border-slate-200 dark:border-zinc-700 rounded-2xl p-4 text-center hover:border-blue-400 dark:hover:border-blue-500 transition-colors bg-slate-50/50 dark:bg-zinc-900/60">
                   <input
                     type="file"
                     id="sow-file-upload"
@@ -1070,19 +1070,19 @@ export default function AdminSOWPage() {
                     accept=".pdf,.docx,.txt,.md,.json"
                   />
                   <label htmlFor="sow-file-upload" className="cursor-pointer space-y-1 block">
-                    <svg className="w-8 h-8 text-blue-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 text-blue-600 dark:text-blue-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    <p className="text-xs font-semibold text-slate-700">Faylni tanlang yoki shu yerga tashlang</p>
+                    <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">Faylni tanlang yoki shu yerga tashlang</p>
                     <p className="text-[10px] text-slate-400">PDF, DOCX, TXT, Markdown yoki JSON</p>
                     {newFileName && (
-                      <p className="text-xs font-bold text-blue-700 font-mono mt-1">Tanlandi: {newFileName}</p>
+                      <p className="text-xs font-bold text-blue-700 dark:text-blue-400 font-mono mt-1">Tanlandi: {newFileName}</p>
                     )}
                   </label>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     Resurs Mazmuni (AI shu matndan javob beradi)
                   </label>
                   <textarea
@@ -1091,15 +1091,15 @@ export default function AdminSOWPage() {
                     value={newContent}
                     onChange={e => setNewContent(e.target.value)}
                     placeholder="Resurs matni, topshiriq muddatlari, baholash qoidalari yoki dars konspektini shu yerga yozing..."
-                    className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600 font-sans leading-relaxed"
+                    className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-sans leading-relaxed"
                   />
                 </div>
 
-                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-zinc-800">
                   <button
                     type="button"
                     onClick={() => setIsUploadOpen(false)}
-                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+                    className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
                   >
                     Bekor qilish
                   </button>
@@ -1124,20 +1124,20 @@ export default function AdminSOWPage() {
       {/* MODAL 2: ADD / UPLOAD CURRICULUM */}
       {isAddCurriculumOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fade-in overflow-y-auto">
-          <div className="bg-white rounded-3xl border border-slate-200 max-w-xl w-full p-6 md:p-8 space-y-5 shadow-2xl relative my-8">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-xl w-full p-6 md:p-8 space-y-5 shadow-2xl relative my-8">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-4">
               <div>
-                <h3 className="text-base font-bold text-slate-900">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
                   + O&apos;quv Rejasi (Curriculum) & SOW Qo&apos;shish
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
                   Fan modullari va mavzularini kiritish orqali AI Repetitor bilimlar bazasini yangilang.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsAddCurriculumOpen(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 ✕
               </button>
@@ -1145,13 +1145,13 @@ export default function AdminSOWPage() {
 
             <form onSubmit={handleSaveCurriculum} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
                   Fan (Subject)
                 </label>
                 <select
                   value={curriculumSubjectId}
                   onChange={e => setCurriculumSubjectId(e.target.value)}
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 bg-white focus:outline-hidden focus:border-blue-600 font-semibold"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-semibold"
                 >
                   {subjects.map(s => (
                     <option key={s.id} value={s.id}>{s.name} ({s.faculty})</option>
@@ -1161,9 +1161,9 @@ export default function AdminSOWPage() {
               </div>
 
               {curriculumSubjectId === 'new' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-blue-50/50 border border-blue-100">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/40">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-slate-900 dark:text-blue-200 uppercase tracking-wider mb-1">
                       Yangi Fan Nomi *
                     </label>
                     <input
@@ -1172,11 +1172,11 @@ export default function AdminSOWPage() {
                       value={curriculumCustomName}
                       onChange={e => setCurriculumCustomName(e.target.value)}
                       placeholder="Masalan: Kiberxavfsizlik asoslari"
-                      className="w-full text-xs p-2.5 rounded-xl border border-blue-200 bg-white focus:outline-hidden focus:border-blue-600"
+                      className="w-full text-xs p-2.5 rounded-xl border border-blue-200 dark:border-blue-800/60 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-semibold text-slate-900 dark:text-blue-200 uppercase tracking-wider mb-1">
                       Fakultet / Kafedra *
                     </label>
                     <input
@@ -1184,14 +1184,14 @@ export default function AdminSOWPage() {
                       value={curriculumFaculty}
                       onChange={e => setCurriculumFaculty(e.target.value)}
                       placeholder="Sun'iy Intellekt Fakulteti"
-                      className="w-full text-xs p-2.5 rounded-xl border border-blue-200 bg-white focus:outline-hidden focus:border-blue-600"
+                      className="w-full text-xs p-2.5 rounded-xl border border-blue-200 dark:border-blue-800/60 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                     />
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
                   Modul Nomi *
                 </label>
                 <input
@@ -1200,12 +1200,12 @@ export default function AdminSOWPage() {
                   value={curriculumModuleName}
                   onChange={e => setCurriculumModuleName(e.target.value)}
                   placeholder="Masalan: 4-Modul: Kriptografiya va Xavfsiz Protokollar"
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600 font-medium"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
                   Modul Mavzulari (Har bir qatorga bittadan mavzu)
                 </label>
                 <textarea
@@ -1213,12 +1213,12 @@ export default function AdminSOWPage() {
                   value={curriculumTopicsText}
                   onChange={e => setCurriculumTopicsText(e.target.value)}
                   placeholder={"1. Kirish va asosiy tushunchalar\n2. Asimmetrik shifrlash va RSA algoritmi\n3. Xesh-funksiyalar va raqamli imzo\n4. TLS/SSL xavfsiz protokollar"}
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600 font-sans leading-relaxed"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-sans leading-relaxed"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1.5">
                   Sillabus / SOW Tafsilotlari (AI qoidalar va topshiriq muddatlarini shu matndan oladi)
                 </label>
                 <textarea
@@ -1226,15 +1226,15 @@ export default function AdminSOWPage() {
                   value={curriculumSowContent}
                   onChange={e => setCurriculumSowContent(e.target.value)}
                   placeholder="Ushbu modul bo'yicha talabalarga beriladigan topshiriqlar, oraliq nazorat mezonlari va muhim talablarni yozing..."
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600 font-sans leading-relaxed"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-sans leading-relaxed"
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-zinc-800">
                 <button
                   type="button"
                   onClick={() => setIsAddCurriculumOpen(false)}
-                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
                 >
                   Bekor qilish
                 </button>
@@ -1254,16 +1254,16 @@ export default function AdminSOWPage() {
       {/* MODAL 3: QUICK ADD TOPIC */}
       {quickTopicSubjectId !== null && quickTopicModuleIndex !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white rounded-2xl border border-slate-200 max-w-md w-full p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-sm font-bold text-slate-900">+ Modulga Yangi Mavzu Qo&apos;shish</h3>
+          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white">+ Modulga Yangi Mavzu Qo&apos;shish</h3>
               <button
                 type="button"
                 onClick={() => {
                   setQuickTopicSubjectId(null);
                   setQuickTopicModuleIndex(null);
                 }}
-                className="p-1 rounded text-slate-400 hover:text-slate-700"
+                className="p-1 rounded text-slate-400 hover:text-slate-700 dark:hover:text-zinc-200"
               >
                 ✕
               </button>
@@ -1271,7 +1271,7 @@ export default function AdminSOWPage() {
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
                   Mavzu Nomi *
                 </label>
                 <input
@@ -1280,12 +1280,12 @@ export default function AdminSOWPage() {
                   value={quickTopicTitle}
                   onChange={e => setQuickTopicTitle(e.target.value)}
                   placeholder="Masalan: Graf algoritmlari: Dijkstra va Bellman-Ford"
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider mb-1">
                   Topshiriq yoki Amaliy Vazifa (Ixtiyoriy)
                 </label>
                 <input
@@ -1293,19 +1293,19 @@ export default function AdminSOWPage() {
                   value={quickTopicTask}
                   onChange={e => setQuickTopicTask(e.target.value)}
                   placeholder="Masalan: Uy vazifasi: Eng qisqa yo'lni topish dasturi"
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100 dark:border-zinc-800">
               <button
                 type="button"
                 onClick={() => {
                   setQuickTopicSubjectId(null);
                   setQuickTopicModuleIndex(null);
                 }}
-                className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100"
+                className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-zinc-800"
               >
                 Bekor qilish
               </button>

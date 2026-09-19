@@ -143,7 +143,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
       {/* Slide-out / Floating OS Companion Panel */}
       {isOpen && (
         <div 
-          className={`fixed right-4 md:right-8 z-50 bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ${
+          className={`fixed right-4 md:right-8 z-50 bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/90 dark:border-zinc-800 shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ${
             isMinimized 
               ? 'bottom-6 w-80 h-16' 
               : 'bottom-6 w-[94vw] sm:w-[420px] lg:w-[460px] h-[580px] max-h-[85vh]'
@@ -187,23 +187,23 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
           {!isMinimized && (
             <>
               {/* Context Pill Banner */}
-              <div className="px-4 py-2 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
+              <div className="px-4 py-2 bg-slate-50 dark:bg-zinc-900/60 border-b border-slate-100 dark:border-zinc-800 flex items-center justify-between text-[11px] text-slate-600 dark:text-slate-300">
                 <div className="flex items-center gap-1.5 truncate">
                   <span className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Kontekst:</span>
-                  <span className="font-semibold text-blue-800 bg-blue-100 px-2 py-0.5 rounded-md truncate">
+                  <span className="font-semibold text-blue-800 dark:text-blue-300 bg-blue-100 dark:bg-blue-950/60 px-2 py-0.5 rounded-md truncate">
                     {currentContext}
                   </span>
                 </div>
                 <Link
                   href="/student/tutor"
-                  className="text-blue-700 hover:text-slate-900 font-bold hover:underline shrink-0 ml-2"
+                  className="text-blue-700 dark:text-blue-400 hover:text-slate-900 dark:hover:text-white font-bold hover:underline shrink-0 ml-2"
                 >
                   AI Repetitor →
                 </Link>
               </div>
 
               {/* Message Feed */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs bg-[#fafcff]">
+              <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs bg-[#fafcff] dark:bg-[#09090b]">
                 {messages.map((m) => (
                   <div
                     key={m.id}
@@ -218,16 +218,16 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                       className={`max-w-[85%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-line shadow-xs ${
                         m.sender === 'user'
                           ? 'bg-blue-600 text-white rounded-br-xs font-medium'
-                          : 'bg-white text-slate-800 border border-slate-200/80 rounded-bl-xs'
+                          : 'bg-white dark:bg-[#18181b] text-slate-800 dark:text-slate-100 border border-slate-200/80 dark:border-zinc-800 rounded-bl-xs'
                       }`}
                     >
                       {m.text}
 
                       {m.actionButton && (
-                        <div className="mt-3 pt-2.5 border-t border-slate-100">
+                        <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-zinc-800">
                           <Link
                             href={m.actionButton.href}
-                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-[11px] transition-colors"
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-800 dark:text-blue-300 font-bold text-[11px] transition-colors"
                           >
                             <span>{m.actionButton.label}</span>
                             <span>→</span>
@@ -242,7 +242,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                 ))}
 
                 {isTyping && (
-                  <div className="flex items-center gap-2 p-3 bg-white rounded-2xl border border-slate-200/80 w-24">
+                  <div className="flex items-center gap-2 p-3 bg-white dark:bg-[#18181b] rounded-2xl border border-slate-200/80 dark:border-zinc-800 w-24">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" />
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce [animation-delay:0.2s]" />
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce [animation-delay:0.4s]" />
@@ -252,12 +252,12 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
               </div>
 
               {/* Contextual Quick Prompts */}
-              <div className="px-4 py-2 border-t border-slate-100 bg-white overflow-x-auto flex gap-1.5 scrollbar-none shrink-0">
+              <div className="px-4 py-2 border-t border-slate-100 dark:border-zinc-800 bg-white dark:bg-[#121215] overflow-x-auto flex gap-1.5 scrollbar-none shrink-0">
                 {quickPrompts.map((qp, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSend(qp.prompt)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-800 text-slate-600 text-[11px] font-medium border border-slate-200 whitespace-nowrap transition-colors shrink-0"
+                    className="px-2.5 py-1 rounded-lg bg-slate-50 dark:bg-zinc-800/70 hover:bg-blue-50 dark:hover:bg-zinc-700 hover:text-blue-800 dark:hover:text-blue-300 text-slate-600 dark:text-slate-300 text-[11px] font-medium border border-slate-200 dark:border-zinc-700 whitespace-nowrap transition-colors shrink-0"
                   >
                     {qp.label}
                   </button>
@@ -265,7 +265,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
               </div>
 
               {/* Chat Input */}
-              <div className="p-3 border-t border-slate-100 bg-white shrink-0">
+              <div className="p-3 border-t border-slate-100 dark:border-zinc-800 bg-white dark:bg-[#121215] shrink-0">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -278,12 +278,12 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Tafakkur AI dan so'rang..."
-                    className="flex-1 px-3.5 py-2.5 bg-slate-50 rounded-xl text-xs text-slate-800 border border-slate-200 focus:outline-none focus:border-blue-500 focus:bg-white transition-all placeholder:text-slate-400"
+                    className="flex-1 px-3.5 py-2.5 bg-slate-50 dark:bg-zinc-900/60 rounded-xl text-xs text-slate-800 dark:text-white border border-slate-200 dark:border-zinc-700 focus:outline-none focus:border-blue-500 focus:bg-white dark:focus:bg-zinc-900 transition-all placeholder:text-slate-400"
                   />
                   <button
                     type="submit"
                     disabled={!input.trim()}
-                    className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 text-white transition-colors flex items-center justify-center shrink-0"
+                    className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white transition-colors flex items-center justify-center shrink-0"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
