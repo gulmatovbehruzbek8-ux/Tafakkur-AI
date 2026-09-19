@@ -432,3 +432,174 @@ body {
   }
 }
 
+/* ========================================================
+   DARK THEME VARIABLES AND COMPONENT OVERRIDES
+   ======================================================== */
+html.dark,
+.dark,
+[data-theme="dark"] {
+  --background: #090d16;
+  --foreground: #f1f5f9;
+  --surface: #0f172a;
+  --surface-muted: #1e293b;
+  --ink: #f8fafc;
+  --ink-soft: #cbd5e1;
+  --muted: #94a3b8;
+  --line: rgba(255, 255, 255, 0.1);
+  --accent: #14b8a6;
+  --accent-bright: #2dd4bf;
+  --accent-soft: rgba(20, 184, 166, 0.15);
+  --focus: rgba(45, 212, 191, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+}
+
+html.dark body,
+.dark body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(20, 184, 166, 0.12), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, rgba(14, 116, 144, 0.1), transparent 50%),
+    linear-gradient(180deg, #090d16 0%, #0c1222 100%) !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .tf-card,
+.dark .tf-card,
+html.dark .tf-card-solid,
+.dark .tf-card-solid,
+html.dark .tf-panel,
+.dark .tf-panel,
+html.dark .tf-metric,
+.dark .tf-metric {
+  background: #0f172a !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .tf-title,
+.dark .tf-title {
+  color: #f8fafc !important;
+}
+
+html.dark .tf-subtitle,
+.dark .tf-subtitle {
+  color: #94a3b8 !important;
+}
+
+html.dark .tf-input,
+.dark .tf-input {
+  background: #1e293b !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+html.dark .tf-input:focus,
+.dark .tf-input:focus {
+  background: #0f172a !important;
+  border-color: #14b8a6 !important;
+}
+
+html.dark .tf-btn-ghost,
+.dark .tf-btn-ghost {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.dark .tf-btn-ghost:hover,
+.dark .tf-btn-ghost:hover {
+  background: #334155 !important;
+}
+
+html.dark .tf-chat-bubble-ai,
+.dark .tf-chat-bubble-ai {
+  background: #1e293b !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .tf-header,
+.dark .tf-header {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ========================================================
+   SIMPLE UI MODE FOR PROFESSORS / ELDER STAFF
+   No confusing gradients, large clear high-contrast fonts
+   ======================================================== */
+.tf-simple-mode body,
+body.tf-simple-mode {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0 !important;
+}
+
+.tf-simple-mode:not(.dark) body {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.tf-simple-mode .tf-mesh,
+.tf-simple-mode .tf-grid-fade,
+.tf-simple-mode .tf-noise {
+  display: none !important;
+}
+
+.tf-simple-mode .tf-card,
+.tf-simple-mode .tf-card-solid,
+.tf-simple-mode .tf-panel,
+.tf-simple-mode .tf-metric {
+  background: #ffffff !important;
+  border: 2px solid #64748b !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  color: #0f172a !important;
+}
+
+.dark.tf-simple-mode .tf-card,
+.dark.tf-simple-mode .tf-card-solid,
+.dark.tf-simple-mode .tf-panel,
+.dark.tf-simple-mode .tf-metric {
+  background: #111827 !important;
+  border: 2px solid #94a3b8 !important;
+  color: #f8fafc !important;
+}
+
+.tf-simple-mode .tf-title {
+  font-size: 1.875rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+}
+
+.tf-simple-mode .tf-subtitle {
+  font-size: 1.05rem !important;
+  color: #334155 !important;
+}
+
+.dark.tf-simple-mode .tf-subtitle {
+  color: #cbd5e1 !important;
+}
+
+.tf-simple-mode .tf-btn {
+  border-radius: 6px !important;
+  font-size: 1rem !important;
+  padding: 0.85rem 1.6rem !important;
+  box-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+.tf-simple-mode .tf-input {
+  border: 2px solid #64748b !important;
+  border-radius: 6px !important;
+  font-size: 1.05rem !important;
+  padding: 0.85rem 1rem !important;
+}
+
+.tf-simple-mode .tf-chat-bubble-ai {
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+  border: 2px solid #cbd5e1 !important;
+}
+

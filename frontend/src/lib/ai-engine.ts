@@ -134,57 +134,53 @@ export function deleteStoredResource(id: string): boolean {
  */
 export function searchKnowledgeBase(query: string): SOWResource | null {
   if (!query) return null;
-  const q = query.toLowerCase();
+  const q = query.toLowerCase().trim();
   const resources = getStoredResources();
+
+  // If query is a greeting, do NOT match SOW curriculum
+  const greetings = ['salom', 'hello', 'hi', 'assalom', 'assalomu alaykum', 'xayrli kun', 'privet', 'qalesiz'];
+  if (greetings.some(g => q === g || q.startsWith(g + ' ') || q.startsWith(g + '!') || q.startsWith(g + '?') || q.startsWith(g + ','))) {
+    return null;
+  }
+
+  // If query is a math equation or question, do NOT match SOW curriculum
+  if (/(\d+\s*[\+\-\*\/]\s*[a-z0-9]|\b(solve|tenglama|hisobla|matematika|x\s*=)\b)/i.test(q)) {
+    return null;
+  }
+
+  // Topic specific heuristics with exact word boundaries
+  if (/\b(bst|binar daraxt|binary search tree)\b/i.test(q)) {
+    const match = resources.find(r => r.title.toLowerCase().includes('bst') || r.content.toLowerCase().includes('binar'));
+    if (match) return match;
+  }
+
+  if (/\b(stack|stek|queue|navbat|lifo|fifo)\b/i.test(q)) {
+    const match = resources.find(r => r.title.toLowerCase().includes('stek') || r.content.toLowerCase().includes('lifo'));
+    if (match) return match;
+  }
+
+  if (/\b(neyron|mnist|pytorch|mlp|perceptron)\b/i.test(q) || (/\b(sun\'iy intellekt|mashinali o\'rganish)\b/i.test(q) && (q.includes('laboratoriya') || q.includes('topshiriq') || q.includes('kod') || q.includes('mnist')))) {
+    const match = resources.find(r => r.subjectId === 'ai' || r.content.toLowerCase().includes('mnist'));
+    if (match) return match;
+  }
+
+  if (/\b(osi|tcp|udp|ip protokol|marshrutlash|router|switch)\b/i.test(q)) {
+    const match = resources.find(r => r.subjectId === 'networks' || r.content.toLowerCase().includes('osi'));
+    if (match) return match;
+  }
+
+  if (/\b(sillabus|kredit|oraliq nazorat|yakuniy nazorat|davomat qoidasi)\b/i.test(q)) {
+    const match = resources.find(r => r.resourceType === 'syllabus' || r.content.toLowerCase().includes('kredit'));
+    if (match) return match;
+  }
 
   // Direct subject or title match
   for (const res of resources) {
     const sub = res.subjectName.toLowerCase();
     const title = res.title.toLowerCase();
-    const subId = res.subjectId.toLowerCase();
 
-    if (sub && q.includes(sub)) return res;
-    if (title && q.includes(title)) return res;
-    if (subId && q.includes(subId)) return res;
-  }
-
-  // Topic specific heuristics
-  if (q.includes('bst') || q.includes('binar') || q.includes('daraxt') || q.includes('tree')) {
-    const match = resources.find(r => r.title.toLowerCase().includes('bst') || r.content.toLowerCase().includes('binar'));
-    if (match) return match;
-  }
-
-  if (q.includes('stack') || q.includes('stek') || q.includes('queue') || q.includes('navbat')) {
-    const match = resources.find(r => r.title.toLowerCase().includes('stek') || r.content.toLowerCase().includes('lifo'));
-    if (match) return match;
-  }
-
-  if (q.includes('neyron') || q.includes('mnist') || q.includes('mlp') || q.includes('pytorch') || q.includes('ai') || q.includes('sun\'iy')) {
-    const match = resources.find(r => r.subjectId === 'ai' || r.content.toLowerCase().includes('mnist'));
-    if (match) return match;
-  }
-
-  if (q.includes('osi') || q.includes('tcp') || q.includes('ip') || q.includes('tarmoq') || q.includes('network')) {
-    const match = resources.find(r => r.subjectId === 'networks' || r.content.toLowerCase().includes('osi'));
-    if (match) return match;
-  }
-
-  if (q.includes('ball') || q.includes('oraliq') || q.includes('yakuniy') || q.includes('kredit') || q.includes('davomat') || q.includes('baho')) {
-    const match = resources.find(r => r.resourceType === 'syllabus' || r.content.toLowerCase().includes('kredit'));
-    if (match) return match;
-  }
-
-  if (q.includes('topshiriq') || q.includes('muddat') || q.includes('deadline')) {
-    const match = resources.find(r => r.content.toLowerCase().includes('muddati') || r.content.toLowerCase().includes('topshiriq'));
-    if (match) return match;
-  }
-
-  // Fallback: match by significant words
-  const words = q.split(/\s+/).filter(w => w.length > 3);
-  for (const res of resources) {
-    const c = res.content.toLowerCase();
-    const hitCount = words.filter(w => c.includes(w)).length;
-    if (hitCount >= 2) return res;
+    if (sub.length > 5 && q.includes(sub)) return res;
+    if (title.length > 5 && q.includes(title)) return res;
   }
 
   return null;
@@ -307,9 +303,132 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
  * Intelligent Pedagogical SOW Response Generator (Zero-Config Vercel Fallback)
  */
 export function generatePedagogicalResponse(prompt: string, matched: SOWResource | null, strictSyllabus = false): string {
-  const p = prompt.toLowerCase();
+  const p = prompt.toLowerCase().trim();
 
-  // If strict syllabus mode is on and no document matched
+  // 1. GREETINGS & INTRODUCTIONS
+  const greetings = ['hello', 'hi', 'salom', 'assalom', 'assalomu alaykum', 'xayrli kun', 'privet', 'qalesiz'];
+  if (greetings.some(g => p === g || p.startsWith(g + ' ') || p.startsWith(g + '!') || p.startsWith(g + '?') || p.startsWith(g + ','))) {
+    return (
+      `Assalomu alaykum! Men **Tafakkur AI** intellektual ta'lim assistentiman.\n\n` +
+      `Sizga qanday vazifada yordam bera olaman?\n` +
+      `• 📝 **Baholash rubrikalari:** 100 ballik mezonlar va oraliq/yakuniy nazoratlar;\n` +
+      `• 📚 **O'quv dasturi (SOW):** Sillabus, mavzular ketma-ketligi va topshiriq muddatlari;\n` +
+      `• 📐 **Matematika va Algoritmlar:** Formulalar, tenglamalar va masalalar tahlili;\n` +
+      `• 💻 **Dasturlash:** Python, C++, SQL yoki AI laboratoriya kodlari namunasi.\n\n` +
+      `Istalgan savolingizni yozib qoldirishingiz mumkin!`
+    );
+  }
+
+  // 2. MATHEMATICAL EQUATIONS & CALCULATION SOLVER
+  // Pattern: 2+x=4 or x+2=4 or explain me 2+x=4
+  const mathAdd1 = prompt.match(/(\d+)\s*\+\s*x\s*=\s*(\d+)/i);
+  if (mathAdd1) {
+    const a = parseInt(mathAdd1[1], 10);
+    const b = parseInt(mathAdd1[2], 10);
+    const x = b - a;
+    return (
+      `### 📐 Matematik Masala Tahlili va Yechimi:\n\n` +
+      `Berilgan chiziqli algebraik tenglama:\n` +
+      `$$${a} + x = ${b}$$\n\n` +
+      `**Qadam-baqadam yechish algoritmi:**\n` +
+      `1. Noma'lum qo'shiluvchini ($x$) topish uchun **yig'indidan ma'lum qo'shiluvchini ayiramiz**:\n` +
+      `   $$x = ${b} - ${a}$$\n` +
+      `2. Ayirish amalini bajaramiz:\n` +
+      `   $$\\mathbf{x = ${x}}$$\n\n` +
+      `**Tekshirish (Ildizni tekshirish):**\n` +
+      `Topilgan $x = ${x}$ qiymatini boshlang'ich ifodaga qo'yamiz:\n` +
+      `$$${a} + (${x}) = ${b} \\quad \\checkmark \\text{ (Tenglik to'g'ri)}$$\n\n` +
+      `**Javob:** $x = ${x}$`
+    );
+  }
+
+  const mathAdd2 = prompt.match(/x\s*\+\s*(\d+)\s*=\s*(\d+)/i);
+  if (mathAdd2) {
+    const a = parseInt(mathAdd2[1], 10);
+    const b = parseInt(mathAdd2[2], 10);
+    const x = b - a;
+    return (
+      `### 📐 Matematik Masala Yechimi:\n\n` +
+      `Berilgan tenglama: $$x + ${a} = ${b}$$\n\n` +
+      `**Yechilishi:**\n` +
+      `1. $x = ${b} - ${a}$\n` +
+      `2. $\\mathbf{x = ${x}}$\n\n` +
+      `**Tekshirish:** $(${x}) + ${a} = ${b}$ (To'g'ri)\n\n` +
+      `**Javob:** $x = ${x}$`
+    );
+  }
+
+  const mathMult = prompt.match(/(\d+)\s*\*?\s*x\s*=\s*(\d+)/i);
+  if (mathMult) {
+    const a = parseInt(mathMult[1], 10);
+    const b = parseInt(mathMult[2], 10);
+    const x = b / a;
+    return (
+      `### 📐 Matematik Masala Yechimi:\n\n` +
+      `Berilgan tenglama: $$${a}x = ${b}$$\n\n` +
+      `**Yechilishi:**\n` +
+      `1. $x = \\frac{${b}}{${a}}$\n` +
+      `2. $\\mathbf{x = ${x}}$\n\n` +
+      `**Javob:** $x = ${x}$`
+    );
+  }
+
+  // 3. TEACHER RUBRIC GENERATOR
+  if (p.includes('rubrika') || p.includes('mezon') || p.includes('100 ballik') || p.includes('baholash reja')) {
+    return (
+      `🎓 **Universitet Fani Uchun 100 Ballik Baholash Rubrikasi:**\n\n` +
+      `| Mezon Nomi | Qamrovi va Talablar | Maks. Ball |\n` +
+      `| :--- | :--- | :---: |\n` +
+      `| **1. Nazariy Asos va Konseptual Tushuncha** | Mavzuni to'liq tushunish, asosiy ta'riflar va ilmiy tahlil | **25 ball** |\n` +
+      `| **2. Amaliy / Dasturiy Algoritm Yechimi** | Algoritmning to'g'ri ishlashi, chekka holatlar (edge cases) hisobga olingani | **35 ball** |\n` +
+      `| **3. Samaradorlik va Optimallik (Big-O)** | Vaqt ($O(N)$) va xotira bo'yicha eng optimal yo'l tanlangani | **20 ball** |\n` +
+      `| **4. Kod Tozaligi va Hujjatlashtirish** | Standartlarga (Clean code, PEP8) mosligi, README va tushuntirish | **20 ball** |\n` +
+      `| **JAMI** | **Maksimal Akademik Baho** | **100 ball** |\n\n` +
+      `💡 *Ushbu mezonlarni o'quv rejangiz (SOW) va AI Grader tizimiga bevosita yuklashingiz mumkin.*`
+    );
+  }
+
+  // 4. LESSON PLAN / AMALIY MASHG'ULOT REJASI
+  if (p.includes('dars rejasi') || p.includes('mashg\'ulot rejasi') || p.includes('2 soatlik') || p.includes('mavzu rejasi')) {
+    return (
+      `📋 **2 Soatlik Amaliy Mashg'ulot Dars Rejasi (Sillabus Standarti):**\n\n` +
+      `• **Fan:** Axborot Texnologiyalari va Dasturlash Asoslari\n` +
+      `• **Ajratilgan vaqt:** 80 daqiqa (2 akademik soat)\n\n` +
+      `### Darsning Vaqt Taqsimoti:\n` +
+      `1. **Tashkiliy qism va O'tgan mavzuni takrorlash (10 daqiqa):**\n` +
+      `   - Davomat va talabalar tayyorgarligini tekshirish;\n` +
+      `   - Qisqa savol-javob (blits-so'rov).\n\n` +
+      `2. **Yangi Mavzu Nazariy Kirishi (20 daqiqa):**\n` +
+      `   - Asosiy tushunchalar, struktura va algoritmik g'oyani doskada tushuntirish;\n` +
+      `   - Real hayotiy keyslar bilan bog'lash.\n\n` +
+      `3. **Interaktiv Amaliy Mashq va Kodlash (40 daqiqa):**\n` +
+      `   - Talabalarning shaxsiy kompyuterlarda topshiriqni bajarishi;\n` +
+      `   - O'qituvchi tomonidan individual konsultatsiya va xatolarni tahlil qilish.\n\n` +
+      `4. **Xulosalash va Mustaqil Ish Topshirig'i (10 daqiqa):**\n` +
+      `   - Dars natijalarini umumlashtirish va LMS tizimiga keyingi topshiriqni yuklash.`
+    );
+  }
+
+  // 5. TEST QUESTIONS & VARIANTS
+  if (p.includes('variant') || p.includes('savol') || p.includes('oraliq nazorat savol') || p.includes('test')) {
+    return (
+      `📝 **Nazorat Uchun 4 Ta Variantli Savollar To'plami:**\n\n` +
+      `**1-Variant (Boshlang'ich daraja):**\n` +
+      `1. Chiziqli ma'lumotlar tuzilmalariga misollar keltiring va ularning farqini tushuntiring.\n` +
+      `2. Stek (Stack) da LIFO qoidasi qanday ishlaydi?\n\n` +
+      `**2-Variant (O'rta daraja):**\n` +
+      `1. Binar qidiruv algoritmining o'rtacha va eng yomon holatdagi vaqt murakkabligini tahlil qiling.\n` +
+      `2. Navbat (Queue) tuzilmasining amaliy sohalardagi (masalan, OS jarayonlarida) qo'llanilishi.\n\n` +
+      `**3-Variant (Murakkab daraja):**\n` +
+      `1. Binar Qidiruv Daraxti (BST) muvozanatsiz bo'lib qolsa, qidiruv tezligi nima uchun $O(N)$ ga tushadi?\n` +
+      `2. Rekursiya steki to'lib ketishi (Stack Overflow) sabablari va oldini olish usullari.\n\n` +
+      `**4-Variant (Amaliy / Dasturlash):**\n` +
+      `1. Berilgan massivdan takrorlanuvchi elementlarni $O(N)$ vaqtda topish algoritmini yozing.\n` +
+      `2. Grafni kenglik bo'yicha aylanib chiqish (BFS) algoritmining navbat bilan ishlash prinsipini tushuntiring.`
+    );
+  }
+
+  // 6. IF STRICT SYLLABUS MODE AND NO SOW MATCH
   if (strictSyllabus && !matched) {
     return (
       `Assalomu alaykum! Savolingiz: '${prompt}'\n\n` +
@@ -320,9 +439,8 @@ export function generatePedagogicalResponse(prompt: string, matched: SOWResource
     );
   }
 
-  // If a specific SOW document was matched
+  // 7. SOW GROUNDED RESPONSES (WHEN MATCHED)
   if (matched) {
-    // 1. Binary Search Tree (BST)
     if (matched.title.includes('BST') || p.includes('bst') || p.includes('binar daraxt')) {
       return `📚 **SOW Asosidagi Rasmiy Ma'lumot: ${matched.subjectName}**\n\n` +
         `📌 **Hujjat:** ${matched.title} (${matched.moduleName})\n\n` +
@@ -346,7 +464,6 @@ export function generatePedagogicalResponse(prompt: string, matched: SOWResource
         `⚠️ **Muhim muddat:** Rasmiy o'quv dasturiga ko'ra, 2-amaliy laboratoriya ishi **25-oktabr soat 23:59 gacha** LMS tizimiga yuklanishi shart!`;
     }
 
-    // 2. Syllabus & Grading Criteria
     if (matched.resourceType === 'syllabus' || p.includes('baho') || p.includes('kredit') || p.includes('imtihon')) {
       return `📋 **Fan Sillabusi va Baholash Nizomi:**\n\n` +
         `📌 **Fan:** ${matched.subjectName} (${matched.title})\n\n` +
@@ -359,7 +476,6 @@ export function generatePedagogicalResponse(prompt: string, matched: SOWResource
         `✅ *Ma'lumot universitet o'quv bo'limi tomonidan tasdiqlangan hujjatdan olindi.*`;
     }
 
-    // 3. AI & Neural Networks (MNIST)
     if (matched.subjectId === 'ai' || p.includes('neyron') || p.includes('mnist') || p.includes('pytorch')) {
       return `🤖 **Sun'iy Intellekt Asoslari — Laboratoriya Ko'rsatmasi:**\n\n` +
         `📌 **Hujjat:** ${matched.title} (${matched.moduleName})\n\n` +
@@ -385,7 +501,6 @@ export function generatePedagogicalResponse(prompt: string, matched: SOWResource
         `\`\`\``;
     }
 
-    // 4. Computer Networks & OSI
     if (matched.subjectId === 'networks' || p.includes('osi') || p.includes('tcp')) {
       return `🌐 **Kompyuter Tarmoqlari — O'quv Qo'llanmasi:**\n\n` +
         `📌 **Hujjat:** ${matched.title} (${matched.moduleName})\n\n` +
@@ -400,36 +515,23 @@ export function generatePedagogicalResponse(prompt: string, matched: SOWResource
         `💡 *Amaliy ko'nikma uchun Wireshark dasturida paketlarni tahlil qilish tavsiya etiladi.*`;
     }
 
-    // Generic matched resource
     return `📚 **SOW & Bilimlar Bazasi Ma'lumoti (${matched.subjectName}):**\n\n` +
       `📌 **Hujjat:** ${matched.title} (${matched.moduleName})\n\n` +
       `💡 **Rasmiy o'quv dasturi mazmuni:**\n${matched.content}\n\n` +
       `✅ *Ushbu ma'lumot universitet ma'muriyati tasdiqlagan rasmiy ta'lim resurslaridan olindi.*`;
   }
 
-  // Teacher-specific pedagogical response
-  if (p.includes('professor') || p.includes('o\'qituvchi') || p.includes('dars rejasi') || p.includes('sillabus yaratish')) {
-    return `🎓 **Tafakkur AI • Professor va Katta O'qituvchilar Uchun Metodik Yordamchi:**\n\n` +
-      `Sizning dars va baholash bo'yicha so'rovingiz tahlil qilindi:\n\n` +
-      `1. **Davlat Ta'lim Standarti (DTS) Talabi:**\n` +
-      `   • Nazariy material o'quv mashg'ulotining 30% dan oshmasligi;\n` +
-      `   • Interaktiv va muammoli masalalar yechishga 50% vaqt ajratilishi;\n` +
-      `   • Talabalarning mustaqil tahliliy xulosalariga 20% e'tibor qaratilishi maqsadga muvofiq.\n\n` +
-      `2. **Tavsiya etiladigan Baholash Rubrikasi:**\n` +
-      `   • Algoritmik to'g'rilik va chekka holatlar (Edge cases): **40 ball**\n` +
-      `   • Vaqt va xotira samaradorligi (Big-O tahlili): **30 ball**\n` +
-      `   • Kod arxitekturasi va tozaligi: **20 ball**\n` +
-      `   • Hujjatlashtirish va tushuntirish: **10 ball**\n\n` +
-      `Ushbu mezonlarni o'quv portalidagi **"AI Grader"** va **"SOW Boshqaruvi"** bo'limiga biriktirishingiz mumkin.`;
-  }
-
-  // General CS question
-  return `💡 **Tafakkur AI • Akademik Ta'lim Tizimi:**\n\n` +
-    `Savolingiz o'quv dasturi kontekstida ko'rib chiqildi:\n\n` +
-    `1. **Nazariy Asos:** Ushbu masala axborot texnologiyalari va dasturlash metodologiyasining asosiy tayanch tushunchalariga kiradi.\n` +
-    `2. **Amaliy Qo'llanilishi:** Nazariyani o'zlashtirish uchun amaliy laboratoriya topshiriqlarini ketma-ketlikda bajarish va test holatlarini sinab ko'rish zarur.\n` +
-    `3. **O'quv Resurslari:** Sillabus, topshiriq muddatlari va mezonlar bilan chap menyudagi **"O'quv rejasi (SOW)"** hamda **"Topshiriqlar"** sahifasida batafsil tanishishingiz mumkin.\n\n` +
-    `Qo'shimcha aniqlik kiritish yoki kod tahlilini xohlasangiz, batafsil yozib qoldirishingiz mumkin!`;
+  // 8. GENERAL HIGH-QUALITY EDUCATIONAL RESPONSE
+  return (
+    `💡 **Tafakkur AI • Akademik Ta'lim Tizimi:**\n\n` +
+    `Sizning so'rovingiz: **"${prompt}"** ko'rib chiqildi.\n\n` +
+    `1. **Asosiy Konsept:** Mazkur masala zamonaviy axborot texnologiyalari va ta'lim metodologiyasida muhim o'rin tutadi.\n` +
+    `2. **Tavsiya etiladigan amaliy qadamlar:**\n` +
+    `   • Nazariyani amaliy laboratoriya misollarida sinab ko'rish;\n` +
+    `   • Algoritmik murakkablikni minimal darajaga tushirish;\n` +
+    `   • O'quv portalidagi **SOW (O'quv rejasi)** materiallari bilan solishtirish.\n\n` +
+    `Qo'shimcha savol yoki aniq topshiriq bo'lsa, bemalol yozishingiz mumkin!`
+  );
 }
 
 export interface CriterionBreakdown {

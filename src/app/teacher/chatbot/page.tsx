@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { getApiUrl } from "@/lib/api";
 import MarkdownRenderer from "@/app/components/MarkdownRenderer";
+import HeaderControls from "@/app/components/HeaderControls";
 
 interface Message {
   id: string;
@@ -58,12 +59,10 @@ export default function TeacherChatbot() {
     setLoading(true);
 
     try {
-      const prompt = `Universitet professori yoki katta o'qituvchisiga yordam berayotgan oliy darajadagi akademik AI yordamchisi (Tafakkur AI Professor Edition) sifatida javob bering. O'qituvchining so'roviga professional, aniq mezonlar va ta'lim standartlariga mos tarzda O'zbek tilida javob qaytaring.\n\nProfessor so'rovi: ${userText}`;
-      
       const response = await fetch(getApiUrl('/api/generate'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt, model: 'llama3' })
+        body: JSON.stringify({ prompt: userText.trim(), role: 'teacher', model: 'llama-3.3-70b-versatile' })
       });
 
       const data = await response.json();
@@ -121,14 +120,11 @@ export default function TeacherChatbot() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 self-start sm:self-auto">
-              <div className="flex items-center gap-2 bg-teal-50 text-teal-700 border border-teal-200/80 px-3 py-1.5 rounded-xl text-xs font-medium">
-                <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse"></span>
-                Tafakkur Academic v3.2 Faol
-              </div>
+            <div className="flex items-center gap-2.5 flex-wrap self-start sm:self-auto">
+              <HeaderControls />
               <button 
                 onClick={() => setMessages([messages[0]])}
-                className="text-xs text-slate-500 hover:text-slate-800 font-semibold border border-slate-200 px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors"
+                className="text-xs text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white font-semibold border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                 title="Suhbatni tozalash"
               >
                 Tozalash

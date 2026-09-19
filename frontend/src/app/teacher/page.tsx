@@ -5,6 +5,7 @@ import TafakkurCompanion from "@/app/components/TafakkurCompanion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import HeaderControls from "@/app/components/HeaderControls";
 
 export default function TeacherDashboard() {
   const [activeTab, setActiveTab] = useState<'hub' | 'profile'>('hub');
@@ -41,7 +42,7 @@ export default function TeacherDashboard() {
   ];
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page bg-transparent text-slate-900 dark:text-slate-100">
       <Sidebar role="teacher" activeRoute="/teacher" />
       <TafakkurCompanion currentContext="O'qituvchi Boshqaruvi & AI Grader" />
 
@@ -80,8 +81,9 @@ export default function TeacherDashboard() {
                 </p>
               </div>
 
-              {/* View Switcher & AI Grader Quick Action */}
-              <div className="flex items-center gap-3 self-start lg:self-auto">
+              {/* View Switcher, AI Grader Quick Action & HeaderControls */}
+              <div className="flex items-center gap-3 flex-wrap self-start lg:self-auto">
+                <HeaderControls />
                 <Link
                   href="/teacher/grader"
                   className="px-5 py-3 rounded-2xl bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold transition-all shadow-md flex items-center gap-2 group"

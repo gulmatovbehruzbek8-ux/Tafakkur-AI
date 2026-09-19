@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useThemeAndUI } from '@/app/components/ThemeAndUIModeProvider';
 
 interface SidebarProps {
   role: 'student' | 'teacher' | 'admin' | 'mentor' | 'oquvchi';
@@ -10,6 +11,7 @@ interface SidebarProps {
 
 export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps) {
   const router = useRouter();
+  const { theme, uiMode, toggleTheme, toggleUIMode } = useThemeAndUI();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [displayName, setDisplayName] = useState('Foydalanuvchi');
   const [userRole, setUserRole] = useState(initialRole);
@@ -331,8 +333,42 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
           })}
         </nav>
         
-        {/* Bottom Section: HEMIS Connected & User Profile (Point 3) */}
-        <div className="mt-auto pt-3 border-t border-white/8 space-y-3 shrink-0">
+        {/* Bottom Section: Theme & UI Mode Switches, HEMIS, User Profile */}
+        <div className="mt-auto pt-3 border-t border-white/8 space-y-2.5 shrink-0">
+          {/* Theme & Teacher Simple Mode Switch */}
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-2 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-medium text-slate-300">Mavzu</span>
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/15 text-slate-200 transition-colors cursor-pointer"
+                title="Yorug' yoki Qorong'u rejimga o'tish"
+              >
+                <span>{theme === 'dark' ? '🌙 Qorong‘u' : '☀️ Yorug‘'}</span>
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between pt-1.5 border-t border-white/10">
+              <div className="flex flex-col">
+                <span className="text-[11px] font-medium text-slate-300">O‘qituvchi Rejimi</span>
+                <span className="text-[9px] text-slate-400">Sodda va yirik</span>
+              </div>
+              <button
+                type="button"
+                onClick={toggleUIMode}
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  uiMode === 'simple'
+                    ? 'bg-emerald-500 text-white shadow-xs ring-2 ring-emerald-400/40'
+                    : 'bg-white/10 hover:bg-white/15 text-slate-300'
+                }`}
+                title="Kattalar uchun sodda, yirik shriftli interfeys"
+              >
+                {uiMode === 'simple' ? '👓 Oddiy' : '⚡ Standart'}
+              </button>
+            </div>
+          </div>
+
           {/* Dedicated HEMIS Connected Box */}
           <div className="rounded-2xl border border-emerald-400/10 bg-emerald-400/5 p-3">
             <div className="flex items-center gap-2">

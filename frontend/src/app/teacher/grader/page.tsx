@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Sidebar from '@/app/components/Sidebar';
 import TafakkurCompanion from '@/app/components/TafakkurCompanion';
+import HeaderControls from '@/app/components/HeaderControls';
 import { getApiUrl } from '@/lib/api';
 
 interface StudentSubmission {
@@ -155,7 +156,7 @@ export default function TeacherGraderSignaturePage() {
   };
 
   return (
-    <div className="tf-page bg-[#f8fafc]">
+    <div className="tf-page bg-transparent text-slate-900 dark:text-slate-100">
       <Sidebar role="teacher" activeRoute="/teacher/grader" />
       <TafakkurCompanion currentContext="AI Grader Imtihon va Baholash Maydoni" />
 
@@ -171,7 +172,7 @@ export default function TeacherGraderSignaturePage() {
           )}
 
           {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
@@ -179,22 +180,24 @@ export default function TeacherGraderSignaturePage() {
                   Imtihon & Baholash Tizimi
                 </span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                 AI Grader: Intellektual Baholash Maydoni
               </h1>
-              <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                 Bir ekranda: Talaba ishi, AI tahlili, rasmiy rubrika va professor qarori
               </p>
             </div>
 
-            {/* Course & Assignment Selector */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <select className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-xs">
+            {/* Controls & Selectors */}
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <HeaderControls />
+
+              <select className="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-xs">
                 <option>CS-201: Ma'lumotlar tuzilmasi va algoritmlar</option>
                 <option>AI-204: Sun'iy Intellekt asoslari</option>
               </select>
 
-              <select className="px-3.5 py-2 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-xs">
+              <select className="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-xs">
                 <option>3-Laboratoriya: AVL Binar Daraxtlari</option>
                 <option>2-Laboratoriya: Stek va Ro'yxatlar</option>
               </select>
