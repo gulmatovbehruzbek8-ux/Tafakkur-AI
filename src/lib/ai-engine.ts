@@ -3,7 +3,7 @@
  * Supports:
  * 1. Groq Cloud LLM (Meta Llama 3.3 70B / Llama 3.1 8B) via process.env.GROQ_API_KEY
  * 2. Ollama (default model qwen2.5:7b, set OLLAMA_URL / OLLAMA_MODEL) — tried FIRST when configured
- * 3. Google Gemini API via process.env.GEMINI_API_KEY
+ * 3. Google Gemini API via process.env.GEMINI_API_KEY (used when Ollama/Groq are unavailable, e.g. on Vercel)
  * 4. OpenAI API via process.env.OPENAI_API_KEY
  * 5. Built-in Pedagogical SOW Grounding Engine (Zero-config, 100% resilient on Vercel)
  */
@@ -273,22 +273,29 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
     }
   }
 
-  // 3. Check Google Gemini API
+  // 3. Google Gemini API (key from GEMINI_API_KEY env var — never hardcode it)
   const geminiKey = process.env.GEMINI_API_KEY;
   if (geminiKey) {
     try {
-      const gRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiKey}`, {
+      const geminiModel = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+      const gRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${geminiModel}:generateContent`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': geminiKey },
+        signal: AbortSignal.timeout(60000),
         body: JSON.stringify({
           systemInstruction: { parts: [{ text: SYSTEM_PROMPT_UZ }] },
-          contents: [{ parts: [{ text: prompt }] }]
+          contents: [{ role: 'user', parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.6, maxOutputTokens: 2048 }
         })
       });
       if (gRes.ok) {
         const gData = await gRes.json();
-        const cand = gData?.candidates?.[0]?.content?.parts?.[0]?.text;
+        const cand = (gData?.candidates?.[0]?.content?.parts ?? [])
+          .map((part: { text?: string }) => part?.text ?? '')
+          .join('');
         if (cand) return cand;
+      } else {
+        console.warn('Gemini responded with status', gRes.status, (await gRes.text().catch(() => '')).slice(0, 300));
       }
     } catch (e) {
       console.warn('Gemini API invocation failed:', e);
