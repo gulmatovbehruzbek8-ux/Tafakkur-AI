@@ -76,10 +76,30 @@ export default function StudentChatbot() {
       setMessages(prev => [...prev, aiMsg]);
     } catch (err) {
       console.error(err);
+      let localGroundedText = "";
+      try {
+        const stored = localStorage.getItem('tafakkur_sow_resources');
+        if (stored) {
+          const list = JSON.parse(stored);
+          const lowerQ = userText.toLowerCase();
+          const match = list.find((r: any) => 
+            lowerQ.includes(r.subjectName?.toLowerCase()) ||
+            lowerQ.includes(r.title?.toLowerCase()) ||
+            (lowerQ.includes('bst') && (r.content?.includes('BST') || r.title?.includes('BST'))) ||
+            (lowerQ.includes('topshiriq') && r.content?.includes('topshiriq')) ||
+            (lowerQ.includes('muddati') && r.content?.includes('muddati')) ||
+            (lowerQ.includes('sillabus') && r.resourceType === 'syllabus')
+          );
+          if (match) {
+            localGroundedText = `📚 **SOW & Bilimlar Bazasidan Olingan Rasmiy Ma'lumot:**\n\n📌 **Fan:** ${match.subjectName}\n📄 **Hujjat:** ${match.title} (${match.moduleName})\n\n💡 **Mazmun:**\n${match.content}\n\n✅ *Ushbu ma'lumot universitet ma'muriyati yuklagan rasmiy SOW o'quv dasturi asosida taqdim etildi.*`;
+          }
+        }
+      } catch {}
+
       const mockMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: 'ai',
-        text: `[Tafakkur AI • Ta'lim Tizimi]\n\nSavolingiz: "${userText}"\n\n1. O'quv rejasiga binoan, ushbu mavzu 2-modul doirasida qamrab olingan.\n2. Tegishli ma'ruza matnlari va amaliy kod namunalarini "O'quv rejasi (SOW)" bo'limidan yuklab olishingiz mumkin.\n3. Qo'shimcha nazorat savollari kerak bo'lsa, istalgan vaqtda so'rashingiz mumkin!`,
+        text: localGroundedText || `[Tafakkur AI • Ta'lim Tizimi]\n\nSavolingiz: "${userText}"\n\n1. O'quv rejasiga binoan, ushbu mavzu o'quv dasturi (SOW) doirasida qamrab olingan.\n2. Tegishli ma'ruza matnlari va amaliy ko'rsatmalarni "O'quv rejasi (SOW)" bo'limidan ko'rishingiz mumkin.\n3. Qo'shimcha nazorat savollari kerak bo'lsa, istalgan vaqtda so'rashingiz mumkin!`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages(prev => [...prev, mockMsg]);
@@ -121,9 +141,13 @@ export default function StudentChatbot() {
             </div>
 
             <div className="flex items-center gap-2.5 self-start sm:self-auto">
+              <div className="hidden md:flex items-center gap-1.5 bg-teal-50 text-teal-800 border border-teal-200 px-3 py-1.5 rounded-xl text-xs font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse"></span>
+                <span>📚 SOW Bilimlar Bazasi Ulangan</span>
+              </div>
               <div className="flex items-center gap-2 bg-emerald-50 text-emerald-700 border border-emerald-200/80 px-3 py-1.5 rounded-xl text-xs font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Tafakkur AI v3.2 Faol
+                AI Faol
               </div>
               <button 
                 onClick={() => setMessages([messages[0]])}
