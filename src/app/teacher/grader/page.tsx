@@ -175,7 +175,7 @@ export default function TeacherGraderSignaturePage() {
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Imtihon & Baholash Tizimi
                 </span>
@@ -239,11 +239,11 @@ export default function TeacherGraderSignaturePage() {
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-xs truncate">{st.name}</span>
                         {isStApproved ? (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-slate-950 font-mono">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500 text-white font-mono">
                             {approvedList[st.id]} ball ✓
                           </span>
                         ) : st.aiEvaluation ? (
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-500/20 text-teal-300 font-mono">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 font-mono">
                             AI: {st.aiEvaluation.score}
                           </span>
                         ) : (
@@ -300,7 +300,7 @@ export default function TeacherGraderSignaturePage() {
                     rows={3}
                     value={rubric}
                     onChange={(e) => setRubric(e.target.value)}
-                    className="w-full text-xs font-mono p-3 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-teal-500 resize-none text-slate-700"
+                    className="w-full text-xs font-mono p-3 rounded-2xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600 resize-none text-slate-700"
                   />
                 </div>
               </div>
@@ -314,7 +314,7 @@ export default function TeacherGraderSignaturePage() {
                       ✓ Professor tomonidan tasdiqlangan
                     </span>
                   ) : currentEval ? (
-                    <span className="px-3 py-1 rounded-full bg-teal-100 text-teal-900 font-extrabold border border-teal-300">
+                    <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-900 font-extrabold border border-blue-200">
                       ⚡ AI tahlil qilgan (Tasdiqlash kutilmoqda)
                     </span>
                   ) : (
@@ -328,7 +328,7 @@ export default function TeacherGraderSignaturePage() {
                   <button
                     onClick={handleRunAiEvaluation}
                     disabled={evaluating}
-                    className="px-4 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition-colors flex items-center gap-1.5"
+                    className="px-4 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors flex items-center gap-1.5"
                   >
                     <span>{evaluating ? "Tahlil qilinmoqda..." : "AI Tahlilini Ishga Tushirish"}</span>
                     <span>⚡</span>
@@ -341,7 +341,7 @@ export default function TeacherGraderSignaturePage() {
             <div className="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-6 shadow-xs space-y-5">
               <div className="pb-3 border-b border-slate-100 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider block">
+                  <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider block">
                     AI Grader Tavsiyasi
                   </span>
                   <h3 className="font-display font-bold text-base text-slate-900">
@@ -351,7 +351,7 @@ export default function TeacherGraderSignaturePage() {
 
                 {currentEval && (
                   <div className="text-right">
-                    <span className="font-display font-black text-2xl text-teal-800 font-mono">
+                    <span className="font-display font-black text-2xl text-slate-900 font-mono">
                       {currentEval.score}
                     </span>
                     <span className="text-xs text-slate-400 font-mono">/100</span>
@@ -401,7 +401,7 @@ export default function TeacherGraderSignaturePage() {
                           type="number"
                           defaultValue={currentEval.score}
                           onChange={(e) => setCustomScore(Number(e.target.value))}
-                          className="w-20 px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono font-bold text-slate-900 text-sm focus:outline-none focus:border-teal-500"
+                          className="w-20 px-3 py-2 rounded-xl border border-slate-200 bg-slate-50 font-mono font-bold text-slate-900 text-sm focus:outline-none focus:border-blue-600"
                         />
                         <span className="text-xs text-slate-500 font-mono">Ball (100 dan)</span>
                       </div>

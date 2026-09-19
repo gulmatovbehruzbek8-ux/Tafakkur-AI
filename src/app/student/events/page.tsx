@@ -397,7 +397,7 @@ export default function EventsAndOlympiadsPage() {
               className="overflow-x-auto py-12 px-4 scrollbar-none relative min-h-[460px] select-none"
             >
               {/* Continuous Horizontal Center Line */}
-              <div className="absolute top-[230px] left-0 right-0 h-1.5 bg-gradient-to-r from-teal-400 via-amber-400 to-violet-500 rounded-full min-w-[1400px] shadow-[0_0_12px_rgba(245,158,11,0.4)]" />
+              <div className="absolute top-[230px] left-0 right-0 h-1.5 bg-blue-600 rounded-full min-w-[1400px] shadow-[0_0_12px_rgba(245,158,11,0.4)]" />
 
               {/* Items in Alternating Layout (Above / Below) */}
               <div className="flex items-center gap-12 min-w-[1400px] relative">
@@ -420,7 +420,7 @@ export default function EventsAndOlympiadsPage() {
                         className={`w-full p-5 rounded-3xl border transition-all cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 bg-white ${
                           item.type === 'olympiad'
                             ? 'border-amber-300 hover:border-amber-500 ring-1 ring-amber-100'
-                            : 'border-slate-200 hover:border-teal-400'
+                            : 'border-slate-200 hover:border-blue-500'
                         }`}
                       >
                         <div className="space-y-2">
@@ -429,7 +429,7 @@ export default function EventsAndOlympiadsPage() {
                               {item.displayDate}
                             </span>
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                              item.type === 'olympiad' ? 'bg-amber-100 text-amber-800' : 'bg-teal-100 text-teal-800'
+                              item.type === 'olympiad' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'
                             }`}>
                               {item.categoryTag}
                             </span>
@@ -456,7 +456,7 @@ export default function EventsAndOlympiadsPage() {
                               className={`px-3 py-1 rounded-lg text-xs font-bold transition-colors ${
                                 isRegistered
                                   ? 'bg-emerald-600 text-white'
-                                  : 'bg-slate-900 hover:bg-teal-700 text-white'
+                                  : 'bg-slate-900 hover:bg-blue-700 text-white'
                               }`}
                             >
                               {isRegistered ? '✓ Ro\'yxatdasiz' : 'Qatnashish →'}
@@ -482,7 +482,7 @@ export default function EventsAndOlympiadsPage() {
                         className={`absolute w-6 h-6 rounded-full border-4 border-white shadow-md flex items-center justify-center text-[9px] font-bold transition-transform hover:scale-125 ${
                           item.type === 'olympiad'
                             ? 'bg-amber-500 text-slate-950 ring-2 ring-amber-400/50'
-                            : 'bg-teal-500 text-white ring-2 ring-teal-400/50'
+                            : 'bg-blue-500 text-white ring-2 ring-blue-500/40'
                         }`}
                         style={{
                           top: isAbove ? 'calc(100% + 30px)' : 'auto',
@@ -501,10 +501,10 @@ export default function EventsAndOlympiadsPage() {
           {/* =========================================================================
               PERSONALIZED DISCOVERY: "RECOMMENDED FOR YOU"
               ========================================================================= */}
-          <section className="bg-gradient-to-r from-teal-900 via-slate-900 to-[#07101B] rounded-3xl p-6 sm:p-8 text-white border border-white/10 shadow-lg space-y-4 animate-fade-up">
+          <section className="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white border border-white/10 shadow-lg space-y-4 animate-fade-up">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-teal-300 block">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 block">
                   Shaxsiy Tavsiyalar (Personalized Discovery)
                 </span>
                 <h3 className="font-display font-bold text-xl text-white">
@@ -531,7 +531,7 @@ export default function EventsAndOlympiadsPage() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(timelineItems[3])}
-                  className="px-3 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs shrink-0 transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 font-bold text-xs shrink-0 transition-colors"
                 >
                   Ko'rish →
                 </button>
@@ -539,7 +539,7 @@ export default function EventsAndOlympiadsPage() {
 
               <div className="p-4.5 rounded-2xl bg-white/5 border border-white/10 flex items-start justify-between gap-4">
                 <div className="space-y-1">
-                  <span className="px-2 py-0.5 rounded bg-teal-400/20 text-teal-300 text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded bg-blue-500/15 text-blue-400 text-[10px] font-bold">
                     Xakaton Tavsiyasi
                   </span>
                   <h4 className="font-display font-bold text-sm text-white">
@@ -551,7 +551,7 @@ export default function EventsAndOlympiadsPage() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(timelineItems[2])}
-                  className="px-3 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs shrink-0 transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 font-bold text-xs shrink-0 transition-colors"
                 >
                   Ko'rish →
                 </button>
@@ -642,7 +642,7 @@ export default function EventsAndOlympiadsPage() {
                     <strong className="text-slate-800 block">Dastur va Reglament (Agenda):</strong>
                     {selectedItem.agenda.map((ag, i) => (
                       <div key={i} className="text-slate-600 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                         <span>{ag}</span>
                       </div>
                     ))}
@@ -657,7 +657,7 @@ export default function EventsAndOlympiadsPage() {
                     className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shadow-sm ${
                       registeredList.includes(selectedItem.id)
                         ? 'bg-emerald-600 text-white'
-                        : 'bg-slate-900 hover:bg-teal-700 text-white'
+                        : 'bg-slate-900 hover:bg-blue-700 text-white'
                     }`}
                   >
                     {registeredList.includes(selectedItem.id) ? '✓ Ro\'yxatdan o\'tgansiz' : 'Ro\'yxatdan o\'tish (Register)'}

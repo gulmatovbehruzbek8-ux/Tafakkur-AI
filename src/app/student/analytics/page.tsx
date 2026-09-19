@@ -110,7 +110,7 @@ export default function AcademicAnalystPage() {
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2.5 flex-wrap">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300 border border-teal-400/30">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
                     📊 ACADEMIC ANALYST v2.4
                   </span>
                   <span className="text-xs text-slate-300 font-mono">
@@ -133,7 +133,7 @@ export default function AcademicAnalystPage() {
                   onClick={() => setPerspective('student')}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                     perspective === 'student'
-                      ? 'bg-teal-500 text-slate-950 shadow-sm'
+                      ? 'bg-blue-600 text-slate-950 shadow-sm'
                       : 'text-white/80 hover:text-white'
                   }`}
                 >
@@ -143,7 +143,7 @@ export default function AcademicAnalystPage() {
                   onClick={() => setPerspective('class')}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                     perspective === 'class'
-                      ? 'bg-teal-500 text-slate-950 shadow-sm'
+                      ? 'bg-blue-600 text-slate-950 shadow-sm'
                       : 'text-white/80 hover:text-white'
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function AcademicAnalystPage() {
                   onClick={() => setPerspective('university')}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                     perspective === 'university'
-                      ? 'bg-teal-500 text-slate-950 shadow-sm'
+                      ? 'bg-blue-600 text-slate-950 shadow-sm'
                       : 'text-white/80 hover:text-white'
                   }`}
                 >
@@ -169,7 +169,7 @@ export default function AcademicAnalystPage() {
                 {perspective === 'class' && "👥 AI-22 akademik guruhi o'rtacha dinamikasi (24 nafar talaba)"}
                 {perspective === 'university' && "🏛️ Axborot texnologiyalari fakulteti umumiy reytingi"}
               </span>
-              <span className="font-mono text-teal-300 text-[11px]">
+              <span className="font-mono text-blue-400 text-[11px]">
                 Oxirgi tahlil: Bugun 10:45 da
               </span>
             </div>
@@ -180,7 +180,7 @@ export default function AcademicAnalystPage() {
               ========================================================================= */}
           <section className="space-y-4 animate-fade-up">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-teal-500" />
+              <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 1-Qatlam: Umumiy Holat (OVERVIEW)
               </span>
@@ -305,7 +305,7 @@ export default function AcademicAnalystPage() {
                       </p>
 
                       <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-700 flex items-center gap-2">
-                        <span className="font-bold text-teal-800">💡 Tavsiya:</span>
+                        <span className="font-bold text-blue-800">💡 Tavsiya:</span>
                         <span>{item.recommendation}</span>
                       </div>
                     </div>
@@ -313,7 +313,7 @@ export default function AcademicAnalystPage() {
                     <div className="shrink-0 self-start md:self-center">
                       <Link
                         href={item.actionHref}
-                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-teal-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-xs"
+                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-xs"
                       >
                         <span>{item.actionLabel}</span>
                         <span>→</span>
@@ -347,7 +347,7 @@ export default function AcademicAnalystPage() {
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="px-3 py-1.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 font-semibold focus:outline-none focus:border-teal-500"
+                  className="px-3 py-1.5 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-700 font-semibold focus:outline-none focus:border-blue-500"
                 >
                   <option value="all">Barcha Fanlar (4 ta)</option>
                   <option value="CS-201">Ma'lumotlar tuzilmasi (CS-201)</option>
@@ -364,7 +364,7 @@ export default function AcademicAnalystPage() {
                 <div key={sub.code} className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <span className="font-mono text-xs font-bold text-teal-800 bg-teal-100/70 px-2 py-0.5 rounded-md">
+                      <span className="font-mono text-xs font-bold text-blue-800 bg-blue-100/70 px-2 py-0.5 rounded-md">
                         {sub.code}
                       </span>
                       <h4 className="font-display font-bold text-base text-slate-900 mt-1">
@@ -385,7 +385,7 @@ export default function AcademicAnalystPage() {
                       </div>
                       <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                         <div
-                          className="bg-gradient-to-r from-teal-500 to-cyan-500 h-full rounded-full"
+                          className="bg-blue-600 h-full rounded-full"
                           style={{ width: `${sub.score}%` }}
                         />
                       </div>
@@ -409,7 +409,7 @@ export default function AcademicAnalystPage() {
                     <span>Vazifalar topshirish: <strong>{sub.taskSpeed}</strong></span>
                     <Link
                       href="/student/courses"
-                      className="text-teal-700 font-bold hover:underline"
+                      className="text-blue-700 font-bold hover:underline"
                     >
                       Kurs maydoniga o'tish →
                     </Link>

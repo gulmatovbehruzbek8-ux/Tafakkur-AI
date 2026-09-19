@@ -52,13 +52,11 @@ export default function TeacherDashboard() {
           {/* =========================================================================
               1. PROFESSOR HERO: GOOD EVENING + AMBIENT HEMIS SYNC
               ========================================================================= */}
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#091f33] to-[#07253b] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl space-y-6 animate-fade-up">
-            <div className="tf-mesh absolute inset-0 opacity-40 pointer-events-none" />
-
+          <div className="relative rounded-3xl bg-slate-900 text-white p-6 sm:p-8 lg:p-10 border border-slate-800 shadow-xl space-y-6 animate-fade-up">
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2.5 flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 backdrop-blur-md border border-white/15 text-teal-200">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-slate-200">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span>HEMIS SYNC ● Connected</span>
                     <span className="text-white/60">| 2 daqiqa oldin</span>
@@ -69,7 +67,7 @@ export default function TeacherDashboard() {
                 </div>
 
                 <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-                  {greeting}, <span className="bg-gradient-to-r from-teal-200 via-cyan-200 to-white bg-clip-text text-transparent">{teacher.name}</span>.
+                  {greeting}, <span>{teacher.name}</span>.
                 </h1>
 
                 <p className="text-xs sm:text-sm text-slate-300 font-medium flex items-center gap-2 flex-wrap">
@@ -77,7 +75,7 @@ export default function TeacherDashboard() {
                   <span>•</span>
                   <span>{teacher.department}</span>
                   <span>•</span>
-                  <span className="text-teal-300 font-semibold">{teacher.room}</span>
+                  <span className="text-slate-200 font-semibold">{teacher.room}</span>
                 </p>
               </div>
 
@@ -86,7 +84,7 @@ export default function TeacherDashboard() {
                 <HeaderControls />
                 <Link
                   href="/teacher/grader"
-                  className="px-5 py-3 rounded-2xl bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold transition-all shadow-md flex items-center gap-2 group"
+                  className="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-2 group"
                 >
                   <span>⚡ AI Grader: 48 ta ishni tekshirish</span>
                   <span className="group-hover:translate-x-0.5 transition-transform font-mono">→</span>
@@ -102,11 +100,11 @@ export default function TeacherDashboard() {
               </div>
               <div className="p-3 rounded-xl bg-white/5 border border-white/10">
                 <span className="text-slate-400 text-[10px] uppercase font-bold block">Talabalar Soni</span>
-                <span className="font-display font-black text-xl text-teal-300 font-mono">112 nafar</span>
+                <span className="font-display font-black text-xl text-slate-100 font-mono">112 nafar</span>
               </div>
               <div className="p-3 rounded-xl bg-white/5 border border-white/10">
                 <span className="text-slate-400 text-[10px] uppercase font-bold block">Tekshiruv Kutilmoqda</span>
-                <span className="font-display font-black text-xl text-red-400 font-mono">48 ta topshiriq</span>
+                <span className="font-display font-black text-xl text-amber-400 font-mono">48 ta topshiriq</span>
               </div>
               <div className="p-3 rounded-xl bg-white/5 border border-white/10">
                 <span className="text-slate-400 text-[10px] uppercase font-bold block">Guruh O'rtacha Bali</span>
@@ -165,7 +163,7 @@ export default function TeacherDashboard() {
                       className={`w-full py-2 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-xs ${
                         item.urgency === 'critical'
                           ? 'bg-red-600 hover:bg-red-700 text-white'
-                          : 'bg-slate-900 hover:bg-teal-700 text-white'
+                          : 'bg-slate-900 hover:bg-blue-700 text-white'
                       }`}
                     >
                       <span>{item.actionText}</span>
@@ -183,14 +181,14 @@ export default function TeacherDashboard() {
           <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600" />
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
                 <h2 className="font-display font-bold text-lg text-slate-900">
                   Bugungi Mashg'ulotlar Jadvali (Today's Classes)
                 </h2>
               </div>
               <Link
                 href="/teacher/calendar"
-                className="text-xs font-bold text-teal-700 hover:text-teal-900"
+                className="text-xs font-bold text-blue-600 hover:text-blue-800"
               >
                 Haftalik taqvim →
               </Link>
@@ -202,7 +200,7 @@ export default function TeacherDashboard() {
                   key={i}
                   className={`p-4.5 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs ${
                     c.status === 'current'
-                      ? 'bg-teal-50/60 border-teal-300 ring-1 ring-teal-200'
+                      ? 'bg-blue-50/70 border-blue-200 ring-1 ring-blue-100'
                       : 'bg-slate-50 border-slate-200/80'
                   }`}
                 >
@@ -211,11 +209,11 @@ export default function TeacherDashboard() {
                       <span className="font-mono font-bold text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-200">
                         {c.time}
                       </span>
-                      <span className="font-bold text-teal-800 bg-teal-100/70 px-2 py-0.5 rounded-md">
+                      <span className="font-bold text-blue-800 bg-blue-100/70 px-2 py-0.5 rounded-md">
                         {c.type}
                       </span>
                       {c.status === 'current' && (
-                        <span className="font-bold text-white bg-teal-600 px-2 py-0.5 rounded-md animate-pulse">
+                        <span className="font-bold text-white bg-blue-600 px-2 py-0.5 rounded-md animate-pulse">
                           ● Hozir
                         </span>
                       )}
@@ -230,7 +228,7 @@ export default function TeacherDashboard() {
                     </button>
                     <Link
                       href="/teacher/grader"
-                      className="px-3.5 py-1.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-teal-700 transition-colors"
+                      className="px-3.5 py-1.5 rounded-xl bg-slate-900 text-white font-bold hover:bg-blue-600 transition-colors"
                     >
                       Topshiriqlar
                     </Link>
@@ -246,7 +244,7 @@ export default function TeacherDashboard() {
           <section className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-violet-600" />
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
                 <h2 className="font-display font-bold text-lg text-slate-900">
                   Guruhlar Analitikasi (Class Insights)
                 </h2>
@@ -260,11 +258,11 @@ export default function TeacherDashboard() {
                   O'rtacha Guruh Bali (Class Average)
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="font-display text-3xl font-black text-teal-800 font-mono">78%</span>
+                  <span className="font-display text-3xl font-black text-slate-900 font-mono">78%</span>
                   <span className="text-xs font-bold text-emerald-600">O'tgan oyga nisbatan +4.2%</span>
                 </div>
                 <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden mt-1">
-                  <div className="bg-teal-600 h-full rounded-full w-[78%]" />
+                  <div className="bg-blue-600 h-full rounded-full w-[78%]" />
                 </div>
               </div>
 

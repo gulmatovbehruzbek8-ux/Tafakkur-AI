@@ -235,9 +235,9 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
   return (
     <>
       {/* Mobile Topbar */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-[#0b1320]/95 backdrop-blur-md border-b border-white/8 sticky top-0 z-50 text-white">
+      <div className="md:hidden flex items-center justify-between p-4 bg-slate-950/95 backdrop-blur-md border-b border-white/10 sticky top-0 z-50 text-white">
         <div className="flex items-center gap-3">
-          <div className="grid size-8 place-items-center rounded-xl bg-cyan-400 text-slate-950 shadow-md shadow-cyan-400/20">
+          <div className="grid size-8 place-items-center rounded-xl bg-blue-600 text-white shadow-xs">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
               <circle cx="4" cy="20" r="2" />
@@ -245,7 +245,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
           </div>
           <div>
             <p className="text-sm font-bold tracking-tight text-white leading-none">
-              tafakkur<span className="text-cyan-300">.ai</span>
+              tafakkur<span className="text-blue-400">.ai</span>
             </p>
             <p className="text-[8px] uppercase tracking-[0.2em] text-slate-400 mt-0.5">University OS</p>
           </div>
@@ -262,12 +262,12 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
       </div>
 
       {/* Modern Desktop & Mobile Drawer Sidebar - Permanently fixed full height */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-[248px] h-screen bg-[#0b1320] text-slate-100 flex flex-col border-r border-white/8 px-3 py-5 transition-transform duration-200 ease-out md:translate-x-0 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed inset-y-0 left-0 z-40 w-[248px] h-screen bg-[#09090b] text-slate-100 flex flex-col border-r border-white/10 px-3 py-5 transition-transform duration-200 ease-out md:translate-x-0 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         
         {/* Brand Header (Point 3) */}
         <div className="mb-6 flex items-center justify-between px-2 pt-1">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/20 group-hover:scale-105 transition-transform">
+            <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-600 text-white shadow-sm group-hover:bg-blue-500 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
                 <path d="M20 2v4" />
@@ -277,9 +277,9 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
             </div>
             <div>
               <p className="text-[15px] font-bold tracking-tight text-white leading-none">
-                tafakkur<span className="text-cyan-300">.ai</span>
+                tafakkur<span className="text-blue-400">.ai</span>
               </p>
-              <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-slate-500 mt-1">
+              <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-slate-400 mt-1">
                 University OS
               </p>
             </div>
@@ -300,7 +300,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
         <div className="px-2 pb-2">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Menyu</span>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 text-slate-300 border border-white/10">
               {displayRole}
             </span>
           </div>
@@ -317,16 +317,16 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
                 onClick={() => setIsMobileOpen(false)}
                 className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors text-xs font-medium ${
                   isActive 
-                    ? 'bg-cyan-400/10 text-cyan-200 border border-cyan-400/20' 
+                    ? 'bg-white/10 text-white border border-white/15 font-semibold' 
                     : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
                 }`}
               >
-                <span className={isActive ? 'text-cyan-300' : 'text-slate-500 group-hover:text-slate-300'}>
+                <span className={isActive ? 'text-blue-400' : 'text-slate-500 group-hover:text-slate-300'}>
                   {item.icon}
                 </span>
                 <span className="truncate">{item.label}</span>
                 {isActive && (
-                  <span className="ml-auto size-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_rgba(103,232,249,0.9)] shrink-0" />
+                  <span className="ml-auto size-1.5 rounded-full bg-blue-400 shrink-0" />
                 )}
               </Link>
             );
@@ -381,7 +381,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
           {/* User Profile Chip */}
           <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/8 flex items-center justify-between gap-2.5">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="size-8 rounded-lg bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
+              <div className="size-8 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
                 {displayName.charAt(0).toUpperCase()}
               </div>
               <div className="min-w-0">

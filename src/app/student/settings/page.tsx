@@ -128,7 +128,7 @@ export default function StudentSettingsPage() {
           <div className="bg-gradient-to-r from-[#07101B] to-[#0d2238] rounded-3xl p-6 sm:p-8 text-white border border-white/10 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-400/30">
+                <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
                   ⚙️ FOYDALANUVCHI SOZLAMALARI
                 </span>
                 <span className="text-xs text-slate-400 font-mono">UrDU Platformasi</span>
@@ -143,7 +143,7 @@ export default function StudentSettingsPage() {
 
             <button
               onClick={saveSettings}
-              className="px-6 py-3 rounded-2xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-teal-500/20 hover:scale-[1.02] flex items-center justify-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-xs hover:scale-[1.02] flex items-center justify-center gap-2"
             >
               <span>Saqlash</span>
               <span>💾</span>
@@ -154,7 +154,7 @@ export default function StudentSettingsPage() {
           <div className="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-xs space-y-6">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-xl">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
                   🔔
                 </div>
                 <div>
@@ -173,7 +173,7 @@ export default function StudentSettingsPage() {
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border transition-all ${
                   browserPermission === 'granted'
                     ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                    : 'bg-teal-600 text-white border-teal-600 hover:bg-teal-700'
+                    : 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
                 }`}
               >
                 {browserPermission === 'granted' ? '✓ Brauzerda Yoqilgan' : 'Brauzer Ruxsati Olish'}
@@ -190,7 +190,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleToggle('allowNotifications')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.allowNotifications ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.allowNotifications ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.allowNotifications ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -205,7 +205,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyClassReminders')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyClassReminders ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyClassReminders ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyClassReminders ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -220,7 +220,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyDeadlines')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyDeadlines ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyDeadlines ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyDeadlines ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -235,7 +235,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyAnnouncements')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAnnouncements ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAnnouncements ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyAnnouncements ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -250,7 +250,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleToggle('notifyAITutor')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAITutor ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifyAITutor ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifyAITutor ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -265,7 +265,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => handleToggle('notifySound')}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifySound ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.notifySound ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.notifySound ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -303,7 +303,7 @@ export default function StudentSettingsPage() {
                     onClick={() => handleSelectLanguage(lang.id as any)}
                     className={`p-4 rounded-2xl border text-left transition-all ${
                       isSelected
-                        ? 'bg-teal-50/70 border-teal-500 ring-2 ring-teal-500/20 shadow-xs'
+                        ? 'bg-blue-50/70 border-blue-500 ring-2 ring-blue-500/20 shadow-xs'
                         : 'bg-white border-slate-200 hover:bg-slate-50'
                     }`}
                   >
@@ -311,7 +311,7 @@ export default function StudentSettingsPage() {
                     <div className="font-display font-bold text-slate-900 text-sm">{lang.name}</div>
                     <div className="text-[11px] text-slate-500 mt-0.5">{lang.sub}</div>
                     {isSelected && (
-                      <div className="mt-3 flex items-center gap-1.5 text-teal-700 text-xs font-bold">
+                      <div className="mt-3 flex items-center gap-1.5 text-blue-700 text-xs font-bold">
                         <span>✓ Faol til</span>
                       </div>
                     )}
@@ -355,7 +355,7 @@ export default function StudentSettingsPage() {
                       onClick={() => handleSelectTheme(th.id as any)}
                       className={`p-4 rounded-2xl border text-center transition-all ${
                         isSelected
-                          ? 'bg-slate-900 text-white border-slate-900 shadow-md ring-2 ring-teal-500/30'
+                          ? 'bg-slate-900 text-white border-slate-900 shadow-md ring-2 ring-blue-500/30'
                           : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
@@ -381,7 +381,7 @@ export default function StudentSettingsPage() {
                   onClick={() => handleSelectUIStyle('default')}
                   className={`p-4 rounded-2xl border text-left transition-all ${
                     settings.uiStyle !== 'simple'
-                      ? 'bg-teal-50/70 border-teal-500 ring-2 ring-teal-500/20 shadow-xs'
+                      ? 'bg-blue-50/70 border-blue-500 ring-2 ring-blue-500/20 shadow-xs'
                       : 'bg-white border-slate-200 hover:bg-slate-50'
                   }`}
                 >
@@ -417,7 +417,7 @@ export default function StudentSettingsPage() {
               </label>
               <div className="flex items-center gap-3 flex-wrap">
                 {[
-                  { id: 'teal', label: "Tafakkur Zangori", color: "bg-teal-500" },
+                  { id: 'teal', label: "Tafakkur Zangori", color: "bg-blue-600" },
                   { id: 'indigo', label: "Akademik Indigo", color: "bg-indigo-600" },
                   { id: 'emerald', label: "Zangori Yashil", color: "bg-emerald-500" },
                   { id: 'sky', label: "Moviy Osmon", color: "bg-sky-500" },
@@ -454,7 +454,7 @@ export default function StudentSettingsPage() {
                       onClick={() => setSettings(prev => ({ ...prev, fontSize: size }))}
                       className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-colors ${
                         settings.fontSize === size
-                          ? 'bg-teal-600 text-white border-teal-600'
+                          ? 'bg-blue-600 text-white border-blue-600'
                           : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                       }`}
                     >
@@ -472,7 +472,7 @@ export default function StudentSettingsPage() {
                 <button
                   type="button"
                   onClick={() => setSettings(prev => ({ ...prev, fontSize: prev.fontSize === 'compact' ? 'normal' : 'compact' }))}
-                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.fontSize === 'compact' ? 'bg-teal-600' : 'bg-slate-300'}`}
+                  className={`w-12 h-6 rounded-full transition-colors relative ${settings.fontSize === 'compact' ? 'bg-blue-600' : 'bg-slate-300'}`}
                 >
                   <span className={`block w-5 h-5 rounded-full bg-white shadow-md transform transition-transform ${settings.fontSize === 'compact' ? 'translate-x-6' : 'translate-x-1'}`} />
                 </button>
@@ -490,7 +490,7 @@ export default function StudentSettingsPage() {
             </Link>
             <button
               onClick={saveSettings}
-              className="px-6 py-3 rounded-2xl bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-teal-600/20 hover:scale-[1.02] flex items-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-xs hover:scale-[1.02] flex items-center gap-2"
             >
               <span>O'zgarishlarni Saqlash</span>
               <span>💾</span>

@@ -104,13 +104,13 @@ export default function TeacherChatbot() {
           {/* Header */}
           <header className="tf-card-solid p-4 md:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-3.5">
-              <div className="relative w-11 h-11 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
-                <Image src="/Logo.png" alt="Tafakkur AI" fill sizes="44px" className="object-contain p-1.5" priority />
+              <div className="relative w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 overflow-hidden shadow-2xs">
+                <Image src="/Logo.png" alt="Tafakkur AI" fill sizes="40px" className="object-contain p-1.5" priority />
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h1 className="font-display text-xl md:text-2xl font-bold text-ink tracking-tight">Tafakkur AI</h1>
-                  <span className="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  <span className="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-200">
                     Professor Edition
                   </span>
                 </div>
@@ -144,7 +144,7 @@ export default function TeacherChatbot() {
                     key={idx}
                     onClick={() => handleSend(action)}
                     disabled={loading}
-                    className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-300 hover:text-emerald-800 text-slate-600 transition-colors whitespace-nowrap shadow-2xs"
+                    className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-blue-400 hover:text-blue-700 text-slate-600 transition-colors whitespace-nowrap shadow-2xs"
                   >
                     {action}
                   </button>
@@ -160,7 +160,7 @@ export default function TeacherChatbot() {
                   className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'ai' && (
-                    <div className="relative w-8 h-8 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-xs">
+                    <div className="relative w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-2xs">
                       <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                     </div>
                   )}
@@ -176,7 +176,7 @@ export default function TeacherChatbot() {
                     
                     <div className={`p-4 text-sm leading-relaxed shadow-sm ${
                       msg.role === 'user' 
-                        ? 'bg-emerald-700 text-white rounded-[1.25rem_1.25rem_0.25rem_1.25rem] whitespace-pre-line' 
+                        ? 'bg-slate-900 text-white rounded-[1rem_1rem_0.25rem_1rem] whitespace-pre-line' 
                         : 'tf-chat-bubble-ai'
                     }`}>
                       {msg.role === 'user' ? msg.text : <MarkdownRenderer content={msg.text} />}
@@ -186,7 +186,7 @@ export default function TeacherChatbot() {
                       <div className="flex items-center gap-2 pt-0.5 px-1">
                         <button 
                           onClick={() => handleCopy(msg.id, msg.text)}
-                          className="text-[11px] text-slate-400 hover:text-emerald-700 font-medium flex items-center gap-1 transition-colors"
+                          className="text-[11px] text-slate-400 hover:text-blue-600 font-medium flex items-center gap-1 transition-colors"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -198,7 +198,7 @@ export default function TeacherChatbot() {
                   </div>
 
                   {msg.role === 'user' && (
-                    <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs shrink-0 mt-1">
+                    <div className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0 mt-1 shadow-2xs">
                       P
                     </div>
                   )}
@@ -207,15 +207,15 @@ export default function TeacherChatbot() {
 
               {loading && (
                 <div className="flex items-start gap-3">
-                  <div className="relative w-8 h-8 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+                  <div className="relative w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0 overflow-hidden shadow-2xs">
                     <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                   </div>
                   <div className="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
                     <span className="text-xs text-slate-500 font-medium">Tafakkur AI tahlil o'tkazmoqda</span>
                     <span className="flex gap-1 items-center ml-1">
-                      <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-bounce"></span>
-                      <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></span>
-                      <span className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></span>
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce"></span>
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></span>
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></span>
                     </span>
                   </div>
                 </div>
@@ -235,7 +235,7 @@ export default function TeacherChatbot() {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     placeholder="Pedagogik so'rov yoki topshiriq rubrikasi haqida yozing..." 
-                    className="w-full pl-4 pr-10 py-3 bg-slate-50/70 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all"
+                    className="w-full pl-4 pr-10 py-3 bg-slate-50/70 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-all"
                   />
                   {input && (
                     <button 

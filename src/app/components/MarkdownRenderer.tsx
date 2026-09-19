@@ -35,7 +35,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
           return (
             <div key={index} className="my-3 rounded-2xl overflow-hidden border border-slate-800 bg-[#0f172a] shadow-md font-mono text-xs">
               <div className="flex items-center justify-between px-4 py-2 bg-slate-900/90 border-b border-slate-800 text-slate-400">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-400">
                   {language || 'kod'}
                 </span>
                 <button
@@ -89,7 +89,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     if (trimmed.startsWith('• ') || trimmed.startsWith('* ') || trimmed.startsWith('- ')) {
                       return (
                         <div key={lIdx} className="flex items-start gap-2 pl-2">
-                          <span className="text-teal-600 font-bold shrink-0 mt-0.5">•</span>
+                          <span className="text-blue-600 font-bold shrink-0 mt-0.5">•</span>
                           <span>{renderInline(trimmed.substring(2))}</span>
                         </div>
                       );
@@ -98,7 +98,7 @@ export default function MarkdownRenderer({ content, className = '' }: MarkdownRe
                     // Citation or SOW Box highlight
                     if (trimmed.startsWith('📚') || trimmed.startsWith('📌') || trimmed.startsWith('✅') || trimmed.startsWith('⚠️')) {
                       return (
-                        <p key={lIdx} className="p-2.5 rounded-xl bg-teal-50/70 border border-teal-200/60 text-slate-800 text-xs font-medium my-1">
+                        <p key={lIdx} className="p-2.5 rounded-xl bg-blue-50/70 border border-blue-200 text-slate-800 text-xs font-medium my-1">
                           {renderInline(trimmed)}
                         </p>
                       );
@@ -137,7 +137,7 @@ function renderInline(text: string): React.ReactNode[] {
     }
     if (token.startsWith('`') && token.endsWith('`')) {
       return (
-        <code key={i} className="px-1.5 py-0.5 rounded-md bg-slate-100 text-teal-800 font-mono text-xs border border-slate-200">
+        <code key={i} className="px-1.5 py-0.5 rounded-md bg-slate-100 text-blue-800 font-mono text-xs border border-slate-200">
           {token.slice(1, -1)}
         </code>
       );

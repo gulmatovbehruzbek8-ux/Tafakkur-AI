@@ -124,13 +124,13 @@ export default function StudentChatbot() {
           {/* Header */}
           <header className="tf-card-solid p-4 md:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-3.5">
-              <div className="relative w-11 h-11 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+              <div className="relative w-11 h-11 rounded-xl bg-blue-50 border border-slate-200 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
                 <Image src="/Logo.png" alt="Tafakkur AI" fill sizes="44px" className="object-contain p-1.5" priority />
               </div>
               <div>
                 <div className="flex items-center gap-2">
                   <h1 className="font-display text-xl md:text-2xl font-bold text-ink tracking-tight">Tafakkur AI</h1>
-                  <span className="bg-teal-50 text-teal-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-teal-200">
+                  <span className="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-200">
                     Akademik Repetitor
                   </span>
                 </div>
@@ -164,7 +164,7 @@ export default function StudentChatbot() {
                     key={idx}
                     onClick={() => handleSend(q)}
                     disabled={loading}
-                    className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-teal-300 hover:text-teal-700 text-slate-600 transition-colors whitespace-nowrap shadow-2xs"
+                    className="text-xs px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-700 text-slate-600 transition-colors whitespace-nowrap shadow-2xs"
                   >
                     {q}
                   </button>
@@ -180,7 +180,7 @@ export default function StudentChatbot() {
                   className={`flex items-start gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'ai' && (
-                    <div className="relative w-8 h-8 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-xs">
+                    <div className="relative w-8 h-8 rounded-xl bg-blue-50 border border-slate-200 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-xs">
                       <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                     </div>
                   )}
@@ -204,7 +204,7 @@ export default function StudentChatbot() {
                       <div className="flex items-center gap-2 pt-0.5 px-1">
                         <button 
                           onClick={() => handleCopy(msg.id, msg.text)}
-                          className="text-[11px] text-slate-400 hover:text-teal-600 font-medium flex items-center gap-1 transition-colors"
+                          className="text-[11px] text-slate-400 hover:text-blue-600 font-medium flex items-center gap-1 transition-colors"
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -225,15 +225,15 @@ export default function StudentChatbot() {
 
               {loading && (
                 <div className="flex items-start gap-3">
-                  <div className="relative w-8 h-8 rounded-xl bg-teal-50 border border-teal-200/80 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+                  <div className="relative w-8 h-8 rounded-xl bg-blue-50 border border-slate-200 flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
                     <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                   </div>
                   <div className="bg-slate-50 border border-slate-200/80 p-3.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
                     <span className="text-xs text-slate-500 font-medium">Tafakkur AI tahlil qilmoqda</span>
                     <span className="flex gap-1 items-center ml-1">
-                      <span className="w-1.5 h-1.5 bg-teal-600 rounded-full animate-bounce"></span>
-                      <span className="w-1.5 h-1.5 bg-teal-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></span>
-                      <span className="w-1.5 h-1.5 bg-teal-600 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></span>
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce"></span>
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></span>
+                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></span>
                     </span>
                   </div>
                 </div>
@@ -253,7 +253,7 @@ export default function StudentChatbot() {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     placeholder="Tafakkur AI ga savol bering (masalan: 'Algoritm nima?', 'Oraliq nazorat talablari')..." 
-                    className="w-full pl-4 pr-10 py-3 bg-slate-50/70 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 transition-all"
+                    className="w-full pl-4 pr-10 py-3 bg-slate-50/70 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-all"
                   />
                   {input && (
                     <button 
@@ -268,7 +268,7 @@ export default function StudentChatbot() {
                 <button 
                   type="submit" 
                   disabled={loading || !input.trim()}
-                  className="px-6 py-3 rounded-xl bg-teal-600 hover:bg-teal-700 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm flex items-center gap-2 shrink-0"
+                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm flex items-center gap-2 shrink-0"
                 >
                   <span>Yuborish</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -357,7 +357,7 @@ export default function BeautifulCalendarPage() {
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600 animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse" />
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Universitet Taqvim Tizimi
                 </span>
@@ -553,14 +553,14 @@ export default function BeautifulCalendarPage() {
                           isSelected
                             ? 'ring-2 ring-slate-900 border-slate-900 bg-slate-50/80 shadow-sm'
                             : isToday
-                              ? 'bg-teal-50/50 border-teal-400/80 shadow-2xs'
+                              ? 'bg-blue-50/50 border-blue-400 shadow-2xs'
                               : 'bg-white border-slate-200/70 hover:border-slate-300 hover:bg-slate-50/50'
                         }`}
                       >
                         <div className="flex items-center justify-between w-full">
                           <span className={`text-xs font-bold font-mono ${
                             isToday
-                              ? 'w-6 h-6 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold'
+                              ? 'w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold'
                               : isSelected
                                 ? 'text-slate-950 font-black'
                                 : 'text-slate-600 group-hover:text-slate-900'
@@ -569,7 +569,7 @@ export default function BeautifulCalendarPage() {
                           </span>
 
                           {isToday && (
-                            <span className="text-[9px] font-bold text-teal-700 hidden sm:inline-block">
+                            <span className="text-[9px] font-bold text-blue-700 hidden sm:inline-block">
                               Bugun
                             </span>
                           )}
@@ -608,7 +608,7 @@ export default function BeautifulCalendarPage() {
               <div className="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-xs flex flex-col space-y-5">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700 block">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 block">
                       Kunlik Reja (Day View)
                     </span>
                     <h3 className="font-display font-bold text-lg text-slate-900">
@@ -616,7 +616,7 @@ export default function BeautifulCalendarPage() {
                     </h3>
                   </div>
                   {isCurrentRealToday(selectedDay) && (
-                    <span className="px-2.5 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold">
+                    <span className="px-2.5 py-1 rounded-full bg-blue-50 text-blue-800 border border-blue-200 text-xs font-bold">
                       Bugungi kun
                     </span>
                   )}
@@ -633,7 +633,7 @@ export default function BeautifulCalendarPage() {
                         setNewDay(selectedDay);
                         setIsAddEventOpen(true);
                       }}
-                      className="mt-2 text-xs font-bold text-teal-700 hover:text-teal-900"
+                      className="mt-2 text-xs font-bold text-blue-700 hover:text-slate-900"
                     >
                       + Vazifa qo&apos;shish
                     </button>
@@ -654,7 +654,7 @@ export default function BeautifulCalendarPage() {
                               type="checkbox" 
                               checked={!!ev.completed}
                               onChange={(e) => handleToggleComplete(ev.id, e as any)}
-                              className="rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer"
+                              className="rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                             />
                             <span className={ev.completed ? 'line-through text-slate-500' : ''}>{ev.time}</span>
                           </span>
@@ -688,7 +688,7 @@ export default function BeautifulCalendarPage() {
                   <span className="text-slate-500">Savol bormi?</span>
                   <Link
                     href="/student/tutor"
-                    className="text-teal-700 hover:text-teal-900 font-bold flex items-center gap-1"
+                    className="text-blue-700 hover:text-slate-900 font-bold flex items-center gap-1"
                   >
                     <span>AI dan dars haqida so&apos;rash</span>
                     <span>→</span>
@@ -747,7 +747,7 @@ export default function BeautifulCalendarPage() {
                         isSelected 
                           ? 'border-slate-900 bg-slate-50/90 ring-2 ring-slate-900/20' 
                           : isToday
-                          ? 'border-teal-400 bg-teal-50/40'
+                          ? 'border-blue-500 bg-blue-50/40'
                           : 'border-slate-200 bg-white hover:border-slate-300'
                       }`}
                     >
@@ -757,7 +757,7 @@ export default function BeautifulCalendarPage() {
                           <p className="text-base font-bold text-slate-900 font-mono">{dayData.dayNum}</p>
                         </div>
                         {isToday && (
-                          <span className="text-[9px] font-bold bg-teal-600 text-white px-1.5 py-0.5 rounded-md">
+                          <span className="text-[9px] font-bold bg-blue-600 text-white px-1.5 py-0.5 rounded-md">
                             Bugun
                           </span>
                         )}
@@ -801,7 +801,7 @@ export default function BeautifulCalendarPage() {
             <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-teal-700">Kunlik Kun Tartibi</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Kunlik Kun Tartibi</span>
                   <h3 className="text-xl font-bold text-slate-900 font-display">
                     {selectedDay}-{MONTH_NAMES[currentMonthIndex]}, {currentYear}
                   </h3>
@@ -858,7 +858,7 @@ export default function BeautifulCalendarPage() {
                           type="checkbox"
                           checked={!!ev.completed}
                           onChange={(e) => handleToggleComplete(ev.id, e as any)}
-                          className="mt-1 w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer"
+                          className="mt-1 w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                         />
                         <div className="space-y-1">
                           <div className="flex items-center gap-2">
@@ -1006,7 +1006,7 @@ export default function BeautifulCalendarPage() {
                   value={newTitle}
                   onChange={e => setNewTitle(e.target.value)}
                   placeholder="Masalan: Algoritmlardan oraliq nazorat"
-                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-teal-600"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-blue-600"
                 />
               </div>
 

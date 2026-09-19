@@ -247,7 +247,7 @@ export default function CoursesPage() {
                       : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
-                  <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-teal-300">
+                  <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-blue-400">
                     {c.code}
                   </span>
                   <span>{c.title}</span>
@@ -265,14 +265,14 @@ export default function CoursesPage() {
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2.5 flex-wrap">
-                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300 border border-teal-400/30">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">
                     {course.code}
                   </span>
                   <span className="text-xs text-slate-300 font-medium">
                     {course.category}
                   </span>
                   <span className="text-slate-500">•</span>
-                  <span className="text-xs text-teal-200 font-mono font-bold">
+                  <span className="text-xs text-blue-300 font-mono font-bold">
                     {course.credits} ECTS Kredit
                   </span>
                 </div>
@@ -290,7 +290,7 @@ export default function CoursesPage() {
               <div className="flex items-center gap-3">
                 <div className="px-5 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-center">
                   <span className="text-[10px] uppercase font-bold text-slate-400 block">Joriy Baho</span>
-                  <span className="font-display text-2xl font-black text-teal-300 font-mono">
+                  <span className="font-display text-2xl font-black text-blue-400 font-mono">
                     {course.currentGrade}%
                   </span>
                   <span className="text-[10px] text-emerald-400 font-bold block">A'lo (A)</span>
@@ -309,7 +309,7 @@ export default function CoursesPage() {
             {/* Professor & Office Hours Card */}
             <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-300 font-display font-bold flex items-center justify-center border border-teal-400/30 shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 font-display font-bold flex items-center justify-center border border-blue-500/30 shrink-0">
                   Prof
                 </div>
                 <div>
@@ -319,7 +319,7 @@ export default function CoursesPage() {
               </div>
 
               <div className="flex items-center gap-2 text-slate-300">
-                <span className="text-teal-300 font-bold">Qabul soatlari:</span>
+                <span className="text-blue-400 font-bold">Qabul soatlari:</span>
                 <span>{course.instructor.officeHours}</span>
               </div>
             </div>
@@ -336,7 +336,7 @@ export default function CoursesPage() {
                   Modullar Ketma-ketligi & Bosqichlar
                 </h2>
               </div>
-              <span className="text-xs font-bold text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200 self-start sm:self-auto">
+              <span className="text-xs font-bold text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 self-start sm:self-auto">
                 Hozir: {course.currentModuleTitle}
               </span>
             </div>
@@ -353,7 +353,7 @@ export default function CoursesPage() {
                       m.status === 'completed'
                         ? 'bg-emerald-50/40 border-emerald-200/80 hover:bg-emerald-50'
                         : m.status === 'current'
-                          ? 'bg-teal-50/60 border-teal-300 shadow-sm ring-2 ring-teal-400/30'
+                          ? 'bg-blue-50/60 border-blue-300 shadow-sm ring-2 ring-blue-500/30'
                           : 'bg-slate-50/60 border-slate-200/70 hover:bg-white'
                     } ${isSelected ? 'ring-2 ring-slate-900' : ''}`}
                   >
@@ -368,7 +368,7 @@ export default function CoursesPage() {
                           </span>
                         )}
                         {m.status === 'current' && (
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-teal-600 text-white animate-pulse">
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-blue-600 text-white animate-pulse">
                             ● Hozir
                           </span>
                         )}
@@ -398,7 +398,7 @@ export default function CoursesPage() {
               <div className="p-5 rounded-2xl bg-slate-900 text-white border border-slate-800 text-xs space-y-3 animate-fade-up">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded bg-teal-500/20 text-teal-300 font-mono text-[11px] font-bold">
+                    <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono text-[11px] font-bold">
                       {selectedModuleDetail.number}
                     </span>
                     <h3 className="font-display font-bold text-sm text-white">
@@ -427,12 +427,12 @@ export default function CoursesPage() {
                 </div>
 
                 <div className="pt-2 flex items-center justify-between border-t border-white/10">
-                  <span className="text-teal-300 font-mono text-[11px]">
+                  <span className="text-blue-400 font-mono text-[11px]">
                     Status: {selectedModuleDetail.status === 'completed' ? 'To\'liq yakunlangan' : selectedModuleDetail.status === 'current' ? 'Hozirgi faol modul' : 'Kelgusi reja'}
                   </span>
                   <Link
                     href="/student/tutor"
-                    className="px-3.5 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs transition-colors"
+                    className="px-3.5 py-1.5 rounded-xl bg-blue-500 hover:bg-blue-500 text-slate-950 font-bold text-xs transition-colors"
                   >
                     Ushbu modulni AI bilan o'rganish →
                   </Link>
@@ -525,13 +525,13 @@ export default function CoursesPage() {
             {/* Tab 2: Modules Syllabus */}
             {activeTab === 'modules' && (
               <div className="space-y-4">
-                <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200 text-xs text-teal-900 flex items-center justify-between">
+                <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-slate-900 flex items-center justify-between">
                   <span>
                     💡 <strong>O'quv qo'llanmasi:</strong> Barcha ma'ruzalar va amaliy mashg'ulotlar O'zbekiston Respublikasi Oliy ta'lim standarti hamda xalqaro ACM/IEEE Computer Science mezonlariga mos keladi.
                   </span>
                   <Link
                     href="/student/tutor"
-                    className="px-3 py-1.5 rounded-xl bg-teal-700 text-white font-bold text-xs shrink-0 ml-3"
+                    className="px-3 py-1.5 rounded-xl bg-blue-700 text-white font-bold text-xs shrink-0 ml-3"
                   >
                     AI bilan o'rganish
                   </Link>
@@ -582,7 +582,7 @@ export default function CoursesPage() {
 
                       <button
                         onClick={() => alert(`"${r.name}" yuklab olinmoqda...`)}
-                        className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-teal-500 text-slate-700 hover:text-teal-800 text-xs font-semibold shadow-2xs"
+                        className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-blue-500 text-slate-700 hover:text-blue-800 text-xs font-semibold shadow-2xs"
                       >
                         Yuklab olish ⬇
                       </button>

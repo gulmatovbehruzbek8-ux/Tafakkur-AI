@@ -184,7 +184,7 @@ export default function MyCampusPage() {
       instructorEmail: "o.turdiyev@urdu.uz",
       officeHours: "Chorshanba va Juma 14:00 - 16:00",
       status: "current",
-      badgeColor: "bg-cyan-400/10 text-cyan-300 border-cyan-400/30",
+      badgeColor: "bg-blue-500/15 text-blue-400 border-blue-500/30",
       topic: "C++ va Python yordamida AVL daraxtida elementlarni qidirish va o'chirish algoritmini dasturlash",
       actionText: "AI Repetitor bilan ishlash",
       actionHref: "/student/tutor",
@@ -284,7 +284,7 @@ export default function MyCampusPage() {
 
           {/* Toast feedback banner */}
           {syncToast && (
-            <div className="p-3.5 rounded-2xl bg-[#0c1a2e] text-white text-xs font-semibold shadow-lg border border-cyan-400/30 flex items-center justify-between animate-fade-up">
+            <div className="p-3.5 rounded-2xl bg-[#0c1a2e] text-white text-xs font-semibold shadow-lg border border-blue-500/30 flex items-center justify-between animate-fade-up">
               <span className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-emerald-400 animate-ping" />
                 {syncToast}
@@ -295,7 +295,7 @@ export default function MyCampusPage() {
 
           {/* Live Admin Announcement Banner */}
           {announcements.length > 0 && (
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-500/15 via-cyan-500/15 to-teal-500/15 border border-amber-400/30 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-up">
+            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-up">
               <div className="flex items-center gap-3">
                 <div className="size-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-base shrink-0 border border-amber-400/30">
                   📢
@@ -341,7 +341,7 @@ export default function MyCampusPage() {
               ========================================================================= */}
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300">
+              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400">
                 JUMA · 18-SENTABR, 2026
               </p>
               <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -366,7 +366,7 @@ export default function MyCampusPage() {
 
               <Link
                 href="/student/tutor"
-                className="flex w-fit items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2.5 text-xs font-bold text-slate-950 transition hover:bg-cyan-300 shadow-lg shadow-cyan-400/20"
+                className="flex w-fit items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-slate-950 transition hover:bg-blue-500 shadow-lg shadow-xs"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
@@ -389,10 +389,10 @@ export default function MyCampusPage() {
               ========================================================================= */}
           <div className="grid gap-5 xl:grid-cols-[1.4fr_0.8fr]">
             {/* Featured Academic Passport Card */}
-            <section className="rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-[#122c3b] to-[#101d2b] p-6 text-white flex flex-col justify-between shadow-xl">
+            <section className="rounded-3xl border border-blue-500/30 bg-slate-900 p-6 text-white flex flex-col justify-between shadow-xl">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-cyan-400/10 text-cyan-300 tracking-wider border border-cyan-400/20">
+                  <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-blue-500/15 text-blue-400 tracking-wider border border-blue-500/30">
                     AKADEMIK PASPORT
                   </span>
                   <h2 className="mt-4 text-2xl font-semibold text-white leading-snug">
@@ -403,7 +403,7 @@ export default function MyCampusPage() {
                   </p>
                 </div>
                 
-                <div className="grid size-12 place-items-center rounded-2xl bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 shrink-0">
+                <div className="grid size-12 place-items-center rounded-2xl bg-blue-500/15 border border-blue-500/30 text-blue-400 shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
                     <path d="M22 10v6" />
@@ -440,13 +440,13 @@ export default function MyCampusPage() {
                       Ma'lumotlar tuzilmasi
                     </h2>
                   </div>
-                  <span className="text-xs font-semibold text-cyan-300 font-mono bg-cyan-400/10 px-2.5 py-1 rounded-lg border border-cyan-400/20">
+                  <span className="text-xs font-semibold text-blue-400 font-mono bg-blue-500/15 px-2.5 py-1 rounded-lg border border-blue-500/30">
                     10:30
                   </span>
                 </div>
 
                 <div className="mt-5 flex items-center gap-3 border-t border-white/8 pt-4">
-                  <div className="grid size-10 place-items-center rounded-xl bg-cyan-400/10 text-cyan-300 border border-cyan-400/20 shrink-0">
+                  <div className="grid size-10 place-items-center rounded-xl bg-blue-500/15 text-blue-400 border border-blue-500/30 shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 7v14" />
                       <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
@@ -465,7 +465,7 @@ export default function MyCampusPage() {
 
               <button
                 onClick={() => setSelectedActivity(todayActivities[1])}
-                className="mt-5 flex items-center gap-2 text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors pt-2"
+                className="mt-5 flex items-center gap-2 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors pt-2"
               >
                 <span>Bugungi dars tafsilotlari</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3">
@@ -491,7 +491,7 @@ export default function MyCampusPage() {
                     Bugun uchun qisqa ro'yxat
                   </h2>
                 </div>
-                <Link href="/student/assignments" className="text-xs font-semibold text-cyan-300 hover:text-cyan-200">
+                <Link href="/student/assignments" className="text-xs font-semibold text-blue-400 hover:text-blue-300">
                   Barchasi →
                 </Link>
               </div>
@@ -512,7 +512,7 @@ export default function MyCampusPage() {
                     </svg>
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-xs font-medium text-slate-200 group-hover:text-cyan-200">
+                    <span className="block truncate text-xs font-medium text-slate-200 group-hover:text-blue-300">
                       BST Laboratoriya loyihasi (C++/Python)
                     </span>
                     <span className="mt-0.5 block text-[10px] text-amber-300 font-mono">
@@ -529,21 +529,21 @@ export default function MyCampusPage() {
                   href="/student/courses"
                   className="flex items-center gap-3 py-3 text-left first:pt-0 last:pb-0 group hover:bg-white/[0.02] px-2 rounded-xl transition-colors"
                 >
-                  <span className="grid size-8 place-items-center rounded-lg bg-cyan-400/10 text-cyan-300 shrink-0 border border-cyan-400/20">
+                  <span className="grid size-8 place-items-center rounded-lg bg-blue-500/15 text-blue-400 shrink-0 border border-blue-500/30">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="12" r="10" />
                       <path d="M12 6v6l4 2" />
                     </svg>
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-xs font-medium text-slate-200 group-hover:text-cyan-200">
+                    <span className="block truncate text-xs font-medium text-slate-200 group-hover:text-blue-300">
                       Sun'iy Intellekt asoslari oraliq imtihoni
                     </span>
                     <span className="mt-0.5 block text-[10px] text-slate-400">
                       21-sentyabr, 10:00 · 25 ta test va 2 ta amaliy keys
                     </span>
                   </span>
-                  <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
+                  <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-blue-500/15 text-blue-400 border border-blue-500/30">
                     Oraliq nazorat
                   </span>
                 </Link>
@@ -560,7 +560,7 @@ export default function MyCampusPage() {
                     </svg>
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-xs font-medium text-slate-200 group-hover:text-cyan-200">
+                    <span className="block truncate text-xs font-medium text-slate-200 group-hover:text-blue-300">
                       Prof. Turdiyev 2-laboratoriya taqrizi: 92/100
                     </span>
                     <span className="mt-0.5 block text-[10px] text-slate-400">
@@ -575,16 +575,16 @@ export default function MyCampusPage() {
             </section>
 
             {/* AI INSIGHT Card (Point 5) */}
-            <section className="rounded-3xl border border-cyan-400/15 bg-cyan-400/[0.04] p-5 flex flex-col justify-between shadow-xl">
+            <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4 text-cyan-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4 text-blue-400">
                     <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
                     <path d="M20 2v4" />
                     <path d="M22 4h-4" />
                     <circle cx="4" cy="20" r="2" />
                   </svg>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-300">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-400">
                     AI INSIGHT
                   </p>
                 </div>
@@ -595,7 +595,7 @@ export default function MyCampusPage() {
 
               <Link
                 href="/student/tutor"
-                className="mt-5 flex items-center gap-2 text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
+                className="mt-5 flex items-center gap-2 text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors"
               >
                 <span>Plan my week & AI Tutor bilan tekshirish</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-3">
@@ -612,7 +612,7 @@ export default function MyCampusPage() {
           <section className="rounded-3xl border border-white/8 bg-white/[0.04] p-6 shadow-xl space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/8">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400">
                   KUN TARTIBI
                 </p>
                 <h2 className="text-xl sm:text-2xl font-semibold text-white tracking-tight mt-1">
@@ -625,7 +625,7 @@ export default function MyCampusPage() {
 
               <Link
                 href="/student/calendar"
-                className="text-xs font-bold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-1.5 bg-cyan-400/10 px-3.5 py-2 rounded-xl border border-cyan-400/20 self-start sm:self-auto"
+                className="text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 bg-blue-500/15 px-3.5 py-2 rounded-xl border border-blue-500/30 self-start sm:self-auto"
               >
                 <span>To'liq semestr taqvimi</span>
                 <span className="font-mono">→</span>
@@ -639,29 +639,29 @@ export default function MyCampusPage() {
                   <span 
                     className={`absolute -left-[31px] sm:-left-[39px] top-3 size-4 rounded-full border-2 transition-all ${
                       slot.status === 'current'
-                        ? 'bg-cyan-400 border-slate-950 ring-4 ring-cyan-400/40 animate-pulse'
+                        ? 'bg-blue-600 border-slate-950 ring-4 ring-blue-500/40 animate-pulse'
                         : slot.status === 'completed'
                           ? 'bg-emerald-400 border-slate-950 ring-2 ring-emerald-400/20'
-                          : 'bg-slate-800 border-slate-600 group-hover:border-cyan-400'
+                          : 'bg-slate-800 border-slate-600 group-hover:border-blue-500'
                     }`} 
                   />
 
                   <div className={`p-4 sm:p-5 rounded-2xl border transition-all ${
                     slot.status === 'current'
-                      ? 'bg-cyan-400/[0.06] border-cyan-400/30 shadow-md'
+                      ? 'bg-blue-500/[0.06] border-blue-500/30 shadow-md'
                       : 'bg-white/[0.02] border-white/8 hover:bg-white/[0.04]'
                   }`}>
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                       <div className="space-y-1.5 flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="font-mono text-xs font-bold text-cyan-200 bg-cyan-400/10 px-2.5 py-0.5 rounded-md border border-cyan-400/20">
+                          <span className="font-mono text-xs font-bold text-blue-300 bg-blue-500/15 px-2.5 py-0.5 rounded-md border border-blue-500/30">
                             {slot.time}
                           </span>
                           <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border uppercase tracking-wider ${slot.badgeColor}`}>
                             {slot.type}
                           </span>
                           {slot.status === 'current' && (
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 animate-pulse">
+                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-600 text-white animate-pulse">
                               ● Hozirgi dars
                             </span>
                           )}
@@ -692,14 +692,14 @@ export default function MyCampusPage() {
                       <div className="flex sm:flex-col items-center sm:items-end gap-2 shrink-0 pt-2 sm:pt-0">
                         <button
                           onClick={() => setSelectedActivity(slot)}
-                          className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-white text-xs font-semibold transition-all"
+                          className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 hover:border-blue-500/40 text-slate-300 hover:text-white text-xs font-semibold transition-all"
                         >
                           Tafsilotlar
                         </button>
                         
                         <Link
                           href={slot.actionHref}
-                          className="px-3.5 py-1.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1"
+                          className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1"
                         >
                           <span>{slot.actionText}</span>
                           <span className="font-mono">→</span>
@@ -718,7 +718,7 @@ export default function MyCampusPage() {
           <section className="rounded-3xl border border-white/8 bg-white/[0.04] p-6 shadow-xl space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/8">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-300">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400">
                   AKADEMIK DINAMIKA
                 </p>
                 <h2 className="text-xl sm:text-2xl font-semibold text-white tracking-tight mt-1">
@@ -737,17 +737,17 @@ export default function MyCampusPage() {
 
             {/* 4 Performance Pillars */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/8 hover:border-cyan-400/30 transition-colors">
+              <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/8 hover:border-blue-500/30 transition-colors">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">O'zlashtirish</span>
-                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-cyan-400/10 text-cyan-300">Top 3%</span>
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-500/15 text-blue-400">Top 3%</span>
                 </div>
                 <div className="flex items-baseline gap-2 mt-2">
                   <span className="text-2xl sm:text-3xl font-bold text-white font-mono">92.4%</span>
                   <span className="text-xs font-bold text-emerald-400">A'lo</span>
                 </div>
                 <div className="w-full bg-white/10 h-1.5 rounded-full mt-2 overflow-hidden">
-                  <div className="bg-cyan-400 h-full rounded-full w-[92.4%]" />
+                  <div className="bg-blue-600 h-full rounded-full w-[92.4%]" />
                 </div>
                 <span className="text-[10px] text-slate-400 mt-1.5 block">GPA: {student.gpa} / 5.0</span>
               </div>
@@ -804,7 +804,7 @@ export default function MyCampusPage() {
                 <div>
                   <h3 className="text-sm font-bold text-white tracking-tight flex items-center gap-2">
                     <span>Semestr Traektoriyasi (Semester Journey)</span>
-                    <span className="text-[10px] bg-cyan-400/10 text-cyan-300 px-2 py-0.5 rounded-full font-mono border border-cyan-400/20">
+                    <span className="text-[10px] bg-blue-500/15 text-blue-400 px-2 py-0.5 rounded-full font-mono border border-blue-500/30">
                       Kuz 2026
                     </span>
                   </h3>
@@ -813,7 +813,7 @@ export default function MyCampusPage() {
                   </p>
                 </div>
 
-                <span className="text-xs font-mono font-bold text-cyan-300 bg-cyan-400/10 px-3 py-1 rounded-full border border-cyan-400/20 self-start sm:self-auto">
+                <span className="text-xs font-mono font-bold text-blue-400 bg-blue-500/15 px-3 py-1 rounded-full border border-blue-500/30 self-start sm:self-auto">
                   Tezlik: Optimum marom (92%)
                 </span>
               </div>
@@ -821,7 +821,7 @@ export default function MyCampusPage() {
               {/* Glowing Track */}
               <div className="relative pt-4 pb-2 px-2">
                 <div className="absolute top-1/2 left-6 right-6 h-1.5 -translate-y-1/2 bg-white/10 rounded-full" />
-                <div className="absolute top-1/2 left-6 w-[55%] h-1.5 -translate-y-1/2 bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 rounded-full shadow-[0_0_15px_rgba(45,212,191,0.7)]" />
+                <div className="absolute top-1/2 left-6 w-[55%] h-1.5 -translate-y-1/2 bg-blue-600 rounded-full" />
 
                 <div className="relative flex justify-between items-center text-center">
                   {semesterMilestones.map((m) => {
@@ -837,7 +837,7 @@ export default function MyCampusPage() {
                             m.status === 'completed'
                               ? 'bg-emerald-400 text-slate-950 shadow-md ring-4 ring-emerald-400/20 group-hover:scale-110'
                               : m.status === 'current'
-                                ? 'bg-cyan-400 text-slate-950 ring-4 ring-cyan-400/40 shadow-lg animate-pulse scale-110'
+                                ? 'bg-blue-600 text-white ring-4 ring-blue-500/40 shadow-lg animate-pulse scale-110'
                                 : 'bg-white/10 border border-white/20 text-white/60 group-hover:border-white/50 group-hover:text-white'
                           } ${isSelected ? 'ring-4 ring-white ring-offset-2 ring-offset-slate-950' : ''}`}
                         >
@@ -846,7 +846,7 @@ export default function MyCampusPage() {
 
                         <div className="text-center">
                           <p className={`text-[11px] sm:text-xs font-bold transition-colors ${
-                            isSelected ? 'text-cyan-300 underline' : 'text-white/90 group-hover:text-white'
+                            isSelected ? 'text-blue-400 underline' : 'text-white/90 group-hover:text-white'
                           }`}>
                             {m.week}
                           </p>
@@ -869,7 +869,7 @@ export default function MyCampusPage() {
                       <>
                         <div className="space-y-1.5">
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-cyan-300 text-sm">{m.week}: {m.title}</span>
+                            <span className="font-bold text-blue-400 text-sm">{m.week}: {m.title}</span>
                             <span className="px-2 py-0.5 rounded-md bg-white/10 text-white font-mono text-[10px]">
                               {m.score}
                             </span>
@@ -889,7 +889,7 @@ export default function MyCampusPage() {
 
                         <Link
                           href="/student/courses"
-                          className="px-3.5 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs transition-colors shrink-0 flex items-center gap-1.5"
+                          className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shrink-0 flex items-center gap-1.5"
                         >
                           <span>Modul Materiallari</span>
                           <span>→</span>
@@ -910,7 +910,7 @@ export default function MyCampusPage() {
               <div className="bg-[#0b1320] text-slate-100 rounded-3xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
                 <div className="flex items-center justify-between pb-3 border-b border-white/10">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-cyan-400/10 text-cyan-300 border border-cyan-400/20">
+                    <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">
                       {selectedActivity.type}
                     </span>
                     <span className="font-mono text-xs text-slate-400 font-bold">
@@ -944,11 +944,11 @@ export default function MyCampusPage() {
                     <div className="p-3 rounded-xl bg-white/[0.03] border border-white/8">
                       <span className="text-slate-400 text-[10px] uppercase font-bold block mb-0.5">O'qituvchi</span>
                       <span className="font-bold text-white">{selectedActivity.instructor}</span>
-                      <span className="text-[11px] text-cyan-300 block mt-0.5 truncate">{selectedActivity.instructorEmail}</span>
+                      <span className="text-[11px] text-blue-400 block mt-0.5 truncate">{selectedActivity.instructorEmail}</span>
                     </div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-cyan-400/[0.05] border border-cyan-400/20 text-xs text-cyan-200">
+                  <div className="p-3 rounded-xl bg-blue-500/[0.05] border border-blue-500/30 text-xs text-blue-300">
                     <span className="font-bold block mb-0.5">Qabul soatlari:</span>
                     <span>{selectedActivity.officeHours}</span>
                   </div>
@@ -963,7 +963,7 @@ export default function MyCampusPage() {
                   </button>
                   <Link
                     href={selectedActivity.actionHref}
-                    className="px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-bold shadow-md"
+                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md"
                   >
                     {selectedActivity.actionText} →
                   </Link>
@@ -1008,15 +1008,15 @@ export default function MyCampusPage() {
                     </p>
                     <button
                       onClick={() => { setSubmitModalOpen(false); setSubmitSuccess(false); }}
-                      className="px-4 py-2 rounded-xl bg-cyan-400 text-slate-950 text-xs font-bold hover:bg-cyan-300"
+                      className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500"
                     >
                       Tushunarli
                     </button>
                   </div>
                 ) : (
                   <div className="space-y-4 text-xs">
-                    <div className="p-4 rounded-2xl border-2 border-dashed border-white/20 hover:border-cyan-400 text-center cursor-pointer bg-white/[0.02] transition-colors">
-                      <div className="size-10 rounded-full bg-cyan-400/10 text-cyan-300 flex items-center justify-center mx-auto mb-2 font-bold">
+                    <div className="p-4 rounded-2xl border-2 border-dashed border-white/20 hover:border-blue-500 text-center cursor-pointer bg-white/[0.02] transition-colors">
+                      <div className="size-10 rounded-full bg-blue-500/15 text-blue-400 flex items-center justify-center mx-auto mb-2 font-bold">
                         📁
                       </div>
                       <p className="font-bold text-white">Loyihani bu yerga yuklang</p>
@@ -1031,11 +1031,11 @@ export default function MyCampusPage() {
                         type="text"
                         placeholder="https://github.com/bunyodbek/bst-algorithms"
                         defaultValue="https://github.com/bunyodbek/bst-project-urdu"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-white/5 focus:outline-none focus:border-cyan-400 text-white text-xs"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-white/5 focus:outline-none focus:border-blue-500 text-white text-xs"
                       />
                     </div>
 
-                    <div className="p-3 rounded-xl bg-cyan-400/10 border border-cyan-400/20 text-cyan-200 text-[11px] flex items-center gap-2">
+                    <div className="p-3 rounded-xl bg-blue-500/15 border border-blue-500/30 text-blue-300 text-[11px] flex items-center gap-2">
                       <span className="font-bold">✨ AI Grader:</span>
                       <span>Topshirganingizdan so'ng AI algoritmingiz xotira va vaqt murakkabligini avtomatik tahlil qiladi.</span>
                     </div>
@@ -1049,7 +1049,7 @@ export default function MyCampusPage() {
                       </button>
                       <button
                         onClick={() => setSubmitSuccess(true)}
-                        className="px-5 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-bold shadow-md"
+                        className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md"
                       >
                         Topshiriqni tasdiqlash
                       </button>
@@ -1102,7 +1102,7 @@ export default function MyCampusPage() {
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-cyan-400/10 border border-cyan-400/20 text-[11px] text-cyan-200">
+                  <div className="p-3 rounded-xl bg-blue-500/15 border border-blue-500/30 text-[11px] text-blue-300">
                     <span className="font-bold block mb-1">🤖 AI Grader dastlabki tahlili:</span>
                     <span>Test keyslardan o'tish ko'rsatkichi: 10/10. Qo'shimcha xotira sarfi: O(1) optimal.</span>
                   </div>
@@ -1111,7 +1111,7 @@ export default function MyCampusPage() {
                 <div className="pt-2 flex justify-end">
                   <button
                     onClick={() => setActiveReviewModal(false)}
-                    className="px-4 py-2 rounded-xl bg-cyan-400 text-slate-950 text-xs font-bold hover:bg-cyan-300"
+                    className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500"
                   >
                     Tushunarli
                   </button>

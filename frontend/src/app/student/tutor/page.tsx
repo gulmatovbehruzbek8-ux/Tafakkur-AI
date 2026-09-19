@@ -404,7 +404,7 @@ def insert(root, key):
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-400/30">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
                     ⚡ TAFAKKUR AI TUTOR
                   </span>
                   <span className="text-xs text-slate-400 font-mono">
@@ -429,7 +429,7 @@ def insert(root, key):
                 </Link>
                 <Link
                   href="/student"
-                  className="px-3.5 py-2 rounded-xl bg-teal-500 text-slate-950 text-xs font-bold hover:bg-teal-400 transition-colors"
+                  className="px-3.5 py-2 rounded-xl bg-blue-600 text-slate-950 text-xs font-bold hover:bg-blue-500 transition-colors"
                 >
                   Kampusga qaytish
                 </Link>
@@ -450,7 +450,7 @@ def insert(root, key):
                     setSelectedCourseIndex(idx);
                     setSelectedChapter(COURSES[idx].chapters[0]);
                   }}
-                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-teal-400"
+                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-blue-500"
                 >
                   {COURSES.map((c, i) => (
                     <option key={c.id} value={i} className="bg-slate-900 text-white">
@@ -468,7 +468,7 @@ def insert(root, key):
                 <select
                   value={selectedChapter}
                   onChange={(e) => setSelectedChapter(e.target.value)}
-                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-teal-400 truncate"
+                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-blue-500 truncate"
                 >
                   {currentCourse.chapters.map((ch, i) => (
                     <option key={i} value={ch} className="bg-slate-900 text-white truncate">
@@ -486,7 +486,7 @@ def insert(root, key):
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as any)}
-                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-teal-400"
+                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-blue-500"
                 >
                   <option value="Boshlang'ich" className="bg-slate-900 text-white">Boshlang'ich (Fundamental)</option>
                   <option value="O'rta" className="bg-slate-900 text-white">O'rta (Universitet standardi)</option>
@@ -500,9 +500,9 @@ def insert(root, key):
                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
                   Joriy Maqsad:
                 </label>
-                <div className="w-full bg-teal-500/15 border border-teal-400/30 rounded-xl px-3 py-2 text-teal-200 font-semibold flex items-center justify-between">
+                <div className="w-full bg-blue-500/10 border border-blue-500/20 rounded-xl px-3 py-2 text-blue-300 font-semibold flex items-center justify-between">
                   <span>Oraliq nazoratga tayyorgarlik</span>
-                  <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                 </div>
               </div>
             </div>
@@ -534,7 +534,7 @@ def insert(root, key):
                   }}
                   className={`p-3.5 rounded-2xl text-left border transition-all ${
                     isActive
-                      ? 'bg-slate-900 text-white border-slate-900 shadow-md ring-2 ring-teal-500/30'
+                      ? 'bg-slate-900 text-white border-slate-900 shadow-md ring-2 ring-blue-500/30'
                       : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
@@ -555,7 +555,7 @@ def insert(root, key):
               ========================================================================= */}
           <div className="bg-white rounded-2xl border border-slate-200/80 p-3.5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-teal-500" />
+              <span className="w-2 h-2 rounded-full bg-blue-600" />
               <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                 Boshqacha tushuntir (Explain Differently):
               </span>
@@ -564,31 +564,31 @@ def insert(root, key):
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
               <button
                 onClick={() => handleExplainDifferently('simple')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-800 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
               >
                 💡 Oddiy tilda
               </button>
               <button
                 onClick={() => handleExplainDifferently('analogy')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-800 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
               >
                 🎭 Hayotiy analogiya
               </button>
               <button
                 onClick={() => handleExplainDifferently('code')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-800 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
               >
                 💻 Kod va misol
               </button>
               <button
                 onClick={() => handleExplainDifferently('challenge')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-800 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
               >
                 ⚔️ Meni sinab ko'r
               </button>
               <button
                 onClick={() => handleExplainDifferently('summarize')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-800 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-medium border border-slate-200 transition-colors whitespace-nowrap"
               >
                 📝 Xulosa konspekt
               </button>
@@ -626,12 +626,12 @@ def insert(root, key):
                   <div className="flex items-center gap-2 mb-1 px-1">
                     {m.sender === 'ai' ? (
                       <>
-                        <span className="w-5 h-5 rounded-lg bg-teal-600 text-white flex items-center justify-center text-[10px] font-bold">
+                        <span className="w-5 h-5 rounded-lg bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">
                           AI
                         </span>
                         <span className="text-[11px] font-bold text-slate-700">Tafakkur Repetitor</span>
                         {m.mode && (
-                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-teal-100 text-teal-800 uppercase">
+                          <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-blue-100 text-blue-800 uppercase">
                             {m.mode}
                           </span>
                         )}
@@ -650,7 +650,7 @@ def insert(root, key):
                   <div
                     className={`max-w-[90%] sm:max-w-[80%] p-4.5 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line shadow-xs ${
                       m.sender === 'user'
-                        ? 'bg-teal-600 text-white rounded-tr-xs font-medium'
+                        ? 'bg-blue-600 text-white rounded-tr-xs font-medium'
                         : 'bg-white text-slate-800 border border-slate-200/80 rounded-tl-xs'
                     }`}
                   >
@@ -663,7 +663,7 @@ def insert(root, key):
                           <span>{m.codeSnippet.language.toUpperCase()}</span>
                           <button
                             onClick={() => navigator.clipboard.writeText(m.codeSnippet!.code)}
-                            className="hover:text-teal-300 transition-colors"
+                            className="hover:text-blue-300 transition-colors"
                           >
                             Nusxa olish 📋
                           </button>
@@ -687,7 +687,7 @@ def insert(root, key):
                             const isCorrect = m.quiz?.correctIndex === optIdx;
                             const hasAnswered = m.quiz?.selectedIndex !== undefined;
 
-                            let btnStyle = "bg-white border-slate-200 hover:bg-teal-50 text-slate-700";
+                            let btnStyle = "bg-white border-slate-200 hover:bg-blue-50 text-slate-700";
                             if (hasAnswered) {
                               if (isCorrect) btnStyle = "bg-emerald-50 border-emerald-400 text-emerald-900 font-bold";
                               else if (isSelected) btnStyle = "bg-red-50 border-red-400 text-red-900 line-through";
@@ -709,7 +709,7 @@ def insert(root, key):
                         </div>
 
                         {m.quiz.selectedIndex !== undefined && (
-                          <div className="p-3 rounded-lg bg-teal-50/80 border border-teal-200 text-teal-950 text-xs leading-relaxed animate-fade-up">
+                          <div className="p-3 rounded-lg bg-blue-50 border border-blue-200 text-blue-950 text-xs leading-relaxed animate-fade-up">
                             <strong className="block mb-0.5">Izoh:</strong>
                             {m.quiz.explanation}
                           </div>
@@ -722,9 +722,9 @@ def insert(root, key):
 
               {isTyping && (
                 <div className="flex items-center gap-2 p-3.5 bg-white rounded-2xl border border-slate-200/80 w-28">
-                  <span className="w-2 h-2 rounded-full bg-teal-500 animate-bounce" />
-                  <span className="w-2 h-2 rounded-full bg-teal-500 animate-bounce [animation-delay:0.2s]" />
-                  <span className="w-2 h-2 rounded-full bg-teal-500 animate-bounce [animation-delay:0.4s]" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce [animation-delay:0.2s]" />
+                  <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce [animation-delay:0.4s]" />
                 </div>
               )}
               <div ref={messagesEndRef} />
@@ -744,12 +744,12 @@ def insert(root, key):
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={`"${selectedChapter}" bo'yicha savol bering yoki kod so'rang...`}
-                  className="flex-1 px-4 py-3 bg-slate-50 rounded-2xl text-xs sm:text-sm text-slate-800 border border-slate-200 focus:outline-none focus:border-teal-500 focus:bg-white transition-all placeholder:text-slate-400"
+                  className="flex-1 px-4 py-3 bg-slate-50 rounded-2xl text-xs sm:text-sm text-slate-800 border border-slate-200 focus:outline-none focus:border-blue-500 focus:bg-white transition-all placeholder:text-slate-400"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim()}
-                  className="px-5 py-3 rounded-2xl bg-teal-600 hover:bg-teal-700 disabled:bg-slate-200 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-1.5 shadow-sm"
+                  className="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 text-white font-bold text-xs sm:text-sm transition-colors flex items-center gap-1.5 shadow-sm"
                 >
                   <span>Yuborish</span>
                   <span>→</span>

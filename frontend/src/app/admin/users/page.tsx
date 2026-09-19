@@ -465,7 +465,7 @@ export default function AdminUsersPage() {
           <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Boshqaruv Paneli</span>
               </div>
               <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">Foydalanuvchilar va Profillar</h1>
@@ -477,7 +477,7 @@ export default function AdminUsersPage() {
             <div className="flex items-center gap-2 flex-wrap">
               <button 
                 onClick={openAddStudentModal}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 active:scale-[0.98] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm shadow-teal-500/20"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm shadow-xs"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
@@ -505,7 +505,7 @@ export default function AdminUsersPage() {
             </div>
             <div className="tf-metric">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Talabalar</p>
-              <p className="text-2xl md:text-3xl font-bold text-teal-600 mt-2 font-mono">{stats.students}</p>
+              <p className="text-2xl md:text-3xl font-bold text-blue-600 mt-2 font-mono">{stats.students}</p>
             </div>
             <div className="tf-metric">
               <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">O'qituvchilar</p>
@@ -532,7 +532,7 @@ export default function AdminUsersPage() {
                   onClick={() => setFilterRole(tab.key as any)}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     filterRole === tab.key 
-                      ? 'bg-white text-teal-700 shadow-2xs font-bold' 
+                      ? 'bg-white text-blue-700 shadow-2xs font-bold' 
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
@@ -548,7 +548,7 @@ export default function AdminUsersPage() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="F.I.SH., email, ID yoki guruh..."
-                className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50/70 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 focus:bg-white text-slate-900 transition-all font-sans"
+                className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50/70 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 focus:bg-white text-slate-900 transition-all font-sans"
               />
               <svg className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -587,7 +587,7 @@ export default function AdminUsersPage() {
                         <tr key={u.id} className="hover:bg-slate-50/60 transition-colors">
                           <td className="p-4 pl-6">
                             <div className="flex items-center gap-3">
-                              <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-teal-800 to-cyan-600 text-white font-semibold text-xs flex items-center justify-center shrink-0 shadow-xs">
+                              <div className="w-9 h-9 rounded-full bg-blue-600 text-white font-semibold text-xs flex items-center justify-center shrink-0 shadow-xs">
                                 {fullName.charAt(0).toUpperCase()}
                               </div>
                               <div>
@@ -607,7 +607,7 @@ export default function AdminUsersPage() {
                             <div className="flex items-center gap-2">
                               <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                                 u.role === 'admin' ? 'bg-rose-50 text-rose-700 border border-rose-200' :
-                                isTeacher ? 'bg-teal-50 text-teal-700 border border-teal-200' :
+                                isTeacher ? 'bg-blue-50 text-blue-700 border border-blue-200' :
                                 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                               }`}>
                                 {u.role === 'admin' ? 'Admin' : isTeacher ? "O'qituvchi" : 'Talaba'}
@@ -645,7 +645,7 @@ export default function AdminUsersPage() {
                             <div className="inline-flex items-center gap-1.5">
                               <button
                                 onClick={() => openEditModal(u)}
-                                className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-teal-50 hover:text-teal-700 text-slate-700 text-xs font-semibold transition-colors"
+                                className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 text-xs font-semibold transition-colors"
                               >
                                 Tahrirlash
                               </button>
@@ -691,7 +691,7 @@ export default function AdminUsersPage() {
             {/* Modal Header */}
             <div className="p-6 md:p-7 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-teal-600">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600">
                   {editingUserId ? "Foydalanuvchi ma'lumotlari" : "Yangi a'zo ro'yxatga olish"}
                 </span>
                 <h2 className="font-display text-xl md:text-2xl font-bold text-ink tracking-tight mt-0.5">
@@ -726,11 +726,11 @@ export default function AdminUsersPage() {
                       onClick={() => setForm({ ...form, role: r.id })}
                       className={`p-3.5 rounded-2xl border text-left transition-all ${
                         form.role === r.id
-                          ? 'border-teal-600 bg-teal-50/70 shadow-xs'
+                          ? 'border-blue-600 bg-blue-50/70 shadow-xs'
                           : 'border-slate-200 hover:border-slate-300 bg-slate-50/50'
                       }`}
                     >
-                      <div className={`text-xs font-bold ${form.role === r.id ? 'text-teal-700' : 'text-slate-800'}`}>
+                      <div className={`text-xs font-bold ${form.role === r.id ? 'text-blue-700' : 'text-slate-800'}`}>
                         {r.title}
                       </div>
                       <div className="text-[11px] text-slate-400 mt-0.5">{r.desc}</div>
@@ -742,7 +742,7 @@ export default function AdminUsersPage() {
               {/* Section 1: Authentication & Contact */}
               <div className="border-t border-slate-100 pt-5">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-teal-600"></span>
+                  <span className="w-2 h-2 rounded-full bg-blue-600"></span>
                   1. Hisob va Shaxsiy Ma'lumotlar
                 </h3>
 
@@ -768,7 +768,7 @@ export default function AdminUsersPage() {
                         }));
                       }}
                       placeholder="Masalan: Behruzbek Gulmatov"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
                     />
                   </div>
 
@@ -781,7 +781,7 @@ export default function AdminUsersPage() {
                       value={form.username}
                       onChange={e => setForm({ ...form, username: e.target.value })}
                       placeholder="Masalan: b.gulmatov (avtomatik generatsiya)"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
                     />
                   </div>
 
@@ -794,7 +794,7 @@ export default function AdminUsersPage() {
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="talaba@tafakkur.uz"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
                     />
                   </div>
 
@@ -807,7 +807,7 @@ export default function AdminUsersPage() {
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       placeholder="+998 90 123 45 67"
-                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
+                      className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
                     />
                   </div>
 
@@ -821,7 +821,7 @@ export default function AdminUsersPage() {
                         value={form.password}
                         onChange={e => setForm({ ...form, password: e.target.value })}
                         placeholder="Standart parol: tafakkur2026 (bo'sh qoldirilsa avtomatik qo'yiladi)"
-                        className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
+                        className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
                       />
                     </div>
                   )}
@@ -842,7 +842,7 @@ export default function AdminUsersPage() {
                   <select 
                     value={form.status}
                     onChange={e => setForm({ ...form, status: e.target.value })}
-                    className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
+                    className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-blue-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-900 transition-all"
                   >
                     <option value="Faol">Faol</option>
                     <option value="Akademik ta'til">Akademik ta'til</option>
@@ -853,9 +853,9 @@ export default function AdminUsersPage() {
 
                 {/* STUDENT SPECIFIC FIELDS */}
                 {(form.role === 'student' || form.role === 'oquvchi') && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-teal-50/40 p-5 rounded-2xl border border-blue-100">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-blue-50/40 p-5 rounded-2xl border border-blue-100">
                     <div>
-                      <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
                         Talaba HEMIS ID Raqami *
                       </label>
                       <input 
@@ -864,12 +864,12 @@ export default function AdminUsersPage() {
                         value={form.studentId}
                         onChange={e => setForm({ ...form, studentId: e.target.value })}
                         placeholder="38491023"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
                         Fakultet *
                       </label>
                       <input 
@@ -878,12 +878,12 @@ export default function AdminUsersPage() {
                         value={form.faculty}
                         onChange={e => setForm({ ...form, faculty: e.target.value })}
                         placeholder="Sun'iy Intellekt va Axborot Texnologiyalari"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
                         Akademik Guruh *
                       </label>
                       <input 
@@ -892,18 +892,18 @@ export default function AdminUsersPage() {
                         value={form.group}
                         onChange={e => setForm({ ...form, group: e.target.value })}
                         placeholder="AI-22"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
                         Ta'lim Bosqichi (Kurs) *
                       </label>
                       <select 
                         value={form.course}
                         onChange={e => setForm({ ...form, course: e.target.value })}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       >
                         <option value="1-bosqich">1-bosqich</option>
                         <option value="2-bosqich">2-bosqich</option>
@@ -914,7 +914,7 @@ export default function AdminUsersPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
                         GPA Ko'rsatkichi (0.0 - 5.0)
                       </label>
                       <input 
@@ -922,18 +922,18 @@ export default function AdminUsersPage() {
                         value={form.gpa}
                         onChange={e => setForm({ ...form, gpa: e.target.value })}
                         placeholder="4.8"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-900 uppercase tracking-wider mb-1.5">
                         Ta'lim Shakli
                       </label>
                       <select 
                         value={form.educationType}
                         onChange={e => setForm({ ...form, educationType: e.target.value })}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       >
                         <option value="Kunduzgi">Kunduzgi</option>
                         <option value="Kechki">Kechki</option>
@@ -957,7 +957,7 @@ export default function AdminUsersPage() {
                         value={form.teacherId}
                         onChange={e => setForm({ ...form, teacherId: e.target.value })}
                         placeholder="PROF-9012"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm font-mono focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
@@ -971,7 +971,7 @@ export default function AdminUsersPage() {
                         value={form.faculty}
                         onChange={e => setForm({ ...form, faculty: e.target.value })}
                         placeholder="Sun'iy Intellekt va Axborot Texnologiyalari"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
@@ -985,7 +985,7 @@ export default function AdminUsersPage() {
                         value={form.department}
                         onChange={e => setForm({ ...form, department: e.target.value })}
                         placeholder="Dasturiy ta'minot injiniringi"
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       />
                     </div>
 
@@ -996,7 +996,7 @@ export default function AdminUsersPage() {
                       <select 
                         value={form.position}
                         onChange={e => setForm({ ...form, position: e.target.value })}
-                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-teal-600 outline-none text-slate-900"
+                        className="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:border-blue-600 outline-none text-slate-900"
                       >
                         <option value="Katta o'qituvchi">Katta o'qituvchi</option>
                         <option value="Dotsent">Dotsent</option>
@@ -1028,7 +1028,7 @@ export default function AdminUsersPage() {
                 <button 
                   type="submit" 
                   disabled={isSaving}
-                  className="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 active:scale-[0.98] text-white font-semibold text-xs uppercase tracking-wider disabled:opacity-50 transition-all shadow-sm shadow-teal-500/20"
+                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-semibold text-xs uppercase tracking-wider disabled:opacity-50 transition-all shadow-sm shadow-xs"
                 >
                   {isSaving ? "Saqlanmoqda..." : editingUserId ? "O'zgarishlarni Saqlash" : "Foydalanuvchini Yaratish"}
                 </button>

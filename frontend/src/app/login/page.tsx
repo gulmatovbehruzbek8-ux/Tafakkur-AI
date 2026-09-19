@@ -308,20 +308,20 @@ export default function LoginPage() {
           <p className="font-display text-4xl xl:text-5xl font-extrabold tracking-tight leading-[1.05]">
             Tafakkur AI
           </p>
-          <p className="mt-5 text-lg text-teal-100/90 leading-relaxed">
+          <p className="mt-5 text-lg text-slate-300 leading-relaxed">
             Mahalliy AI bilan universitet ishini tezlashtiring — tutor, baholash va e’lonlar bir portalda.
           </p>
           <ul className="mt-8 space-y-3 text-sm text-slate-300">
             <li className="flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               Ollama · Llama / Qwen — serveringizda
             </li>
             <li className="flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               HEMIS profil sinxroni (demo)
             </li>
             <li className="flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
               Talaba · O‘qituvchi · Ma’muriyat
             </li>
           </ul>
@@ -331,7 +331,7 @@ export default function LoginPage() {
       </div>
 
       {/* Form panel */}
-      <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-[#f4f7fb]">
+      <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-[#f8fafc]">
         <div className="w-full max-w-md animate-fade-up">
           <div className="lg:hidden flex items-center gap-2.5 mb-8">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200 bg-white">
@@ -341,7 +341,7 @@ export default function LoginPage() {
           </div>
 
           <div className="tf-panel p-7 md:p-9 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-600 via-teal-500 to-cyan-500" />
+            <div className="absolute top-0 left-0 w-full h-1 bg-blue-600" />
 
             <div className="mb-7">
               <h1 className="font-display text-2xl font-bold text-ink tracking-tight">
@@ -405,7 +405,7 @@ export default function LoginPage() {
                         onClick={() => setSelectedRole(r.id as Role)}
                         className={`p-2.5 rounded-xl border text-xs font-semibold transition-all ${
                           selectedRole === r.id 
-                            ? 'border-teal-600 bg-teal-50 text-teal-800 shadow-sm' 
+                            ? 'border-blue-600 bg-blue-50 text-blue-800 shadow-sm' 
                             : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-slate-50/50'
                         }`}
                       >
@@ -446,10 +446,10 @@ export default function LoginPage() {
                     key={d.u}
                     type="button"
                     onClick={() => handleQuickLogin(d.u)}
-                    className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200 hover:border-teal-300 transition-all flex items-center gap-1 active:scale-95 shadow-xs"
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 hover:border-slate-300 transition-all flex items-center gap-1 active:scale-95 shadow-xs"
                   >
                     <span>{d.label}</span>
-                    <span className="text-[10px] text-teal-600 font-bold">→</span>
+                    <span className="text-[10px] text-slate-500 font-bold">→</span>
                   </button>
                 ))}
               </div>
@@ -462,7 +462,7 @@ export default function LoginPage() {
                   setIsRegistering(!isRegistering);
                   setErrorMsg('');
                 }}
-                className="text-xs text-teal-700 hover:text-teal-900 font-semibold transition-colors"
+                className="text-xs text-blue-600 hover:text-blue-800 font-semibold transition-colors"
               >
                 {isRegistering 
                   ? "Akkauntingiz bormi? Tizimga kiring" 
@@ -472,7 +472,7 @@ export default function LoginPage() {
           </div>
 
           <p className="text-center text-[11px] text-slate-400 mt-5">
-            <Link href="/" className="hover:text-teal-700 transition-colors">← Bosh sahifa</Link>
+            <Link href="/" className="hover:text-blue-600 transition-colors">← Bosh sahifa</Link>
           </p>
         </div>
       </div>

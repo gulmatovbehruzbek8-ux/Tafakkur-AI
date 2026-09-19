@@ -131,7 +131,7 @@ export default function AcademicPassportPage() {
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               {/* Left Identity Info */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-gradient-to-tr from-teal-400 to-cyan-300 p-1 shadow-xl shrink-0">
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-blue-600 p-1 shadow-xl shrink-0">
                   <div className="w-full h-full rounded-[22px] bg-slate-950 flex items-center justify-center overflow-hidden relative">
                     <Image src="/Logo.png" alt="Bunyodbek Gulmatov" fill sizes="128px" className="object-contain p-4" />
                   </div>
@@ -142,7 +142,7 @@ export default function AcademicPassportPage() {
 
                 <div className="space-y-2">
                   <div className="flex items-center gap-2.5 flex-wrap">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-teal-500/20 text-teal-300 border border-teal-400/30">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200">
                       🎓 RAQAMLI AKADEMIK PASPORT
                     </span>
                     <span className="text-xs text-slate-300 font-mono">
@@ -155,13 +155,13 @@ export default function AcademicPassportPage() {
                   </h1>
 
                   <p className="text-xs sm:text-sm text-slate-300 font-medium">
-                    {student.faculty} • <strong className="text-teal-300">{student.group}</strong> ({student.course})
+                    {student.faculty} • <strong className="text-blue-400">{student.group}</strong> ({student.course})
                   </p>
 
                   <div className="flex items-center gap-2 pt-1 text-[11px] font-mono text-slate-400 flex-wrap">
                     <span>🏛️ {student.university}</span>
                     <span>•</span>
-                    <span className="text-teal-200">Kriptografik Hash: {student.verificationCode}</span>
+                    <span className="text-blue-300">Kriptografik Hash: {student.verificationCode}</span>
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function AcademicPassportPage() {
                 <div className="w-16 h-16 rounded-xl bg-white p-1.5 flex items-center justify-center shrink-0">
                   <div className="w-full h-full bg-slate-900 rounded flex flex-col items-center justify-center text-white text-[9px] font-mono text-center p-0.5 leading-none">
                     <span>QR</span>
-                    <span className="text-[7px] text-teal-400">VERIFY</span>
+                    <span className="text-[7px] text-blue-400">VERIFY</span>
                   </div>
                 </div>
                 <div className="text-xs space-y-1">
@@ -186,7 +186,7 @@ export default function AcademicPassportPage() {
             <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-6 border-t border-white/10">
               <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Akademik GPA</span>
-                <span className="font-display text-2xl font-black text-teal-300 font-mono">{student.gpa}</span>
+                <span className="font-display text-2xl font-black text-blue-400 font-mono">{student.gpa}</span>
                 <span className="text-[10px] text-emerald-400 block mt-0.5">Maksimal: 5.0 (Top 3%)</span>
               </div>
 
@@ -238,7 +238,7 @@ export default function AcademicPassportPage() {
                         {s.name}
                       </h4>
                     </div>
-                    <span className="px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800 font-bold text-xs font-mono">
+                    <span className="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800 font-bold text-xs font-mono">
                       {s.tag}
                     </span>
                   </div>
@@ -250,7 +250,7 @@ export default function AcademicPassportPage() {
                     </div>
                     <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
                       <div
-                        className="bg-gradient-to-r from-teal-500 to-cyan-500 h-full rounded-full"
+                        className="bg-blue-600 h-full rounded-full"
                         style={{ width: `${s.level}%` }}
                       />
                     </div>
@@ -280,7 +280,7 @@ export default function AcademicPassportPage() {
               {achievements.map((ach) => (
                 <div key={ach.id} className="relative group">
                   {/* Milestone Marker */}
-                  <span className="absolute -left-[31px] sm:-left-[39px] top-2 w-4 h-4 rounded-full bg-teal-500 border-2 border-white ring-4 ring-teal-500/20 group-hover:scale-125 transition-transform" />
+                  <span className="absolute -left-[31px] sm:-left-[39px] top-2 w-4 h-4 rounded-full bg-blue-600 border-2 border-white ring-4 ring-blue-500/20 group-hover:scale-125 transition-transform" />
 
                   <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-slate-300 transition-all shadow-xs space-y-3">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
@@ -289,7 +289,7 @@ export default function AcademicPassportPage() {
                           <span className="font-mono text-xs font-bold text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200">
                             {ach.year}
                           </span>
-                          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">
+                          <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
                             {ach.badge}
                           </span>
                           <span className="text-[11px] text-slate-400 font-mono">
@@ -308,7 +308,7 @@ export default function AcademicPassportPage() {
 
                       <button
                         onClick={() => openShareModal(ach)}
-                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 self-start shrink-0"
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 self-start shrink-0"
                       >
                         <span>Ulashish</span>
                         <span className="font-mono">↗</span>
@@ -357,17 +357,17 @@ export default function AcademicPassportPage() {
                   <div className="relative z-10 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Image src="/Logo.png" alt="Tafakkur" width={20} height={20} className="object-contain" />
-                      <span className="font-display font-bold text-xs tracking-wider text-teal-300">
+                      <span className="font-display font-bold text-xs tracking-wider text-blue-400">
                         TAFAKKUR AI PASSPORT
                       </span>
                     </div>
-                    <span className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-mono font-bold text-teal-200 border border-white/10">
+                    <span className="px-2 py-0.5 rounded-full bg-white/10 text-[10px] font-mono font-bold text-blue-300 border border-white/10">
                       {selectedAchievement.year}
                     </span>
                   </div>
 
                   <div className="relative z-10 space-y-1.5 pt-2">
-                    <span className="text-[10px] font-bold text-teal-400 uppercase tracking-wider block">
+                    <span className="text-[10px] font-bold text-blue-400 uppercase tracking-wider block">
                       {selectedAchievement.badge}
                     </span>
                     <h4 className="font-display font-black text-lg text-white leading-tight">
@@ -391,7 +391,7 @@ export default function AcademicPassportPage() {
                 <div className="space-y-2 text-xs">
                   <button
                     onClick={copyShareLink}
-                    className="w-full py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-xs flex items-center justify-center gap-2"
+                    className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all shadow-xs flex items-center justify-center gap-2"
                   >
                     <span>{copiedLink ? "✓ Nusxa olindi!" : "🔗 Ulashish havolasidan nusxa olish"}</span>
                   </button>

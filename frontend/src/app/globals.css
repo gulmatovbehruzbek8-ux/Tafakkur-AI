@@ -1,24 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f7fb;
-  --foreground: #0b1220;
+  /* Crisp, minimal light palette */
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --surface: #ffffff;
-  --surface-muted: #eef3f9;
-  --ink: #0b1220;
-  --ink-soft: #334155;
+  --surface-muted: #f1f5f9;
+  --ink: #0f172a;
+  --ink-soft: #475569;
   --muted: #64748b;
-  --line: rgba(15, 23, 42, 0.08);
-  --accent: #0f766e;
-  --accent-bright: #14b8a6;
-  --accent-soft: #ccfbf1;
-  --focus: rgba(20, 184, 166, 0.28);
-  --danger: #e11d48;
-  --success: #059669;
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 8px 30px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.1);
-  --radius-lg: 1.25rem;
+  --line: #e2e8f0;
+  
+  /* Authoritative academic blue */
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #eff6ff;
+  --focus: rgba(37, 99, 235, 0.25);
+  
+  --danger: #dc2626;
+  --success: #16a34a;
+  --warning: #d97706;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --radius-lg: 0.875rem;
 }
 
 @theme inline {
@@ -26,7 +32,7 @@
   --color-foreground: var(--foreground);
   --color-ink: var(--ink);
   --color-accent: var(--accent);
-  --color-accent-bright: var(--accent-bright);
+  --color-accent-bright: var(--accent);
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: var(--font-jakarta), var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -41,10 +47,7 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(20, 184, 166, 0.08), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(14, 116, 144, 0.07), transparent 50%),
-    linear-gradient(180deg, #f7fafc 0%, #eef3f8 100%);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -54,12 +57,12 @@ body {
 }
 
 ::selection {
-  background: rgba(20, 184, 166, 0.22);
-  color: var(--ink);
+  background: rgba(37, 99, 235, 0.15);
+  color: #0f172a;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-bright);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
@@ -76,18 +79,12 @@ body {
 .tf-main {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1.25rem;
 }
 
 @media (min-width: 768px) {
   .tf-main {
     padding: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .tf-main {
-    padding: 2.5rem;
   }
 }
 
@@ -103,24 +100,18 @@ body {
   margin-inline: auto;
 }
 
-.tf-card {
-  background: color-mix(in srgb, white 92%, transparent);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
-}
-
+/* Minimalist Clean Cards */
+.tf-card,
 .tf-card-solid {
-  background: white;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }
 
 .tf-panel {
-  background: white;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
 }
@@ -130,7 +121,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid #e2e8f0;
 }
 
 @media (min-width: 768px) {
@@ -141,32 +132,13 @@ body {
   }
 }
 
-.tf-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #64748b;
-}
-
-.tf-kicker-dot {
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15);
-}
-
 .tf-title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2vw, 1.875rem);
+  font-size: clamp(1.375rem, 1.8vw, 1.75rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+  line-height: 1.25;
 }
 
 .tf-subtitle {
@@ -175,26 +147,28 @@ body {
   color: #64748b;
 }
 
+/* Badges: understated, elegant */
 .tf-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.35rem 0.75rem;
+  padding: 0.25rem 0.625rem;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
   border: 1px solid transparent;
 }
 
-.tf-badge-teal {
-  background: #f0fdfa;
-  color: #0f766e;
-  border-color: #99f6e4;
+.tf-badge-teal,
+.tf-badge-blue {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
 }
 
 .tf-badge-ink {
-  background: #0b1220;
-  color: white;
+  background: #0f172a;
+  color: #ffffff;
 }
 
 .tf-badge-slate {
@@ -204,9 +178,9 @@ body {
 }
 
 .tf-badge-success {
-  background: #ecfdf5;
-  color: #047857;
-  border-color: #a7f3d0;
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
 }
 
 .tf-badge-warn {
@@ -216,252 +190,137 @@ body {
 }
 
 .tf-badge-danger {
-  background: #fff1f2;
-  color: #be123c;
-  border-color: #fecdd3;
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
 }
 
+/* Buttons: clean, sharp, professional */
 .tf-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 0.875rem;
+  border-radius: 0.625rem;
   font-size: 0.8125rem;
-  font-weight: 650;
-  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  font-weight: 600;
+  padding: 0.625rem 1.125rem;
+  transition: all 150ms ease;
+  cursor: pointer;
 }
 
 .tf-btn:active {
-  transform: scale(0.985);
+  transform: scale(0.98);
 }
 
 .tf-btn-primary {
-  background: linear-gradient(135deg, #0f766e 0%, #0d9488 55%, #0891b2 100%);
-  color: white;
-  box-shadow: 0 10px 24px rgba(13, 148, 136, 0.28);
-  padding: 0.85rem 1.35rem;
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid #0f172a;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .tf-btn-primary:hover {
-  filter: brightness(1.05);
+  background: #1e293b;
+  border-color: #1e293b;
 }
 
 .tf-btn-ink {
-  background: #0b1220;
-  color: white;
-  box-shadow: 0 10px 24px rgba(11, 18, 32, 0.22);
-  padding: 0.85rem 1.35rem;
+  background: #0f172a;
+  color: #ffffff;
+  border: 1px solid #0f172a;
 }
 
 .tf-btn-ink:hover {
-  background: #152033;
+  background: #1e293b;
 }
 
 .tf-btn-ghost {
-  background: white;
+  background: #ffffff;
   color: #334155;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  padding: 0.85rem 1.35rem;
+  border: 1px solid #e2e8f0;
 }
 
 .tf-btn-ghost:hover {
   background: #f8fafc;
-  border-color: rgba(15, 23, 42, 0.16);
+  border-color: #cbd5e1;
+  color: #0f172a;
 }
 
 .tf-input {
   width: 100%;
-  border-radius: 0.875rem;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(248, 250, 252, 0.85);
-  padding: 0.75rem 1rem;
+  border-radius: 0.625rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 0.625rem 0.875rem;
   font-size: 0.875rem;
-  color: var(--ink);
-  transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  color: #0f172a;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .tf-input:focus {
   outline: none;
-  background: white;
-  border-color: #0d9488;
-  box-shadow: 0 0 0 4px var(--focus);
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .tf-metric {
-  background: white;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius-lg);
   padding: 1.25rem;
   box-shadow: var(--shadow-sm);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
 .tf-metric:hover {
-  transform: translateY(-2px);
+  border-color: #cbd5e1;
   box-shadow: var(--shadow-md);
 }
 
-.tf-mesh {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(20, 184, 166, 0.35), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(8, 145, 178, 0.28), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 60% 80%, rgba(15, 118, 110, 0.22), transparent 55%),
-    linear-gradient(160deg, #071018 0%, #0b1c2c 45%, #0a2a2a 100%);
-}
-
-.tf-grid-fade {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
-}
-
-.tf-noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-@keyframes tf-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes tf-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes tf-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes tf-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-@keyframes tf-pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.45); }
-  70% { box-shadow: 0 0 0 12px rgba(20, 184, 166, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0); }
-}
-
-.animate-fade-up {
-  animation: tf-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-fade-in {
-  animation: tf-fade-in 0.5s ease both;
-}
-
-.animate-float {
-  animation: tf-float 6s ease-in-out infinite;
-}
-
-.animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  background-size: 200% 100%;
-  animation: tf-shimmer 2.4s linear infinite;
-}
-
-.animate-pulse-ring {
-  animation: tf-pulse-ring 2s ease-out infinite;
-}
-
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.35s; }
-.delay-4 { animation-delay: 0.5s; }
-
-.tf-progress {
-  height: 0.5rem;
-  border-radius: 999px;
-  background: #e2e8f0;
-  overflow: hidden;
-}
-
-.tf-progress > span {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #0f766e, #14b8a6);
-}
-
-.tf-table thead th {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #94a3b8;
-}
-
 .tf-chat-bubble-user {
-  background: linear-gradient(135deg, #0f766e, #0d9488);
-  color: white;
-  border-radius: 1.25rem 1.25rem 0.25rem 1.25rem;
+  background: #0f172a;
+  color: #ffffff;
+  border-radius: 1rem 1rem 0.25rem 1rem;
 }
 
 .tf-chat-bubble-ai {
-  background: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   color: #1e293b;
-  border-radius: 1.25rem 1.25rem 1.25rem 0.25rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-up,
-  .animate-fade-in,
-  .animate-float,
-  .animate-shimmer,
-  .animate-pulse-ring {
-    animation: none !important;
-  }
+  border-radius: 1rem 1rem 1rem 0.25rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 }
 
 /* ========================================================
-   DARK THEME VARIABLES AND COMPONENT OVERRIDES
+   REFINED DARK MODE (Pure Neutral Zinc / Slate)
    ======================================================== */
 html.dark,
 .dark,
 [data-theme="dark"] {
-  --background: #090d16;
-  --foreground: #f1f5f9;
-  --surface: #0f172a;
-  --surface-muted: #1e293b;
-  --ink: #f8fafc;
-  --ink-soft: #cbd5e1;
-  --muted: #94a3b8;
-  --line: rgba(255, 255, 255, 0.1);
-  --accent: #14b8a6;
-  --accent-bright: #2dd4bf;
-  --accent-soft: rgba(20, 184, 166, 0.15);
-  --focus: rgba(45, 212, 191, 0.35);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+  --background: #09090b;
+  --foreground: #f4f4f5;
+  --surface: #121215;
+  --surface-muted: #18181b;
+  --ink: #f4f4f5;
+  --ink-soft: #a1a1aa;
+  --muted: #71717a;
+  --line: #27272a;
+  
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-soft: rgba(59, 130, 246, 0.15);
+  --focus: rgba(59, 130, 246, 0.3);
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
 html.dark body,
 .dark body {
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(20, 184, 166, 0.12), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(14, 116, 144, 0.1), transparent 50%),
-    linear-gradient(180deg, #090d16 0%, #0c1222 100%) !important;
-  color: #f1f5f9 !important;
+  background-color: #09090b !important;
+  color: #f4f4f5 !important;
 }
 
 html.dark .tf-card,
@@ -472,78 +331,91 @@ html.dark .tf-panel,
 .dark .tf-panel,
 html.dark .tf-metric,
 .dark .tf-metric {
-  background: #0f172a !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  color: #f1f5f9 !important;
+  background: #121215 !important;
+  border-color: #27272a !important;
+  color: #f4f4f5 !important;
 }
 
 html.dark .tf-title,
 .dark .tf-title {
-  color: #f8fafc !important;
+  color: #fafafa !important;
 }
 
 html.dark .tf-subtitle,
 .dark .tf-subtitle {
-  color: #94a3b8 !important;
+  color: #a1a1aa !important;
 }
 
 html.dark .tf-input,
 .dark .tf-input {
-  background: #1e293b !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
-  color: #f8fafc !important;
+  background: #18181b !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
 }
 
 html.dark .tf-input:focus,
 .dark .tf-input:focus {
-  background: #0f172a !important;
-  border-color: #14b8a6 !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+html.dark .tf-btn-primary,
+.dark .tf-btn-primary {
+  background: #fafafa !important;
+  color: #09090b !important;
+  border-color: #fafafa !important;
+}
+
+html.dark .tf-btn-primary:hover,
+.dark .tf-btn-primary:hover {
+  background: #e4e4e7 !important;
 }
 
 html.dark .tf-btn-ghost,
 .dark .tf-btn-ghost {
-  background: #1e293b !important;
-  color: #e2e8f0 !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: #18181b !important;
+  color: #e4e4e7 !important;
+  border-color: #27272a !important;
 }
 
 html.dark .tf-btn-ghost:hover,
 .dark .tf-btn-ghost:hover {
-  background: #334155 !important;
+  background: #27272a !important;
+  color: #ffffff !important;
+}
+
+html.dark .tf-chat-bubble-user,
+.dark .tf-chat-bubble-user {
+  background: #2563eb !important;
+  color: #ffffff !important;
 }
 
 html.dark .tf-chat-bubble-ai,
 .dark .tf-chat-bubble-ai {
-  background: #1e293b !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  color: #f1f5f9 !important;
+  background: #18181b !important;
+  border-color: #27272a !important;
+  color: #f4f4f5 !important;
 }
 
 html.dark .tf-header,
 .dark .tf-header {
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: #27272a !important;
 }
 
 /* ========================================================
-   SIMPLE UI MODE FOR PROFESSORS / ELDER STAFF
-   No confusing gradients, large clear high-contrast fonts
+   SIMPLE UI MODE FOR ELDER PROFESSORS
+   High contrast, clear text, zero visual distractions
    ======================================================== */
 .tf-simple-mode body,
 body.tf-simple-mode {
   font-size: 16px !important;
-  line-height: 1.6 !important;
+  line-height: 1.65 !important;
   letter-spacing: 0 !important;
 }
 
 .tf-simple-mode:not(.dark) body {
-  background: #ffffff !important;
+  background-color: #ffffff !important;
   color: #0f172a !important;
-}
-
-.tf-simple-mode .tf-mesh,
-.tf-simple-mode .tf-grid-fade,
-.tf-simple-mode .tf-noise {
-  display: none !important;
 }
 
 .tf-simple-mode .tf-card,
@@ -552,54 +424,46 @@ body.tf-simple-mode {
 .tf-simple-mode .tf-metric {
   background: #ffffff !important;
   border: 2px solid #64748b !important;
-  border-radius: 8px !important;
+  border-radius: 6px !important;
   box-shadow: none !important;
-  backdrop-filter: none !important;
-  color: #0f172a !important;
 }
 
 .dark.tf-simple-mode .tf-card,
-.dark.tf-simple-mode .tf-card-solid,
 .dark.tf-simple-mode .tf-panel,
 .dark.tf-simple-mode .tf-metric {
-  background: #111827 !important;
-  border: 2px solid #94a3b8 !important;
-  color: #f8fafc !important;
+  background: #121215 !important;
+  border: 2px solid #52525b !important;
+  color: #ffffff !important;
 }
 
 .tf-simple-mode .tf-title {
-  font-size: 1.875rem !important;
+  font-size: 1.75rem !important;
   font-weight: 800 !important;
-  line-height: 1.25 !important;
+  color: #0f172a !important;
 }
 
-.tf-simple-mode .tf-subtitle {
-  font-size: 1.05rem !important;
-  color: #334155 !important;
-}
-
-.dark.tf-simple-mode .tf-subtitle {
-  color: #cbd5e1 !important;
+.dark.tf-simple-mode .tf-title {
+  color: #ffffff !important;
 }
 
 .tf-simple-mode .tf-btn {
-  border-radius: 6px !important;
+  border-radius: 4px !important;
   font-size: 1rem !important;
-  padding: 0.85rem 1.6rem !important;
-  box-shadow: none !important;
+  padding: 0.75rem 1.5rem !important;
   font-weight: 700 !important;
+  box-shadow: none !important;
 }
 
 .tf-simple-mode .tf-input {
   border: 2px solid #64748b !important;
-  border-radius: 6px !important;
-  font-size: 1.05rem !important;
-  padding: 0.85rem 1rem !important;
+  border-radius: 4px !important;
+  font-size: 1rem !important;
+  padding: 0.75rem 1rem !important;
 }
 
 .tf-simple-mode .tf-chat-bubble-ai {
   font-size: 1.05rem !important;
   line-height: 1.7 !important;
-  border: 2px solid #cbd5e1 !important;
+  border: 2px solid #94a3b8 !important;
+  box-shadow: none !important;
 }
-

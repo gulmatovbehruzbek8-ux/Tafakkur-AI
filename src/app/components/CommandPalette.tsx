@@ -96,7 +96,7 @@ export default function CommandPalette() {
       >
         {/* Search Bar Input */}
         <div className="p-4 bg-slate-50/90 border-b border-slate-200 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-700 flex items-center justify-center font-bold text-xs shrink-0">
+          <div className="w-8 h-8 rounded-xl bg-blue-500/20 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0">
             🔍
           </div>
           <input
@@ -137,7 +137,7 @@ export default function CommandPalette() {
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                        isSelected ? 'bg-teal-500 text-slate-950' : 'bg-slate-200 text-slate-700'
+                        isSelected ? 'bg-blue-500 text-slate-950' : 'bg-slate-200 text-slate-700'
                       }`}>
                         {item.category}
                       </span>
@@ -158,7 +158,7 @@ export default function CommandPalette() {
                         {item.shortcut}
                       </span>
                     )}
-                    <span className={`font-mono text-xs ${isSelected ? 'text-teal-300' : 'text-slate-400'}`}>
+                    <span className={`font-mono text-xs ${isSelected ? 'text-blue-400' : 'text-slate-400'}`}>
                       ↵
                     </span>
                   </div>
@@ -175,7 +175,7 @@ export default function CommandPalette() {
             <span>↵ Tanlash</span>
             <span>ESC Yopish</span>
           </div>
-          <span className="text-teal-700 font-bold">
+          <span className="text-blue-700 font-bold">
             TAFAKKUR AI UNIVERSAL SEARCH
           </span>
         </div>

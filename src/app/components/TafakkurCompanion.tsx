@@ -118,21 +118,21 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
         <div className="fixed bottom-6 right-6 z-50 animate-bounce-subtle">
           <button
             onClick={() => { setIsOpen(true); setIsMinimized(false); }}
-            className="group relative flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-[#07101B] via-[#0c1f33] to-[#0f3b57] text-white shadow-xl hover:shadow-teal-500/20 border border-teal-500/30 hover:border-teal-400 transition-all duration-300 hover:scale-105"
+            className="group relative flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 text-white shadow-xl hover:shadow-md border border-white/10 hover:border-blue-500/40 transition-all duration-300 hover:scale-105"
           >
-            <div className="relative flex items-center justify-center w-7 h-7 rounded-xl bg-teal-500/20 text-teal-300 border border-teal-400/40">
-              <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping absolute" />
+            <div className="relative flex items-center justify-center w-7 h-7 rounded-xl bg-blue-500/15 text-blue-300 border border-blue-500/30">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping absolute" />
               <span className="text-xs font-black">AI</span>
             </div>
             
             <div className="flex flex-col text-left">
               <span className="text-xs font-bold tracking-tight text-white flex items-center gap-1.5">
                 Tafakkur AI
-                <span className="px-1.5 py-0.2 rounded text-[9px] bg-teal-500/20 text-teal-300 font-mono border border-teal-400/30">
+                <span className="px-1.5 py-0.2 rounded text-[9px] bg-blue-500/15 text-blue-300 font-mono border border-blue-500/30">
                   Ctrl+J
                 </span>
               </span>
-              <span className="text-[10px] text-teal-200/80 font-medium">
+              <span className="text-[10px] text-slate-300 font-medium">
                 Kontekstual Yordamchi
               </span>
             </div>
@@ -152,7 +152,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
           {/* Header */}
           <div className="p-4 bg-gradient-to-r from-[#07101B] via-[#0c1f33] to-[#0a273b] text-white flex items-center justify-between border-b border-white/10 shrink-0">
             <div className="flex items-center gap-3">
-              <div className="relative w-8 h-8 rounded-xl bg-teal-500/20 flex items-center justify-center border border-teal-400/40 overflow-hidden">
+              <div className="relative w-8 h-8 rounded-xl bg-blue-500/15 flex items-center justify-center border border-blue-500/30 overflow-hidden">
                 <Image src="/Logo.png" alt="Tafakkur AI" width={24} height={24} className="object-contain" />
               </div>
               <div>
@@ -160,7 +160,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                   <h3 className="text-sm font-bold text-white tracking-tight">Tafakkur AI Companion</h3>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
-                <p className="text-[10px] text-teal-200 font-mono">
+                <p className="text-[10px] text-blue-300 font-mono">
                   HEMIS Data Linked • v2.4
                 </p>
               </div>
@@ -190,13 +190,13 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
               <div className="px-4 py-2 bg-slate-50 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-600">
                 <div className="flex items-center gap-1.5 truncate">
                   <span className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">Kontekst:</span>
-                  <span className="font-semibold text-teal-800 bg-teal-100/70 px-2 py-0.5 rounded-md truncate">
+                  <span className="font-semibold text-blue-800 bg-blue-100 px-2 py-0.5 rounded-md truncate">
                     {currentContext}
                   </span>
                 </div>
                 <Link
                   href="/student/tutor"
-                  className="text-teal-700 hover:text-teal-900 font-bold hover:underline shrink-0 ml-2"
+                  className="text-blue-700 hover:text-slate-900 font-bold hover:underline shrink-0 ml-2"
                 >
                   AI Repetitor →
                 </Link>
@@ -217,7 +217,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                     <div
                       className={`max-w-[85%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-line shadow-xs ${
                         m.sender === 'user'
-                          ? 'bg-teal-600 text-white rounded-br-xs font-medium'
+                          ? 'bg-blue-600 text-white rounded-br-xs font-medium'
                           : 'bg-white text-slate-800 border border-slate-200/80 rounded-bl-xs'
                       }`}
                     >
@@ -227,7 +227,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                         <div className="mt-3 pt-2.5 border-t border-slate-100">
                           <Link
                             href={m.actionButton.href}
-                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-[11px] transition-colors"
+                            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-800 font-bold text-[11px] transition-colors"
                           >
                             <span>{m.actionButton.label}</span>
                             <span>→</span>
@@ -243,9 +243,9 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
 
                 {isTyping && (
                   <div className="flex items-center gap-2 p-3 bg-white rounded-2xl border border-slate-200/80 w-24">
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-bounce [animation-delay:0.4s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-bounce [animation-delay:0.4s]" />
                   </div>
                 )}
                 <div ref={messagesEndRef} />
@@ -257,7 +257,7 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                   <button
                     key={idx}
                     onClick={() => handleSend(qp.prompt)}
-                    className="px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-teal-50 hover:text-teal-800 text-slate-600 text-[11px] font-medium border border-slate-200 whitespace-nowrap transition-colors shrink-0"
+                    className="px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-800 text-slate-600 text-[11px] font-medium border border-slate-200 whitespace-nowrap transition-colors shrink-0"
                   >
                     {qp.label}
                   </button>
@@ -278,12 +278,12 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Tafakkur AI dan so'rang..."
-                    className="flex-1 px-3.5 py-2.5 bg-slate-50 rounded-xl text-xs text-slate-800 border border-slate-200 focus:outline-none focus:border-teal-500 focus:bg-white transition-all placeholder:text-slate-400"
+                    className="flex-1 px-3.5 py-2.5 bg-slate-50 rounded-xl text-xs text-slate-800 border border-slate-200 focus:outline-none focus:border-blue-500 focus:bg-white transition-all placeholder:text-slate-400"
                   />
                   <button
                     type="submit"
                     disabled={!input.trim()}
-                    className="p-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 disabled:bg-slate-200 text-white transition-colors flex items-center justify-center shrink-0"
+                    className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-slate-200 text-white transition-colors flex items-center justify-center shrink-0"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />

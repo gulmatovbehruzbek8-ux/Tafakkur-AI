@@ -304,7 +304,7 @@ export default function AssignmentsPage() {
                   >
                     <div className="space-y-1.5 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="font-mono text-xs font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded-md">
+                        <span className="font-mono text-xs font-bold text-blue-800 bg-blue-50 px-2 py-0.5 rounded-md">
                           {task.courseCode}
                         </span>
                         <span className="text-xs text-slate-500">
@@ -349,7 +349,7 @@ export default function AssignmentsPage() {
                           </Link>
                           <button
                             onClick={() => openSubmitDrawer(task)}
-                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-teal-700 text-white text-xs font-bold transition-colors shadow-xs"
+                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition-colors shadow-xs"
                           >
                             Topshirish →
                           </button>
@@ -419,7 +419,7 @@ export default function AssignmentsPage() {
               <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                   <div>
-                    <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider block">
+                    <span className="text-[10px] font-bold text-blue-700 uppercase tracking-wider block">
                       {selectedTask.courseCode} • {selectedTask.course}
                     </span>
                     <h3 className="font-display text-lg font-bold text-slate-900">
@@ -459,8 +459,8 @@ export default function AssignmentsPage() {
                       <p className="text-slate-600 leading-relaxed">{selectedTask.instructions}</p>
                     </div>
 
-                    <div className="p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-teal-500 text-center cursor-pointer bg-slate-50 transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mx-auto mb-1.5 font-bold">
+                    <div className="p-4 rounded-2xl border-2 border-dashed border-slate-300 hover:border-blue-500 text-center cursor-pointer bg-slate-50 transition-colors">
+                      <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center mx-auto mb-1.5 font-bold">
                         📁
                       </div>
                       <p className="font-bold text-slate-700">Fayllarni bu yerga tortib tashlang</p>
@@ -474,7 +474,7 @@ export default function AssignmentsPage() {
                       <input
                         type="text"
                         defaultValue="https://github.com/bunyodbek/avl-tree-implementation"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-teal-500 text-slate-800 text-xs"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-500 text-slate-800 text-xs"
                       />
                     </div>
 
@@ -496,7 +496,7 @@ export default function AssignmentsPage() {
                             }
                           }
                         }}
-                        className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-sm"
+                        className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm"
                       >
                         Tasdiqlab topshirish ✓
                       </button>

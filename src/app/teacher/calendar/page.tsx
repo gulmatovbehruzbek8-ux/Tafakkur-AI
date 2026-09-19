@@ -37,7 +37,7 @@ const INITIAL_TEACHER_CLASSES: TeacherClassEvent[] = [
     room: "A-204",
     time: "08:30 - 10:00",
     type: "Ma'ruza",
-    color: "bg-teal-50 border-teal-200 text-teal-800 hover:bg-teal-100",
+    color: "bg-blue-50 border-blue-200 text-blue-800 hover:bg-blue-100",
     attendance: "24/25",
     totalStudents: 25,
     presentCount: 24,
@@ -69,7 +69,7 @@ const INITIAL_TEACHER_CLASSES: TeacherClassEvent[] = [
     room: "B-108",
     time: "13:00 - 14:30",
     type: "Amaliyot",
-    color: "bg-cyan-50 border-cyan-200 text-cyan-800 hover:bg-cyan-100",
+    color: "bg-blue-50 border-blue-200 text-blue-800 hover:bg-blue-100",
     attendance: "18/20",
     totalStudents: 20,
     presentCount: 18,
@@ -184,8 +184,8 @@ export default function TeacherCalendarPage() {
     if (!newClass.title.trim()) return;
 
     const colors = {
-      "Ma'ruza": "bg-teal-50 border-teal-200 text-teal-800 hover:bg-teal-100",
-      "Amaliyot": "bg-cyan-50 border-cyan-200 text-cyan-800 hover:bg-cyan-100",
+      "Ma'ruza": "bg-blue-50 border-blue-200 text-blue-800 hover:bg-blue-100",
+      "Amaliyot": "bg-blue-50 border-blue-200 text-blue-800 hover:bg-blue-100",
       "Laboratoriya": "bg-emerald-50 border-emerald-200 text-emerald-800 hover:bg-emerald-100",
       "Seminar": "bg-rose-50 border-rose-200 text-rose-800 hover:bg-rose-100",
     };
@@ -200,7 +200,7 @@ export default function TeacherCalendarPage() {
       room: newClass.room.trim() || "A-204",
       time: newClass.time || "08:30 - 10:00",
       type: newClass.type,
-      color: colors[newClass.type] || "bg-teal-50 border-teal-200 text-teal-800",
+      color: colors[newClass.type] || "bg-blue-50 border-blue-200 text-blue-800",
       attendance: `${newClass.totalStudents}/${newClass.totalStudents}`,
       totalStudents: Number(newClass.totalStudents) || 25,
       presentCount: Number(newClass.totalStudents) || 25,
@@ -256,7 +256,7 @@ export default function TeacherCalendarPage() {
           <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">O'qituvchi Jadvali</span>
               </div>
               <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">Darslar Taqvim va Jadvali</h1>
@@ -266,7 +266,7 @@ export default function TeacherCalendarPage() {
             <div className="flex items-center gap-3 flex-wrap">
               <button
                 onClick={() => setIsAddModalOpen(true)}
-                className="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm shadow-teal-600/20 flex items-center gap-1.5"
+                className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm shadow-xs flex items-center gap-1.5"
               >
                 <span>+ Dars Qo'shish</span>
               </button>
@@ -296,7 +296,7 @@ export default function TeacherCalendarPage() {
                 <h2 className="font-display text-xl font-bold text-ink tracking-tight">
                   {MONTH_NAMES[currentMonthIndex]} {currentYear}
                 </h2>
-                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-teal-50 text-teal-700 border border-teal-200">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                   {monthClasses.length} ta dars jadvalda
                 </span>
               </div>
@@ -350,16 +350,16 @@ export default function TeacherCalendarPage() {
                       key={day} 
                       className={`min-h-[110px] p-2 rounded-xl border transition-all ${
                         isToday 
-                          ? 'bg-teal-50/40 border-teal-500 shadow-xs' 
+                          ? 'bg-blue-50/40 border-blue-500 shadow-xs' 
                           : 'bg-white border-slate-200/70 hover:border-slate-300 hover:bg-slate-50/40'
                       }`}
                     >
                       <div className="flex justify-between items-center mb-1.5">
-                        <span className={`text-xs font-bold font-mono ${isToday ? 'text-teal-700 font-black' : 'text-slate-500'}`}>
+                        <span className={`text-xs font-bold font-mono ${isToday ? 'text-blue-700 font-black' : 'text-slate-500'}`}>
                           {day}
                         </span>
                         {isToday && (
-                          <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-teal-600 text-white">
+                          <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-blue-600 text-white">
                             Bugun
                           </span>
                         )}
@@ -409,7 +409,7 @@ export default function TeacherCalendarPage() {
                           >
                             <span className="font-bold block truncate">{c.title}</span>
                             <span className="text-[10px] text-slate-600 font-mono block mt-0.5">{c.time} • {c.group}</span>
-                            <span className="text-[10px] font-bold text-teal-700 block mt-1">Davomat: {c.attendance}</span>
+                            <span className="text-[10px] font-bold text-blue-700 block mt-1">Davomat: {c.attendance}</span>
                           </button>
                         ))
                       )}
@@ -422,11 +422,11 @@ export default function TeacherCalendarPage() {
             {/* DAY VIEW */}
             {viewMode === 'day' && (
               <div className="space-y-3">
-                <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-between">
-                  <span className="font-bold text-teal-950 text-sm">
+                <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between">
+                  <span className="font-bold text-slate-900 text-sm">
                     Bugun: 18-Sentyabr, 2026 (Juma) — O'qituvchining kunlik jadvali
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-teal-600 text-white font-bold text-xs font-mono">
+                  <span className="px-3 py-1 rounded-full bg-blue-600 text-white font-bold text-xs font-mono">
                     2 ta faol mashg'ulot
                   </span>
                 </div>
@@ -436,11 +436,11 @@ export default function TeacherCalendarPage() {
                     <div
                       key={c.id}
                       onClick={() => setSelectedClass(c)}
-                      className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-teal-400 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                      className="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-blue-400 transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-teal-100 text-teal-800">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800">
                             {c.type}
                           </span>
                           <span className="font-mono text-xs text-slate-500 font-bold">{c.time}</span>
@@ -476,7 +476,7 @@ export default function TeacherCalendarPage() {
               <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 space-y-5 animate-scale-up">
                 <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                   <div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200 font-bold">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-bold">
                       {selectedClass.group} • {selectedClass.type}
                     </span>
                     <h3 className="font-display font-bold text-slate-900 text-base sm:text-lg mt-1">
@@ -508,10 +508,10 @@ export default function TeacherCalendarPage() {
                   </div>
 
                   {/* Interactive Attendance Counter */}
-                  <div className="p-4 rounded-2xl bg-teal-50/70 border border-teal-200 space-y-2">
+                  <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-200 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-teal-950 text-xs">Darsdagi Talabalar Davomati:</span>
-                      <span className="font-mono text-sm font-black text-teal-700">
+                      <span className="font-bold text-slate-900 text-xs">Darsdagi Talabalar Davomati:</span>
+                      <span className="font-mono text-sm font-black text-blue-700">
                         {selectedClass.presentCount} / {selectedClass.totalStudents}
                       </span>
                     </div>
@@ -519,17 +519,17 @@ export default function TeacherCalendarPage() {
                     <div className="flex items-center gap-2 pt-1">
                       <button
                         onClick={() => handleMarkAttendance(-1)}
-                        className="px-3 py-1.5 rounded-lg bg-white border border-teal-200 text-teal-800 font-bold hover:bg-teal-100 transition-colors"
+                        className="px-3 py-1.5 rounded-lg bg-white border border-blue-200 text-blue-800 font-bold hover:bg-blue-100 transition-colors"
                       >
                         - 1 Talaba
                       </button>
                       <button
                         onClick={() => handleMarkAttendance(1)}
-                        className="px-3 py-1.5 rounded-lg bg-teal-600 text-white font-bold hover:bg-teal-700 transition-colors"
+                        className="px-3 py-1.5 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors"
                       >
                         + 1 Talaba
                       </button>
-                      <span className="text-[11px] text-teal-800 ml-auto font-medium">
+                      <span className="text-[11px] text-blue-800 ml-auto font-medium">
                         HEMIS ga avtomatik sinxronlanadi
                       </span>
                     </div>
@@ -549,7 +549,7 @@ export default function TeacherCalendarPage() {
                       showToast("Davomat HEMIS ga muvaffaqiyatli saqlandi! ✓");
                       setSelectedClass(null);
                     }}
-                    className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs transition-colors shadow-sm"
+                    className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm"
                   >
                     Saqlash va Yopish ✓
                   </button>
@@ -590,7 +590,7 @@ export default function TeacherCalendarPage() {
                       placeholder="Algoritmlar nazariyasi"
                       value={newClass.title}
                       onChange={(e) => setNewClass(p => ({ ...p, title: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
                     />
                   </div>
 
@@ -603,7 +603,7 @@ export default function TeacherCalendarPage() {
                         placeholder="AI-22"
                         value={newClass.group}
                         onChange={(e) => setNewClass(p => ({ ...p, group: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
                       />
                     </div>
                     <div>
@@ -611,7 +611,7 @@ export default function TeacherCalendarPage() {
                       <select
                         value={newClass.type}
                         onChange={(e) => setNewClass(p => ({ ...p, type: e.target.value as any }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
                       >
                         <option value="Ma'ruza">Ma'ruza</option>
                         <option value="Amaliyot">Amaliyot</option>
@@ -630,7 +630,7 @@ export default function TeacherCalendarPage() {
                         max={31}
                         value={newClass.date}
                         onChange={(e) => setNewClass(p => ({ ...p, date: Number(e.target.value) }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 font-mono"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-mono"
                       />
                     </div>
                     <div>
@@ -640,7 +640,7 @@ export default function TeacherCalendarPage() {
                         placeholder="08:30 - 10:00"
                         value={newClass.time}
                         onChange={(e) => setNewClass(p => ({ ...p, time: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 font-mono"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-mono"
                       />
                     </div>
                     <div>
@@ -650,7 +650,7 @@ export default function TeacherCalendarPage() {
                         placeholder="A-204"
                         value={newClass.room}
                         onChange={(e) => setNewClass(p => ({ ...p, room: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 font-mono"
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 font-mono"
                       />
                     </div>
                   </div>
@@ -662,7 +662,7 @@ export default function TeacherCalendarPage() {
                       placeholder="Binar qidiruv daraxtlari..."
                       value={newClass.topic}
                       onChange={(e) => setNewClass(p => ({ ...p, topic: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500"
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500"
                     />
                   </div>
 
@@ -676,7 +676,7 @@ export default function TeacherCalendarPage() {
                     </button>
                     <button
                       type="submit"
-                      className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-sm"
+                      className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all shadow-sm"
                     >
                       Jadvalga Qo'shish ✓
                     </button>

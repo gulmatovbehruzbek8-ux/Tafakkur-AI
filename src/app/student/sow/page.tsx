@@ -140,7 +140,7 @@ function SOWContent() {
           <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-slate-200">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">O'quv Dasturi (SOW)</span>
               </div>
               <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">Fanlar va Mavzular Rejasi</h1>
@@ -160,7 +160,7 @@ function SOWContent() {
                     text: `Assalomu alaykum! Men **Tafakkur AI** — sizning **${sName}** fani bo'yicha shaxsiy repetitoringizman. Mavzular yoki topshiriqlar bo'yicha qanday savolingiz bor?` 
                   }]);
                 }}
-                className="bg-white border border-slate-200 rounded-xl text-slate-800 font-semibold px-4 py-2.5 text-xs outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 shadow-2xs cursor-pointer"
+                className="bg-white border border-slate-200 rounded-xl text-slate-800 font-semibold px-4 py-2.5 text-xs outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 shadow-2xs cursor-pointer"
               >
                 {subjects.map(sub => (
                   <option key={sub.id} value={sub.id}>{sub.name}</option>
@@ -182,7 +182,7 @@ function SOWContent() {
                       key={tIdx} 
                       className={`p-4 rounded-xl border transition-all ${
                         topic.current 
-                          ? 'border-teal-300 bg-teal-50/50 shadow-xs' 
+                          ? 'border-blue-300 bg-blue-50/50 shadow-xs' 
                           : topic.done 
                             ? 'border-emerald-200/80 bg-emerald-50/20' 
                             : 'border-slate-200/70 bg-slate-50/50'
@@ -192,7 +192,7 @@ function SOWContent() {
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-mono text-slate-400">#{tIdx + 1}</span>
-                            <h3 className={`font-semibold text-sm ${topic.current ? 'text-teal-950' : 'text-slate-800'}`}>{topic.title}</h3>
+                            <h3 className={`font-semibold text-sm ${topic.current ? 'text-slate-900' : 'text-slate-800'}`}>{topic.title}</h3>
                           </div>
                           {topic.task && (
                             <p className="text-xs text-amber-800 font-medium mt-1.5 flex items-center gap-1.5">
@@ -210,7 +210,7 @@ function SOWContent() {
                           {topic.current && (
                             <button 
                               onClick={() => setChatOpen(true)}
-                              className="px-3.5 py-1.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5"
+                              className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors shadow-2xs flex items-center gap-1.5"
                             >
                               <span>Tafakkur AI bilan o'rganish</span>
                               <span>&rarr;</span>
@@ -232,7 +232,7 @@ function SOWContent() {
             <div className="bg-slate-900 text-white p-4 md:p-5 flex justify-between items-center">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-teal-400"></span>
+                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                   <h3 className="font-bold text-base">Tafakkur AI Repetitori</h3>
                 </div>
                 <p className="text-xs text-slate-400 mt-0.5 truncate max-w-[280px]">{activeSubject.name}</p>
@@ -251,7 +251,7 @@ function SOWContent() {
                 <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`p-3.5 rounded-2xl max-w-[85%] text-xs leading-relaxed ${
                     msg.role === 'user' 
-                      ? 'bg-teal-600 text-white rounded-tr-xs' 
+                      ? 'bg-blue-600 text-white rounded-tr-xs' 
                       : 'bg-white border border-slate-200 text-slate-800 rounded-tl-xs shadow-2xs'
                   }`}>
                     {msg.text}
@@ -267,9 +267,9 @@ function SOWContent() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Mavzu bo'yicha savol bering..."
-                  className="flex-1 px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 outline-none transition-all"
+                  className="flex-1 px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 bg-slate-50/70 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition-all"
                 />
-                <button type="submit" className="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-semibold transition-colors">
+                <button type="submit" className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors">
                   &rarr;
                 </button>
               </form>
