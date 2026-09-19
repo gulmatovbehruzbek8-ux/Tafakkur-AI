@@ -4,6 +4,7 @@ import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { getApiUrl } from "@/lib/api";
+import MarkdownRenderer from "@/app/components/MarkdownRenderer";
 
 interface Message {
   id: string;
@@ -201,10 +202,10 @@ export default function StudentChatbot() {
                       <span>{msg.timestamp}</span>
                     </div>
                     
-                    <div className={`p-4 text-sm leading-relaxed whitespace-pre-line shadow-sm ${
-                      msg.role === 'user' ? 'tf-chat-bubble-user' : 'tf-chat-bubble-ai'
+                    <div className={`p-4 text-sm leading-relaxed shadow-sm ${
+                      msg.role === 'user' ? 'tf-chat-bubble-user whitespace-pre-line' : 'tf-chat-bubble-ai'
                     }`}>
-                      {msg.text}
+                      {msg.role === 'user' ? msg.text : <MarkdownRenderer content={msg.text} />}
                     </div>
 
                     {msg.role === 'ai' && (
