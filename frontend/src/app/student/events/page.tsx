@@ -4,7 +4,7 @@ import Sidebar from "@/app/components/Sidebar";
 import TafakkurCompanion from "@/app/components/TafakkurCompanion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface TimelineItem {
   id: string;
@@ -29,37 +29,31 @@ interface TimelineItem {
   agenda: string[];
 }
 
-export default function EventsAndOlympiadsPage() {
-  const [activeSegment, setActiveSegment] = useState<'all' | 'events' | 'olympiads'>('all');
-  const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
-  const [registeredList, setRegisteredList] = useState<string[]>([]);
-  const timelineScrollRef = useRef<HTMLDivElement>(null);
-
-  const timelineItems: TimelineItem[] = [
-    {
-      id: 'item-1',
-      type: 'event',
-      date: '2026-09-18',
-      displayDate: 'SEP 18',
-      title: "Robototexnika & AI Innovatsiya Klubi",
-      subtitle: "STEM Markazi • Amaliy Workshop",
-      location: "UrDU Talabalar Saroyi, 3-qavat",
-      registrationDeadline: "Bugun 17:00",
-      daysRemaining: 0,
-      hoursRemaining: 6,
-      minutesRemaining: 45,
-      organizer: "UrDU AI Lab & IT Park",
-      eligibility: "Barcha IT va Muhandislik talabalari",
-      categoryTag: "Seminar & Workshop",
-      recommendedReason: "Sun'iy intellekt va robototexnika qiziqishlaringizga mos",
-      position: 'above',
-      description: "Kompyuter ko'rishi (Computer Vision) va avtonom robotlarni boshqarish bo'yicha amaliy mashg'ulot.",
-      agenda: [
-        "17:30 - Kirish va texnik vositalar bilan tanishuv",
-        "18:00 - YOLOv8 modelini edge qurilmada ishga tushirish",
-        "18:45 - Savol-javob va loyihalar muhokamasi"
-      ]
-    },
+const INITIAL_TIMELINE_ITEMS: TimelineItem[] = [
+  {
+    id: 'item-1',
+    type: 'event',
+    date: '2026-09-18',
+    displayDate: 'SEP 18',
+    title: "Robototexnika & AI Innovatsiya Klubi",
+    subtitle: "STEM Markazi • Amaliy Workshop",
+    location: "UrDU Talabalar Saroyi, 3-qavat",
+    registrationDeadline: "Bugun 17:00",
+    daysRemaining: 0,
+    hoursRemaining: 6,
+    minutesRemaining: 45,
+    organizer: "UrDU AI Lab & IT Park",
+    eligibility: "Barcha IT va Muhandislik talabalari",
+    categoryTag: "Seminar & Workshop",
+    recommendedReason: "Sun'iy intellekt va robototexnika qiziqishlaringizga mos",
+    position: 'above',
+    description: "Kompyuter ko'rishi (Computer Vision) va avtonom robotlarni boshqarish bo'yicha amaliy mashg'ulot.",
+    agenda: [
+      "17:30 - Kirish va texnik vositalar bilan tanishuv",
+      "18:00 - YOLOv8 modelini edge qurilmada ishga tushirish",
+      "18:45 - Savol-javob va loyihalar muhokamasi"
+    ]
+  },
     {
       id: 'item-2',
       type: 'event',
@@ -160,7 +154,103 @@ export default function EventsAndOlympiadsPage() {
         "14:00 - Yosh olimlar seksiya ma'ruzalari"
       ]
     }
-  ];
+];
+
+export default function EventsAndOlympiadsPage() {
+  const [activeSegment, setActiveSegment] = useState<'all' | 'events' | 'olympiads'>('all');
+  const [timelineItems, setTimelineItems] = useState<TimelineItem[]>(INITIAL_TIMELINE_ITEMS);
+  const [selectedItem, setSelectedItem] = useState<TimelineItem | null>(null);
+  const [registeredList, setRegisteredList] = useState<string[]>([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const timelineScrollRef = useRef<HTMLDivElement>(null);
+
+  // Form state for adding new event/olympiad
+  const [newEvent, setNewEvent] = useState({
+    title: '',
+    type: 'event' as 'event' | 'olympiad',
+    date: '2026-10-15',
+    subtitle: '',
+    location: '',
+    prize: '',
+    organizer: 'UrDU Raqamli Ta\'lim Markazi',
+    difficulty: 'O\'rta',
+    categoryTag: 'Universitet Tadbiri',
+    description: '',
+  });
+
+  // Load persisted custom events
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('tafakkur_custom_events');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            setTimelineItems([...parsed, ...INITIAL_TIMELINE_ITEMS]);
+          }
+        } catch {
+          // ignore
+        }
+      }
+    }
+  }, []);
+
+  const handleAddEventSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newEvent.title.trim()) return;
+
+    const dateObj = new Date(newEvent.date || '2026-10-15');
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const displayDate = `${monthNames[dateObj.getMonth()]} ${String(dateObj.getDate()).padStart(2, '0')}`;
+
+    const createdItem: TimelineItem = {
+      id: `custom-event-${Date.now()}`,
+      type: newEvent.type,
+      date: newEvent.date,
+      displayDate,
+      title: newEvent.title,
+      subtitle: newEvent.subtitle || (newEvent.type === 'olympiad' ? "Universitet Olimpiadasi" : "Akademik Tadbir"),
+      location: newEvent.location || "UrDU Bosh Korpusi",
+      registrationDeadline: `${newEvent.date}, 18:00`,
+      daysRemaining: Math.max(1, Math.round((dateObj.getTime() - Date.now()) / (1000 * 60 * 60 * 24))),
+      hoursRemaining: 12,
+      minutesRemaining: 0,
+      prize: newEvent.prize || undefined,
+      organizer: newEvent.organizer || "UrDU",
+      difficulty: newEvent.difficulty,
+      eligibility: "Barcha talabalar",
+      categoryTag: newEvent.categoryTag || (newEvent.type === 'olympiad' ? "Olimpiada" : "Seminar"),
+      position: 'above',
+      description: newEvent.description || "Ushbu tadbir haqida to'liq ma'lumot dekanat tomonidan taqdim etiladi.",
+      agenda: [
+        "09:30 - Ro'yxatdan o'tish va tanishuv",
+        "10:00 - Asosiy qismning ochilishi",
+        "14:00 - Xulosa va taqdirlash"
+      ]
+    };
+
+    const updated = [createdItem, ...timelineItems];
+    setTimelineItems(updated);
+
+    if (typeof window !== 'undefined') {
+      const existingCustom = JSON.parse(localStorage.getItem('tafakkur_custom_events') || '[]');
+      localStorage.setItem('tafakkur_custom_events', JSON.stringify([createdItem, ...existingCustom]));
+    }
+
+    setIsAddModalOpen(false);
+    setNewEvent({
+      title: '',
+      type: 'event',
+      date: '2026-10-15',
+      subtitle: '',
+      location: '',
+      prize: '',
+      organizer: 'UrDU Raqamli Ta\'lim Markazi',
+      difficulty: 'O\'rta',
+      categoryTag: 'Universitet Tadbiri',
+      description: '',
+    });
+  };
 
   const filteredItems = timelineItems.filter(item => {
     if (activeSegment === 'all') return true;
@@ -249,6 +339,12 @@ export default function EventsAndOlympiadsPage() {
                   }`}
                 >
                   ⚔️ Olimpiadalar (Olympiads)
+                </button>
+                <button
+                  onClick={() => setIsAddModalOpen(true)}
+                  className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 transition-all shadow-md shadow-amber-400/20 hover:scale-[1.02] flex items-center gap-1.5 ml-1"
+                >
+                  <span>+ Tadbir / Olimpiada</span>
                 </button>
               </div>
             </div>
@@ -574,6 +670,165 @@ export default function EventsAndOlympiadsPage() {
                     Taqvimga qo'shish 📅
                   </Link>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* =========================================================================
+              MODAL: ADD NEW EVENT OR OLYMPIAD
+              ========================================================================= */}
+          {isAddModalOpen && (
+            <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-white rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-slate-100 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">✨</span>
+                    <div>
+                      <h3 className="font-display font-bold text-slate-900 text-base">
+                        Yangi Tadbir yoki Olimpiada Qo'shish
+                      </h3>
+                      <p className="text-[11px] text-slate-500">
+                        Talabalar va jamoalar uchun yangi akademik tadbir yaratish
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setIsAddModalOpen(false)}
+                    className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center font-bold text-sm transition-colors"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <form onSubmit={handleAddEventSubmit} className="space-y-3.5 text-xs">
+                  {/* Type Selector */}
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setNewEvent(p => ({ ...p, type: 'event' }))}
+                      className={`p-2.5 rounded-xl border font-bold flex items-center justify-center gap-2 transition-all ${
+                        newEvent.type === 'event'
+                          ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-xs'
+                          : 'bg-slate-50 text-slate-600 border-slate-200'
+                      }`}
+                    >
+                      <span>🎉 Tadbir / Seminar</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setNewEvent(p => ({ ...p, type: 'olympiad' }))}
+                      className={`p-2.5 rounded-xl border font-bold flex items-center justify-center gap-2 transition-all ${
+                        newEvent.type === 'olympiad'
+                          ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-xs'
+                          : 'bg-slate-50 text-slate-600 border-slate-200'
+                      }`}
+                    >
+                      <span>⚔️ Olimpiada / Xakaton</span>
+                    </button>
+                  </div>
+
+                  {/* Title */}
+                  <div>
+                    <label className="font-bold text-slate-700 block mb-1">
+                      Nomi (Sarlavha) *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Masalan: AI & Data Science Xakatoni"
+                      value={newEvent.title}
+                      onChange={(e) => setNewEvent(p => ({ ...p, title: e.target.value }))}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                    />
+                  </div>
+
+                  {/* Date & Location */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">
+                        Sana *
+                      </label>
+                      <input
+                        type="date"
+                        required
+                        value={newEvent.date}
+                        onChange={(e) => setNewEvent(p => ({ ...p, date: e.target.value }))}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">
+                        Joylashuv
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="UrDU Korpusi / Onlayn"
+                        value={newEvent.location}
+                        onChange={(e) => setNewEvent(p => ({ ...p, location: e.target.value }))}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Prize / Subtitle */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">
+                        {newEvent.type === 'olympiad' ? "Sovrin Jamg'armasi" : "Qisqa shior"}
+                      </label>
+                      <input
+                        type="text"
+                        placeholder={newEvent.type === 'olympiad' ? "Masalan: 20,000,000 UZS" : "Workshop & Masterclass"}
+                        value={newEvent.prize}
+                        onChange={(e) => setNewEvent(p => ({ ...p, prize: e.target.value }))}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="font-bold text-slate-700 block mb-1">
+                        Tashkilotchi
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="UrDU, IT Park, AI Lab"
+                        value={newEvent.organizer}
+                        onChange={(e) => setNewEvent(p => ({ ...p, organizer: e.target.value }))}
+                        className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div>
+                    <label className="font-bold text-slate-700 block mb-1">
+                      Tadbir Haqida Qisqacha
+                    </label>
+                    <textarea
+                      rows={2}
+                      placeholder="Tadbirning maqsadi, ishtirokchilar uchun talablar va imkoniyatlar..."
+                      value={newEvent.description}
+                      onChange={(e) => setNewEvent(p => ({ ...p, description: e.target.value }))}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 resize-none"
+                    />
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-100">
+                    <button
+                      type="button"
+                      onClick={() => setIsAddModalOpen(false)}
+                      className="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 font-bold text-slate-600 transition-colors"
+                    >
+                      Bekor qilish
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-500/20 transition-colors"
+                    >
+                      Qo'shish va E'lon Qilish ✓
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           )}

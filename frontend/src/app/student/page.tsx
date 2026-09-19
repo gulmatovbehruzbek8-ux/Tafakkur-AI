@@ -69,6 +69,7 @@ export default function MyCampusPage() {
   const [isSyncing, setIsSyncing] = useState(false);
   const [lastSyncTime, setLastSyncTime] = useState("2 daqiqa oldin");
   const [syncToast, setSyncToast] = useState<string | null>(null);
+  const [announcements, setAnnouncements] = useState<any[]>([]);
 
   // Selected Activity for interactive drawer
   const [selectedActivity, setSelectedActivity] = useState<ActivityDetail | null>(null);
@@ -121,6 +122,14 @@ export default function MyCampusPage() {
           group: p.group || prev.group,
           gpa: p.gpa || prev.gpa,
         }));
+      }
+    } catch {}
+
+    // Announcements from Admin
+    try {
+      const storedAnn = localStorage.getItem('tafakkur_announcements');
+      if (storedAnn) {
+        setAnnouncements(JSON.parse(storedAnn));
       }
     } catch {}
 
@@ -281,6 +290,49 @@ export default function MyCampusPage() {
                 {syncToast}
               </span>
               <button onClick={() => setSyncToast(null)} className="text-white/60 hover:text-white text-sm">✕</button>
+            </div>
+          )}
+
+          {/* Live Admin Announcement Banner */}
+          {announcements.length > 0 && (
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-amber-500/15 via-cyan-500/15 to-teal-500/15 border border-amber-400/30 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-up">
+              <div className="flex items-center gap-3">
+                <div className="size-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-base shrink-0 border border-amber-400/30">
+                  📢
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-amber-400/20 text-amber-300 uppercase">
+                      Universitet E'loni
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-mono">
+                      {announcements[0].createdAt}
+                    </span>
+                  </div>
+                  <h4 className="font-semibold text-xs sm:text-sm text-white mt-0.5 line-clamp-1">
+                    {announcements[0].title}
+                  </h4>
+                  <p className="text-[11px] text-slate-300 line-clamp-1 mt-0.5">
+                    {announcements[0].content}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                <Link
+                  href="/student/events"
+                  className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-colors"
+                >
+                  Batafsil →
+                </Link>
+                <button
+                  onClick={() => setAnnouncements([])}
+                  className="p-1.5 text-slate-400 hover:text-white text-xs"
+                  title="Yopish"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
           )}
 

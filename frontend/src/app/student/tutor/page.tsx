@@ -109,13 +109,28 @@ Node* searchBST(Node* root, int target) {
     }
   ]);
 
+  const [sowDocs, setSowDocs] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('tafakkur_sow_resources');
+      if (stored) {
+        try {
+          setSowDocs(JSON.parse(stored));
+        } catch {}
+      }
+    }
+  }, []);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
-  const handleSend = (overrideText?: string) => {
+  const handleSend = (overrideText?: string, modeOverride?: 'LEARN' | 'PRACTICE' | 'QUIZ' | 'REVIEW' | 'EXAM_PREP') => {
     const textToSend = overrideText || input;
     if (!textToSend.trim()) return;
+
+    const currentActiveMode = modeOverride || activeMode;
 
     const userMsg: Message = {
       id: Date.now().toString(),
@@ -135,10 +150,10 @@ Node* searchBST(Node* root, int target) {
 
       const lower = textToSend.toLowerCase();
 
-      if (activeMode === 'QUIZ' || lower.includes('viktorina') || lower.includes('test')) {
+      if (currentActiveMode === 'QUIZ' || lower.includes('viktorina') || lower.includes('test')) {
         aiText = `Ajoyib! **${selectedChapter}** mavzusi bo'yicha tezkor sinov savoli:\n\nQuyidagi variantlardan qaysi biri to'g'ri?`;
         quiz = {
-          question: "Balanslanmagan eng yomon holatda Binar Qidiruv Daraxti (BST) da qidirish murakkabligi qanchaga teng bo'ladi?",
+          question: `Balanslanmagan eng yomon holatda Binar Qidiruv Daraxti (BST) da qidirish murakkabligi qanchaga teng bo'ladi?`,
           options: [
             "O(1)",
             "O(log N)",
@@ -147,6 +162,84 @@ Node* searchBST(Node* root, int target) {
           ],
           correctIndex: 2,
           explanation: "To'g'ri javob: O(N). Agar daraxtga elementlar o'sish tartibida kiritilsa, daraxt bir tomonga cho'zilib, oddiy bog'langan ro'yxat (linked list) ga aylanadi va qidirish O(N) ga tushadi. Buni oldini olish uchun AVL yoki Qizil-Qora daraxtlar ishlatiladi."
+        };
+      } else if (currentActiveMode === 'PRACTICE' || lower.includes('amaliyot') || lower.includes('masala') || lower.includes('topshiriq')) {
+        aiText = `💻 **AMALIYOT DASTURLASH TOPSHIRIG'I**\n📚 **Fan:** ${currentCourse.name}\n📌 **Mavzu:** ${selectedChapter}\n🎯 **Qiyinlik darajasi:** ${difficulty}\n\n` +
+          `**Masala Sharti:**\n` +
+          `Sizga butun sonlardan iborat massiv berilgan. Ushbu elementlardan foydalanib Binar Qidiruv Daraxtini (BST) quring va undagi eng kichik $K$-chi elementni topuvchi funksiyani yozing.\n\n` +
+          `**Cheklovlar:**\n` +
+          `• $1 \\le N \\le 10^5$\n` +
+          `• $1 \\le K \\le N$\n` +
+          `• Vaqt chegarasi: 1.0 soniya, Xotira: 64 MB\n\n` +
+          `**Kiruvchi ma'lumot:**\n` +
+          `[5, 3, 6, 2, 4, null, null, 1], K = 3\n\n` +
+          `**Chiquvchi ma'lumot:**\n` +
+          `3\n\n` +
+          `Quyidagi boshlang'ich andozani to'ldirib, o'z yechimingizni chatga yuboring:`;
+        code = {
+          language: 'python',
+          code: `# Python 3: K-chi eng kichik elementni topish (In-order traversal)
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        # TODO: Yechimingizni shu yerga yozing
+        # Maslahat: In-order traversing elementlarni o'sish tartibida aylanadi!
+        stack = []
+        curr = root
+        
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            k -= 1
+            if k == 0:
+                return curr.val
+            curr = curr.right
+            
+        return -1`
+        };
+      } else if (currentActiveMode === 'EXAM_PREP' || lower.includes('imtihon') || lower.includes('oraliq') || lower.includes('nazorat') || lower.includes('simulyats')) {
+        aiText = `⚡ **ORALIQ NAZORAT IMTIHONI SIMULYATORI (100 BALL)**\n` +
+          `🏢 **Urganch Davlat Universiteti • O'quv Dasturi (SOW)**\n` +
+          `📚 **Fan:** ${currentCourse.name}\n` +
+          `📌 **Bob:** ${selectedChapter}\n\n` +
+          `Imtihon qoidalari: Sizga quyidagi 3 ta topshiriq beriladi. O'z javoblaringizni yozib jo'nating, AI Repetitor sizni haqiqiy imtihon mezoni asosida baholaydi:\n\n` +
+          `1️⃣ **Nazariy Savol (25 Ball):**\n` +
+          `Binar Qidiruv Daraxti (BST) va AVL Balanslangan Daraxti o'rtasidagi asosiy farqlarni tushuntiring. AVL daraxtida aylantirishlar (Rotations: LL, RR, LR, RL) nima uchun zarur?\n\n` +
+          `2️⃣ **Algoritm va Kod Yozish (50 Ball):**\n` +
+          `Berilgan ixtiyoriy binar daraxt haqiqiy Binar Qidiruv Daraxti (Valid BST) ekanligini $O(N)$ vaqt va $O(H)$ xotirada tekshiruvchi algoritm yozing.\n\n` +
+          `3️⃣ **Vaziyatli Keys / Arxitektura (25 Ball):**\n` +
+          `10 million foydalanuvchiga ega elektron ta'lim tizimida talabalar reytingini real vaqtda yangilab turish uchun qaysi ma'lumotlar tuzilmasini tanlaysiz va nega?`;
+        code = {
+          language: 'cpp',
+          code: `// 2-savol uchun C++ shabloni: Valid BST tekshirish
+#include <iostream>
+#include <climits>
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+bool isValidBSTHelper(TreeNode* node, long long minVal, long long maxVal) {
+    if (!node) return true;
+    if (node->val <= minVal || node->val >= maxVal) return false;
+    return isValidBSTHelper(node->left, minVal, node->val) &&
+           isValidBSTHelper(node->right, node->val, maxVal);
+}
+
+bool isValidBST(TreeNode* root) {
+    return isValidBSTHelper(root, LLONG_MIN, LLONG_MAX);
+}`
         };
       } else if (lower.includes('oddiy') || lower.includes('sodda')) {
         aiText = `💡 **Oddiy tilda tushuntirish:**\n\nBinar qidiruv daraxtini telefon kitobiga o'xshatish mumkin. Tasavvur qiling, siz kitobning o'rtasini ochasiz. Agar qidirayotgan familiyangiz o'rtadagi harfdan oldin kelsa — faqat chap yarmini tekshirasiz, agar keyin kelsa — faqat o'ng yarmini. Har bir qadamda variantlarning yarmi tashlab yuboriladi!`;
@@ -176,7 +269,23 @@ def insert(root, key):
       } else if (lower.includes('xulosa') || lower.includes('konspekt')) {
         aiText = `📝 **Mavzu Xulosasi (Cheat Sheet):**\n\n1. **Asosiy qoida**: Left < Root < Right.\n2. **O'rtacha vaqt**: Qidirish, qo'shish, o'chirish — $O(\\log N)$.\n3. **Eng yomon holat**: $O(N)$ (agar balanslanmagan bo'lsa).\n4. **Inorder aylanib chiqish** (Left, Root, Right) elementlarni tartiblangan holda chiqaradi.`;
       } else {
-        aiText = `Tushunarli! **${selectedChapter}** bo'yicha ko'rib chiqayotgan masalangiz juda muhim. Ushbu algoritm oraliq nazorat imtihonida 20% vaznga ega.\n\nQuyidagi qaysi jihatiga ko'proq to'xtalamiz?`;
+        // Check for matching Admin SOW document
+        const matchingSow = sowDocs.find((doc: any) => {
+          const titleLower = (doc.title || '').toLowerCase();
+          const contentLower = (doc.content || '').toLowerCase();
+          const words = lower.split(' ').filter((w: string) => w.length > 3);
+          return words.some((w: string) => titleLower.includes(w) || contentLower.includes(w));
+        });
+
+        if (matchingSow) {
+          aiText = `Assalomu alaykum! Ma'muriyat tomonidan tasdiqlangan rasmiy o'quv dasturi (SOW) asosida ma'lumot topildi:\n\n` +
+            `📚 **Rasmiy Hujjat:** ${matchingSow.title}\n` +
+            `📌 **Modul:** ${matchingSow.moduleName || 'Umumiy Reja'}\n\n` +
+            `${matchingSow.content}\n\n` +
+            `✅ *Ushbu ma'lumot universitet dekanati tomonidan yuklangan rasmiy resurslar asosida berildi.*`;
+        } else {
+          aiText = `Tushunarli! **${selectedChapter}** bo'yicha ko'rib chiqayotgan masalangiz juda muhim. Ushbu algoritm oraliq nazorat imtihonida 20% vaznga ega.\n\nQuyidagi qaysi jihatiga ko'proq to'xtalamiz?`;
+        }
       }
 
       setMessages(prev => [
@@ -186,13 +295,13 @@ def insert(root, key):
           sender: 'ai',
           text: aiText,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          mode: activeMode,
+          mode: currentActiveMode,
           codeSnippet: code,
           quiz: quiz,
         }
       ]);
       setIsTyping(false);
-    }, 700);
+    }, 600);
   };
 
   const handleQuizSelect = (msgId: string, optionIndex: number) => {
@@ -351,11 +460,18 @@ def insert(root, key):
                 <button
                   key={mode.id}
                   onClick={() => {
-                    setActiveMode(mode.id as any);
-                    if (mode.id === 'QUIZ') {
-                      handleSend("Viktorina savoli ber");
-                    } else if (mode.id === 'REVIEW') {
-                      handleSend("Mavzu bo'yicha xulosa konspekt ber");
+                    const newMode = mode.id as any;
+                    setActiveMode(newMode);
+                    if (newMode === 'QUIZ') {
+                      handleSend("Viktorina savoli ber", 'QUIZ');
+                    } else if (newMode === 'REVIEW') {
+                      handleSend("Mavzu bo'yicha xulosa konspekt ber", 'REVIEW');
+                    } else if (newMode === 'PRACTICE') {
+                      handleSend("Ushbu mavzu bo'yicha amaliy dasturlash topshirig'i va masala ber", 'PRACTICE');
+                    } else if (newMode === 'EXAM_PREP') {
+                      handleSend("Oraliq nazorat imtihoni uchun simulyatsiya savollari va keyslarini ber", 'EXAM_PREP');
+                    } else if (newMode === 'LEARN') {
+                      handleSend("Mavzuning nazariy tushunchasini batafsil o'rganishni boshlaymiz", 'LEARN');
                     }
                   }}
                   className={`p-3.5 rounded-2xl text-left border transition-all ${

@@ -22,44 +22,23 @@ interface TaskItem {
   instructions: string;
 }
 
-export default function AssignmentsPage() {
-  const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'submitted' | 'graded'>('all');
-  const [selectedTask, setSelectedTask] = useState<TaskItem | null>(null);
-  const [submitModalOpen, setSubmitModalOpen] = useState(false);
-  const [submissionSuccess, setSubmissionSuccess] = useState(false);
-  const [countdown, setCountdown] = useState(14850); // ~4 hours 7 mins
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatCountdown = (seconds: number) => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor((seconds % 3600) / 60);
-    const s = seconds % 60;
-    return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  };
-
-  const tasks: TaskItem[] = [
-    {
-      id: 'task-1',
-      title: "3-Laboratoriya: AVL Binar Qidiruv Daraxtida Rotatsiya",
-      course: "Ma'lumotlar tuzilmasi va algoritmlar",
-      courseCode: "CS-201",
-      instructor: "Prof. Olimjon Turdiyev",
-      group: 'today',
-      deadline: "Bugun, 23:59 (4 soat qoldi)",
-      countdownSeconds: countdown,
-      status: 'pending',
-      difficulty: 'Murakkab',
-      attachmentsCount: 2,
-      instructions: "C++ yoki Python tilida AVL daraxti balanslash koeffitsienti (balance factor) -2 yoki +2 ga yetganda Left-Right va Right-Left rotatsiyalarini to'g'ri qayta tiklovchi dastur kodi va test natijalari hisobotini topshiring."
-    },
-    {
-      id: 'task-2',
+const INITIAL_TASKS: TaskItem[] = [
+  {
+    id: 'task-1',
+    title: "3-Laboratoriya: AVL Binar Qidiruv Daraxtida Rotatsiya",
+    course: "Ma'lumotlar tuzilmasi va algoritmlar",
+    courseCode: "CS-201",
+    instructor: "Prof. Olimjon Turdiyev",
+    group: 'today',
+    deadline: "Bugun, 23:59 (4 soat qoldi)",
+    countdownSeconds: 14850,
+    status: 'pending',
+    difficulty: 'Murakkab',
+    attachmentsCount: 2,
+    instructions: "C++ yoki Python tilida AVL daraxti balanslash koeffitsienti (balance factor) -2 yoki +2 ga yetganda Left-Right va Right-Left rotatsiyalarini to'g'ri qayta tiklovchi dastur kodi va test natijalari hisobotini topshiring."
+  },
+  {
+    id: 'task-2',
       title: "Matritsalar va Xos Qiymatlar Amaliy Hisoboti",
       course: "Oliy Matematika va Chiziqli Algebra",
       courseCode: "MATH-102",
@@ -124,10 +103,43 @@ export default function AssignmentsPage() {
       difficulty: 'Fundamental',
       attachmentsCount: 1,
       instructions: "Dinamik massivlar va C++ pointer aritmetikasi bo'yicha mustaqil laboratoriya ishi."
-    }
-  ];
+  }
+];
 
-  const filteredTasks = tasks.filter(t => {
+export default function AssignmentsPage() {
+  const [filterStatus, setFilterStatus] = useState<'all' | 'pending' | 'submitted' | 'graded'>('all');
+  const [selectedTask, setSelectedTask] = useState<TaskItem | null>(null);
+  const [submitModalOpen, setSubmitModalOpen] = useState(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [countdown, setCountdown] = useState(14850);
+  const [taskList, setTaskList] = useState<TaskItem[]>(INITIAL_TASKS);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const submitted = JSON.parse(localStorage.getItem('tafakkur_submitted_tasks') || '[]');
+        if (Array.isArray(submitted) && submitted.length > 0) {
+          setTaskList(prev => prev.map(t => submitted.includes(t.id) ? { ...t, status: 'submitted' } : t));
+        }
+      } catch {}
+    }
+  }, []);
+
+  const formatCountdown = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  };
+
+  const filteredTasks = taskList.filter(t => {
     if (filterStatus === 'all') return true;
     return t.status === filterStatus;
   });
@@ -172,7 +184,7 @@ export default function AssignmentsPage() {
             {/* Filter Pills */}
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
               {[
-                { id: 'all', label: `Barchasi (${tasks.length})` },
+                { id: 'all', label: `Barchasi (${taskList.length})` },
                 { id: 'pending', label: 'Topshirilishi kutilmoqda (4)' },
                 { id: 'graded', label: 'Baholangan (2)' },
               ].map(tab => (
@@ -474,10 +486,19 @@ export default function AssignmentsPage() {
                         Bekor qilish
                       </button>
                       <button
-                        onClick={() => setSubmissionSuccess(true)}
+                        onClick={() => {
+                          setSubmissionSuccess(true);
+                          setTaskList(prev => prev.map(t => t.id === selectedTask.id ? { ...t, status: 'submitted' } : t));
+                          if (typeof window !== 'undefined') {
+                            const submitted = JSON.parse(localStorage.getItem('tafakkur_submitted_tasks') || '[]');
+                            if (!submitted.includes(selectedTask.id)) {
+                              localStorage.setItem('tafakkur_submitted_tasks', JSON.stringify([...submitted, selectedTask.id]));
+                            }
+                          }
+                        }}
                         className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-sm"
                       >
-                        Tasdiqlab topshirish
+                        Tasdiqlab topshirish ✓
                       </button>
                     </div>
                   </div>
