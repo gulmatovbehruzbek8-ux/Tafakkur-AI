@@ -179,6 +179,29 @@ export default function AdminSOWPage() {
   const [uploading, setUploading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
 
+  // Curriculum modal state (New Feature for Admin)
+  const [isAddCurriculumOpen, setIsAddCurriculumOpen] = useState(false);
+  const [curriculumSubjectId, setCurriculumSubjectId] = useState('algo');
+  const [curriculumCustomName, setCurriculumCustomName] = useState('');
+  const [curriculumFaculty, setCurriculumFaculty] = useState("Sun'iy Intellekt va Axborot Texnologiyalari");
+  const [curriculumModuleName, setCurriculumModuleName] = useState('');
+  const [curriculumTopicsText, setCurriculumTopicsText] = useState('');
+  const [curriculumSowContent, setCurriculumSowContent] = useState('');
+  const [curriculumSaving, setCurriculumSaving] = useState(false);
+
+  // Quick Add Topic Modal State
+  const [quickTopicSubjectId, setQuickTopicSubjectId] = useState<string | null>(null);
+  const [quickTopicModuleIndex, setQuickTopicModuleIndex] = useState<number | null>(null);
+  const [quickTopicTitle, setQuickTopicTitle] = useState('');
+  const [quickTopicTask, setQuickTopicTask] = useState('');
+
+  // Toast notification state
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 4000);
+  };
+
   // Live Chatbot Test State
   const [testQuestion, setTestQuestion] = useState('Binar qidiruv daraxti (BST) va 2-topshiriq muddati haqida ma\'lumot ber');
   const [testAnswer, setTestAnswer] = useState<string | null>(null);
@@ -195,16 +218,27 @@ export default function AdminSOWPage() {
       const storedSub = localStorage.getItem('tafakkur_sow_subjects');
       if (storedSub) {
         setSubjects(JSON.parse(storedSub));
+      } else {
+        localStorage.setItem('tafakkur_sow_subjects', JSON.stringify(DEFAULT_SUBJECTS));
       }
     } catch {}
 
-    // Fetch from backend
+    // Fetch from backend and merge instead of overwriting
     fetch(getApiUrl('/api/resources'))
       .then(res => res.ok ? res.json() : null)
       .then(data => {
         if (data && Array.isArray(data) && data.length > 0) {
-          setResources(data);
-          localStorage.setItem('tafakkur_sow_resources', JSON.stringify(data));
+          try {
+            const localStored: SOWResource[] = JSON.parse(localStorage.getItem('tafakkur_sow_resources') || '[]');
+            const map = new Map<string | number, SOWResource>();
+            data.forEach((item: SOWResource) => map.set(item.id, item));
+            localStored.forEach((item: SOWResource) => map.set(item.id, item));
+            const merged = Array.from(map.values());
+            setResources(merged);
+            localStorage.setItem('tafakkur_sow_resources', JSON.stringify(merged));
+          } catch {
+            setResources(data);
+          }
         }
       })
       .catch(() => {});
@@ -316,6 +350,161 @@ export default function AdminSOWPage() {
     try {
       await fetch(getApiUrl(`/api/resources/${id}`), { method: 'DELETE' });
     } catch {}
+    showToast("Resurs AI bilimlar bazasidan o'chirildi.");
+  };
+
+  const handleOpenAddModule = (subjectId: string) => {
+    setCurriculumSubjectId(subjectId);
+    setCurriculumModuleName('');
+    setCurriculumTopicsText('');
+    setCurriculumSowContent('');
+    setIsAddCurriculumOpen(true);
+  };
+
+  const handleSaveCurriculum = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!curriculumModuleName.trim()) return;
+
+    setCurriculumSaving(true);
+
+    let targetSubId = curriculumSubjectId;
+    let targetSubName = "";
+    let targetFaculty = curriculumFaculty;
+
+    const parsedTopics: SOWTopic[] = curriculumTopicsText
+      .split('\n')
+      .map(t => t.trim())
+      .filter(Boolean)
+      .map((title, idx) => ({
+        title,
+        done: false,
+        current: idx === 0,
+      }));
+
+    if (parsedTopics.length === 0) {
+      parsedTopics.push({ title: "Mavzularga kirish", done: false, current: true });
+    }
+
+    const newModuleObj: SOWModule = {
+      module: curriculumModuleName.trim(),
+      topics: parsedTopics,
+    };
+
+    let updatedSubjects: SOWSubject[] = [...subjects];
+
+    if (curriculumSubjectId === 'new') {
+      if (!curriculumCustomName.trim()) {
+        alert("Iltimos, yangi fan nomini kiriting.");
+        setCurriculumSaving(false);
+        return;
+      }
+      targetSubId = 'sub-' + Date.now();
+      targetSubName = curriculumCustomName.trim();
+      const newSubject: SOWSubject = {
+        id: targetSubId,
+        name: targetSubName,
+        faculty: targetFaculty.trim() || "Axborot Texnologiyalari Fakulteti",
+        curriculum: [newModuleObj],
+      };
+      updatedSubjects = [...subjects, newSubject];
+    } else {
+      const existing = subjects.find(s => s.id === curriculumSubjectId);
+      targetSubName = existing?.name || "Fan";
+      targetFaculty = existing?.faculty || targetFaculty;
+
+      updatedSubjects = subjects.map(s => {
+        if (s.id === curriculumSubjectId) {
+          return {
+            ...s,
+            curriculum: [...s.curriculum, newModuleObj],
+          };
+        }
+        return s;
+      });
+    }
+
+    setSubjects(updatedSubjects);
+    try {
+      localStorage.setItem('tafakkur_sow_subjects', JSON.stringify(updatedSubjects));
+    } catch {}
+
+    // Also automatically register a SOWResource in knowledge base so AI Tutor knows this module!
+    const sowText = curriculumSowContent.trim() || 
+      `[${targetSubName} • ${curriculumModuleName}]\nUshbu modul doirasida quyidagi mavzular va o'quv rejalari o'rganiladi:\n` +
+      parsedTopics.map((t, i) => `${i + 1}. ${t.title}`).join('\n') +
+      `\n\nBaholash mezonlari: Modul yakunida amaliy topshiriq va oraliq nazorat sinovi o'tkaziladi.`;
+
+    const autoResource: SOWResource = {
+      id: "res-" + Date.now(),
+      subjectId: targetSubId,
+      subjectName: targetSubName,
+      title: `${curriculumModuleName} Sillabusi va Mavzular Rejasi`,
+      resourceType: 'syllabus',
+      moduleName: curriculumModuleName.trim(),
+      content: sowText,
+      fileName: `${targetSubName.replace(/\s+/g, '_')}_${curriculumModuleName.replace(/\s+/g, '_')}.pdf`,
+      fileSize: "1.8 MB",
+      createdAt: "Bugun, " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      chunkCount: Math.max(10, Math.ceil(sowText.length / 70))
+    };
+
+    const updatedRes = [autoResource, ...resources];
+    saveResources(updatedRes);
+
+    // Sync with backend API
+    try {
+      fetch(getApiUrl('/api/resources/upload'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(autoResource)
+      }).catch(() => {});
+    } catch {}
+
+    setCurriculumSaving(false);
+    setIsAddCurriculumOpen(false);
+    setCurriculumModuleName('');
+    setCurriculumTopicsText('');
+    setCurriculumSowContent('');
+    setCurriculumCustomName('');
+    showToast(`"${targetSubName}" uchun o'quv rejasi va SOW muvaffaqiyatli saqlandi hamda AI bilimlar bazasiga ulandi!`);
+  };
+
+  const handleQuickAddTopic = (subjId: string, modIdx: number) => {
+    if (!quickTopicTitle.trim()) return;
+
+    const updated = subjects.map(s => {
+      if (s.id === subjId) {
+        const mod = s.curriculum[modIdx];
+        if (!mod) return s;
+        const newTopic: SOWTopic = {
+          title: quickTopicTitle.trim(),
+          done: false,
+          current: false,
+          task: quickTopicTask.trim() || undefined,
+        };
+        const newCurriculum = [...s.curriculum];
+        newCurriculum[modIdx] = {
+          ...mod,
+          topics: [...mod.topics, newTopic],
+        };
+        return {
+          ...s,
+          curriculum: newCurriculum,
+        };
+      }
+      return s;
+    });
+
+    setSubjects(updated);
+    try {
+      localStorage.setItem('tafakkur_sow_subjects', JSON.stringify(updated));
+    } catch {}
+
+    setQuickTopicTitle('');
+    setQuickTopicTask('');
+    setQuickTopicSubjectId(null);
+    setQuickTopicModuleIndex(null);
+    showToast("Yangi mavzu o'quv dasturiga qo'shildi!");
   };
 
   const handleTestChatbot = async () => {
@@ -593,6 +782,33 @@ export default function AdminSOWPage() {
           {/* TAB 2: CURRICULUM TREE */}
           {activeTab === 'curriculum' && (
             <div className="space-y-6 animate-fade-up">
+              {/* Header Action Bar */}
+              <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h3 className="font-bold text-slate-900 text-sm flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-teal-500" />
+                    Rasmiy Universitet O&apos;quv Dasturlari (Curriculum Tree)
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Fanlar, modullar va mavzular iyerarxiyasi. AI repetitor ushbu reja bo&apos;yicha talabalarga dars o&apos;tadi va amaliyot beradi.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCurriculumSubjectId('new');
+                    setCurriculumCustomName('');
+                    setCurriculumModuleName('');
+                    setCurriculumTopicsText('');
+                    setCurriculumSowContent('');
+                    setIsAddCurriculumOpen(true);
+                  }}
+                  className="tf-btn tf-btn-primary shrink-0 flex items-center gap-2 text-xs"
+                >
+                  <span>+ Yangi O&apos;quv Rejasi (Curriculum) Qo&apos;shish</span>
+                </button>
+              </div>
+
               {subjects.map((subj) => (
                 <div key={subj.id} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
                   <div className="p-5 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -600,20 +816,41 @@ export default function AdminSOWPage() {
                       <span className="text-[10px] uppercase font-bold tracking-widest text-teal-400">{subj.faculty}</span>
                       <h2 className="text-lg font-bold tracking-tight">{subj.name}</h2>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2.5">
                       <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-slate-200 border border-white/10">
                         {subj.curriculum.length} ta Modul
                       </span>
+                      <button
+                        type="button"
+                        onClick={() => handleOpenAddModule(subj.id)}
+                        className="px-3 py-1.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold transition-colors shadow-sm flex items-center gap-1.5"
+                      >
+                        <span>+ Modul qo&apos;shish</span>
+                      </button>
                     </div>
                   </div>
 
                   <div className="p-5 space-y-6">
                     {subj.curriculum.map((mod, idx) => (
                       <div key={idx} className="space-y-3">
-                        <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-teal-600" />
-                          {mod.module}
-                        </h4>
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-teal-600" />
+                            {mod.module}
+                          </h4>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setQuickTopicSubjectId(subj.id);
+                              setQuickTopicModuleIndex(idx);
+                              setQuickTopicTitle('');
+                              setQuickTopicTask('');
+                            }}
+                            className="text-[11px] font-semibold text-teal-700 hover:text-teal-900 bg-teal-50 hover:bg-teal-100 px-2.5 py-1 rounded-lg border border-teal-200/80 transition-colors flex items-center gap-1"
+                          >
+                            <span>+ Mavzu qo&apos;shish</span>
+                          </button>
+                        </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pl-4 border-l-2 border-teal-100">
                           {mod.topics.map((t, tIdx) => (
@@ -621,7 +858,7 @@ export default function AdminSOWPage() {
                               key={tIdx} 
                               className={`p-3.5 rounded-xl border text-xs flex items-start justify-between gap-3 ${
                                 t.current 
-                                  ? 'bg-teal-50/70 border-teal-200 text-teal-950 font-semibold'
+                                  ? 'bg-teal-50/70 border-teal-200 text-teal-950 font-semibold' 
                                   : t.done 
                                   ? 'bg-slate-50 border-slate-200/80 text-slate-700' 
                                   : 'bg-white border-dashed border-slate-200 text-slate-500'
@@ -881,6 +1118,214 @@ export default function AdminSOWPage() {
               </form>
             )}
           </div>
+        </div>
+      )}
+
+      {/* MODAL 2: ADD / UPLOAD CURRICULUM */}
+      {isAddCurriculumOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded-3xl border border-slate-200 max-w-xl w-full p-6 md:p-8 space-y-5 shadow-2xl relative my-8">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 className="text-base font-bold text-slate-900">
+                  + O&apos;quv Rejasi (Curriculum) & SOW Qo&apos;shish
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Fan modullari va mavzularini kiritish orqali AI Repetitor bilimlar bazasini yangilang.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsAddCurriculumOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveCurriculum} className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Fan (Subject)
+                </label>
+                <select
+                  value={curriculumSubjectId}
+                  onChange={e => setCurriculumSubjectId(e.target.value)}
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 bg-white focus:outline-hidden focus:border-teal-600 font-semibold"
+                >
+                  {subjects.map(s => (
+                    <option key={s.id} value={s.id}>{s.name} ({s.faculty})</option>
+                  ))}
+                  <option value="new">+ Yangi Fan Kiritish...</option>
+                </select>
+              </div>
+
+              {curriculumSubjectId === 'new' && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3.5 rounded-2xl bg-teal-50/50 border border-teal-100">
+                  <div>
+                    <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1">
+                      Yangi Fan Nomi *
+                    </label>
+                    <input
+                      type="text"
+                      required={curriculumSubjectId === 'new'}
+                      value={curriculumCustomName}
+                      onChange={e => setCurriculumCustomName(e.target.value)}
+                      placeholder="Masalan: Kiberxavfsizlik asoslari"
+                      className="w-full text-xs p-2.5 rounded-xl border border-teal-200 bg-white focus:outline-hidden focus:border-teal-600"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-teal-950 uppercase tracking-wider mb-1">
+                      Fakultet / Kafedra *
+                    </label>
+                    <input
+                      type="text"
+                      value={curriculumFaculty}
+                      onChange={e => setCurriculumFaculty(e.target.value)}
+                      placeholder="Sun'iy Intellekt Fakulteti"
+                      className="w-full text-xs p-2.5 rounded-xl border border-teal-200 bg-white focus:outline-hidden focus:border-teal-600"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Modul Nomi *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={curriculumModuleName}
+                  onChange={e => setCurriculumModuleName(e.target.value)}
+                  placeholder="Masalan: 4-Modul: Kriptografiya va Xavfsiz Protokollar"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-teal-600 font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Modul Mavzulari (Har bir qatorga bittadan mavzu)
+                </label>
+                <textarea
+                  rows={4}
+                  value={curriculumTopicsText}
+                  onChange={e => setCurriculumTopicsText(e.target.value)}
+                  placeholder={"1. Kirish va asosiy tushunchalar\n2. Asimmetrik shifrlash va RSA algoritmi\n3. Xesh-funksiyalar va raqamli imzo\n4. TLS/SSL xavfsiz protokollar"}
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-teal-600 font-sans leading-relaxed"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Sillabus / SOW Tafsilotlari (AI qoidalar va topshiriq muddatlarini shu matndan oladi)
+                </label>
+                <textarea
+                  rows={3}
+                  value={curriculumSowContent}
+                  onChange={e => setCurriculumSowContent(e.target.value)}
+                  placeholder="Ushbu modul bo'yicha talabalarga beriladigan topshiriqlar, oraliq nazorat mezonlari va muhim talablarni yozing..."
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-teal-600 font-sans leading-relaxed"
+                />
+              </div>
+
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setIsAddCurriculumOpen(false)}
+                  className="px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100 transition-colors"
+                >
+                  Bekor qilish
+                </button>
+                <button
+                  type="submit"
+                  disabled={curriculumSaving}
+                  className="tf-btn tf-btn-primary px-5 disabled:opacity-50 flex items-center gap-2"
+                >
+                  {curriculumSaving ? "Saqlanmoqda..." : "O'quv Rejasini Saqlash"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL 3: QUICK ADD TOPIC */}
+      {quickTopicSubjectId !== null && quickTopicModuleIndex !== null && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-2xl border border-slate-200 max-w-md w-full p-6 space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h3 className="text-sm font-bold text-slate-900">+ Modulga Yangi Mavzu Qo&apos;shish</h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setQuickTopicSubjectId(null);
+                  setQuickTopicModuleIndex(null);
+                }}
+                className="p-1 rounded text-slate-400 hover:text-slate-700"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                  Mavzu Nomi *
+                </label>
+                <input
+                  type="text"
+                  autoFocus
+                  value={quickTopicTitle}
+                  onChange={e => setQuickTopicTitle(e.target.value)}
+                  placeholder="Masalan: Graf algoritmlari: Dijkstra va Bellman-Ford"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-teal-600"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+                  Topshiriq yoki Amaliy Vazifa (Ixtiyoriy)
+                </label>
+                <input
+                  type="text"
+                  value={quickTopicTask}
+                  onChange={e => setQuickTopicTask(e.target.value)}
+                  placeholder="Masalan: Uy vazifasi: Eng qisqa yo'lni topish dasturi"
+                  className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-hidden focus:border-teal-600"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => {
+                  setQuickTopicSubjectId(null);
+                  setQuickTopicModuleIndex(null);
+                }}
+                className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100"
+              >
+                Bekor qilish
+              </button>
+              <button
+                type="button"
+                onClick={() => handleQuickAddTopic(quickTopicSubjectId, quickTopicModuleIndex)}
+                className="tf-btn tf-btn-primary px-4 text-xs"
+              >
+                Qo&apos;shish
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Floating Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-6 right-6 z-[9999] bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-teal-400/30 flex items-center gap-3 animate-fade-up">
+          <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse" />
+          <span className="text-xs font-medium">{toastMessage}</span>
         </div>
       )}
     </div>

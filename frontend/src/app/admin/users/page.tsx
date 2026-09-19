@@ -258,13 +258,16 @@ export default function AdminUsersPage() {
   const handleDeleteUser = async (id: number, username: string) => {
     if (!confirm(`Haqiqatan ham "${username}" foydalanuvchisini o'chirmoqchimisiz?`)) return;
     try {
-      const res = await fetch(getApiUrl(`/api/users/${id}`), { method: 'DELETE' });
-      if (res.ok) {
-        setUsers(prev => prev.filter(u => u.id !== id));
-      }
+      await fetch(getApiUrl(`/api/users/${id}`), { method: 'DELETE' });
     } catch (err) {
       console.error("O'chirishda xatolik:", err);
     }
+    setUsers(prev => prev.filter(u => u.id !== id && u.username !== username));
+    if (typeof window !== 'undefined') {
+      const custom = getCustomUsers().filter(u => u.id !== id && u.username !== username);
+      localStorage.setItem('tafakkur_custom_users', JSON.stringify(custom));
+    }
+    showToast(`"${username}" muvaffaqiyatli o'chirildi.`);
   };
 
   const handleMakeAdmin = async (id: number) => {
@@ -281,14 +284,36 @@ export default function AdminUsersPage() {
     } catch (err) {
       console.error("Admin qilishda xatolik:", err);
     }
+    setUsers(prev => prev.map(u => u.id === id ? { ...u, role: 'admin' } : u));
+    if (typeof window !== 'undefined') {
+      const custom = getCustomUsers().map(u => u.id === id ? { ...u, role: 'admin' } : u);
+      localStorage.setItem('tafakkur_custom_users', JSON.stringify(custom));
+    }
+    showToast("Foydalanuvchiga Administrator huquqi berildi.");
   };
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.username.trim() && !form.name.trim()) return;
+    if (!form.name.trim() && !form.username.trim()) {
+      alert("Iltimos, kamida foydalanuvchi ismini kiriting.");
+      return;
+    }
 
     setIsSaving(true);
-    const finalUsername = form.username.trim() || form.email.split('@')[0] || form.name.toLowerCase().replace(/\s+/g, '.');
+
+    const cleanLatin = form.name.trim().toLowerCase()
+      .replace(/['`‘’ʻʼ]/g, '')
+      .replace(/[^a-z0-9]/g, '.');
+
+    const finalUsername = (
+      form.username.trim() || 
+      (form.email ? form.email.split('@')[0] : '') || 
+      cleanLatin || 
+      `user_${Date.now().toString().slice(-5)}`
+    ).toLowerCase().replace(/\.+/g, '.').replace(/^\.|\.$/g, '');
+
+    const finalEmail = form.email.trim() || `${finalUsername}@tafakkur.uz`;
+    const finalPassword = form.password.trim() || 'tafakkur2026';
     
     const nameParts = form.name.trim().split(' ');
     const firstName = nameParts[0] || finalUsername;
@@ -298,8 +323,8 @@ export default function AdminUsersPage() {
       name: form.name.trim() || finalUsername,
       firstName,
       lastName,
-      email: form.email.trim(),
-      phone: form.phone.trim(),
+      email: finalEmail,
+      phone: form.phone.trim() || '+998 90 000 00 00',
       status: form.status,
       faculty: form.faculty,
     };
@@ -325,7 +350,7 @@ export default function AdminUsersPage() {
 
     try {
       if (editingUserId) {
-        const payload: { role: string; profile_data: UserProfile } = {
+        const payload = {
           role: form.role,
           profile_data: profileData,
         };
@@ -336,15 +361,19 @@ export default function AdminUsersPage() {
             body: JSON.stringify(payload),
           });
         } catch {
-          // ignore network failure
+          // ignore network failure on vercel
         }
         setUsers(prev => prev.map(u => u.id === editingUserId ? newUserItem : u));
+        if (typeof window !== 'undefined') {
+          const custom = getCustomUsers().map(u => u.id === editingUserId ? newUserItem : u);
+          localStorage.setItem('tafakkur_custom_users', JSON.stringify(custom));
+        }
         showToast("Foydalanuvchi ma'lumotlari muvaffaqiyatli yangilandi!");
         setIsModalOpen(false);
       } else {
         const payload = {
           username: finalUsername,
-          password: form.password || 'password',
+          password: finalPassword,
           role: form.role,
           profile_data: profileData,
         };
@@ -364,13 +393,20 @@ export default function AdminUsersPage() {
           const custom = getCustomUsers().filter(u => u.username !== finalUsername);
           localStorage.setItem('tafakkur_custom_users', JSON.stringify([newUserItem, ...custom]));
         }
-        showToast(form.role === 'student' ? "Yangi talaba (o'quvchi) muvaffaqiyatli ro'yxatga olindi!" : "Yangi foydalanuvchi muvaffaqiyatli yaratildi!");
+        showToast(
+          form.role === 'student' 
+            ? `Yangi talaba muvaffaqiyatli saqlandi! Login: "${finalUsername}", Parol: "${finalPassword}"`
+            : `Yangi foydalanuvchi muvaffaqiyatli yaratildi! Login: "${finalUsername}"`
+        );
         setIsModalOpen(false);
       }
     } catch (err) {
       console.error("Saqlashda xatolik:", err);
-      // Even on outer error, ensure user is created in local state
       setUsers(prev => [newUserItem, ...prev.filter(u => u.username !== finalUsername)]);
+      if (typeof window !== 'undefined') {
+        const custom = getCustomUsers().filter(u => u.username !== finalUsername);
+        localStorage.setItem('tafakkur_custom_users', JSON.stringify([newUserItem, ...custom]));
+      }
       showToast("Foydalanuvchi muvaffaqiyatli saqlandi!");
       setIsModalOpen(false);
     } finally {
@@ -713,13 +749,24 @@ export default function AdminUsersPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
-                      F.I.SH. (To'liq Ism va Familiya) *
+                      F.I.SH. (To&apos;liq Ism va Familiya) *
                     </label>
                     <input 
                       type="text" 
                       required
                       value={form.name}
-                      onChange={e => setForm({ ...form, name: e.target.value })}
+                      onChange={e => {
+                        const val = e.target.value;
+                        const autoUser = val.toLowerCase().trim()
+                          .replace(/['`‘’ʻʼ]/g, '')
+                          .replace(/[^a-z0-9]/g, '.');
+                        setForm(prev => ({
+                          ...prev,
+                          name: val,
+                          username: prev.username && prev.username !== autoUser ? prev.username : autoUser,
+                          email: prev.email && prev.email !== `${autoUser}@tafakkur.uz` ? prev.email : (autoUser ? `${autoUser}@tafakkur.uz` : '')
+                        }));
+                      }}
                       placeholder="Masalan: Behruzbek Gulmatov"
                       className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
                     />
@@ -727,25 +774,23 @@ export default function AdminUsersPage() {
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
-                      Tizimdagi Login (Username) *
+                      Tizimdagi Login (Username)
                     </label>
                     <input 
                       type="text" 
-                      required
                       value={form.username}
                       onChange={e => setForm({ ...form, username: e.target.value })}
-                      placeholder="Masalan: b.gulmatov"
+                      placeholder="Masalan: b.gulmatov (avtomatik generatsiya)"
                       className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
-                      Elektron Pochta *
+                      Elektron Pochta
                     </label>
                     <input 
                       type="email" 
-                      required
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="talaba@tafakkur.uz"
@@ -769,14 +814,13 @@ export default function AdminUsersPage() {
                   {!editingUserId && (
                     <div className="md:col-span-2">
                       <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
-                        Tizimga Kirish Paroli *
+                        Tizimga Kirish Paroli
                       </label>
                       <input 
                         type="password" 
-                        required={!editingUserId}
                         value={form.password}
                         onChange={e => setForm({ ...form, password: e.target.value })}
-                        placeholder="••••••••"
+                        placeholder="Standart parol: tafakkur2026 (bo'sh qoldirilsa avtomatik qo'yiladi)"
                         className="w-full bg-slate-50/60 border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono focus:border-teal-600 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20 text-slate-900 transition-all"
                       />
                     </div>

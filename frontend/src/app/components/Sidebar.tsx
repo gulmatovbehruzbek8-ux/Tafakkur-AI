@@ -1,6 +1,8 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useThemeAndUI } from './ThemeAndUIModeProvider';
 
 interface SidebarProps {
   role: 'student' | 'teacher' | 'admin' | 'mentor' | 'oquvchi';
@@ -8,6 +10,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps) {
+  const router = useRouter();
+  const { theme, uiMode, toggleTheme, toggleUIMode } = useThemeAndUI();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [displayName, setDisplayName] = useState('Foydalanuvchi');
   const [userRole, setUserRole] = useState(initialRole);
@@ -15,23 +19,29 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
   useEffect(() => {
     try {
       const stored = localStorage.getItem('tafakkur_user');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed.profile?.name) {
-          setDisplayName(parsed.profile.name);
-        } else if (parsed.profile?.firstName) {
-          setDisplayName(`${parsed.profile.firstName} ${parsed.profile.lastName || ''}`.trim());
-        } else if (parsed.username) {
-          setDisplayName(parsed.username);
-        }
-        if (parsed.role) {
-          setUserRole(parsed.role);
+      if (!stored) {
+        // Unregistered users are redirected to login
+        router.replace(`/login?redirect=${encodeURIComponent(activeRoute)}`);
+        return;
+      }
+      const parsed = JSON.parse(stored);
+      if (parsed.profile?.name) {
+        setDisplayName(parsed.profile.name);
+      } else if (parsed.profile?.firstName) {
+        setDisplayName(`${parsed.profile.firstName} ${parsed.profile.lastName || ''}`.trim());
+      } else if (parsed.username) {
+        setDisplayName(parsed.username);
+      }
+      if (parsed.role) {
+        setUserRole(parsed.role);
+        if ((parsed.role === 'student' || parsed.role === 'oquvchi') && activeRoute.startsWith('/admin')) {
+          router.replace('/student');
         }
       }
     } catch {
-      // Ignore
+      router.replace('/login');
     }
-  }, []);
+  }, [activeRoute, router]);
 
   const normalizedRole = (userRole === 'mentor' ? 'teacher' : userRole === 'oquvchi' ? 'student' : userRole) as 'student' | 'teacher' | 'admin';
 
@@ -243,15 +253,36 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
             <p className="text-[8px] uppercase tracking-[0.2em] text-slate-400 mt-0.5">University OS</p>
           </div>
         </div>
-        <button 
-          onClick={() => setIsMobileOpen(!isMobileOpen)} 
-          className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/5 transition-colors" 
-          aria-label="Toggle navigation"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-          </svg>
-        </button>
+        <div className="flex items-center gap-1.5">
+          <button 
+            onClick={toggleTheme}
+            className="p-1.5 rounded-lg text-xs bg-white/5 border border-white/10 text-slate-200 hover:bg-white/10 transition-colors"
+            title="Mavzuni almashtirish (Kunduz/Tungi)"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? '🌙' : '☀️'}
+          </button>
+          <button 
+            onClick={toggleUIMode}
+            className={`px-2 py-1 rounded-lg text-[11px] font-semibold border transition-colors ${
+              uiMode === 'simple' 
+                ? 'bg-amber-400 text-slate-950 border-amber-300 shadow-sm' 
+                : 'bg-white/5 border-white/10 text-slate-200 hover:bg-white/10'
+            }`}
+            title="Oddiy UI (Katta harflar va sodda dizayn)"
+          >
+            {uiMode === 'simple' ? '👴 Oddiy' : '👓 Standart'}
+          </button>
+          <button 
+            onClick={() => setIsMobileOpen(!isMobileOpen)} 
+            className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/5 transition-colors" 
+            aria-label="Toggle navigation"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* Modern Desktop & Mobile Drawer Sidebar - Permanently fixed full height */}
@@ -326,8 +357,32 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
           })}
         </nav>
         
-        {/* Bottom Section: HEMIS Connected & User Profile (Point 3) */}
-        <div className="mt-auto pt-3 border-t border-white/8 space-y-3 shrink-0">
+        {/* Bottom Section: Theme/UI Mode, HEMIS Connected & User Profile (Point 3) */}
+        <div className="mt-auto pt-3 border-t border-white/8 space-y-2.5 shrink-0">
+          {/* Quick Theme & Elder Simple UI Mode Controls */}
+          <div className="grid grid-cols-2 gap-1.5 p-1 bg-white/[0.04] rounded-xl border border-white/8 text-[11px] font-medium">
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-colors hover:bg-white/10 text-slate-300 hover:text-white"
+              title="Mavzu: Kunduzgi yoki Tungi rejim"
+            >
+              <span>{theme === 'dark' ? '🌙' : '☀️'}</span>
+              <span className="truncate">{theme === 'dark' ? 'Tungi' : 'Kunduz'}</span>
+            </button>
+            <button
+              onClick={toggleUIMode}
+              className={`flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg transition-all ${
+                uiMode === 'simple'
+                  ? 'bg-amber-400 text-slate-950 font-bold shadow-sm'
+                  : 'hover:bg-white/10 text-slate-300 hover:text-white'
+              }`}
+              title="Kattalar va professorlar uchun soddalashtirilgan interfeys"
+            >
+              <span>👴</span>
+              <span className="truncate">{uiMode === 'simple' ? 'Oddiy UI' : 'Oddiy'}</span>
+            </button>
+          </div>
+
           {/* Dedicated HEMIS Connected Box */}
           <div className="rounded-2xl border border-emerald-400/10 bg-emerald-400/5 p-3">
             <div className="flex items-center gap-2">

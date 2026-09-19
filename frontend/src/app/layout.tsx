@@ -31,6 +31,8 @@ export const metadata: Metadata = {
 };
 
 import CommandPalette from "@/app/components/CommandPalette";
+import ThemeAndUIModeProvider from "@/app/components/ThemeAndUIModeProvider";
+import AuthRouteGuard from "@/app/components/AuthRouteGuard";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -39,8 +41,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${syne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans text-ink">
-        <CommandPalette />
-        {children}
+        <ThemeAndUIModeProvider>
+          <AuthRouteGuard>
+            <CommandPalette />
+            {children}
+          </AuthRouteGuard>
+        </ThemeAndUIModeProvider>
       </body>
     </html>
   );

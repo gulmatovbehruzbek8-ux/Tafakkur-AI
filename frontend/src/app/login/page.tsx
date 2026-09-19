@@ -159,6 +159,15 @@ export default function LoginPage() {
 
     const lower = username.trim().toLowerCase();
 
+    const getRedirectUrl = (defaultFallback: string) => {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const red = params.get('redirect');
+        if (red && red.startsWith('/')) return red;
+      }
+      return defaultFallback;
+    };
+
     // 1. Instant zero-friction bypass for demo accounts
     if (!isRegistering && (DEMO_ACCOUNTS[lower] || ['student', 'teacher', 'admin', 'mentor', 'oquvchi', 'talaba', 'ustoz'].includes(lower))) {
       const key = (lower === 'teacher' || lower === 'mentor' || lower === 'ustoz') ? 'teacher' : (lower === 'admin' ? 'admin' : 'student');
@@ -178,8 +187,27 @@ export default function LoginPage() {
         }).catch(() => {});
       } catch {}
 
-      router.push(acc.route);
+      router.push(getRedirectUrl(acc.route));
       return;
+    }
+
+    // 1.5. Check if user was registered by Admin in custom users list
+    if (!isRegistering && typeof window !== 'undefined') {
+      try {
+        const customUsers = JSON.parse(localStorage.getItem('tafakkur_custom_users') || '[]');
+        const matchedCustom = customUsers.find((u: any) => u.username?.toLowerCase() === lower);
+        if (matchedCustom) {
+          const customRole = matchedCustom.role || 'student';
+          localStorage.setItem('tafakkur_user', JSON.stringify({
+            username: matchedCustom.username,
+            role: customRole,
+            profile: matchedCustom.profile || { name: matchedCustom.username }
+          }));
+          const dest = (customRole === 'admin') ? '/admin' : (customRole === 'teacher' || customRole === 'mentor') ? '/teacher' : '/student';
+          router.push(getRedirectUrl(dest));
+          return;
+        }
+      } catch {}
     }
 
     // 2. Real login or registration call
@@ -210,13 +238,33 @@ export default function LoginPage() {
       }
 
       const roleToRoute = data.role || selectedRole;
-      if (roleToRoute === 'student' || roleToRoute === 'oquvchi') router.push('/student');
-      else if (roleToRoute === 'mentor' || roleToRoute === 'teacher') router.push('/teacher');
-      else if (roleToRoute === 'admin') router.push('/admin');
-      else router.push('/');
+      const defaultDest = (roleToRoute === 'student' || roleToRoute === 'oquvchi') ? '/student'
+        : (roleToRoute === 'mentor' || roleToRoute === 'teacher') ? '/teacher'
+        : (roleToRoute === 'admin') ? '/admin'
+        : '/';
+      router.push(getRedirectUrl(defaultDest));
       
     } catch (err: unknown) {
       if (!isRegistering) {
+        // Check custom users again on network error
+        if (typeof window !== 'undefined') {
+          try {
+            const customUsers = JSON.parse(localStorage.getItem('tafakkur_custom_users') || '[]');
+            const matchedCustom = customUsers.find((u: any) => u.username?.toLowerCase() === lower);
+            if (matchedCustom) {
+              const customRole = matchedCustom.role || 'student';
+              localStorage.setItem('tafakkur_user', JSON.stringify({
+                username: matchedCustom.username,
+                role: customRole,
+                profile: matchedCustom.profile || { name: matchedCustom.username }
+              }));
+              const dest = (customRole === 'admin') ? '/admin' : (customRole === 'teacher' || customRole === 'mentor') ? '/teacher' : '/student';
+              router.push(getRedirectUrl(dest));
+              return;
+            }
+          } catch {}
+        }
+
         // High-reliability demo fallback for hackathon evaluation
         const fallbackRole = (lower.includes('admin') ? 'admin' : (lower.includes('teach') || lower.includes('ustoz') ? 'teacher' : 'student'));
         const acc = DEMO_ACCOUNTS[fallbackRole];
@@ -227,7 +275,7 @@ export default function LoginPage() {
             profile: acc.profile
           }));
         }
-        router.push(acc.route);
+        router.push(getRedirectUrl(acc.route));
         return;
       }
 

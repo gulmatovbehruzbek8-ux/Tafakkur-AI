@@ -170,24 +170,33 @@ export default function Home() {
 
                   {/* Micro Badges inside Card */}
                   <div className="space-y-2.5 pt-2 text-left text-xs">
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                      <span className="text-slate-300 flex items-center gap-2">
+                    <Link 
+                      href="/student/tutor" 
+                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-teal-400/40 flex items-center justify-between transition-all group block"
+                    >
+                      <span className="text-slate-300 group-hover:text-white flex items-center gap-2">
                         <span>🎓</span> Shaxsiy AI Repetitor (SOW)
                       </span>
-                      <span className="text-emerald-400 font-bold font-mono">FAOL</span>
-                    </div>
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                      <span className="text-slate-300 flex items-center gap-2">
+                      <span className="text-emerald-400 font-bold font-mono">FAOL →</span>
+                    </Link>
+                    <Link 
+                      href="/student/tutor?mode=PRACTICE" 
+                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-teal-400/40 flex items-center justify-between transition-all group block"
+                    >
+                      <span className="text-slate-300 group-hover:text-white flex items-center gap-2">
                         <span>⚡</span> Amaliyot & Oraliq Prep
                       </span>
-                      <span className="text-teal-400 font-bold font-mono">TAYYOR</span>
-                    </div>
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
-                      <span className="text-slate-300 flex items-center gap-2">
+                      <span className="text-teal-400 font-bold font-mono">TAYYOR →</span>
+                    </Link>
+                    <Link 
+                      href="/student/calendar" 
+                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-teal-400/40 flex items-center justify-between transition-all group block"
+                    >
+                      <span className="text-slate-300 group-hover:text-white flex items-center gap-2">
                         <span>📅</span> Interaktiv Taqvim & Voqealar
                       </span>
-                      <span className="text-cyan-400 font-bold font-mono">SINXRON</span>
-                    </div>
+                      <span className="text-cyan-400 font-bold font-mono">SINXRON →</span>
+                    </Link>
                   </div>
                 </div>
               </div>

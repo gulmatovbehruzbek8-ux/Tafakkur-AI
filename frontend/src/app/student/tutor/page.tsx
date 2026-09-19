@@ -119,6 +119,22 @@ Node* searchBST(Node* root, int target) {
           setSowDocs(JSON.parse(stored));
         } catch {}
       }
+
+      // Check query parameter for initial mode
+      const params = new URLSearchParams(window.location.search);
+      const urlMode = params.get('mode')?.toUpperCase();
+      if (urlMode && ['PRACTICE', 'EXAM_PREP', 'QUIZ', 'REVIEW', 'LEARN'].includes(urlMode)) {
+        setActiveMode(urlMode as any);
+        setTimeout(() => {
+          if (urlMode === 'PRACTICE') {
+            handleSend("Ushbu mavzu bo'yicha amaliy dasturlash topshirig'i va masala ber", 'PRACTICE');
+          } else if (urlMode === 'EXAM_PREP') {
+            handleSend("Oraliq nazorat imtihoni uchun simulyatsiya savollari va keyslarini ber", 'EXAM_PREP');
+          } else if (urlMode === 'QUIZ') {
+            handleSend("Viktorina savoli ber", 'QUIZ');
+          }
+        }, 100);
+      }
     }
   }, []);
 
