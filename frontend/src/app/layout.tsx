@@ -32,7 +32,6 @@ export const metadata: Metadata = {
 
 import CommandPalette from "@/app/components/CommandPalette";
 import ThemeAndUIModeProvider from "@/app/components/ThemeAndUIModeProvider";
-import AuthRouteGuard from "@/app/components/AuthRouteGuard";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -42,10 +41,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col font-sans text-ink">
         <ThemeAndUIModeProvider>
-          <AuthRouteGuard>
-            <CommandPalette />
-            {children}
-          </AuthRouteGuard>
+          <CommandPalette />
+          {children}
         </ThemeAndUIModeProvider>
       </body>
     </html>

@@ -60,13 +60,13 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
             <Link 
-              href="/student/calendar" 
+              href="/login?redirect=/student/calendar" 
               className="hidden sm:inline-flex px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
             >
               Akademik Taqvim
             </Link>
             <Link 
-              href="/student/events" 
+              href="/login?redirect=/student/events" 
               className="hidden sm:inline-flex px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
             >
               Tadbirlar & Xakaton

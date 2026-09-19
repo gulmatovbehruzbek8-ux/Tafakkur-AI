@@ -168,10 +168,13 @@ export default function BeautifulCalendarPage() {
   const [newRoom, setNewRoom] = useState('');
   const [newInstructor, setNewInstructor] = useState('');
   const [newDescription, setNewDescription] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   // Load from localStorage on mount
   useEffect(() => {
     try {
+      const user = localStorage.getItem('tafakkur_user');
+      setIsLoggedIn(!!user);
       const saved = localStorage.getItem('tafakkur_calendar_events');
       if (saved) {
         setEvents(JSON.parse(saved));
@@ -329,7 +332,24 @@ export default function BeautifulCalendarPage() {
       <TafakkurCompanion currentContext={`Akademik Taqvim: ${selectedDay}-${MONTH_NAMES[currentMonthIndex].toLowerCase()} rejalari`} />
 
       <main className="tf-main pb-20">
-        <div className="tf-container space-y-8">
+        <div className="tf-container space-y-6">
+
+          {!isLoggedIn && (
+            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-amber-900 shadow-xs">
+              <div className="flex items-center gap-2.5">
+                <span className="text-base">🔒</span>
+                <span>
+                  <strong>Mehmon ko&apos;rinishi:</strong> Universitet dars jadvali va muddatlarini to&apos;liq tahrirlash uchun tizimga kiring.
+                </span>
+              </div>
+              <Link 
+                href="/login?redirect=/student/calendar" 
+                className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs transition-colors shrink-0 text-center shadow-xs"
+              >
+                Tizimga Kirish →
+              </Link>
+            </div>
+          )}
 
           {/* =========================================================================
               1. HEADER: CONTROLS & MONTH NAVIGATOR

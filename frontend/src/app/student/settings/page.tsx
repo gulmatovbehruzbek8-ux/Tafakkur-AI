@@ -15,6 +15,7 @@ interface SettingsState {
   themeMode: 'light' | 'dark' | 'system';
   accentColor: 'teal' | 'indigo' | 'emerald' | 'sky';
   fontSize: 'normal' | 'compact' | 'large';
+  uiStyle?: 'default' | 'simple';
 }
 
 const DEFAULT_SETTINGS: SettingsState = {
@@ -28,6 +29,7 @@ const DEFAULT_SETTINGS: SettingsState = {
   themeMode: 'light',
   accentColor: 'teal',
   fontSize: 'normal',
+  uiStyle: 'default',
 };
 
 export default function StudentSettingsPage() {
@@ -71,6 +73,10 @@ export default function StudentSettingsPage() {
 
   const handleSelectAccent = (color: SettingsState['accentColor']) => {
     setSettings(prev => ({ ...prev, accentColor: color }));
+  };
+
+  const handleSelectUIStyle = (style: 'default' | 'simple') => {
+    setSettings(prev => ({ ...prev, uiStyle: style }));
   };
 
   const requestBrowserNotification = async () => {
@@ -361,6 +367,46 @@ export default function StudentSettingsPage() {
                     </button>
                   );
                 })}
+              </div>
+            </div>
+
+            {/* UI Style: Standart vs Oddiy UI (Elder Profs) */}
+            <div className="pt-2">
+              <label className="text-xs font-bold text-slate-700 block mb-3 uppercase tracking-wider">
+                Interfeys Uslubi (UI Style):
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleSelectUIStyle('default')}
+                  className={`p-4 rounded-2xl border text-left transition-all ${
+                    settings.uiStyle !== 'simple'
+                      ? 'bg-teal-50/70 border-teal-500 ring-2 ring-teal-500/20 shadow-xs'
+                      : 'bg-white border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xl">✨</span>
+                    <span className="font-bold text-slate-900 text-sm">Standart UI</span>
+                  </div>
+                  <p className="text-xs text-slate-500">Zamonaviy dizayn, dinamik animatsiyalar va bento grid.</p>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => handleSelectUIStyle('simple')}
+                  className={`p-4 rounded-2xl border text-left transition-all ${
+                    settings.uiStyle === 'simple'
+                      ? 'bg-amber-50/70 border-amber-500 ring-2 ring-amber-500/20 shadow-xs'
+                      : 'bg-white border-slate-200 hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xl">👴</span>
+                    <span className="font-bold text-slate-900 text-sm">Oddiy UI (Katta yoshli professorlar uchun)</span>
+                  </div>
+                  <p className="text-xs text-slate-500">Katta harflar, aniq kontrast va soddalashtirilgan o&apos;qilishi qulay dizayn.</p>
+                </button>
               </div>
             </div>
 
