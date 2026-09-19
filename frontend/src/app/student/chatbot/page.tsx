@@ -17,7 +17,7 @@ export default function StudentChatbot() {
     {
       id: '1',
       role: 'ai',
-      text: "Assalomu alaykum, Behruzbek! Men Tafakkur AI — sizning shaxsiy ta'lim yordamchingizman. Dars materiallari, o'quv dasturi (SOW), mustaqil ishlar yoki nazorat savollari bo'yicha qanday yordam bera olaman?",
+      text: "Assalomu alaykum, Bunyodbek! Men Tafakkur AI — sizning shaxsiy ta'lim yordamchingizman. Dars materiallari, o'quv dasturi (SOW), mustaqil ishlar yoki nazorat savollari bo'yicha qanday yordam bera olaman?",
       timestamp: 'Hozir'
     }
   ]);

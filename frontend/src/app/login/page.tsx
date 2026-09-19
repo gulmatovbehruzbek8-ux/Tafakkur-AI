@@ -17,8 +17,8 @@ const DEMO_ACCOUNTS: Record<string, DemoAccount> = {
     role: 'student',
     route: '/student',
     profile: {
-      name: "Behruzbek Gulmatov",
-      firstName: "Behruzbek",
+      name: "Bunyodbek Gulmatov",
+      firstName: "Bunyodbek",
       lastName: "Gulmatov",
       studentId: "38491023",
       faculty: "Sun'iy Intellekt va Axborot Texnologiyalari",
@@ -80,8 +80,8 @@ const DEMO_ACCOUNTS: Record<string, DemoAccount> = {
     role: 'student',
     route: '/student',
     profile: {
-      name: "Behruzbek Gulmatov",
-      firstName: "Behruzbek",
+      name: "Bunyodbek Gulmatov",
+      firstName: "Bunyodbek",
       lastName: "Gulmatov",
       studentId: "38491023",
       faculty: "Sun'iy Intellekt va Axborot Texnologiyalari",

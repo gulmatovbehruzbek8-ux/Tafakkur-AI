@@ -308,11 +308,11 @@ export default function TeacherGraderSignaturePage() {
                   <span className="text-slate-500">Holat:</span>
                   {isApproved ? (
                     <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-extrabold border border-emerald-300">
-                      ✓ PROFESSOR APPROVED (Tasdiqlangan)
+                      ✓ Professor tomonidan tasdiqlangan
                     </span>
                   ) : currentEval ? (
                     <span className="px-3 py-1 rounded-full bg-teal-100 text-teal-900 font-extrabold border border-teal-300">
-                      ⚡ AI GENERATED (Ko'rib chiqilishi kerak)
+                      ⚡ AI tahlil qilgan (Tasdiqlash kutilmoqda)
                     </span>
                   ) : (
                     <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-bold">

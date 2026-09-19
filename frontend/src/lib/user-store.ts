@@ -37,7 +37,7 @@ export const INITIAL_USERS: AppUser[] = [
   {
     id: "usr-3",
     username: "student",
-    fullName: "Behruzbek Gulmatov",
+    fullName: "Bunyodbek Gulmatov",
     email: "student@tafakkur.edu.uz",
     role: "student",
     department: "CS-22-01 Guruhi",

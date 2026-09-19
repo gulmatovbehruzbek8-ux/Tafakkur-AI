@@ -92,7 +92,7 @@ class HemisClient:
             "notice": "HEMIS token kiritilmagan yoki oflayn rejimda. Namuna ma'lumotlari ko'rsatilmoqda.",
             "data": {
                 "studentId": student_id,
-                "fullName": "Behruzbek Gulmatov",
+                "fullName": "Bunyodbek Gulmatov",
                 "faculty": "Sun'iy Intellekt va Axborot Texnologiyalari",
                 "specialty": "Dasturiy injiniring",
                 "course": "2-bosqich",
