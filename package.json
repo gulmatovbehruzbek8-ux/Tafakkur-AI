@@ -1,11 +1,12 @@
 {
-  "name": "tafakkur-ai-monorepo",
+  "name": "tafakkur-ai",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm --prefix frontend run dev",
-    "build": "node build.js",
-    "start": "npm --prefix frontend run start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4",
