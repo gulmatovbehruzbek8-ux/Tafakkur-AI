@@ -74,7 +74,7 @@ export default function Home() {
 
             <Link 
               href="/login" 
-              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm transition-all shadow-xs"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm transition-all shadow-xs"
             >
               Tizimga Kirish →
             </Link>
@@ -106,7 +106,7 @@ export default function Home() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link 
                   href="/login" 
-                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-xs flex items-center gap-2"
+                  className="px-7 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-all shadow-xs flex items-center gap-2"
                 >
                   <span>Portalga kirish</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@ export default function Home() {
             {/* Right Column: Hero Showcase Card */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md">
-                <div className="relative rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl text-center space-y-6">
+                <div className="relative rounded-2xl bg-white dark:bg-[#121215]/90 border border-slate-200 dark:border-zinc-800 p-8 shadow-xl dark:shadow-2xl text-center space-y-6">
                   {/* Central Branded Logo Showcase */}
                   <div className="relative mx-auto w-28 h-28 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-4 shadow-2xs flex items-center justify-center transition-transform hover:scale-105">
                     <div className="relative w-full h-full">
@@ -230,7 +230,7 @@ export default function Home() {
             {features.map((f) => (
               <article
                 key={f.title}
-                className="bg-slate-50 dark:bg-[#121215] rounded-2xl p-8 border border-slate-200 dark:border-white/10 shadow-sm hover:-translate-y-1 hover:border-blue-500/50 transition-all duration-200"
+                className="bg-slate-50 dark:bg-[#121215] rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 shadow-sm hover:-translate-y-1 hover:border-blue-500/50 transition-all duration-200"
               >
                 <div className="w-12 h-12 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white flex items-center justify-center mb-6 text-2xl shadow-2xs">
                   {f.icon}
@@ -244,7 +244,7 @@ export default function Home() {
       </section>
 
       {/* Privacy strip */}
-      <section className="relative bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white py-16 md:py-20 px-6 md:px-12 overflow-hidden border-t border-slate-200 dark:border-slate-800">
+      <section className="relative bg-slate-100 dark:bg-[#121215] text-slate-900 dark:text-white py-16 md:py-20 px-6 md:px-12 overflow-hidden border-t border-slate-200 dark:border-zinc-800">
         <div className="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-bold mb-3">
@@ -257,7 +257,7 @@ export default function Home() {
               Llama / Qwen kabi ochiq modellar Ollama orqali ishlaydi. HEMIS ma’lumotlari sinxronlashadi, lekin chet el bulutlariga chiqmaydi.
             </p>
           </div>
-          <Link href="/login" className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-xs shrink-0 self-start md:self-auto">
+          <Link href="/login" className="px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-all shadow-xs shrink-0 self-start md:self-auto">
             Demo hisob bilan sinash →
           </Link>
         </div>

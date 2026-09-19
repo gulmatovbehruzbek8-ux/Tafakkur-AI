@@ -16,7 +16,10 @@ export async function POST(req: NextRequest) {
     }
 
     const matched = searchKnowledgeBase(question);
-    const effectiveContext = context || (matched ? matched.content : '');
+    const effectiveContext = [
+      context,
+      matched ? `${matched.subjectName} — ${matched.title} (${matched.moduleName}):\n${matched.content}` : ''
+    ].filter(Boolean).join('\n\n');
 
     let promptForLLM: string;
     if (effectiveContext) {

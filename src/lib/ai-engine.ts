@@ -2,7 +2,7 @@
  * Tafakkur AI - Resilient Multi-Tier AI Generation & Knowledge Engine
  * Supports:
  * 1. Groq Cloud LLM (Meta Llama 3.3 70B / Llama 3.1 8B) via process.env.GROQ_API_KEY
- * 2. Remote Ollama via process.env.OLLAMA_URL (e.g. Ngrok / Cloudflare Tunnel)
+ * 2. Ollama (default model qwen2.5:7b, set OLLAMA_URL / OLLAMA_MODEL) — tried FIRST when configured
  * 3. Google Gemini API via process.env.GEMINI_API_KEY
  * 4. OpenAI API via process.env.OPENAI_API_KEY
  * 5. Built-in Pedagogical SOW Grounding Engine (Zero-config, 100% resilient on Vercel)
@@ -187,9 +187,55 @@ export function searchKnowledgeBase(query: string): SOWResource | null {
 }
 
 /**
+ * Language policy: always answer in Uzbek (Latin script), whatever language the
+ * question is written in, unless the user explicitly asks for another language.
+ */
+export const SYSTEM_PROMPT_UZ =
+  "Siz universitetning intellektual ta'lim assistentisiz (Tafakkur AI). " +
+  "Talabalar va professorlarga aniq, pedagogik va akademik jihatdan puxta javob bering. " +
+  "TIL QOIDASI: har doim O'ZBEK tilida (lotin yozuvida) javob bering — savol qaysi tilda yozilgan bo'lishidan qat'i nazar. " +
+  "Faqat foydalanuvchi aniq boshqa tilda javob so'rasa (masalan: \"answer in English\", \"ответь по-русски\"), shu tilda javob bering. " +
+  "Kod, formulalar va texnik atamalar asl holicha qolishi mumkin.";
+
+/**
  * Calls Cloud LLM or Ollama if configured
  */
 export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70b-versatile'): Promise<string | null> {
+  // 0. Local / remote Ollama (Qwen 2.5) — preferred: data never leaves the university's machine
+  const ollamaUrl = process.env.OLLAMA_URL;
+  if (ollamaUrl) {
+    try {
+      const cleanUrl = ollamaUrl.replace(/\/$/, '');
+      const oRes = await fetch(`${cleanUrl}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: AbortSignal.timeout(120000),
+        body: JSON.stringify({
+          model: process.env.OLLAMA_MODEL || 'qwen2.5:7b',
+          stream: false,
+          keep_alive: '30m',
+          options: { temperature: 0.6, num_ctx: 4096 },
+          messages: [
+            {
+              role: 'system',
+              content: SYSTEM_PROMPT_UZ
+            },
+            { role: 'user', content: prompt }
+          ]
+        })
+      });
+      if (oRes.ok) {
+        const oData = await oRes.json();
+        const text = oData?.message?.content;
+        if (text) return text;
+      } else {
+        console.warn('Ollama responded with status', oRes.status);
+      }
+    } catch (e) {
+      console.warn('Ollama invocation failed, falling back to next provider:', e);
+    }
+  }
+
   // 1. Check Groq API (Free tier, ultra-fast Llama 3.3 70B & 3.1 8B)
   const groqKey = process.env.GROQ_API_KEY;
   if (groqKey) {
@@ -201,11 +247,11 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: modelName.includes('llama') ? modelName : 'llama-3.3-70b-versatile',
+          model: /^llama-[\w.-]+$/.test(modelName) ? modelName : 'llama-3.3-70b-versatile',
           messages: [
             {
               role: 'system',
-              content: 'Siz universitetning intellektual ta\'lim assistentisiz (Tafakkur AI). Talabalar va professorlarga o\'zbek tilida aniq, pedagogik va akademik jihatdan puxta javob bering.'
+              content: SYSTEM_PROMPT_UZ
             },
             {
               role: 'user',
@@ -227,29 +273,6 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
     }
   }
 
-  // 2. Check Remote Ollama (e.g. Ngrok tunnel or VPS URL)
-  const ollamaUrl = process.env.OLLAMA_URL;
-  if (ollamaUrl) {
-    try {
-      const cleanUrl = ollamaUrl.replace(/\/$/, '');
-      const oRes = await fetch(`${cleanUrl}/api/generate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'llama3',
-          prompt: prompt,
-          stream: false
-        })
-      });
-      if (oRes.ok) {
-        const oData = await oRes.json();
-        if (oData.response) return oData.response;
-      }
-    } catch (e) {
-      console.warn('Remote Ollama invocation failed:', e);
-    }
-  }
-
   // 3. Check Google Gemini API
   const geminiKey = process.env.GEMINI_API_KEY;
   if (geminiKey) {
@@ -258,6 +281,7 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM_PROMPT_UZ }] },
           contents: [{ parts: [{ text: prompt }] }]
         })
       });
@@ -283,7 +307,7 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
         },
         body: JSON.stringify({
           model: 'gpt-4o-mini',
-          messages: [{ role: 'user', content: prompt }]
+          messages: [{ role: 'system', content: SYSTEM_PROMPT_UZ }, { role: 'user', content: prompt }]
         })
       });
       if (aiRes.ok) {

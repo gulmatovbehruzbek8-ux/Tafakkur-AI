@@ -135,15 +135,8 @@ export default function TeacherGraderSignaturePage() {
         throw new Error();
       }
     } catch {
-      selectedStudent.status = 'ai_evaluated';
-      selectedStudent.aiEvaluation = {
-        score: 85,
-        reasoning: "Taqdim etilgan javobda asosiy algoritmlar yoritilgan. Biroq AVL rotatsiyalari va empirik tahlil to'liq keltirilmagan.",
-        strengths: ["Binar qidiruv strukturasi to'g'ri tuzilgan"],
-        weaknesses: ["Balanslash koeffitsienti formulasi yo'q", "Tajriba natijalari keltirilmagan"],
-        feedback: "Yaxshi boshlanish. Balanslash qismini to'ldirib qayta topshirish tavsiya etiladi."
-      };
-      setSelectedStudent({ ...selectedStudent });
+      setSuccessToast("⚠ AI baholash muvaffaqiyatsiz tugadi. Ollama/AI serveri ishlayotganini tekshirib, qayta urinib ko'ring.");
+      setTimeout(() => setSuccessToast(null), 6000);
     } finally {
       setEvaluating(false);
     }
@@ -165,14 +158,14 @@ export default function TeacherGraderSignaturePage() {
 
           {/* Toast Notification */}
           {successToast && (
-            <div className="p-4 rounded-2xl bg-emerald-900 text-white text-xs font-semibold shadow-lg border border-emerald-500 flex items-center justify-between animate-fade-up">
+            <div className={`p-4 rounded-2xl text-white text-xs font-semibold shadow-lg border flex items-center justify-between animate-fade-up ${successToast.startsWith('⚠') ? 'bg-rose-900 border-rose-500' : 'bg-emerald-900 border-emerald-500'}`}>
               <span>{successToast}</span>
               <button onClick={() => setSuccessToast(null)} className="text-white/60 hover:text-white">✕</button>
             </div>
           )}
 
           {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-zinc-800">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
@@ -180,7 +173,7 @@ export default function TeacherGraderSignaturePage() {
                   Imtihon & Baholash Tizimi
                 </span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">
                 AI Grader: Intellektual Baholash Maydoni
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
@@ -192,12 +185,12 @@ export default function TeacherGraderSignaturePage() {
             <div className="flex items-center gap-2.5 flex-wrap">
               <HeaderControls />
 
-              <select className="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-xs">
+              <select className="px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-xs">
                 <option>CS-201: Ma'lumotlar tuzilmasi va algoritmlar</option>
                 <option>AI-204: Sun'iy Intellekt asoslari</option>
               </select>
 
-              <select className="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-xs">
+              <select className="px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-xs font-bold text-slate-800 dark:text-slate-200 shadow-xs">
                 <option>3-Laboratoriya: AVL Binar Daraxtlari</option>
                 <option>2-Laboratoriya: Stek va Ro'yxatlar</option>
               </select>
@@ -210,8 +203,8 @@ export default function TeacherGraderSignaturePage() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
             {/* Column 1: Submissions Roster */}
-            <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-5 shadow-xs space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
+            <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-xs space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
                 <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white">
                   Talabalar ({DEMO_STUDENTS.length})
                 </h3>
@@ -233,7 +226,7 @@ export default function TeacherGraderSignaturePage() {
                       className={`w-full p-3.5 rounded-2xl border text-left transition-all flex flex-col justify-between space-y-1.5 ${
                         isSelected
                           ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                          : 'bg-slate-50/70 dark:bg-white/[0.02] border-slate-200/80 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 text-slate-800 dark:text-slate-200'
+                          : 'bg-slate-50/70 dark:bg-white/[0.02] border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 text-slate-800 dark:text-slate-200'
                       }`}
                     >
                       <div className="flex items-center justify-between">
@@ -272,8 +265,8 @@ export default function TeacherGraderSignaturePage() {
             {/* Column 2 & 3: Student Submission & Rubric */}
             <div className="lg:col-span-2 space-y-5">
               {/* Submission viewer */}
-              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 shadow-xs space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 shadow-xs space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
                   <div>
                     <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                       Talabaning Topshirig'i
@@ -288,7 +281,7 @@ export default function TeacherGraderSignaturePage() {
                   </span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 font-mono text-xs text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line max-h-72 overflow-y-auto">
+                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 font-mono text-xs text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-line max-h-72 overflow-y-auto">
                   {selectedStudent.submissionText}
                 </div>
 
@@ -310,7 +303,7 @@ export default function TeacherGraderSignaturePage() {
               </div>
 
               {/* Status Comparison Indicator */}
-              <div className="p-4 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-white/10 flex items-center justify-between text-xs">
+              <div className="p-4 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
                   <span className="text-slate-500 dark:text-slate-400">Holat:</span>
                   {isApproved ? (
@@ -342,8 +335,8 @@ export default function TeacherGraderSignaturePage() {
             </div>
 
             {/* Column 4: AI Evaluation & Professor Decision */}
-            <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-5 sm:p-6 shadow-xs space-y-5">
-              <div className="pb-3 border-b border-slate-100 dark:border-white/10 flex items-center justify-between">
+            <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 sm:p-6 shadow-xs space-y-5">
+              <div className="pb-3 border-b border-slate-200 dark:border-white/10 flex items-center justify-between">
                 <div>
                   <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block">
                     AI Grader Tavsiyasi
@@ -365,7 +358,7 @@ export default function TeacherGraderSignaturePage() {
 
               {currentEval ? (
                 <div className="space-y-3.5 text-xs">
-                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-100 dark:border-white/10 leading-relaxed text-slate-700 dark:text-slate-200">
+                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 leading-relaxed text-slate-700 dark:text-slate-200">
                     <strong className="block text-slate-900 dark:text-white mb-0.5">Asoslash (Reasoning):</strong>
                     {currentEval.reasoning}
                   </div>
@@ -395,7 +388,7 @@ export default function TeacherGraderSignaturePage() {
                   </div>
 
                   {/* Professor Decision Box */}
-                  <div className="pt-3 border-t border-slate-100 dark:border-white/10 space-y-3">
+                  <div className="pt-3 border-t border-slate-200 dark:border-white/10 space-y-3">
                     <div>
                       <label className="text-[10px] font-bold uppercase text-slate-400 block mb-1">
                         Professor Yakuniy Qarori:

@@ -173,7 +173,9 @@ Node* searchBST(Node* root, int target) {
       let code: { language: string; code: string } | undefined;
       let quiz: Message['quiz'] | undefined;
 
-      const lower = textToSend.toLowerCase();
+      // Free text typed in LEARN mode always goes to the live AI; canned templates only serve quick-action buttons and structured modes
+      const queryLower = textToSend.toLowerCase();
+      const lower = (!overrideText && currentActiveMode === 'LEARN') ? '' : queryLower;
 
       if (currentActiveMode === 'QUIZ' || lower.includes('viktorina') || lower.includes('test')) {
         aiText = `Ajoyib! **${selectedChapter}** mavzusi bo'yicha tezkor sinov savoli:\n\nQuyidagi variantlardan qaysi biri to'g'ri?`;
@@ -299,7 +301,7 @@ def insert(root, key):
           let liveText = "";
           try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 7000);
+            const timeoutId = setTimeout(() => controller.abort(), 120000);
             const res = await fetch(getApiUrl('/api/chat'), {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -322,7 +324,7 @@ def insert(root, key):
             const matchingSow = sowDocs.find((doc: SowDocument) => {
               const titleLower = (doc.title || '').toLowerCase();
               const contentLower = (doc.content || '').toLowerCase();
-              const words = lower.split(' ').filter((w: string) => w.length > 3);
+              const words = queryLower.split(' ').filter((w: string) => w.length > 3);
               return words.some((w: string) => titleLower.includes(w) || contentLower.includes(w));
             });
 
@@ -402,13 +404,13 @@ def insert(root, key):
     <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/tutor" />
 
-      <main className="tf-main pb-16">
+      <main className="tf-main pb-20">
         <div className="tf-container space-y-6">
 
           {/* =========================================================================
               1. ACADEMIC CONTEXT HEADER: COURSE, CHAPTER, DIFFICULTY & GOAL
               ========================================================================= */}
-          <div className="bg-white dark:bg-gradient-to-br dark:from-[#07101B] dark:via-[#0c1e30] dark:to-[#072438] rounded-3xl p-6 sm:p-8 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-xl space-y-6 animate-fade-up">
+          <div className="bg-white dark:bg-gradient-to-br dark:from-[#07101B] dark:via-[#0c1e30] dark:to-[#072438] rounded-2xl p-6 sm:p-8 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-xl space-y-6 animate-fade-up">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
@@ -419,7 +421,7 @@ def insert(root, key):
                     Urganch Davlat Universiteti • Akademik Yordamchi
                   </span>
                 </div>
-                <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">
                   Intellektual Universitet Repetitori
                 </h1>
                 <p className="text-xs text-slate-600 dark:text-slate-300 max-w-2xl">
@@ -437,7 +439,7 @@ def insert(root, key):
                 </Link>
                 <Link
                   href="/student"
-                  className="px-3.5 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500 transition-colors"
+                  className="px-3.5 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors"
                 >
                   Kampusga qaytish
                 </Link>
@@ -461,7 +463,7 @@ def insert(root, key):
                   className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl px-3 py-2 text-slate-800 dark:text-white font-medium focus:outline-none focus:border-blue-500"
                 >
                   {COURSES.map((c, i) => (
-                    <option key={c.id} value={i} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
+                    <option key={c.id} value={i} className="bg-white dark:bg-[#121215] text-slate-900 dark:text-white">
                       {c.name}
                     </option>
                   ))}
@@ -479,7 +481,7 @@ def insert(root, key):
                   className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl px-3 py-2 text-slate-800 dark:text-white font-medium focus:outline-none focus:border-blue-500 truncate"
                 >
                   {currentCourse.chapters.map((ch, i) => (
-                    <option key={i} value={ch} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white truncate">
+                    <option key={i} value={ch} className="bg-white dark:bg-[#121215] text-slate-900 dark:text-white truncate">
                       {ch}
                     </option>
                   ))}
@@ -496,10 +498,10 @@ def insert(root, key):
                   onChange={(e) => setDifficulty(e.target.value as any)}
                   className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl px-3 py-2 text-slate-800 dark:text-white font-medium focus:outline-none focus:border-blue-500"
                 >
-                  <option value="Boshlang'ich" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Boshlang'ich (Fundamental)</option>
-                  <option value="O'rta" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">O'rta (Universitet standardi)</option>
-                  <option value="Murakkab" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Murakkab (Chuqurlashtirilgan)</option>
-                  <option value="Olimpiada" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Olimpiada / Xakaton darajasi</option>
+                  <option value="Boshlang'ich" className="bg-white dark:bg-[#121215] text-slate-900 dark:text-white">Boshlang'ich (Fundamental)</option>
+                  <option value="O'rta" className="bg-white dark:bg-[#121215] text-slate-900 dark:text-white">O'rta (Universitet standardi)</option>
+                  <option value="Murakkab" className="bg-white dark:bg-[#121215] text-slate-900 dark:text-white">Murakkab (Chuqurlashtirilgan)</option>
+                  <option value="Olimpiada" className="bg-white dark:bg-[#121215] text-slate-900 dark:text-white">Olimpiada / Xakaton darajasi</option>
                 </select>
               </div>
 
@@ -543,7 +545,7 @@ def insert(root, key):
                   className={`p-3.5 rounded-2xl text-left border transition-all ${
                     isActive
                       ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-600 shadow-md ring-2 ring-blue-500/30'
-                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
+                      : 'bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-slate-700'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -561,7 +563,7 @@ def insert(root, key):
           {/* =========================================================================
               3. "EXPLAIN DIFFERENTLY" QUICK ACTION TOOLBAR
               ========================================================================= */}
-          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200/80 dark:border-slate-800 p-3.5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-3.5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-600" />
               <span className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">
@@ -572,31 +574,31 @@ def insert(root, key):
             <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
               <button
                 onClick={() => handleExplainDifferently('simple')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-zinc-700 transition-colors whitespace-nowrap"
               >
                 💡 Oddiy tilda
               </button>
               <button
                 onClick={() => handleExplainDifferently('analogy')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-zinc-700 transition-colors whitespace-nowrap"
               >
                 🎭 Hayotiy analogiya
               </button>
               <button
                 onClick={() => handleExplainDifferently('code')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-zinc-700 transition-colors whitespace-nowrap"
               >
                 💻 Kod va misol
               </button>
               <button
                 onClick={() => handleExplainDifferently('challenge')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-zinc-700 transition-colors whitespace-nowrap"
               >
                 ⚔️ Meni sinab ko'r
               </button>
               <button
                 onClick={() => handleExplainDifferently('summarize')}
-                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-700 dark:hover:text-blue-400 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-zinc-700 transition-colors whitespace-nowrap"
               >
                 📝 Xulosa konspekt
               </button>
@@ -606,9 +608,9 @@ def insert(root, key):
           {/* =========================================================================
               4. CONVERSATION WORKSPACE: VISUALLY RICH MESSAGE FEED
               ========================================================================= */}
-          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col h-[600px] overflow-hidden">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xs flex flex-col h-[600px] overflow-hidden">
             {/* Feed Header */}
-            <div className="px-6 py-3.5 bg-slate-50/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+            <div className="px-6 py-3.5 bg-slate-50/80 dark:bg-[#121215]/80 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between text-xs">
               <div className="flex items-center gap-2.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="font-bold text-slate-800 dark:text-slate-200">
@@ -659,7 +661,7 @@ def insert(root, key):
                     className={`max-w-[90%] sm:max-w-[80%] p-4.5 rounded-2xl text-xs sm:text-sm leading-relaxed whitespace-pre-line shadow-xs ${
                       m.sender === 'user'
                         ? 'bg-blue-600 text-white rounded-tr-xs font-medium'
-                        : 'bg-white dark:bg-[#18181b] text-slate-800 dark:text-slate-100 border border-slate-200/80 dark:border-slate-800 rounded-tl-xs'
+                        : 'bg-white dark:bg-[#18181b] text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-zinc-800 rounded-tl-xs'
                     }`}
                   >
                     {m.text}
@@ -684,7 +686,7 @@ def insert(root, key):
 
                     {/* Interactive Quiz Block */}
                     {m.quiz && (
-                      <div className="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-3">
+                      <div className="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-zinc-800/80 border border-slate-200 dark:border-zinc-700 space-y-3">
                         <h4 className="font-display font-bold text-slate-900 dark:text-white text-xs sm:text-sm">
                           {m.quiz.question}
                         </h4>
@@ -695,7 +697,7 @@ def insert(root, key):
                             const isCorrect = m.quiz?.correctIndex === optIdx;
                             const hasAnswered = m.quiz?.selectedIndex !== undefined;
 
-                            let btnStyle = "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200";
+                            let btnStyle = "bg-white dark:bg-zinc-800 border-slate-200 dark:border-zinc-700 hover:bg-blue-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200";
                             if (hasAnswered) {
                               if (isCorrect) btnStyle = "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-400 text-emerald-900 dark:text-emerald-200 font-bold";
                               else if (isSelected) btnStyle = "bg-red-50 dark:bg-red-950/40 border-red-400 text-red-900 dark:text-red-200 line-through";
@@ -729,7 +731,7 @@ def insert(root, key):
               ))}
 
               {isTyping && (
-                <div className="flex items-center gap-2 p-3.5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700 w-28">
+                <div className="flex items-center gap-2 p-3.5 bg-white dark:bg-zinc-800 rounded-2xl border border-slate-200 dark:border-zinc-700 w-28">
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" />
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce [animation-delay:0.2s]" />
                   <span className="w-2 h-2 rounded-full bg-blue-600 animate-bounce [animation-delay:0.4s]" />
@@ -739,7 +741,7 @@ def insert(root, key):
             </div>
 
             {/* Input Bar */}
-            <div className="p-4 bg-white dark:bg-[#121215] border-t border-slate-200 dark:border-slate-800">
+            <div className="p-4 bg-white dark:bg-[#121215] border-t border-slate-200 dark:border-zinc-800">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -752,7 +754,7 @@ def insert(root, key):
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={`"${selectedChapter}" bo'yicha savol bering yoki kod so'rang...`}
-                  className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-800/80 rounded-2xl text-xs sm:text-sm text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 focus:outline-none focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+                  className="flex-1 px-4 py-3 bg-slate-50 dark:bg-zinc-800/80 rounded-2xl text-xs sm:text-sm text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-zinc-700 focus:outline-none focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                 />
                 <button
                   type="submit"

@@ -193,7 +193,7 @@ export default function AdminNewsPage() {
           <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/10">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
                 <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Rektorat Axborot Xizmati</span>
               </div>
               <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">E'lonlar va Yangiliklar Markazi</h1>
@@ -201,8 +201,8 @@ export default function AdminNewsPage() {
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800">
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse"></span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
                 Tafakkur AI Press Hub
               </span>
             </div>
@@ -232,7 +232,7 @@ export default function AdminNewsPage() {
                         key={idx}
                         type="button"
                         onClick={() => setBulletPoints(p)}
-                        className="text-left text-xs px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-teal-50 dark:hover:bg-teal-950/40 text-slate-700 dark:text-slate-300 hover:text-teal-900 dark:hover:text-teal-300 border border-slate-200/60 dark:border-white/10 hover:border-teal-200 dark:hover:border-teal-800 transition-colors line-clamp-1"
+                        className="text-left text-xs px-3 py-2 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-300 hover:text-blue-900 dark:hover:text-blue-300 border border-slate-200/60 dark:border-white/10 hover:border-blue-200 dark:hover:border-blue-800 transition-colors line-clamp-1"
                       >
                         {p}
                       </button>
@@ -243,7 +243,7 @@ export default function AdminNewsPage() {
                 <div>
                   <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2">E'lon mazmuni (Tezislar) *</label>
                   <textarea 
-                    className="w-full border border-slate-200 dark:border-white/10 rounded-xl bg-slate-50/50 dark:bg-white/[0.03] p-4 text-sm text-slate-800 dark:text-white placeholder-slate-400 focus:bg-white dark:focus:bg-[#18181b] focus:ring-2 focus:ring-teal-500/20 focus:border-teal-600 outline-none transition-all resize-none font-sans leading-relaxed"
+                    className="w-full border border-slate-200 dark:border-white/10 rounded-xl bg-slate-50/50 dark:bg-white/[0.03] p-4 text-sm text-slate-800 dark:text-white placeholder-slate-400 focus:bg-white dark:focus:bg-[#18181b] focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 outline-none transition-all resize-none font-sans leading-relaxed"
                     rows={5} 
                     placeholder="Masalan:&#10;- Xakaton 17-20 sentyabrda o'tkaziladi&#10;- Barcha talabalar ishtirok etishi mumkin&#10;- G'oliblar 50 mln so'm mukofot bilan taqdirlanadi" 
                     value={bulletPoints}
@@ -257,8 +257,8 @@ export default function AdminNewsPage() {
                 disabled={loading || !bulletPoints.trim()}
                 className={`w-full py-3.5 px-6 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-sm ${
                   loading || !bulletPoints.trim() 
-                  ? 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed border border-slate-200 dark:border-slate-700' 
-                  : 'bg-teal-600 hover:bg-teal-700 text-white shadow-teal-600/20 active:scale-[0.99]'
+                  ? 'bg-slate-100 dark:bg-zinc-800 text-slate-400 dark:text-slate-500 cursor-not-allowed border border-slate-200 dark:border-zinc-700' 
+                  : 'bg-blue-600 hover:bg-blue-700 text-white shadow-teal-600/20 active:scale-[0.99]'
                 }`}
               >
                 {loading ? (
@@ -283,7 +283,7 @@ export default function AdminNewsPage() {
             {/* Output & Publish Section */}
             <div className="tf-card-solid p-6 md:p-8 flex flex-col justify-between space-y-4">
               <div>
-                <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-100 dark:border-white/10">
+                <div className="flex justify-between items-center pb-4 mb-4 border-b border-slate-200 dark:border-white/10">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                     <h2 className="font-display text-lg font-bold text-ink">2. Tayyor Hujjat & Nashr</h2>
@@ -291,7 +291,7 @@ export default function AdminNewsPage() {
                   {announcement && (
                     <button
                       onClick={handleCopy}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50 dark:hover:bg-teal-950/40 border border-slate-200 dark:border-white/10 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 border border-slate-200 dark:border-white/10 transition-colors"
                     >
                       {copied ? "Nusxalandi! ✓" : "Nusxa olish 📋"}
                     </button>
@@ -300,7 +300,7 @@ export default function AdminNewsPage() {
                 
                 {loading ? (
                   <div className="flex flex-col justify-center items-center h-64 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-dashed border-slate-200 dark:border-white/10">
-                    <div className="w-8 h-8 border-2 border-teal-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+                    <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
                     <p className="text-slate-600 dark:text-slate-300 text-xs font-semibold">Tafakkur AI tahrirlamoqda...</p>
                     <p className="text-slate-400 text-[11px] mt-1">Rasmiy uslub va orfoepiya tekshirilmoqda</p>
                   </div>
@@ -313,7 +313,7 @@ export default function AdminNewsPage() {
                         value={announcementTitle}
                         onChange={(e) => setAnnouncementTitle(e.target.value)}
                         placeholder="E'lon sarlavhasi..."
-                        className="w-full px-3 py-2 text-xs font-bold bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 text-xs font-bold bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
@@ -327,7 +327,7 @@ export default function AdminNewsPage() {
                         <select
                           value={targetAudience}
                           onChange={(e) => setTargetAudience(e.target.value)}
-                          className="w-full p-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl text-xs text-slate-800 dark:text-slate-200"
+                          className="w-full p-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-white/10 rounded-xl text-xs text-slate-800 dark:text-slate-200"
                         >
                           <option value="Barcha talabalar">Barcha talabalar</option>
                           <option value="2 va 3-bosqich talabalari">2 va 3-bosqich talabalari</option>
@@ -340,7 +340,7 @@ export default function AdminNewsPage() {
                         <select
                           value={priority}
                           onChange={(e) => setPriority(e.target.value as any)}
-                          className="w-full p-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl text-xs text-slate-800 dark:text-slate-200"
+                          className="w-full p-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-white/10 rounded-xl text-xs text-slate-800 dark:text-slate-200"
                         >
                           <option value="normal">Oddiy yangilik</option>
                           <option value="important">Muhim xabar</option>
@@ -351,7 +351,7 @@ export default function AdminNewsPage() {
                   </div>
                 ) : (
                   <div className="flex flex-col justify-center items-center h-64 rounded-xl border border-dashed border-slate-200 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.02] p-6 text-center">
-                    <div className="w-12 h-12 rounded-full bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 flex items-center justify-center mb-3">
+                    <div className="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                       </svg>
@@ -365,7 +365,7 @@ export default function AdminNewsPage() {
               </div>
 
               {announcement && (
-                <div className="pt-3 border-t border-slate-100 dark:border-white/10 flex items-center justify-between gap-3">
+                <div className="pt-3 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-3">
                   <span className="text-[11px] text-slate-400 font-mono">
                     Hajm: {announcement.length} ta belgi
                   </span>
@@ -385,7 +385,7 @@ export default function AdminNewsPage() {
               3. PUBLISHED ANNOUNCEMENTS FEED (ADMIN CONTROL)
               ========================================================================= */}
           <div className="tf-card-solid p-6 md:p-8 space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 dark:border-white/10 pb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-white/10 pb-4">
               <div>
                 <h2 className="font-display text-lg font-bold text-ink">
                   3. Portalda Faol E'lonlar va Hujjatlar
@@ -416,7 +416,7 @@ export default function AdminNewsPage() {
                       <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                         ann.priority === 'urgent' ? 'bg-red-100 dark:bg-red-950/50 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800' :
                         ann.priority === 'important' ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' :
-                        'bg-teal-100 dark:bg-teal-950/50 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800'
+                        'bg-blue-100 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800'
                       }`}>
                         {ann.priority === 'urgent' ? "Favqulodda" : ann.priority === 'important' ? "Muhim" : "Standart"}
                       </span>

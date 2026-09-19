@@ -325,7 +325,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen grid lg:grid-cols-2 font-sans">
       {/* Brand panel */}
-      <div className="relative hidden lg:flex flex-col justify-between p-10 xl:p-14 text-white overflow-hidden">
+      <div className="relative hidden lg:flex flex-col justify-between p-10 xl:p-14 text-white overflow-hidden bg-[#07101B]">
         <div className="tf-mesh absolute inset-0" aria-hidden />
         <div className="tf-grid-fade absolute inset-0" aria-hidden />
         <div className="tf-noise absolute inset-0" aria-hidden />
@@ -364,7 +364,7 @@ export default function LoginPage() {
       </div>
 
       {/* Form panel */}
-      <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-[#09090b] dark:bg-[#09090b]">
+      <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-background">
         <div className="w-full max-w-md animate-fade-up">
           <div className="lg:hidden flex items-center gap-2.5 mb-8">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200 bg-white">
@@ -465,7 +465,7 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-6 pt-5 border-t border-slate-100 dark:border-zinc-800">
+            <div className="mt-6 pt-5 border-t border-slate-200 dark:border-zinc-800">
               <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider text-center mb-2.5">
                 Tezkor kirish (Demo):
               </p>

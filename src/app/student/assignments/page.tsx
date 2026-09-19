@@ -165,7 +165,7 @@ export default function AssignmentsPage() {
           {/* =========================================================================
               HEADER: LINEAR / THINGS 3 STYLE TASK HUB
               ========================================================================= */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800 animate-fade-up">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-zinc-800 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-2.5 h-2.5 rounded-full bg-slate-900 dark:bg-blue-500" />
@@ -173,7 +173,7 @@ export default function AssignmentsPage() {
                   Vazifalar Boshqaruvi
                 </span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">
                 Topshiriqlar & Laboratoriyalar
               </h1>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
@@ -194,7 +194,7 @@ export default function AssignmentsPage() {
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
                     filterStatus === tab.id
                       ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-xs'
-                      : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
+                      : 'bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
                   }`}
                 >
                   {tab.label}
@@ -224,7 +224,7 @@ export default function AssignmentsPage() {
                 {todayTasks.map(task => (
                   <div
                     key={task.id}
-                    className="p-5 rounded-3xl bg-white dark:bg-[#121215] border-2 border-red-400/80 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:border-red-500"
+                    className="p-5 rounded-2xl bg-white dark:bg-[#121215] border-2 border-red-400/80 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:border-red-500"
                   >
                     <div className="space-y-2 flex-1">
                       <div className="flex items-center gap-2.5 flex-wrap">
@@ -300,7 +300,7 @@ export default function AssignmentsPage() {
                 {thisWeekTasks.map(task => (
                   <div
                     key={task.id}
-                    className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
+                    className="p-5 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
                   >
                     <div className="space-y-1.5 flex-1">
                       <div className="flex items-center gap-2 flex-wrap">
@@ -343,13 +343,13 @@ export default function AssignmentsPage() {
                         <>
                           <Link
                             href="/student/tutor"
-                            className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors"
+                            className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold transition-colors"
                           >
                             AI konspekti
                           </Link>
                           <button
                             onClick={() => openSubmitDrawer(task)}
-                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
+                            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-xs font-bold transition-colors shadow-xs cursor-pointer"
                           >
                             Topshirish →
                           </button>
@@ -383,7 +383,7 @@ export default function AssignmentsPage() {
                 {laterTasks.map(task => (
                   <div
                     key={task.id}
-                    className="p-4 rounded-2xl bg-white/70 dark:bg-[#121215] border border-slate-200/60 dark:border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all text-xs"
+                    className="p-4 rounded-2xl bg-white/70 dark:bg-[#121215] border border-slate-200/60 dark:border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-white dark:hover:bg-zinc-900 transition-all text-xs"
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -416,8 +416,8 @@ export default function AssignmentsPage() {
               ========================================================================= */}
           {submitModalOpen && selectedTask && (
             <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
                   <div>
                     <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider block">
                       {selectedTask.courseCode} • {selectedTask.course}

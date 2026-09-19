@@ -285,7 +285,7 @@ export default function EventsAndOlympiadsPage() {
           {/* =========================================================================
               HEADER: EVENTS & OLYMPIADS + SEGMENTED TABS
               ========================================================================= */}
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#0b1f33] to-[#07243b] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl space-y-6 animate-fade-up">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#0b1f33] to-[#07243b] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl space-y-6 animate-fade-up">
             <div className="tf-mesh absolute inset-0 opacity-40 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -378,11 +378,11 @@ export default function EventsAndOlympiadsPage() {
           {/* =========================================================================
               SIGNATURE FEATURE: HORIZONTAL CHRONOLOGICAL TIMELINE (HEART OF THE PAGE)
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up overflow-hidden">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-zinc-800">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up overflow-hidden">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-zinc-800">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
+                <h2 className="font-display text-lg font-bold text-ink">
                   Xronologik Voqealar Chizig'i (Academic Timeline)
                 </h2>
               </div>
@@ -417,7 +417,7 @@ export default function EventsAndOlympiadsPage() {
                       {/* Event Card Node */}
                       <div 
                         onClick={() => setSelectedItem(item)}
-                        className={`w-full p-5 rounded-3xl border transition-all cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-[#121215] ${
+                        className={`w-full p-5 rounded-2xl border transition-all cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-[#121215] ${
                           item.type === 'olympiad'
                             ? 'border-amber-300 dark:border-amber-700/60 hover:border-amber-500 ring-1 ring-amber-100 dark:ring-amber-900/30'
                             : 'border-slate-200 dark:border-zinc-800 hover:border-blue-500'
@@ -443,7 +443,7 @@ export default function EventsAndOlympiadsPage() {
                             {item.subtitle}
                           </p>
 
-                          <div className="pt-2 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between text-[11px]">
+                          <div className="pt-2 border-t border-slate-200 dark:border-zinc-800 flex items-center justify-between text-[11px]">
                             <span className="text-slate-600 dark:text-slate-300 font-mono">
                               ⏳ {item.daysRemaining > 0 ? `${item.daysRemaining} kun qoldi` : `${item.hoursRemaining} soat qoldi`}
                             </span>
@@ -501,7 +501,7 @@ export default function EventsAndOlympiadsPage() {
           {/* =========================================================================
               PERSONALIZED DISCOVERY: "RECOMMENDED FOR YOU"
               ========================================================================= */}
-          <section className="bg-slate-900 rounded-3xl p-6 sm:p-8 text-white border border-white/10 shadow-lg space-y-4 animate-fade-up">
+          <section className="bg-slate-900 rounded-2xl p-6 sm:p-8 text-white border border-white/10 shadow-lg space-y-4 animate-fade-up">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 block">
@@ -531,7 +531,7 @@ export default function EventsAndOlympiadsPage() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(timelineItems[3])}
-                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shrink-0 transition-colors"
                 >
                   Ko'rish →
                 </button>
@@ -551,7 +551,7 @@ export default function EventsAndOlympiadsPage() {
                 </div>
                 <button
                   onClick={() => setSelectedItem(timelineItems[2])}
-                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shrink-0 transition-colors"
                 >
                   Ko'rish →
                 </button>
@@ -564,8 +564,8 @@ export default function EventsAndOlympiadsPage() {
               ========================================================================= */}
           {selectedItem && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 animate-scale-up max-h-[90vh] overflow-y-auto">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-xl w-full p-6 sm:p-8 space-y-6 animate-scale-up max-h-[90vh] overflow-y-auto">
+                <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-zinc-800">
                   <div className="flex items-center gap-2">
                     <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-900 dark:text-amber-300">
                       {selectedItem.categoryTag}
@@ -620,12 +620,12 @@ export default function EventsAndOlympiadsPage() {
                   </p>
 
                   <div className="grid grid-cols-2 gap-3 text-xs pt-1">
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800">
                       <span className="text-slate-400 text-[10px] font-bold uppercase block mb-0.5">Manzil</span>
                       <span className="font-bold text-slate-800 dark:text-slate-200">{selectedItem.location}</span>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800">
                       <span className="text-slate-400 text-[10px] font-bold uppercase block mb-0.5">Tashkilotchi</span>
                       <span className="font-bold text-slate-800 dark:text-slate-200">{selectedItem.organizer}</span>
                     </div>
@@ -638,7 +638,7 @@ export default function EventsAndOlympiadsPage() {
                     )}
                   </div>
 
-                  <div className="p-4 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800 space-y-2 text-xs">
+                  <div className="p-4 rounded-xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 space-y-2 text-xs">
                     <strong className="text-slate-800 dark:text-slate-200 block">Dastur va Reglament (Agenda):</strong>
                     {selectedItem.agenda.map((ag, i) => (
                       <div key={i} className="text-slate-600 dark:text-slate-300 flex items-center gap-2">
@@ -649,7 +649,7 @@ export default function EventsAndOlympiadsPage() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between gap-3">
+                <div className="pt-3 border-t border-slate-200 dark:border-zinc-800 flex items-center justify-between gap-3">
                   <button
                     onClick={() => {
                       toggleRegister(selectedItem.id);
@@ -679,8 +679,8 @@ export default function EventsAndOlympiadsPage() {
               ========================================================================= */}
           {isAddModalOpen && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 max-w-lg w-full shadow-2xl border border-slate-200 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xl">✨</span>
                     <div>
@@ -813,7 +813,7 @@ export default function EventsAndOlympiadsPage() {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-zinc-800">
+                  <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-200 dark:border-zinc-800">
                     <button
                       type="button"
                       onClick={() => setIsAddModalOpen(false)}

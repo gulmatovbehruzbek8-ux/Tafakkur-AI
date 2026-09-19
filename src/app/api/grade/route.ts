@@ -31,17 +31,18 @@ export async function POST(req: NextRequest) {
       let score: number | null = null;
       let feedback = externalResult;
 
-      for (const line of externalResult.split('\n')) {
-        const trimmed = line.trim();
-        if (trimmed.toUpperCase().startsWith('BALL:')) {
-          const digits = trimmed.split(':')[1]?.replace(/[^0-9]/g, '');
-          if (digits) score = parseInt(digits, 10);
-        } else if (trimmed.toUpperCase().startsWith('FIKR:')) {
-          feedback = trimmed.substring(5).trim();
-        }
+      const scoreMatch = externalResult.match(/BALL\s*[:：]\s*\**\s*(\d{1,3}(?:[.,]\d+)?)/i);
+      if (scoreMatch) score = Math.round(parseFloat(scoreMatch[1].replace(',', '.')));
+      const fikrIdx = externalResult.search(/FIKR\s*[:：]/i);
+      if (fikrIdx >= 0) feedback = externalResult.slice(fikrIdx).replace(/^FIKR\s*[:：]\s*/i, '').trim();
+
+      if (score === null) {
+        // Model ignored the required format: use the built-in grader instead of inventing a score
+        const graded = gradeSubmissionWithPedagogy(rubric, submission);
+        return NextResponse.json({ ...graded, feedback: externalResult, raw: externalResult, source: 'llm_unparsed' });
       }
 
-      const finalScore = score ?? 85;
+      const finalScore = Math.max(0, Math.min(100, score));
       const theory = Math.round(finalScore * 0.30);
       const complexity = Math.round(finalScore * 0.35);
       const memory = Math.round(finalScore * 0.20);

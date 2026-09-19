@@ -109,7 +109,7 @@ export default function TeacherChatbot() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="font-display text-xl md:text-2xl font-bold text-ink tracking-tight">Tafakkur AI</h1>
+                  <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">Tafakkur AI</h1>
                   <span className="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-200">
                     Professor Edition
                   </span>
@@ -124,7 +124,7 @@ export default function TeacherChatbot() {
               <HeaderControls />
               <button 
                 onClick={() => setMessages([messages[0]])}
-                className="text-xs text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white font-semibold border border-slate-200 dark:border-slate-700 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                className="text-xs text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white font-semibold border border-slate-200 dark:border-zinc-700 px-3 py-1.5 rounded-xl bg-slate-50 dark:bg-zinc-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                 title="Suhbatni tozalash"
               >
                 Tozalash
@@ -136,7 +136,7 @@ export default function TeacherChatbot() {
           <div className="flex-1 tf-card-solid flex flex-col overflow-hidden">
             
             {/* Pedagogical Action Pills */}
-            <div className="px-5 py-3.5 bg-slate-50/70 dark:bg-white/[0.02] border-b border-slate-100 dark:border-white/10 overflow-x-auto shrink-0 flex items-center gap-2">
+            <div className="px-5 py-3.5 bg-slate-50/70 dark:bg-white/[0.02] border-b border-slate-200 dark:border-white/10 overflow-x-auto shrink-0 flex items-center gap-2">
               <span className="text-[11px] font-semibold text-slate-400 whitespace-nowrap">Pedagogik amallar:</span>
               <div className="flex gap-2">
                 {pedagogicalActions.map((action, idx) => (
@@ -210,7 +210,7 @@ export default function TeacherChatbot() {
                   <div className="relative w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-2xs">
                     <Image src="/Logo.png" alt="AI" fill sizes="32px" className="object-contain p-1" />
                   </div>
-                  <div className="bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/10 p-3.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
+                  <div className="bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 p-3.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
                     <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Tafakkur AI tahlil o'tkazmoqda</span>
                     <span className="flex gap-1 items-center ml-1">
                       <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce"></span>
@@ -224,7 +224,7 @@ export default function TeacherChatbot() {
             </div>
 
             {/* Input Composer */}
-            <div className="p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#121215] shrink-0">
+            <div className="p-4 border-t border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#121215] shrink-0">
               <form 
                 onSubmit={(e) => { e.preventDefault(); handleSend(input); }} 
                 className="flex items-center gap-2.5"
@@ -250,7 +250,7 @@ export default function TeacherChatbot() {
                 <button 
                   type="submit" 
                   disabled={loading || !input.trim()}
-                  className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-500 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm flex items-center gap-2 shrink-0"
+                  className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-blue-600 hover:bg-slate-800 dark:hover:bg-blue-700 active:scale-[0.98] text-white text-xs font-semibold uppercase tracking-wider transition-all disabled:opacity-40 disabled:pointer-events-none shadow-sm flex items-center gap-2 shrink-0"
                 >
                   <span>Yuborish</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

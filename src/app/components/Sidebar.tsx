@@ -267,7 +267,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
         {/* Brand Header */}
         <div className="mb-6 flex items-center justify-between px-2 pt-1">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-600 text-white shadow-sm group-hover:bg-blue-500 transition-colors">
+            <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-600 text-white shadow-sm group-hover:bg-blue-700 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
                 <path d="M20 2v4" />
@@ -342,7 +342,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-transparent transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-transparent transition-colors cursor-pointer"
                 title="Yorug' yoki Qorong'u rejimga o'tish"
               >
                 <span>{theme === 'dark' ? '🌙 Qorong‘u' : '☀️ Yorug‘'}</span>
@@ -360,7 +360,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
                 className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   uiMode === 'simple'
                     ? 'bg-emerald-600 text-white shadow-xs ring-2 ring-emerald-500/30'
-                    : 'bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-transparent'
+                    : 'bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-transparent'
                 }`}
                 title="Kattalar uchun sodda, yirik shriftli interfeys"
               >

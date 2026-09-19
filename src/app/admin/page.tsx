@@ -238,7 +238,7 @@ export default function PrincipalDashboard() {
             <div className="flex items-center gap-2.5">
               <button
                 onClick={() => setIsAddModalOpen(true)}
-                className="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm shadow-teal-600/20 flex items-center gap-2"
+                className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-sm shadow-teal-600/20 flex items-center gap-2"
               >
                 <span>+ Guruh & Dars Biriktirish</span>
               </button>
@@ -256,7 +256,7 @@ export default function PrincipalDashboard() {
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{metric.label}</span>
                 <div className="mt-3">
                   <span className="text-2xl md:text-3xl font-bold text-ink font-mono tracking-tight">{metric.value}</span>
-                  <p className="text-[11px] font-semibold text-teal-700 mt-1">{metric.change}</p>
+                  <p className="text-[11px] font-semibold text-blue-700 mt-1">{metric.change}</p>
                 </div>
               </div>
             ))}
@@ -280,7 +280,7 @@ export default function PrincipalDashboard() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Fan, guruh yoki o'qituvchi qidirish..."
-                  className="px-3.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-teal-500 focus:bg-white w-48 sm:w-60 transition-all"
+                  className="px-3.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white w-48 sm:w-60 transition-all"
                 />
 
                 {/* Status Segmented Tabs */}
@@ -305,7 +305,7 @@ export default function PrincipalDashboard() {
                   ))}
                 </div>
 
-                <Link href="/admin/users" className="text-xs font-semibold text-teal-700 hover:text-teal-900 transition-colors">
+                <Link href="/admin/users" className="text-xs font-semibold text-blue-700 hover:text-blue-900 transition-colors">
                   Foydalanuvchilar →
                 </Link>
               </div>
@@ -335,7 +335,7 @@ export default function PrincipalDashboard() {
                       <tr 
                         key={cls.id} 
                         onClick={() => setSelectedClass(cls)}
-                        className="hover:bg-teal-50/40 transition-colors cursor-pointer"
+                        className="hover:bg-blue-50/40 transition-colors cursor-pointer"
                       >
                         <td className="p-4 pl-6">
                           <div className="font-semibold text-ink flex items-center gap-2">
@@ -346,7 +346,7 @@ export default function PrincipalDashboard() {
                               </span>
                             )}
                           </div>
-                          <div className="text-xs font-mono font-medium text-teal-700 mt-0.5">{cls.group} guruhi</div>
+                          <div className="text-xs font-mono font-medium text-blue-700 mt-0.5">{cls.group} guruhi</div>
                         </td>
                         <td className="p-4 text-slate-700 font-medium">{cls.teacher}</td>
                         <td className="p-4">
@@ -376,11 +376,11 @@ export default function PrincipalDashboard() {
                             }`}>
                               <span className={`w-1.5 h-1.5 rounded-full ${
                                 cls.status === "A'lo" ? 'bg-emerald-500' :
-                                cls.status === 'Diqqat talab' ? 'bg-rose-500' : 'bg-teal-500'
+                                cls.status === 'Diqqat talab' ? 'bg-rose-500' : 'bg-blue-500'
                               }`} />
                               {cls.status}
                             </span>
-                            <span className="text-slate-400 hover:text-teal-600 text-xs">
+                            <span className="text-slate-400 hover:text-blue-600 text-xs">
                               🔍
                             </span>
                           </div>
@@ -398,8 +398,8 @@ export default function PrincipalDashboard() {
               ========================================================================= */}
           {isAddModalOpen && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-200 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3">
                   <div>
                     <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">
                       Yangi Fan va Guruhni Biriktirish
@@ -425,7 +425,7 @@ export default function PrincipalDashboard() {
                       placeholder="Masalan: Kiberxavfsizlik asoslari"
                       value={newClass.name}
                       onChange={(e) => setNewClass(p => ({ ...p, name: e.target.value }))}
-                      className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                      className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                     />
                   </div>
 
@@ -438,7 +438,7 @@ export default function PrincipalDashboard() {
                         placeholder="AI-24"
                         value={newClass.group}
                         onChange={(e) => setNewClass(p => ({ ...p, group: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                       />
                     </div>
                     <div>
@@ -449,7 +449,7 @@ export default function PrincipalDashboard() {
                         placeholder="Prof. Olimjon"
                         value={newClass.teacher}
                         onChange={(e) => setNewClass(p => ({ ...p, teacher: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -462,7 +462,7 @@ export default function PrincipalDashboard() {
                         placeholder="A-204"
                         value={newClass.room}
                         onChange={(e) => setNewClass(p => ({ ...p, room: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                       />
                     </div>
                     <div>
@@ -470,7 +470,7 @@ export default function PrincipalDashboard() {
                       <select
                         value={newClass.status}
                         onChange={(e) => setNewClass(p => ({ ...p, status: e.target.value as any }))}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                       >
                         <option value="A'lo">A'lo</option>
                         <option value="Yaxshi">Yaxshi</option>
@@ -488,7 +488,7 @@ export default function PrincipalDashboard() {
                         max={100}
                         value={newClass.progress}
                         onChange={(e) => setNewClass(p => ({ ...p, progress: Number(e.target.value) }))}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                       />
                     </div>
                     <div>
@@ -497,12 +497,12 @@ export default function PrincipalDashboard() {
                         type="text"
                         value={newClass.attendance}
                         onChange={(e) => setNewClass(p => ({ ...p, attendance: e.target.value }))}
-                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-teal-500"
+                        className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:border-blue-500"
                       />
                     </div>
                   </div>
 
-                  <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-zinc-800">
+                  <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-200 dark:border-zinc-800">
                     <button
                       type="button"
                       onClick={() => setIsAddModalOpen(false)}
@@ -512,7 +512,7 @@ export default function PrincipalDashboard() {
                     </button>
                     <button
                       type="submit"
-                      className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-sm"
+                      className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all shadow-sm"
                     >
                       Jadvalga Saqlash ✓
                     </button>
@@ -527,10 +527,10 @@ export default function PrincipalDashboard() {
               ========================================================================= */}
           {selectedClass && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-200 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3">
                   <div>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800/60 font-bold">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 font-bold">
                       {selectedClass.group} GURUHI
                     </span>
                     <h3 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg mt-1">
@@ -546,7 +546,7 @@ export default function PrincipalDashboard() {
                 </div>
 
                 <div className="space-y-3.5 text-xs">
-                  <div className="p-3 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800 space-y-2">
+                  <div className="p-3 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Biriktirilgan Professor:</span>
                       <strong className="text-slate-800 dark:text-slate-200">{selectedClass.teacher}</strong>
@@ -557,7 +557,7 @@ export default function PrincipalDashboard() {
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Davomat ko'rsatkichi:</span>
-                      <span className="font-mono font-bold text-teal-700 dark:text-teal-400">{selectedClass.attendance}</span>
+                      <span className="font-mono font-bold text-blue-700 dark:text-blue-400">{selectedClass.attendance}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 dark:text-slate-400">O'zlashtirish darajasi:</span>
@@ -565,8 +565,8 @@ export default function PrincipalDashboard() {
                     </div>
                   </div>
 
-                  <div className="p-3.5 rounded-2xl bg-teal-50/50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-800/60 space-y-1">
-                    <span className="text-[10px] font-bold text-teal-800 dark:text-teal-300 uppercase tracking-wider block">
+                  <div className="p-3.5 rounded-2xl bg-blue-50/50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-800/60 space-y-1">
+                    <span className="text-[10px] font-bold text-blue-800 dark:text-blue-300 uppercase tracking-wider block">
                       Oxirgi o'tilgan SOW mavzusi:
                     </span>
                     <p className="text-slate-700 dark:text-slate-300 font-medium">
@@ -575,10 +575,10 @@ export default function PrincipalDashboard() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-end gap-2">
+                <div className="pt-3 border-t border-slate-200 dark:border-zinc-800 flex items-center justify-end gap-2">
                   <Link
                     href={`/admin/sow?subject=${selectedClass.name}`}
-                    className="px-4 py-2.5 rounded-xl border border-teal-200 dark:border-teal-800/60 text-teal-700 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-teal-950/50 font-bold transition-colors"
+                    className="px-4 py-2.5 rounded-xl border border-blue-200 dark:border-blue-800/60 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/50 font-bold transition-colors"
                   >
                     SOW Rejasini Ochish
                   </Link>

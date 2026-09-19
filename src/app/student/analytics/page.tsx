@@ -104,7 +104,7 @@ export default function AcademicAnalystPage() {
           {/* =========================================================================
               HEADER: TAFAKKUR ACADEMIC ANALYST & PERSPECTIVE SWITCHER
               ========================================================================= */}
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#091f33] to-[#07243a] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl space-y-6 animate-fade-up">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#091f33] to-[#07243a] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl space-y-6 animate-fade-up">
             <div className="tf-mesh absolute inset-0 opacity-40 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -187,7 +187,7 @@ export default function AcademicAnalystPage() {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
+              <div className="p-5 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   Akademik GPA
                 </span>
@@ -204,7 +204,7 @@ export default function AcademicAnalystPage() {
                 </span>
               </div>
 
-              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
+              <div className="p-5 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   Davomat
                 </span>
@@ -221,7 +221,7 @@ export default function AcademicAnalystPage() {
                 </span>
               </div>
 
-              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
+              <div className="p-5 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   Topshiriqlar Muvaffaqiyati
                 </span>
@@ -238,7 +238,7 @@ export default function AcademicAnalystPage() {
                 </span>
               </div>
 
-              <div className="p-5 rounded-3xl bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-2">
+              <div className="p-5 rounded-2xl bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 shadow-xs space-y-2">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
                   ECTS Bosqichi
                 </span>
@@ -275,7 +275,7 @@ export default function AcademicAnalystPage() {
               {aiInsights.map((item) => (
                 <div
                   key={item.id}
-                  className={`p-5 rounded-3xl bg-white dark:bg-[#121215] border shadow-xs transition-all ${
+                  className={`p-5 rounded-2xl bg-white dark:bg-[#121215] border shadow-xs transition-all ${
                     item.type === 'strength'
                       ? 'border-emerald-200 dark:border-emerald-800/60 hover:border-emerald-400'
                       : item.type === 'warning'
@@ -304,7 +304,7 @@ export default function AcademicAnalystPage() {
                         {item.description}
                       </p>
 
-                      <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200 flex items-center gap-2">
+                      <div className="p-3 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 text-xs text-slate-700 dark:text-slate-200 flex items-center gap-2">
                         <span className="font-bold text-blue-800 dark:text-blue-400">💡 Tavsiya:</span>
                         <span>{item.recommendation}</span>
                       </div>
@@ -313,7 +313,7 @@ export default function AcademicAnalystPage() {
                     <div className="shrink-0 self-start md:self-center">
                       <Link
                         href={item.actionHref}
-                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-xs"
+                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-xs"
                       >
                         <span>{item.actionLabel}</span>
                         <span>→</span>
@@ -328,8 +328,8 @@ export default function AcademicAnalystPage() {
           {/* =========================================================================
               LAYER 3: DETAILS (UNDERLYING PERFORMANCE GRAPHS & COURSE MATRIX)
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200 dark:border-zinc-800">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-violet-600" />
@@ -361,7 +361,7 @@ export default function AcademicAnalystPage() {
             {/* Comparison Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredSubjects.map((sub) => (
-                <div key={sub.code} className="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200/80 dark:border-zinc-800 space-y-4">
+                <div key={sub.code} className="p-5 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 space-y-4">
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <span className="font-mono text-xs font-bold text-blue-800 dark:text-blue-300 bg-blue-100/70 dark:bg-blue-950/60 px-2 py-0.5 rounded-md">

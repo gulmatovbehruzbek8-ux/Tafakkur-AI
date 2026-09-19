@@ -122,7 +122,7 @@ export default function StudentSettingsPage() {
     <div className="tf-page">
       <Sidebar role="student" activeRoute="/student/settings" />
 
-      <main className="tf-main pb-16">
+      <main className="tf-main pb-20">
         <div className="tf-container max-w-4xl space-y-6">
 
           {/* Toast Notification */}
@@ -138,7 +138,7 @@ export default function StudentSettingsPage() {
           )}
 
           {/* Header */}
-          <div className="bg-white dark:bg-gradient-to-r dark:from-[#07101B] dark:to-[#0d2238] rounded-3xl p-6 sm:p-8 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-up">
+          <div className="bg-white dark:bg-gradient-to-r dark:from-[#07101B] dark:to-[#0d2238] rounded-2xl p-6 sm:p-8 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-100 dark:bg-blue-50 text-blue-700 border border-blue-200">
@@ -146,7 +146,7 @@ export default function StudentSettingsPage() {
                 </span>
                 <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">UrDU Platformasi</span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+              <h1 className="font-display text-2xl md:text-3xl font-bold text-ink tracking-tight">
                 Tizim va Shaxsiy Sozlamalar
               </h1>
               <p className="text-xs text-slate-600 dark:text-slate-300 max-w-xl mt-1">
@@ -156,7 +156,7 @@ export default function StudentSettingsPage() {
 
             <button
               onClick={saveSettings}
-              className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-xs hover:scale-[1.02] flex items-center justify-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-xs hover:scale-[1.02] flex items-center justify-center gap-2"
             >
               <span>Saqlash</span>
               <span>💾</span>
@@ -164,14 +164,14 @@ export default function StudentSettingsPage() {
           </div>
 
           {/* SECTION 1: NOTIFICATIONS */}
-          <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 shadow-xs space-y-6">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl">
                   🔔
                 </div>
                 <div>
-                  <h2 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg">
+                  <h2 className="font-display text-lg font-bold text-ink">
                     Bildirishnomalar (Notifications)
                   </h2>
                   <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -195,7 +195,7 @@ export default function StudentSettingsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Allow All Notifications */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Barcha bildirishnomalarga ruxsat</h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Tizim bo'yicha asosiy xabarnomalarni qabul qilish</p>
@@ -210,7 +210,7 @@ export default function StudentSettingsPage() {
               </div>
 
               {/* Class Reminders */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Dars va ma'ruza eslatmalari</h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Dars boshlanishidan 15 daqiqa oldin eslatish</p>
@@ -225,7 +225,7 @@ export default function StudentSettingsPage() {
               </div>
 
               {/* Deadlines */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Topshiriq va Deadline muddatlari</h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Vazifa topshirish muddati tugashidan oldin ogohlantirish</p>
@@ -240,7 +240,7 @@ export default function StudentSettingsPage() {
               </div>
 
               {/* University Announcements */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Universitet va Dekanat e'lonlari</h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Muhim yangiliklar, tadbirlar va olimpiadalar</p>
@@ -255,7 +255,7 @@ export default function StudentSettingsPage() {
               </div>
 
               {/* AI Tutor proactive tips */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">AI Repetitor tavsiyalari</h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Kunlik takrorlash va bo'shliqlar bo'yicha maslahatlar</p>
@@ -270,7 +270,7 @@ export default function StudentSettingsPage() {
               </div>
 
               {/* Sound toggle */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 flex items-center justify-between">
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Ovozli signallar</h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Bildirishnoma vaqtida ovoz chiqarish</p>
@@ -287,13 +287,13 @@ export default function StudentSettingsPage() {
           </div>
 
           {/* SECTION 2: LANGUAGE */}
-          <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-6">
-            <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 shadow-xs space-y-6">
+            <div className="flex items-center gap-3 border-b border-slate-200 dark:border-zinc-800 pb-4">
               <div className="w-10 h-10 rounded-2xl bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 flex items-center justify-center text-xl">
                 🌐
               </div>
               <div>
-                <h2 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg">
+                <h2 className="font-display text-lg font-bold text-ink">
                   Tilni Tanlash (Language)
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -317,7 +317,7 @@ export default function StudentSettingsPage() {
                     className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-blue-50/70 dark:bg-blue-950/40 border-blue-500 ring-2 ring-blue-500/20 shadow-xs'
-                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
+                        : 'bg-white dark:bg-zinc-800 border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-slate-700'
                     }`}
                   >
                     <div className="text-2xl mb-2">{lang.flag}</div>
@@ -335,13 +335,13 @@ export default function StudentSettingsPage() {
           </div>
 
           {/* SECTION 3: APPEARANCE */}
-          <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-6">
-            <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 shadow-xs space-y-6">
+            <div className="flex items-center gap-3 border-b border-slate-200 dark:border-zinc-800 pb-4">
               <div className="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl">
                 🎨
               </div>
               <div>
-                <h2 className="font-display font-bold text-slate-900 dark:text-white text-base sm:text-lg">
+                <h2 className="font-display text-lg font-bold text-ink">
                   Interfeys Ko'rinishi (Appearance)
                 </h2>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -455,7 +455,7 @@ export default function StudentSettingsPage() {
             </div>
 
             {/* Font Size & Compact */}
-            <div className="pt-4 border-t border-slate-100 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="pt-4 border-t border-slate-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-2">
                   Matn Kattaligi (Text Size):
@@ -503,7 +503,7 @@ export default function StudentSettingsPage() {
             </Link>
             <button
               onClick={saveSettings}
-              className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-xs hover:scale-[1.02] flex items-center gap-2"
+              className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm transition-all shadow-lg shadow-xs hover:scale-[1.02] flex items-center gap-2"
             >
               <span>O'zgarishlarni Saqlash</span>
               <span>💾</span>

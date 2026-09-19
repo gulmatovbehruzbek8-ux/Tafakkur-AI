@@ -291,7 +291,7 @@ export default function TeacherCalendarPage() {
           <div className="tf-card-solid p-6 md:p-8 space-y-6">
             
             {/* Navigation & Controls */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-zinc-800">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-zinc-800">
               <div className="flex items-center gap-3">
                 <h2 className="font-display text-xl font-bold text-ink tracking-tight">
                   {MONTH_NAMES[currentMonthIndex]} {currentYear}
@@ -473,8 +473,8 @@ export default function TeacherCalendarPage() {
               ========================================================================= */}
           {selectedClass && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-200 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3">
                   <div>
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 font-bold">
                       {selectedClass.group} • {selectedClass.type}
@@ -492,7 +492,7 @@ export default function TeacherCalendarPage() {
                 </div>
 
                 <div className="space-y-4 text-xs">
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-100 dark:border-zinc-800 space-y-2">
+                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-slate-500 dark:text-slate-400">Dars vaqti va xona:</span>
                       <strong className="text-slate-800 dark:text-slate-200 font-mono">{selectedClass.time} | {selectedClass.room}</strong>
@@ -536,7 +536,7 @@ export default function TeacherCalendarPage() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between gap-2">
+                <div className="pt-3 border-t border-slate-200 dark:border-zinc-800 flex items-center justify-between gap-2">
                   <Link
                     href={`/teacher/sow?class=${selectedClass.id}`}
                     className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800 font-bold text-slate-700 dark:text-slate-200 text-xs transition-colors"
@@ -563,8 +563,8 @@ export default function TeacherCalendarPage() {
               ========================================================================= */}
           {isAddModalOpen && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-zinc-800 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-200 dark:border-zinc-800 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3">
                   <div>
                     <h3 className="font-display font-bold text-slate-900 dark:text-white text-base">
                       Yangi Dars Qo'shish
@@ -666,7 +666,7 @@ export default function TeacherCalendarPage() {
                     />
                   </div>
 
-                  <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-100 dark:border-zinc-800">
+                  <div className="pt-3 flex items-center justify-end gap-2 border-t border-slate-200 dark:border-zinc-800">
                     <button
                       type="button"
                       onClick={() => setIsAddModalOpen(false)}

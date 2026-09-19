@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import MarkdownRenderer from '@/app/components/MarkdownRenderer';
+import { getApiUrl } from '@/lib/api';
 
 interface Message {
   id: string;
@@ -26,22 +28,43 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [userName, setUserName] = useState('');
+  const [role, setRole] = useState<'student' | 'teacher' | 'admin'>('student');
+
+  const greeting = (name: string) =>
+    `Salom${name ? `, ${name}` : ''}! Men Tafakkur AI yordamchisiman. Hozir siz **"${currentContext}"** sahifasidasiz. Qanday yordam bera olaman?`;
 
   const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'm1',
-      sender: 'ai',
-      text: `Salom, Bunyodbek! Men Tafakkur AI yordamchisiman. Hozir siz **"${currentContext}"** sahifasidasiz. Bugungi darslaringiz, topshiriqlaringiz yoki tushunarsiz mavzular bo'yicha qanday yordam bera olaman?`,
-      time: 'Hozir',
-      contextTag: 'Universitet Konteksti',
-    }
+    { id: 'm1', sender: 'ai', text: greeting(''), time: 'Hozir', contextTag: 'Universitet Konteksti' }
   ]);
 
-  const quickPrompts = [
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('tafakkur_user');
+      if (!stored) return;
+      const u = JSON.parse(stored);
+      const name: string = u?.profile?.name || u?.profile?.fullName || u?.username || '';
+      const r = u?.role === 'teacher' || u?.role === 'admin' ? u.role : 'student';
+      setUserName(name);
+      setRole(r);
+      setMessages(prev => prev.length === 1 && prev[0].id === 'm1' ? [{ ...prev[0], text: greeting(name) }] : prev);
+    } catch {}
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const quickPrompts = role === 'student' ? [
     { label: "🗓️ Bugungi tayyorgarlik rejasi", prompt: "Bugungi darslarim uchun nimalarga alohida e'tibor qaratishim kerak?" },
     { label: "🌲 BST laboratoriyasini tushuntir", prompt: "Ikkilik qidiruv daraxtlari (BST) topshirig'i bo'yicha asosiy formulalar va kod qoidalarini aytib ber" },
-    { label: "📈 O'zlashtirish tahlili", prompt: "Mening o'zlashtirish ko'rsatkichim nima hisobiga 92.4% ga yetdi?" },
+    { label: "📈 O'zlashtirish tahlili", prompt: "O'zlashtirish ko'rsatkichimni yaxshilash uchun nima qilishim kerak?" },
     { label: "🎯 AI Xakaton tavsiyalari", prompt: "Umummilliy AI Xakatoni uchun loyiha tanlashda qanday maslahat berasan?" },
+  ] : role === 'teacher' ? [
+    { label: "📝 Rubrika tuzish", prompt: "Dasturlash laboratoriya ishi uchun 100 ballik baholash rubrikasini tuzib ber" },
+    { label: "🗓️ Dars rejasi", prompt: "Ma'lumotlar tuzilmasi fanidan 90 daqiqalik ma'ruza rejasini tuzib ber" },
+    { label: "💬 Talabaga fikr", prompt: "Kodi ishlaydi, lekin samaradorligi past talabaga konstruktiv fikr yozib ber" },
+  ] : [
+    { label: "📢 E'lon loyihasi", prompt: "Yangi semestr boshlanishi haqida rasmiy e'lon matnini yoz" },
+    { label: "📚 SOW tuzilmasi", prompt: "Yangi fan uchun o'quv dasturi (SOW) qanday tuzilishi kerak?" },
+    { label: "📊 Hisobot", prompt: "Semestr yakuni bo'yicha dekanat hisoboti tuzilmasini taklif qil" },
   ];
 
   useEffect(() => {
@@ -62,53 +85,69 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
     }
   }, [messages, isOpen]);
 
-  const handleSend = (textToSend?: string) => {
-    const query = textToSend || input;
-    if (!query.trim()) return;
+  const localFallback = (query: string): { reply: string; action?: { label: string; href: string } } => {
+    const lower = query.toLowerCase();
+    if (role === 'student') {
+      if (lower.includes('bst') || lower.includes('daraxt')) {
+        return { reply: "Binar qidiruv daraxti (BST): chap farzand ota tugundan kichik, o'ng farzand katta bo'ladi. Qidirish, qo'shish va o'chirish o'rtacha O(log N), eng yomon holatda O(N).", action: { label: "AI Repetitorga o'tish", href: "/student/tutor" } };
+      }
+      if (lower.includes('dars') || lower.includes('rejasi') || lower.includes('bugun')) {
+        return { reply: "Bugungi darslaringiz va muddatlarni akademik taqvimda ko'rishingiz mumkin.", action: { label: "Kalendarni ochish", href: "/student/calendar" } };
+      }
+    }
+    return { reply: "Hozir AI modeliga ulanib bo'lmadi. Ollama ishlayotganini tekshiring va qayta urinib ko'ring." };
+  };
 
-    const userMsg: Message = {
-      id: Date.now().toString(),
-      sender: 'user',
-      text: query,
-      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
+  const handleSend = async (textToSend?: string) => {
+    const query = (textToSend || input).trim();
+    if (!query || isTyping) return;
 
-    setMessages(prev => [...prev, userMsg]);
+    const nowTime = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    setMessages(prev => [...prev, { id: Date.now().toString(), sender: 'user', text: query, time: nowTime() }]);
     if (!textToSend) setInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let reply = "";
-      let action: { label: string; href: string } | undefined;
+    let reply = '';
+    let action: { label: string; href: string } | undefined;
+    let live = false;
 
-      const lower = query.toLowerCase();
-      if (lower.includes('dars') || lower.includes('rejasi') || lower.includes('bugun')) {
-        reply = "Bugun soat 10:30 da **212-laboratoriyada** Binar qidiruv daraxtlari (BST) bo'yicha amaliy mashg'ulot bor. Darsdan oldin AVL rotatsiyalari va balansi buzilgan daraxtlarni tuzatish mavzusini 10 daqiqa ko'rib chiqishingizni tavsiya qilaman.";
-        action = { label: "To'liq Kalendarni ochish", href: "/student/calendar" };
-      } else if (lower.includes('bst') || lower.includes('daraxt') || lower.includes('laboratoriya')) {
-        reply = "BST da asosiy qoida: chap farzand qiymati ota tugundan kichik, o'ng farzandniki esa katta bo'ladi. Qidirish, qo'shish va o'chirish o'rtacha $O(\\log N)$, eng yomon holatda esa $O(N)$ bo'ladi. Topshiriqni topshirish uchun 4 soat qoldi!";
-        action = { label: "AI Repetitorga o'tish", href: "/student/tutor" };
-      } else if (lower.includes('o\'zlashtirish') || lower.includes('ball') || lower.includes('gpa')) {
-        reply = "Sizning GPA ko'rsatkichingiz **4.82** (o'zlashtirish **92.4%**). Oxirgi laboratoriya ishida Prof. O. Turdiyev sizga 92 ball bergan. Davomat 96% bo'lib, guruhda 1-o'rinda boryapsiz!";
-        action = { label: "Akademik Pasportni ko'rish", href: "/student/passport" };
-      } else {
-        reply = `Tafakkur AI tahlili bo'yicha: ushbu savol bo'yicha chuqurroq o'rganish uchun bizning interaktiv **AI Repetitor (Tutor)** rejimimizga o'tishingiz mumkin. U yerda viktorina, kod tekshiruvi va nazariy konspektlar mavjud.`;
-        action = { label: "AI Repetitor bilan ishlash", href: "/student/tutor" };
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 120000);
+    try {
+      const roleLabel = role === 'teacher' ? "o'qituvchi" : role === 'admin' ? 'ma\'muriyat xodimi' : 'talaba';
+      const res = await fetch(getApiUrl('/api/chat'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          question: query,
+          context: `Foydalanuvchi: ${userName || 'noma\'lum'} (${roleLabel}). Hozirgi sahifa: ${currentContext}.`,
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        reply = data.answer || data.response || '';
+        live = data.source === 'llm';
       }
+    } catch {
+      /* fall through to local fallback */
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
-      setMessages(prev => [
-        ...prev,
-        {
-          id: (Date.now() + 1).toString(),
-          sender: 'ai',
-          text: reply,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          contextTag: 'Tafakkur AI Agent',
-          actionButton: action
-        }
-      ]);
-      setIsTyping(false);
-    }, 800);
+    if (!reply) {
+      const fb = localFallback(query);
+      reply = fb.reply;
+      action = fb.action;
+    } else if (!live && role === 'student') {
+      action = { label: "AI Repetitor bilan ishlash", href: "/student/tutor" };
+    }
+
+    setMessages(prev => [
+      ...prev,
+      { id: (Date.now() + 1).toString(), sender: 'ai', text: reply, time: nowTime(), contextTag: 'Tafakkur AI Agent', actionButton: action },
+    ]);
+    setIsTyping(false);
   };
 
   return (
@@ -215,13 +254,13 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
                       </span>
                     )}
                     <div
-                      className={`max-w-[85%] p-3.5 rounded-2xl leading-relaxed whitespace-pre-line shadow-xs ${
+                      className={`max-w-[85%] p-3.5 rounded-2xl leading-relaxed shadow-xs ${
                         m.sender === 'user'
                           ? 'bg-blue-600 text-white rounded-br-xs font-medium'
                           : 'bg-white dark:bg-[#18181b] text-slate-800 dark:text-slate-100 border border-slate-200/80 dark:border-zinc-800 rounded-bl-xs'
                       }`}
                     >
-                      {m.text}
+                      {m.sender === 'user' ? m.text : <MarkdownRenderer content={m.text} />}
 
                       {m.actionButton && (
                         <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-zinc-800">

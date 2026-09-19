@@ -366,7 +366,7 @@ export default function MyCampusPage() {
 
               <Link
                 href="/student/tutor"
-                className="flex w-fit items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-blue-500 shadow-sm shadow-blue-600/20"
+                className="flex w-fit items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white transition hover:bg-blue-700 shadow-sm shadow-blue-600/20"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4">
                   <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
@@ -389,7 +389,7 @@ export default function MyCampusPage() {
               ========================================================================= */}
           <div className="grid gap-5 xl:grid-cols-[1.4fr_0.8fr]">
             {/* Featured Academic Passport Card */}
-            <section className="rounded-3xl border border-blue-200 dark:border-blue-500/30 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:bg-slate-900 dark:from-slate-900 dark:to-slate-900 p-6 text-slate-900 dark:text-white flex flex-col justify-between shadow-xs dark:shadow-xl">
+            <section className="rounded-2xl border border-blue-200 dark:border-blue-500/30 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:bg-[#121215] dark:from-slate-900 dark:to-slate-900 p-6 text-slate-900 dark:text-white flex flex-col justify-between shadow-xs dark:shadow-xl">
               <div className="flex items-start justify-between">
                 <div>
                   <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-blue-100 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400 tracking-wider border border-blue-200 dark:border-blue-500/30">
@@ -429,7 +429,7 @@ export default function MyCampusPage() {
             </section>
 
             {/* NEXT UP Card (Point 5) */}
-            <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#121215] p-5 flex flex-col justify-between shadow-xs">
+            <section className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#121215] p-5 flex flex-col justify-between shadow-xs">
               <div>
                 <div className="flex items-center justify-between">
                   <div>
@@ -445,7 +445,7 @@ export default function MyCampusPage() {
                   </span>
                 </div>
 
-                <div className="mt-5 flex items-center gap-3 border-t border-slate-100 dark:border-white/8 pt-4">
+                <div className="mt-5 flex items-center gap-3 border-t border-slate-200 dark:border-white/8 pt-4">
                   <div className="grid size-10 place-items-center rounded-xl bg-blue-500/10 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/20 shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 7v14" />
@@ -481,7 +481,7 @@ export default function MyCampusPage() {
               ========================================================================= */}
           <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
             {/* WHAT NEEDS YOU Card */}
-            <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#121215] p-5 shadow-xs">
+            <section className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#121215] p-5 shadow-xs">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
@@ -575,7 +575,7 @@ export default function MyCampusPage() {
             </section>
 
             {/* AI INSIGHT Card (Point 5) */}
-            <section className="rounded-3xl border border-blue-200/80 dark:border-blue-900/40 bg-blue-50/40 dark:bg-blue-950/20 p-5 flex flex-col justify-between shadow-xs">
+            <section className="rounded-2xl border border-blue-200/80 dark:border-blue-900/40 bg-blue-50/40 dark:bg-blue-950/20 p-5 flex flex-col justify-between shadow-xs">
               <div>
                 <div className="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-4 text-blue-600 dark:text-blue-400">
@@ -609,8 +609,8 @@ export default function MyCampusPage() {
           {/* =========================================================================
               BUGUNGI KUNINGIZ (YOUR DAY TIMELINE)
               ========================================================================= */}
-          <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#121215] p-6 shadow-xs space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-white/8">
+          <section className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#121215] p-6 shadow-xs space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-white/8">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
                   KUN TARTIBI
@@ -642,7 +642,7 @@ export default function MyCampusPage() {
                         ? 'bg-blue-600 border-white dark:border-slate-950 ring-4 ring-blue-500/40 animate-pulse'
                         : slot.status === 'completed'
                           ? 'bg-emerald-500 border-white dark:border-slate-950 ring-2 ring-emerald-500/20'
-                          : 'bg-slate-200 dark:bg-slate-800 border-slate-400 dark:border-slate-600 group-hover:border-blue-500'
+                          : 'bg-slate-200 dark:bg-zinc-800 border-slate-400 dark:border-slate-600 group-hover:border-blue-500'
                     }`} 
                   />
 
@@ -699,7 +699,7 @@ export default function MyCampusPage() {
                         
                         <Link
                           href={slot.actionHref}
-                          className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1"
+                          className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs inline-flex items-center gap-1"
                         >
                           <span>{slot.actionText}</span>
                           <span className="font-mono">→</span>
@@ -715,8 +715,8 @@ export default function MyCampusPage() {
           {/* =========================================================================
               YOUR MOMENTUM & SEMESTER JOURNEY
               ========================================================================= */}
-          <section className="rounded-3xl border border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#121215] p-6 shadow-xs space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-white/8">
+          <section className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-[#121215] p-6 shadow-xs space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-white/8">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
                   AKADEMIK DINAMIKA
@@ -889,7 +889,7 @@ export default function MyCampusPage() {
 
                         <Link
                           href="/student/courses"
-                          className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors shrink-0 flex items-center gap-1.5"
+                          className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shrink-0 flex items-center gap-1.5"
                         >
                           <span>Modul Materiallari</span>
                           <span>→</span>
@@ -907,7 +907,7 @@ export default function MyCampusPage() {
               ========================================================================= */}
           {selectedActivity && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-[#0b1320] text-slate-100 rounded-3xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
+              <div className="bg-[#0b1320] text-slate-100 rounded-2xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
                 <div className="flex items-center justify-between pb-3 border-b border-white/10">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">
@@ -963,7 +963,7 @@ export default function MyCampusPage() {
                   </button>
                   <Link
                     href={selectedActivity.actionHref}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md"
+                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md"
                   >
                     {selectedActivity.actionText} →
                   </Link>
@@ -977,7 +977,7 @@ export default function MyCampusPage() {
               ========================================================================= */}
           {submitModalOpen && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-[#0b1320] text-slate-100 rounded-3xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
+              <div className="bg-[#0b1320] text-slate-100 rounded-2xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-5 animate-scale-up">
                 <div className="flex items-center justify-between pb-3 border-b border-white/10">
                   <div>
                     <h3 className="text-lg font-bold text-white">
@@ -1008,7 +1008,7 @@ export default function MyCampusPage() {
                     </p>
                     <button
                       onClick={() => { setSubmitModalOpen(false); setSubmitSuccess(false); }}
-                      className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500"
+                      className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700"
                     >
                       Tushunarli
                     </button>
@@ -1049,7 +1049,7 @@ export default function MyCampusPage() {
                       </button>
                       <button
                         onClick={() => setSubmitSuccess(true)}
-                        className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-md"
+                        className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md"
                       >
                         Topshiriqni tasdiqlash
                       </button>
@@ -1065,7 +1065,7 @@ export default function MyCampusPage() {
               ========================================================================= */}
           {activeReviewModal && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="bg-[#0b1320] text-slate-100 rounded-3xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-4 animate-scale-up">
+              <div className="bg-[#0b1320] text-slate-100 rounded-2xl border border-white/15 shadow-2xl max-w-lg w-full p-6 space-y-4 animate-scale-up">
                 <div className="flex items-center justify-between pb-3 border-b border-white/10">
                   <div className="flex items-center gap-2">
                     <span className="size-2.5 rounded-full bg-emerald-400" />
@@ -1111,7 +1111,7 @@ export default function MyCampusPage() {
                 <div className="pt-2 flex justify-end">
                   <button
                     onClick={() => setActiveReviewModal(false)}
-                    className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-500"
+                    className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700"
                   >
                     Tushunarli
                   </button>

@@ -52,7 +52,7 @@ export default function TeacherDashboard() {
           {/* =========================================================================
               1. PROFESSOR HERO: GOOD EVENING + AMBIENT HEMIS SYNC
               ========================================================================= */}
-          <div className="relative rounded-3xl bg-gradient-to-br from-blue-50/80 via-white to-slate-50 dark:bg-slate-900 dark:from-slate-900 dark:to-slate-900 text-slate-900 dark:text-white p-6 sm:p-8 lg:p-10 border border-slate-200 dark:border-slate-800 shadow-xs dark:shadow-xl space-y-6 animate-fade-up">
+          <div className="relative rounded-2xl bg-gradient-to-br from-blue-50/80 via-white to-slate-50 dark:bg-[#121215] dark:from-slate-900 dark:to-slate-900 text-slate-900 dark:text-white p-6 sm:p-8 lg:p-10 border border-slate-200 dark:border-zinc-800 shadow-xs dark:shadow-xl space-y-6 animate-fade-up">
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2.5 flex-wrap">
@@ -84,7 +84,7 @@ export default function TeacherDashboard() {
                 <HeaderControls />
                 <Link
                   href="/teacher/grader"
-                  className="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-2 group"
+                  className="px-5 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-2 group"
                 >
                   <span>⚡ AI Grader: 48 ta ishni tekshirish</span>
                   <span className="group-hover:translate-x-0.5 transition-transform font-mono">→</span>
@@ -128,12 +128,12 @@ export default function TeacherDashboard() {
               {attentionItems.map((item) => (
                 <div
                   key={item.id}
-                  className={`p-5 rounded-3xl bg-white dark:bg-[#121215] border transition-all shadow-xs flex flex-col justify-between ${
+                  className={`p-5 rounded-2xl bg-white dark:bg-[#121215] border transition-all shadow-xs flex flex-col justify-between ${
                     item.urgency === 'critical'
                       ? 'border-red-300 dark:border-red-900/60 hover:border-red-500 ring-1 ring-red-100 dark:ring-red-950/40'
                       : item.urgency === 'warning'
                         ? 'border-amber-300 dark:border-amber-900/60 hover:border-amber-500 ring-1 ring-amber-100 dark:ring-amber-950/40'
-                        : 'border-slate-200 dark:border-white/10 hover:border-blue-400'
+                        : 'border-slate-200 dark:border-zinc-800 hover:border-blue-400'
                   }`}
                 >
                   <div className="space-y-2">
@@ -157,7 +157,7 @@ export default function TeacherDashboard() {
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-100 dark:border-white/10 mt-4">
+                  <div className="pt-4 border-t border-slate-200 dark:border-white/10 mt-4">
                     <Link
                       href={item.actionHref}
                       className={`w-full py-2 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 shadow-xs ${
@@ -178,11 +178,11 @@ export default function TeacherDashboard() {
           {/* =========================================================================
               3. TODAY'S CLASSES & SCHEDULE (BUGUNGI DARSLAR)
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-4 animate-fade-up">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-                <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
+                <h2 className="font-display text-lg font-bold text-ink">
                   Bugungi Mashg'ulotlar Jadvali (Today's Classes)
                 </h2>
               </div>
@@ -201,7 +201,7 @@ export default function TeacherDashboard() {
                   className={`p-4.5 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs ${
                     c.status === 'current'
                       ? 'bg-blue-50/70 dark:bg-blue-950/30 border-blue-200 dark:border-blue-900/60 ring-1 ring-blue-100 dark:ring-blue-900/30'
-                      : 'bg-slate-50 dark:bg-white/[0.02] border-slate-200/80 dark:border-white/10'
+                      : 'bg-slate-50 dark:bg-white/[0.02] border-slate-200 dark:border-white/10'
                   }`}
                 >
                   <div className="space-y-1">
@@ -228,7 +228,7 @@ export default function TeacherDashboard() {
                     </button>
                     <Link
                       href="/teacher/grader"
-                      className="px-3.5 py-1.5 rounded-xl bg-slate-900 dark:bg-blue-600 text-white font-bold hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors"
+                      className="px-3.5 py-1.5 rounded-xl bg-slate-900 dark:bg-blue-600 text-white font-bold hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
                     >
                       Topshiriqlar
                     </Link>
@@ -241,11 +241,11 @@ export default function TeacherDashboard() {
           {/* =========================================================================
               4. CLASS INSIGHTS (GURUH AKADEMIK KO'RSATKICHLARI)
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/10">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/10">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-                <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
+                <h2 className="font-display text-lg font-bold text-ink">
                   Guruhlar Analitikasi (Class Insights)
                 </h2>
               </div>
@@ -253,7 +253,7 @@ export default function TeacherDashboard() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 space-y-2">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 space-y-2">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
                   O'rtacha Guruh Bali (Class Average)
                 </span>
@@ -266,7 +266,7 @@ export default function TeacherDashboard() {
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 space-y-2">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 space-y-2">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
                   Topshirish Qamrovi (Submission Rate)
                 </span>
@@ -279,7 +279,7 @@ export default function TeacherDashboard() {
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 space-y-2">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 space-y-2">
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
                   Davomat Ko'rsatkichi (Attendance)
                 </span>

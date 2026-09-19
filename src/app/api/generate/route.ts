@@ -6,6 +6,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const prompt: string = body?.prompt || '';
     const model: string = body?.model || 'llama-3.3-70b-versatile';
+    const extraContext: string = typeof body?.context === 'string' ? body.context : '';
+    const role: string = body?.role === 'teacher' ? "o'qituvchi (professor)" : body?.role === 'student' ? 'talaba' : '';
 
     if (!prompt.trim()) {
       return NextResponse.json({ response: "Iltimos, savol yoki so'rovingizni kiriting." }, { status: 400 });
@@ -16,7 +18,11 @@ export async function POST(req: NextRequest) {
 
     // 2. Formulate grounded prompt for external LLM (Groq, Ollama, Gemini, OpenAI)
     let augmentedPrompt = prompt;
-    if (matched) {
+    if (extraContext) {
+      augmentedPrompt =
+        `Foydalanuvchi${role ? ` (${role})` : ''} uchun quyidagi rasmiy kontekstga tayanib javob bering:\n\n` +
+        `=== KONTEKST ===\n${extraContext}\n\n=== SO'ROV ===\n${prompt}`;
+    } else if (matched) {
       augmentedPrompt = 
         `Siz universitetning intellektual Tafakkur AI ta'lim assistentisiz.\n` +
         `Quyida universitet ma'muriyati tomonidan tasdiqlangan rasmiy o'quv dasturi (SOW) va sillabus ma'lumotlari keltirilgan:\n\n` +
@@ -26,7 +32,7 @@ export async function POST(req: NextRequest) {
         `Mazmun: ${matched.content}\n\n` +
         `=== FOYDALANUVCHI SO'ROVI ===\n` +
         `${prompt}\n\n` +
-        `Talaba yoki o'qituvchiga yuqoridagi rasmiy SOW ma'lumotlariga tayangan holda O'zbek tilida aniq, pedagogik, professional va samimiy javob bering.`;
+        `${role ? `Foydalanuvchi: ${role}. ` : ''}Talaba yoki o'qituvchiga yuqoridagi rasmiy SOW ma'lumotlariga tayangan holda O'zbek tilida aniq, pedagogik, professional va samimiy javob bering.`;
     }
 
     // 3. Attempt external high-speed LLM call (e.g. Groq free Llama 3.3 70B, Ollama, etc.)

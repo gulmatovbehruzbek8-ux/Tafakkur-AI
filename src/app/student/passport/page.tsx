@@ -125,13 +125,13 @@ export default function AcademicPassportPage() {
           {/* =========================================================================
               1. ACADEMIC PASSPORT SIGNATURE HERO (Living Digital Identity)
               ========================================================================= */}
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#0d2238] to-[#082a44] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl animate-fade-up">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#0d2238] to-[#082a44] text-white p-6 sm:p-8 lg:p-10 border border-white/10 shadow-2xl animate-fade-up">
             <div className="tf-mesh absolute inset-0 opacity-40 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
               {/* Left Identity Info */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl bg-blue-600 p-1 shadow-xl shrink-0">
+                <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-blue-600 p-1 shadow-xl shrink-0">
                   <div className="w-full h-full rounded-[22px] bg-slate-950 flex items-center justify-center overflow-hidden relative">
                     <Image src="/Logo.png" alt="Bunyodbek Gulmatov" fill sizes="128px" className="object-contain p-4" />
                   </div>
@@ -213,22 +213,22 @@ export default function AcademicPassportPage() {
           {/* =========================================================================
               2. VERIFIED SKILLS & COMPETENCY RADAR
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-zinc-800">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Kompetensiyalar</span>
                 <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white mt-0.5">
                   Tasdiqlangan Ko'nikmalar & Malaka Matritsasi
                 </h2>
               </div>
-              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto">
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto">
                 HEMIS dars va laboratoriya natijalariga asoslangan
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {skills.map((s, idx) => (
-                <div key={idx} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
+                <div key={idx} className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 space-y-2">
                   <div className="flex items-center justify-between">
                     <div>
                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
@@ -248,7 +248,7 @@ export default function AcademicPassportPage() {
                       <span>O'zlashtirish:</span>
                       <span className="font-bold text-slate-800 dark:text-slate-200">{s.level}%</span>
                     </div>
-                    <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
+                    <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-zinc-800 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-blue-600 transition-all duration-500"
                         style={{ width: `${s.level}%` }}
@@ -263,8 +263,8 @@ export default function AcademicPassportPage() {
           {/* =========================================================================
               3. VERIFIED CREDENTIALS & ACHIEVEMENTS TIMELINE
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-zinc-800">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Hayotiy Xronologiya</span>
                 <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white mt-0.5">
@@ -276,17 +276,17 @@ export default function AcademicPassportPage() {
               </span>
             </div>
 
-            <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-6">
+            <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-zinc-800 space-y-6">
               {achievements.map((ach) => (
                 <div key={ach.id} className="relative group">
                   {/* Milestone Marker */}
                   <span className="absolute -left-[31px] sm:-left-[39px] top-2 w-4 h-4 rounded-full bg-blue-600 border-2 border-white ring-4 ring-blue-500/20 group-hover:scale-125 transition-transform" />
 
-                  <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 hover:bg-white dark:hover:bg-slate-800/80 transition-all shadow-xs space-y-3">
+                  <div className="p-5 rounded-2xl bg-slate-50/70 dark:bg-[#121215]/60 border border-slate-200 dark:border-zinc-800 hover:bg-white dark:hover:bg-slate-800/80 transition-all shadow-xs space-y-3">
                     <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                       <div>
                         <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <span className="font-mono text-xs font-bold text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700">
+                          <span className="font-mono text-xs font-bold text-slate-900 dark:text-slate-100 bg-white dark:bg-zinc-800 px-2 py-0.5 rounded border border-slate-200 dark:border-zinc-700">
                             {ach.year}
                           </span>
                           <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
@@ -308,7 +308,7 @@ export default function AcademicPassportPage() {
 
                       <button
                         onClick={() => openShareModal(ach)}
-                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 self-start shrink-0 cursor-pointer"
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-xs flex items-center gap-1.5 self-start shrink-0 cursor-pointer"
                       >
                         <span>Ulashish</span>
                         <span className="font-mono">↗</span>
@@ -321,7 +321,7 @@ export default function AcademicPassportPage() {
 
                     <div className="flex items-center gap-1.5 flex-wrap pt-1">
                       {ach.skills.map((sk, skIdx) => (
-                        <span key={skIdx} className="px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-[10px] font-medium border border-slate-200 dark:border-slate-700">
+                        <span key={skIdx} className="px-2 py-0.5 rounded bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-300 text-[10px] font-medium border border-slate-200 dark:border-zinc-700">
                           #{sk}
                         </span>
                       ))}
@@ -337,8 +337,8 @@ export default function AcademicPassportPage() {
               ========================================================================= */}
           {shareModalOpen && selectedAchievement && (
             <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-              <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-md w-full p-6 space-y-5 animate-scale-up">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-zinc-800">
+              <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-2xl max-w-md w-full p-6 space-y-5 animate-scale-up">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-zinc-800">
                   <h3 className="font-display font-bold text-base text-slate-900 dark:text-white">
                     Yutuqni Ulashish & Tasdiqlash Kartasi
                   </h3>

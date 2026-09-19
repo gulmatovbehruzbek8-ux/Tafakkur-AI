@@ -219,15 +219,15 @@ body {
 }
 
 .tf-btn-primary {
-  background: #0f172a;
+  background: var(--accent);
   color: #ffffff;
-  border: 1px solid #0f172a;
+  border: 1px solid var(--accent);
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .tf-btn-primary:hover {
-  background: #1e293b;
-  border-color: #1e293b;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .tf-btn-ink {
@@ -396,14 +396,15 @@ html.dark .tf-input:focus,
 
 html.dark .tf-btn-primary,
 .dark .tf-btn-primary {
-  background: #fafafa;
-  color: #09090b;
-  border-color: #fafafa;
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
 }
 
 html.dark .tf-btn-primary:hover,
 .dark .tf-btn-primary:hover {
-  background: #e4e4e7;
+  background: #3b82f6;
+  border-color: #3b82f6;
 }
 
 html.dark .tf-btn-ghost,
@@ -688,4 +689,52 @@ html.dark[data-ui-mode="simple"] article[class*="rounded-"] {
 .tf-simple-mode svg,
 [data-ui-mode="simple"] svg {
   stroke-width: 2.2px !important;
+}
+
+/* ========================================================
+   BRAND DECORATION + MOTION (used by login & dark hero cards)
+   ======================================================== */
+.tf-mesh {
+  background:
+    radial-gradient(60% 50% at 15% 10%, rgba(37, 99, 235, 0.45) 0%, transparent 70%),
+    radial-gradient(50% 45% at 90% 25%, rgba(14, 165, 233, 0.30) 0%, transparent 70%),
+    radial-gradient(55% 50% at 55% 100%, rgba(99, 102, 241, 0.30) 0%, transparent 70%);
+}
+
+.tf-grid-fade {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+.tf-noise {
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+@keyframes tf-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes tf-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes tf-scale-up {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-up { animation: tf-fade-up 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in { animation: tf-fade-in 400ms ease both; }
+.animate-scale-up { animation: tf-scale-up 250ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.delay-1 { animation-delay: 100ms; }
+.delay-2 { animation-delay: 200ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up, .animate-fade-in, .animate-scale-up { animation: none; }
 }

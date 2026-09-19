@@ -172,7 +172,7 @@ function SOWContent() {
           <div className="space-y-6">
             {activeSubject.curriculum.map((mod, idx) => (
               <div key={idx} className="tf-card-solid p-6 md:p-7">
-                <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-100 dark:border-zinc-800">
+                <div className="flex justify-between items-center mb-5 pb-3 border-b border-slate-200 dark:border-zinc-800">
                   <h2 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">{mod.module}</h2>
                   <span className="text-xs font-semibold text-slate-400">{mod.topics.length} ta mavzu</span>
                 </div>
@@ -229,7 +229,7 @@ function SOWContent() {
         {/* Right: Slide-in Chatbot Context */}
         {chatOpen && (
           <div className="w-full xl:w-[420px] shrink-0 bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xl flex flex-col h-[640px] sticky top-8 overflow-hidden">
-            <div className="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white border-b border-slate-200 dark:border-zinc-800 p-4 md:p-5 flex justify-between items-center">
+            <div className="bg-slate-100 dark:bg-[#121215] text-slate-900 dark:text-white border-b border-slate-200 dark:border-zinc-800 p-4 md:p-5 flex justify-between items-center">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500"></span>
@@ -260,7 +260,7 @@ function SOWContent() {
               ))}
             </div>
 
-            <div className="p-3 bg-white dark:bg-[#121215] border-t border-slate-100 dark:border-zinc-800">
+            <div className="p-3 bg-white dark:bg-[#121215] border-t border-slate-200 dark:border-zinc-800">
               <form onSubmit={handleChat} className="flex gap-2">
                 <input 
                   type="text" 

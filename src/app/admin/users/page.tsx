@@ -566,7 +566,7 @@ export default function AdminUsersPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="bg-slate-50/70 dark:bg-zinc-900/50 border-b border-slate-100 dark:border-zinc-800 text-[11px] font-semibold text-slate-400 dark:text-zinc-400 uppercase tracking-wider">
+                    <tr className="bg-slate-50/70 dark:bg-zinc-900/50 border-b border-slate-200 dark:border-zinc-800 text-[11px] font-semibold text-slate-400 dark:text-zinc-400 uppercase tracking-wider">
                       <th className="p-4 pl-6">Foydalanuvchi</th>
                       <th className="p-4">HEMIS ID</th>
                       <th className="p-4">Roli va Yo'nalishi</th>
@@ -686,10 +686,10 @@ export default function AdminUsersPage() {
       {/* Modern Profile Edit / Add Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-slate-900/50 flex items-center justify-center z-50 p-4 backdrop-blur-xs overflow-y-auto">
-          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 shadow-2xl w-full max-w-3xl my-8 overflow-hidden">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-2xl w-full max-w-3xl my-8 overflow-hidden">
             
             {/* Modal Header */}
-            <div className="p-6 md:p-7 border-b border-slate-100 dark:border-zinc-800 flex justify-between items-center bg-slate-50/50 dark:bg-zinc-900/60">
+            <div className="p-6 md:p-7 border-b border-slate-200 dark:border-zinc-800 flex justify-between items-center bg-slate-50/50 dark:bg-zinc-900/60">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
                   {editingUserId ? "Foydalanuvchi ma'lumotlari" : "Yangi a'zo ro'yxatga olish"}
@@ -740,7 +740,7 @@ export default function AdminUsersPage() {
               </div>
 
               {/* Section 1: Authentication & Contact */}
-              <div className="border-t border-slate-100 dark:border-zinc-800 pt-5">
+              <div className="border-t border-slate-200 dark:border-zinc-800 pt-5">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-600"></span>
                   1. Hisob va Shaxsiy Ma'lumotlar
@@ -829,7 +829,7 @@ export default function AdminUsersPage() {
               </div>
 
               {/* Section 2: Role-Specific Details Shown on Profile Page */}
-              <div className="border-t border-slate-100 dark:border-zinc-800 pt-5">
+              <div className="border-t border-slate-200 dark:border-zinc-800 pt-5">
                 <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                   2. Profil Sahifasida Ko'rsatiladigan HEMIS Ma'lumotlari
@@ -1017,7 +1017,7 @@ export default function AdminUsersPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-100 dark:border-zinc-800">
+              <div className="flex justify-end gap-2.5 pt-4 border-t border-slate-200 dark:border-zinc-800">
                 <button 
                   type="button" 
                   onClick={() => setIsModalOpen(false)}

@@ -244,7 +244,7 @@ export default function CoursesPage() {
                   className={`px-4 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap transition-all border flex items-center gap-2 ${
                     isSelected
                       ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-600 shadow-sm'
-                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
+                      : 'bg-white dark:bg-zinc-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-slate-700'
                   }`}
                 >
                   <span className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/20 text-blue-400">
@@ -259,7 +259,7 @@ export default function CoursesPage() {
           {/* =========================================================================
               2. DEDICATED ACADEMIC WORKSPACE HEADER
               ========================================================================= */}
-          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#0c1f33] to-[#07243b] text-white p-6 sm:p-8 border border-white/10 shadow-xl space-y-6 animate-fade-up">
+          <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#07101B] via-[#0c1f33] to-[#07243b] text-white p-6 sm:p-8 border border-white/10 shadow-xl space-y-6 animate-fade-up">
             <div className="tf-mesh absolute inset-0 opacity-30 pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -328,8 +328,8 @@ export default function CoursesPage() {
           {/* =========================================================================
               3. VISUAL LEARNING JOURNEY (5 MODULE ROADMAP)
               ========================================================================= */}
-          <section className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-100 dark:border-white/10">
+          <section className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-200 dark:border-white/10">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">O'quv Traektoriyasi</span>
                 <h2 className="font-display text-xl font-bold text-slate-900 dark:text-white mt-0.5">
@@ -395,7 +395,7 @@ export default function CoursesPage() {
 
             {/* Selected Module Detail Panel */}
             {selectedModuleDetail && (
-              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 text-xs space-y-3 animate-fade-up shadow-2xs dark:shadow-md">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-[#121215] text-slate-900 dark:text-white border border-slate-200 dark:border-zinc-800 text-xs space-y-3 animate-fade-up shadow-2xs dark:shadow-md">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 font-mono text-[11px] font-bold border border-blue-200 dark:border-blue-500/30">
@@ -432,7 +432,7 @@ export default function CoursesPage() {
                   </span>
                   <Link
                     href="/student/tutor"
-                    className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-colors"
+                    className="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors"
                   >
                     Ushbu modulni AI bilan o'rganish →
                   </Link>
@@ -444,8 +444,8 @@ export default function CoursesPage() {
           {/* =========================================================================
               4. WORKSPACE TABS: ASSIGNMENTS, RESOURCES & SOW
               ========================================================================= */}
-          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200/80 dark:border-white/10 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
-            <div className="flex items-center gap-2 border-b border-slate-100 dark:border-white/10 pb-3">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-6 sm:p-8 shadow-xs space-y-6 animate-fade-up">
+            <div className="flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3">
               {[
                 { id: 'modules', label: "Mavzular va Ma'ruzalar", icon: "📚" },
                 { id: 'assignments', label: "Laboratoriya & Topshiriqlar", icon: "📝" },
@@ -482,7 +482,7 @@ export default function CoursesPage() {
                   {course.assignments.map((a) => (
                     <div
                       key={a.id}
-                      className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200/80 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white dark:hover:bg-white/5 transition-colors"
+                      className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:bg-white dark:hover:bg-white/5 transition-colors"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -531,7 +531,7 @@ export default function CoursesPage() {
                   </span>
                   <Link
                     href="/student/tutor"
-                    className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shrink-0 ml-3"
+                    className="px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shrink-0 ml-3"
                   >
                     AI bilan o'rganish
                   </Link>

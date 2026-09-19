@@ -617,7 +617,7 @@ export default function AdminSOWPage() {
 
           {/* Metric Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fade-up delay-1">
-            <div className="tf-metric bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs">
+            <div className="tf-metric bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Fanlar Soni</span>
               <div className="mt-2.5 flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-slate-900 font-mono">{subjects.length} ta</span>
@@ -625,7 +625,7 @@ export default function AdminSOWPage() {
               </div>
             </div>
 
-            <div className="tf-metric bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs">
+            <div className="tf-metric bg-white border border-slate-200 rounded-2xl p-5 shadow-xs">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">AI Resurs Hujjatlari</span>
               <div className="mt-2.5 flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-slate-900 font-mono">{resources.length} ta</span>
@@ -633,7 +633,7 @@ export default function AdminSOWPage() {
               </div>
             </div>
 
-            <div className="tf-metric bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-zinc-800 rounded-2xl p-5 shadow-xs">
+            <div className="tf-metric bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 rounded-2xl p-5 shadow-xs">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Vektor Bo&apos;laklar (Chunks)</span>
               <div className="mt-2.5 flex items-baseline gap-2">
                 <span className="text-3xl font-bold text-slate-900 dark:text-white font-mono">{totalChunks}</span>
@@ -641,7 +641,7 @@ export default function AdminSOWPage() {
               </div>
             </div>
 
-            <div className="tf-metric bg-white dark:bg-[#121215] border border-slate-200/80 dark:border-zinc-800 rounded-2xl p-5 shadow-xs">
+            <div className="tf-metric bg-white dark:bg-[#121215] border border-slate-200 dark:border-zinc-800 rounded-2xl p-5 shadow-xs">
               <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Chatbot Bog&apos;lanishi</span>
               <div className="mt-2.5 flex items-baseline gap-2">
                 <span className="text-lg font-bold text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
@@ -666,14 +666,14 @@ export default function AdminSOWPage() {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 ${
                   activeTab === tab.id
-                    ? 'bg-teal-700 text-white shadow-sm'
+                    ? 'bg-blue-700 text-white shadow-sm'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-zinc-800'
                 }`}
               >
                 <span>{tab.label}</span>
                 {tab.count !== null && (
                   <span className={`px-2 py-0.5 rounded-full text-[10px] ${
-                    activeTab === tab.id ? 'bg-teal-800 text-teal-100' : 'bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-slate-300'
+                    activeTab === tab.id ? 'bg-blue-800 text-blue-100' : 'bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-slate-300'
                   }`}>
                     {tab.count}
                   </span>
@@ -721,7 +721,7 @@ export default function AdminSOWPage() {
               {/* Resource Cards Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredResources.map((res) => (
-                  <div key={res.id} className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-xs hover:border-teal-300 dark:hover:border-teal-600 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
+                  <div key={res.id} className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-xs hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all flex flex-col justify-between space-y-4">
                     <div className="space-y-2.5">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -754,12 +754,12 @@ export default function AdminSOWPage() {
                       <h3 className="font-bold text-slate-900 dark:text-white text-sm">{res.title}</h3>
                       <p className="text-xs text-blue-700 dark:text-blue-400 font-medium">{res.moduleName}</p>
 
-                      <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 bg-slate-50 dark:bg-zinc-900/60 p-3 rounded-xl border border-slate-100 dark:border-zinc-800 font-sans leading-relaxed">
+                      <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 bg-slate-50 dark:bg-zinc-900/60 p-3 rounded-xl border border-slate-200 dark:border-zinc-800 font-sans leading-relaxed">
                         {res.content}
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-slate-100 dark:border-zinc-800 flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="pt-3 border-t border-slate-200 dark:border-zinc-800 flex items-center justify-between text-[11px] text-slate-400">
                       <div className="flex items-center gap-2">
                         <svg className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -813,7 +813,7 @@ export default function AdminSOWPage() {
                 <div key={subj.id} className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 overflow-hidden shadow-xs">
                   <div className="p-5 bg-gradient-to-r from-slate-900 to-slate-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
-                      <span className="text-[10px] uppercase font-bold tracking-widest text-teal-400">{subj.faculty}</span>
+                      <span className="text-[10px] uppercase font-bold tracking-widest text-blue-400">{subj.faculty}</span>
                       <h2 className="text-lg font-bold tracking-tight">{subj.name}</h2>
                     </div>
                     <div className="flex items-center gap-2.5">
@@ -860,7 +860,7 @@ export default function AdminSOWPage() {
                                 t.current 
                                   ? 'bg-blue-50/70 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800 text-slate-900 dark:text-white font-semibold' 
                                   : t.done 
-                                  ? 'bg-slate-50 dark:bg-zinc-900/40 border-slate-200/80 dark:border-zinc-800 text-slate-700 dark:text-slate-300' 
+                                  ? 'bg-slate-50 dark:bg-zinc-900/40 border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-slate-300' 
                                   : 'bg-white dark:bg-zinc-900/20 border-dashed border-slate-200 dark:border-zinc-700 text-slate-500 dark:text-slate-400'
                               }`}
                             >
@@ -958,8 +958,8 @@ export default function AdminSOWPage() {
       {/* UPLOAD SOW / RESOURCE MODAL */}
       {isUploadOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
-          <div className="bg-white dark:bg-[#121215] rounded-3xl max-w-xl w-full border border-slate-200 dark:border-zinc-800 shadow-2xl p-6 md:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl max-w-xl w-full border border-slate-200 dark:border-zinc-800 shadow-2xl p-6 md:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-4">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white">Yangi SOW / Resurs Qo&apos;shish</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Fayl yuklang yoki matnni to&apos;g&apos;ridan-to&apos;g&apos;ri joylashtiring</p>
@@ -1095,7 +1095,7 @@ export default function AdminSOWPage() {
                   />
                 </div>
 
-                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-zinc-800">
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200 dark:border-zinc-800">
                   <button
                     type="button"
                     onClick={() => setIsUploadOpen(false)}
@@ -1124,8 +1124,8 @@ export default function AdminSOWPage() {
       {/* MODAL 2: ADD / UPLOAD CURRICULUM */}
       {isAddCurriculumOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fade-in overflow-y-auto">
-          <div className="bg-white dark:bg-[#121215] rounded-3xl border border-slate-200 dark:border-zinc-800 max-w-xl w-full p-6 md:p-8 space-y-5 shadow-2xl relative my-8">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-4">
+          <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 max-w-xl w-full p-6 md:p-8 space-y-5 shadow-2xl relative my-8">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-4">
               <div>
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">
                   + O&apos;quv Rejasi (Curriculum) & SOW Qo&apos;shish
@@ -1230,7 +1230,7 @@ export default function AdminSOWPage() {
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-zinc-800">
+              <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200 dark:border-zinc-800">
                 <button
                   type="button"
                   onClick={() => setIsAddCurriculumOpen(false)}
@@ -1255,7 +1255,7 @@ export default function AdminSOWPage() {
       {quickTopicSubjectId !== null && quickTopicModuleIndex !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs animate-fade-in">
           <div className="bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 max-w-md w-full p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-zinc-800 pb-3">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3">
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">+ Modulga Yangi Mavzu Qo&apos;shish</h3>
               <button
                 type="button"
@@ -1298,7 +1298,7 @@ export default function AdminSOWPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-100 dark:border-zinc-800">
+            <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-slate-200 dark:border-zinc-800">
               <button
                 type="button"
                 onClick={() => {
