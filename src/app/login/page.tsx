@@ -226,6 +226,11 @@ export default function LoginPage() {
         const customUsers = JSON.parse(localStorage.getItem('tafakkur_custom_users') || '[]');
         const matchedCustom = customUsers.find((u: { username?: string; role?: string; profile?: UserProfile }) => u.username?.toLowerCase() === lower);
         if (matchedCustom) {
+          if ((matchedCustom as { password?: string }).password && (matchedCustom as { password?: string }).password !== password) {
+            setErrorMsg("Parol noto'g'ri.");
+            setLoading(false);
+            return;
+          }
           const customRole = matchedCustom.role || 'student';
           localStorage.setItem('tafakkur_user', JSON.stringify({
             username: matchedCustom.username,
@@ -257,18 +262,39 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.detail || "Xatolik yuz berdi");
+        const httpErr = new Error(data.error || data.detail || "Xatolik yuz berdi") as Error & { http?: boolean };
+        httpErr.http = true;
+        throw httpErr;
       }
+
+      const apiUser = data.user || {};
+      const rawRole: string = apiUser.role || selectedRole || 'student';
+      const normRole = rawRole === 'mentor' ? 'teacher' : rawRole === 'oquvchi' ? 'student' : rawRole;
+      const fullName: string = apiUser.fullName || username;
+      const nameParts = fullName.trim().split(/\s+/);
+      const profile: UserProfile = {
+        ...(DEMO_ACCOUNTS[normRole]?.profile || DEMO_ACCOUNTS.student.profile),
+        name: fullName,
+        firstName: nameParts[0],
+        lastName: nameParts.slice(1).join(' '),
+        email: apiUser.email || `${username}@tafakkur.edu.uz`,
+      };
 
       if (typeof window !== 'undefined') {
-        localStorage.setItem('tafakkur_user', JSON.stringify({
-          username: data.username || username,
-          role: data.role || selectedRole,
-          profile: data.profile || {}
-        }));
+        localStorage.setItem('tafakkur_user', JSON.stringify({ username: apiUser.username || username, role: normRole, profile }));
+        if (isRegistering) {
+          // Persist locally too: serverless hosting (Vercel) does not keep the in-memory user list between requests
+          try {
+            const list = JSON.parse(localStorage.getItem('tafakkur_custom_users') || '[]');
+            if (!list.some((u: { username?: string }) => u.username?.toLowerCase() === username.trim().toLowerCase())) {
+              list.push({ username: username.trim(), password, role: normRole, profile });
+              localStorage.setItem('tafakkur_custom_users', JSON.stringify(list));
+            }
+          } catch {}
+        }
       }
 
-      const roleToRoute = data.role || selectedRole;
+      const roleToRoute = normRole;
       const defaultDest = (roleToRoute === 'student' || roleToRoute === 'oquvchi') ? '/student'
         : (roleToRoute === 'mentor' || roleToRoute === 'teacher') ? '/teacher'
         : (roleToRoute === 'admin') ? '/admin'
@@ -276,7 +302,8 @@ export default function LoginPage() {
       router.push(getRedirectUrl(defaultDest));
       
     } catch (err: unknown) {
-      if (!isRegistering) {
+      // Only fall back to demo mode when the server is unreachable — a real 401/400 must show its error
+      if (!isRegistering && !(err as { http?: boolean })?.http) {
         // Check custom users again on network error
         if (typeof window !== 'undefined') {
           try {
@@ -425,11 +452,10 @@ export default function LoginPage() {
                   <label className="block text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
                     Profilingiz turi
                   </label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     {[
                       { id: 'student', label: 'Talaba' },
                       { id: 'mentor', label: "O'qituvchi" },
-                      { id: 'oquvchi', label: "O'quvchi" },
                       { id: 'admin', label: "Ma'muriyat" },
                     ].map((r) => (
                       <button 

@@ -154,10 +154,10 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
     <>
       {/* Floating OS Capsule Button (Bottom Right) */}
       {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 animate-bounce-subtle">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 animate-bounce-subtle">
           <button
             onClick={() => { setIsOpen(true); setIsMinimized(false); }}
-            className="group relative flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 text-white shadow-xl hover:shadow-md border border-white/10 hover:border-blue-500/40 transition-all duration-300 hover:scale-105"
+            className="group relative flex items-center gap-2.5 px-3 sm:px-4 py-2.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 text-white shadow-xl hover:shadow-md border border-white/10 hover:border-blue-500/40 transition-all duration-300 hover:scale-105"
           >
             <div className="relative flex items-center justify-center w-7 h-7 rounded-xl bg-blue-500/15 text-blue-300 border border-blue-500/30">
               <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping absolute" />
@@ -167,11 +167,11 @@ export default function TafakkurCompanion({ currentContext = "Mening Kampusim" }
             <div className="flex flex-col text-left">
               <span className="text-xs font-bold tracking-tight text-white flex items-center gap-1.5">
                 Tafakkur AI
-                <span className="px-1.5 py-0.2 rounded text-[9px] bg-blue-500/15 text-blue-300 font-mono border border-blue-500/30">
+                <span className="hidden sm:inline px-1.5 py-0.2 rounded text-[9px] bg-blue-500/15 text-blue-300 font-mono border border-blue-500/30">
                   Ctrl+J
                 </span>
               </span>
-              <span className="text-[10px] text-slate-300 font-medium">
+              <span className="hidden sm:block text-[10px] text-slate-300 font-medium">
                 Kontekstual Yordamchi
               </span>
             </div>

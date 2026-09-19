@@ -536,7 +536,7 @@ export default function BeautifulCalendarPage() {
                 <div className="grid grid-cols-7 gap-1.5 sm:gap-2">
                   {/* Offset for first day */}
                   {Array.from({ length: startDayOffset }).map((_, idx) => (
-                    <div key={`offset-${idx}`} className="min-h-[85px] sm:min-h-[105px] p-2 rounded-2xl bg-slate-50/40 dark:bg-[#121215]/40 border border-transparent opacity-30" />
+                    <div key={`offset-${idx}`} className="min-h-[52px] sm:min-h-[105px] p-1 sm:p-2 rounded-xl sm:rounded-2xl bg-slate-50/40 dark:bg-[#121215]/40 border border-transparent opacity-30" />
                   ))}
 
                   {Array.from({ length: daysInMonth }).map((_, i) => {
@@ -549,7 +549,7 @@ export default function BeautifulCalendarPage() {
                       <div
                         key={`day-${dayNum}`}
                         onClick={() => setSelectedDay(dayNum)}
-                        className={`min-h-[85px] sm:min-h-[105px] p-2 rounded-2xl border text-left flex flex-col justify-between transition-all cursor-pointer group ${
+                        className={`min-h-[52px] sm:min-h-[105px] p-1 sm:p-2 rounded-xl sm:rounded-2xl border text-left flex flex-col justify-between transition-all cursor-pointer group ${
                           isSelected
                             ? 'ring-2 ring-blue-500 border-blue-500 bg-blue-50/50 dark:bg-blue-950/40 shadow-sm'
                             : isToday

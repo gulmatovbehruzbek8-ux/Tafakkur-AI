@@ -909,6 +909,7 @@ export default function AdminSOWPage() {
                     type="text"
                     value={testQuestion}
                     onChange={e => setTestQuestion(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); handleTestChatbot(); } }}
                     placeholder="Masalan: 2-topshiriq muddati qachon?"
                     className="flex-1 text-sm px-4 py-3 rounded-xl border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-slate-900 dark:text-white focus:outline-hidden focus:border-blue-600 font-sans"
                   />
