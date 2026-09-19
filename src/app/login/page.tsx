@@ -364,7 +364,7 @@ export default function LoginPage() {
       </div>
 
       {/* Form panel */}
-      <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-[#f8fafc] dark:bg-[#09090b]">
+      <div className="flex flex-col items-center justify-center p-6 md:p-10 bg-[#09090b] dark:bg-[#09090b]">
         <div className="w-full max-w-md animate-fade-up">
           <div className="lg:hidden flex items-center gap-2.5 mb-8">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden border border-slate-200 bg-white">
