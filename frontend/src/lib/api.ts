@@ -11,3 +11,29 @@ export function getApiUrl(path: string): string {
   if (!API_BASE_URL) return cleanPath;
   return `${API_BASE_URL.replace(/\/$/, '')}${cleanPath}`;
 }
+
+export async function apiPost<T = unknown>(path: string, body: unknown, headers: Record<string, string> = {}): Promise<T> {
+  const res = await fetch(getApiUrl(path), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...headers },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error((errData as { detail?: string; message?: string }).detail || (errData as { detail?: string; message?: string }).message || `HTTP error ${res.status}`);
+  }
+  return res.json() as Promise<T>;
+}
+
+export async function apiGet<T = unknown>(path: string, headers: Record<string, string> = {}): Promise<T> {
+  const res = await fetch(getApiUrl(path), {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json', ...headers },
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error((errData as { detail?: string; message?: string }).detail || (errData as { detail?: string; message?: string }).message || `HTTP error ${res.status}`);
+  }
+  return res.json() as Promise<T>;
+}
+

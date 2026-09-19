@@ -6,10 +6,31 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getApiUrl } from '@/lib/api';
 
+export interface UserProfile {
+  name?: string;
+  firstName?: string;
+  lastName?: string;
+  studentId?: string;
+  teacherId?: string;
+  faculty?: string;
+  department?: string;
+  course?: string;
+  group?: string;
+  gpa?: string;
+  educationType?: string;
+  email?: string;
+  phone?: string;
+  status?: string;
+  birthDate?: string;
+  citizenship?: string;
+  position?: string;
+  [key: string]: unknown;
+}
+
 interface DemoAccount {
   role: string;
   route: string;
-  profile: Record<string, any>;
+  profile: UserProfile;
 }
 
 const DEMO_ACCOUNTS: Record<string, DemoAccount> = {
@@ -132,8 +153,12 @@ export default function LoginPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: roleKey, password: 'password' })
-      }).catch(() => {});
-    } catch {}
+      }).catch((err) => {
+        console.warn("Backend auth ping notice:", err);
+      });
+    } catch (err) {
+      console.warn("Backend auth ping failed:", err);
+    }
 
     // Instant routing
     router.push(acc.route);
@@ -184,8 +209,12 @@ export default function LoginPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: lower, password: password || 'password' })
-        }).catch(() => {});
-      } catch {}
+        }).catch((err) => {
+          console.warn("Backend auth check:", err);
+        });
+      } catch (err) {
+        console.warn("Auth request error:", err);
+      }
 
       router.push(getRedirectUrl(acc.route));
       return;
@@ -195,7 +224,7 @@ export default function LoginPage() {
     if (!isRegistering && typeof window !== 'undefined') {
       try {
         const customUsers = JSON.parse(localStorage.getItem('tafakkur_custom_users') || '[]');
-        const matchedCustom = customUsers.find((u: any) => u.username?.toLowerCase() === lower);
+        const matchedCustom = customUsers.find((u: { username?: string; role?: string; profile?: UserProfile }) => u.username?.toLowerCase() === lower);
         if (matchedCustom) {
           const customRole = matchedCustom.role || 'student';
           localStorage.setItem('tafakkur_user', JSON.stringify({
@@ -207,7 +236,9 @@ export default function LoginPage() {
           router.push(getRedirectUrl(dest));
           return;
         }
-      } catch {}
+      } catch (e) {
+        console.warn("Custom users lookup error:", e);
+      }
     }
 
     // 2. Real login or registration call
@@ -250,7 +281,7 @@ export default function LoginPage() {
         if (typeof window !== 'undefined') {
           try {
             const customUsers = JSON.parse(localStorage.getItem('tafakkur_custom_users') || '[]');
-            const matchedCustom = customUsers.find((u: any) => u.username?.toLowerCase() === lower);
+            const matchedCustom = customUsers.find((u: { username?: string; role?: string; profile?: UserProfile }) => u.username?.toLowerCase() === lower);
             if (matchedCustom) {
               const customRole = matchedCustom.role || 'student';
               localStorage.setItem('tafakkur_user', JSON.stringify({
@@ -262,7 +293,9 @@ export default function LoginPage() {
               router.push(getRedirectUrl(dest));
               return;
             }
-          } catch {}
+          } catch (e) {
+            console.warn("Fallback custom users lookup error:", e);
+          }
         }
 
         // High-reliability demo fallback for hackathon evaluation

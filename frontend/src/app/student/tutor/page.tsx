@@ -25,6 +25,14 @@ interface Message {
   };
 }
 
+interface SowDocument {
+  id?: string;
+  title: string;
+  content: string;
+  moduleName?: string;
+  subjectId?: string;
+}
+
 const COURSES = [
   {
     id: 'cs-201',
@@ -110,7 +118,7 @@ Node* searchBST(Node* root, int target) {
     }
   ]);
 
-  const [sowDocs, setSowDocs] = useState<any[]>([]);
+  const [sowDocs, setSowDocs] = useState<SowDocument[]>([]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -311,7 +319,7 @@ def insert(root, key):
 
           if (!liveText) {
             // Check for matching Admin SOW document
-            const matchingSow = sowDocs.find((doc: any) => {
+            const matchingSow = sowDocs.find((doc: SowDocument) => {
               const titleLower = (doc.title || '').toLowerCase();
               const contentLower = (doc.content || '').toLowerCase();
               const words = lower.split(' ').filter((w: string) => w.length > 3);

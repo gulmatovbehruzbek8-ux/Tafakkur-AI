@@ -1,12 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    unoptimized: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   async rewrites() {
     const backendUrl = process.env.BACKEND_URL;
     const rewrites = [

@@ -40,7 +40,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="uz"
       className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('tafakkur_theme');if(t==='dark'){document.documentElement.classList.add('dark');document.documentElement.setAttribute('data-theme','dark');}else{document.documentElement.classList.remove('dark');document.documentElement.setAttribute('data-theme','light');}var u=localStorage.getItem('tafakkur_ui_mode');if(u==='simple'){document.documentElement.classList.add('tf-simple-mode');document.documentElement.setAttribute('data-ui-mode','simple');}}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">
         <ThemeAndUIModeProvider>
           <CommandPalette />
