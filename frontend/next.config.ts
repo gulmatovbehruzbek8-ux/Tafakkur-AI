@@ -5,17 +5,23 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   async rewrites() {
-    const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-    return [
+    const backendUrl = process.env.BACKEND_URL;
+    const rewrites = [
       {
         source: '/logo.png',
         destination: '/Logo.png',
       },
-      {
-        source: '/api/:path*',
-        destination: `${backendUrl}/api/:path*`,
-      },
     ];
+
+    // Only rewrite to an external backend if BACKEND_URL is explicitly configured
+    if (backendUrl) {
+      rewrites.push({
+        source: '/api/backend/:path*',
+        destination: `${backendUrl.replace(/\/$/, '')}/api/:path*`,
+      });
+    }
+
+    return rewrites;
   },
 };
 

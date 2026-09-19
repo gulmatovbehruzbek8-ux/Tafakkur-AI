@@ -1,10 +1,10 @@
 /**
  * Central API configuration for Tafakkur AI.
- * In production (e.g. Vercel), this resolves to NEXT_PUBLIC_API_URL or defaults to localhost:8000 in dev.
+ * Resolves to NEXT_PUBLIC_API_URL if explicitly provided,
+ * otherwise defaults to same-origin '' so all native Next.js API route handlers
+ * work seamlessly on Vercel and locally without external dependencies.
  */
-export const API_BASE_URL = 
-  process.env.NEXT_PUBLIC_API_URL || 
-  (typeof window !== 'undefined' && window.location.hostname !== 'localhost' ? '' : 'http://localhost:8000');
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export function getApiUrl(path: string): string {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
