@@ -235,7 +235,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
   return (
     <>
       {/* Mobile Topbar */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-slate-950/95 backdrop-blur-md border-b border-white/10 sticky top-0 z-50 text-white">
+      <div className="md:hidden flex items-center justify-between p-4 bg-white/95 dark:bg-[#09090b]/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 sticky top-0 z-50 text-slate-900 dark:text-white">
         <div className="flex items-center gap-3">
           <div className="grid size-8 place-items-center rounded-xl bg-blue-600 text-white shadow-xs">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -244,15 +244,15 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
             </svg>
           </div>
           <div>
-            <p className="text-sm font-bold tracking-tight text-white leading-none">
-              tafakkur<span className="text-blue-400">.ai</span>
+            <p className="text-sm font-bold tracking-tight text-slate-900 dark:text-white leading-none">
+              tafakkur<span className="text-blue-500 dark:text-blue-400">.ai</span>
             </p>
-            <p className="text-[8px] uppercase tracking-[0.2em] text-slate-400 mt-0.5">University OS</p>
+            <p className="text-[8px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mt-0.5">University OS</p>
           </div>
         </div>
         <button 
           onClick={() => setIsMobileOpen(!isMobileOpen)} 
-          className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-white/5 transition-colors" 
+          className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-colors" 
           aria-label="Toggle navigation"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -262,9 +262,9 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
       </div>
 
       {/* Modern Desktop & Mobile Drawer Sidebar - Permanently fixed full height */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-[248px] h-screen bg-[#09090b] text-slate-100 flex flex-col border-r border-white/10 px-3 py-5 transition-transform duration-200 ease-out md:translate-x-0 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`fixed inset-y-0 left-0 z-40 w-[248px] h-screen bg-white dark:bg-[#09090b] text-slate-800 dark:text-slate-100 flex flex-col border-r border-slate-200 dark:border-white/10 px-3 py-5 transition-transform duration-200 ease-out md:translate-x-0 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         
-        {/* Brand Header (Point 3) */}
+        {/* Brand Header */}
         <div className="mb-6 flex items-center justify-between px-2 pt-1">
           <Link href="/" className="flex items-center gap-3 group">
             <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-blue-600 text-white shadow-sm group-hover:bg-blue-500 transition-colors">
@@ -276,10 +276,10 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
               </svg>
             </div>
             <div>
-              <p className="text-[15px] font-bold tracking-tight text-white leading-none">
-                tafakkur<span className="text-blue-400">.ai</span>
+              <p className="text-[15px] font-bold tracking-tight text-slate-900 dark:text-white leading-none">
+                tafakkur<span className="text-blue-500 dark:text-blue-400">.ai</span>
               </p>
-              <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-slate-400 mt-1">
+              <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mt-1">
                 University OS
               </p>
             </div>
@@ -287,7 +287,7 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
 
           <button 
             onClick={() => setIsMobileOpen(false)}
-            className="md:hidden rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-white/5"
+            className="md:hidden rounded-lg p-1.5 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5"
             aria-label="Close navigation"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -299,14 +299,14 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
         {/* Role Pill Header */}
         <div className="px-2 pb-2">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Menyu</span>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10 text-slate-300 border border-white/10">
+            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Menyu</span>
+            <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">
               {displayRole}
             </span>
           </div>
         </div>
 
-        {/* Navigation Items (Point 3) */}
+        {/* Navigation Items */}
         <nav className="flex-1 flex flex-col gap-1 overflow-y-auto pr-1">
           {items.map((item) => {
             const isActive = activeRoute === item.href;
@@ -317,16 +317,16 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
                 onClick={() => setIsMobileOpen(false)}
                 className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors text-xs font-medium ${
                   isActive 
-                    ? 'bg-white/10 text-white border border-white/15 font-semibold' 
-                    : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                    ? 'bg-blue-50 dark:bg-white/10 text-blue-700 dark:text-white border border-blue-200 dark:border-white/15 font-semibold shadow-2xs' 
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-slate-200'
                 }`}
               >
-                <span className={isActive ? 'text-blue-400' : 'text-slate-500 group-hover:text-slate-300'}>
+                <span className={isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300'}>
                   {item.icon}
                 </span>
                 <span className="truncate">{item.label}</span>
                 {isActive && (
-                  <span className="ml-auto size-1.5 rounded-full bg-blue-400 shrink-0" />
+                  <span className="ml-auto size-1.5 rounded-full bg-blue-600 dark:bg-blue-400 shrink-0" />
                 )}
               </Link>
             );
@@ -334,33 +334,33 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
         </nav>
         
         {/* Bottom Section: Theme & UI Mode Switches, HEMIS, User Profile */}
-        <div className="mt-auto pt-3 border-t border-white/8 space-y-2.5 shrink-0">
+        <div className="mt-auto pt-3 border-t border-slate-200 dark:border-white/8 space-y-2.5 shrink-0">
           {/* Theme & Teacher Simple Mode Switch */}
-          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-2 space-y-2">
+          <div className="rounded-xl border border-slate-200 dark:border-white/10 bg-slate-50/80 dark:bg-white/[0.04] p-2 space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-medium text-slate-300">Mavzu</span>
+              <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">Mavzu</span>
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/15 text-slate-200 transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-transparent transition-colors cursor-pointer"
                 title="Yorug' yoki Qorong'u rejimga o'tish"
               >
                 <span>{theme === 'dark' ? '🌙 Qorong‘u' : '☀️ Yorug‘'}</span>
               </button>
             </div>
 
-            <div className="flex items-center justify-between pt-1.5 border-t border-white/10">
+            <div className="flex items-center justify-between pt-1.5 border-t border-slate-200 dark:border-white/10">
               <div className="flex flex-col">
-                <span className="text-[11px] font-medium text-slate-300">O‘qituvchi Rejimi</span>
-                <span className="text-[9px] text-slate-400">Sodda va yirik</span>
+                <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">O‘qituvchi Rejimi</span>
+                <span className="text-[9px] text-slate-500 dark:text-slate-400">Sodda va yirik</span>
               </div>
               <button
                 type="button"
                 onClick={toggleUIMode}
                 className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   uiMode === 'simple'
-                    ? 'bg-emerald-500 text-white shadow-xs ring-2 ring-emerald-400/40'
-                    : 'bg-white/10 hover:bg-white/15 text-slate-300'
+                    ? 'bg-emerald-600 text-white shadow-xs ring-2 ring-emerald-500/30'
+                    : 'bg-white dark:bg-white/10 hover:bg-slate-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-transparent'
                 }`}
                 title="Kattalar uchun sodda, yirik shriftli interfeys"
               >
@@ -370,30 +370,30 @@ export default function Sidebar({ role: initialRole, activeRoute }: SidebarProps
           </div>
 
           {/* Dedicated HEMIS Connected Box */}
-          <div className="rounded-2xl border border-emerald-400/10 bg-emerald-400/5 p-3">
+          <div className="rounded-2xl border border-emerald-200 dark:border-emerald-400/10 bg-emerald-50/60 dark:bg-emerald-400/5 p-3">
             <div className="flex items-center gap-2">
-              <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[10px] font-bold tracking-wider text-emerald-300">HEMIS CONNECTED</span>
+              <span className="size-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+              <span className="text-[10px] font-bold tracking-wider text-emerald-800 dark:text-emerald-300">HEMIS CONNECTED</span>
             </div>
-            <p className="mt-1.5 text-[10px] text-slate-400">Synced 2 minutes ago • UrDU</p>
+            <p className="mt-1.5 text-[10px] text-slate-500 dark:text-slate-400">Synced 2 minutes ago • UrDU</p>
           </div>
 
           {/* User Profile Chip */}
-          <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/8 flex items-center justify-between gap-2.5">
+          <div className="p-2.5 rounded-xl bg-slate-50/80 dark:bg-white/[0.03] border border-slate-200 dark:border-white/8 flex items-center justify-between gap-2.5">
             <div className="flex items-center gap-2.5 min-w-0">
               <div className="size-8 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-xs">
                 {displayName.charAt(0).toUpperCase()}
               </div>
               <div className="min-w-0">
-                <p className="text-xs font-semibold text-white truncate">{displayName}</p>
-                <p className="text-[10px] text-slate-400 capitalize">{displayRole}</p>
+                <p className="text-xs font-semibold text-slate-900 dark:text-white truncate">{displayName}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 capitalize">{displayRole}</p>
               </div>
             </div>
             
             <Link 
               href="/login" 
               onClick={handleLogout}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors shrink-0"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors shrink-0"
               title="Chiqish"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

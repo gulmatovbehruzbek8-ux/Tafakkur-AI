@@ -295,24 +295,24 @@ export default function MyCampusPage() {
 
           {/* Live Admin Announcement Banner */}
           {announcements.length > 0 && (
-            <div className="p-4 rounded-2xl bg-slate-900 dark:bg-[#121215] border border-slate-800 dark:border-zinc-800 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-up">
+            <div className="p-4 rounded-2xl bg-amber-50/80 dark:bg-[#121215] border border-amber-200/80 dark:border-zinc-800 text-slate-900 dark:text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-up">
               <div className="flex items-center gap-3">
-                <div className="size-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-base shrink-0 border border-amber-400/30">
+                <div className="size-9 rounded-xl bg-amber-500/20 text-amber-700 dark:text-amber-300 flex items-center justify-center font-bold text-base shrink-0 border border-amber-400/30">
                   📢
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-amber-400/20 text-amber-300 uppercase">
+                    <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-amber-200/60 dark:bg-amber-400/20 text-amber-800 dark:text-amber-300 uppercase">
                       Universitet E'loni
                     </span>
-                    <span className="text-[11px] text-slate-400 font-mono">
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
                       {announcements[0].createdAt}
                     </span>
                   </div>
-                  <h4 className="font-semibold text-xs sm:text-sm text-white mt-0.5 line-clamp-1">
+                  <h4 className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-white mt-0.5 line-clamp-1">
                     {announcements[0].title}
                   </h4>
-                  <p className="text-[11px] text-slate-300 line-clamp-1 mt-0.5">
+                  <p className="text-[11px] text-slate-600 dark:text-slate-300 line-clamp-1 mt-0.5">
                     {announcements[0].content}
                   </p>
                 </div>
@@ -321,13 +321,13 @@ export default function MyCampusPage() {
               <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
                 <Link
                   href="/student/events"
-                  className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-colors"
+                  className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white/10 dark:hover:bg-white/20 text-xs font-bold text-white transition-colors"
                 >
                   Batafsil →
                 </Link>
                 <button
                   onClick={() => setAnnouncements([])}
-                  className="p-1.5 text-slate-400 hover:text-white text-xs"
+                  className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-white text-xs"
                   title="Yopish"
                 >
                   ✕
@@ -389,21 +389,21 @@ export default function MyCampusPage() {
               ========================================================================= */}
           <div className="grid gap-5 xl:grid-cols-[1.4fr_0.8fr]">
             {/* Featured Academic Passport Card */}
-            <section className="rounded-3xl border border-blue-500/30 bg-slate-900 p-6 text-white flex flex-col justify-between shadow-xl">
+            <section className="rounded-3xl border border-blue-200 dark:border-blue-500/30 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:bg-slate-900 dark:from-slate-900 dark:to-slate-900 p-6 text-slate-900 dark:text-white flex flex-col justify-between shadow-xs dark:shadow-xl">
               <div className="flex items-start justify-between">
                 <div>
-                  <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-blue-500/15 text-blue-400 tracking-wider border border-blue-500/30">
+                  <span className="inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold bg-blue-100 dark:bg-blue-500/15 text-blue-700 dark:text-blue-400 tracking-wider border border-blue-200 dark:border-blue-500/30">
                     AKADEMIK PASPORT
                   </span>
-                  <h2 className="mt-4 text-2xl font-semibold text-white leading-snug">
+                  <h2 className="mt-4 text-2xl font-semibold text-slate-900 dark:text-white leading-snug">
                     Barqaror semestr<br />shakllanmoqda.
                   </h2>
-                  <p className="mt-3 max-w-sm text-sm leading-6 text-slate-300">
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-300">
                     O'zlashtirish va topshiriqlar dinamikangiz guruh o'rtachasidan ancha yuqori. Haftalik rejangizni shu maromda davom ettiring.
                   </p>
                 </div>
                 
-                <div className="grid size-12 place-items-center rounded-2xl bg-blue-500/15 border border-blue-500/30 text-blue-400 shrink-0">
+                <div className="grid size-12 place-items-center rounded-2xl bg-blue-100 dark:bg-blue-500/15 border border-blue-200 dark:border-blue-500/30 text-blue-600 dark:text-blue-400 shrink-0">
                   <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
                     <path d="M22 10v6" />
@@ -412,18 +412,18 @@ export default function MyCampusPage() {
                 </div>
               </div>
 
-              <div className="mt-8 grid grid-cols-3 gap-4 border-t border-white/10 pt-5">
+              <div className="mt-8 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-white/10 pt-5">
                 <div>
-                  <p className="text-2xl font-semibold text-white font-mono">{student.gpa}</p>
-                  <p className="mt-1 text-[10px] text-slate-400">Joriy GPA</p>
+                  <p className="text-2xl font-semibold text-slate-900 dark:text-white font-mono">{student.gpa}</p>
+                  <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">Joriy GPA</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-semibold text-white font-mono">46/60</p>
-                  <p className="mt-1 text-[10px] text-slate-400">Kreditlar</p>
+                  <p className="text-2xl font-semibold text-slate-900 dark:text-white font-mono">46/60</p>
+                  <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">Kreditlar</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-semibold text-white font-mono">92.4%</p>
-                  <p className="mt-1 text-[10px] text-slate-400">O'zlashtirish</p>
+                  <p className="text-2xl font-semibold text-slate-900 dark:text-white font-mono">92.4%</p>
+                  <p className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">O'zlashtirish</p>
                 </div>
               </div>
             </section>

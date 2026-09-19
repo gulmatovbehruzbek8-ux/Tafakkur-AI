@@ -408,21 +408,21 @@ def insert(root, key):
           {/* =========================================================================
               1. ACADEMIC CONTEXT HEADER: COURSE, CHAPTER, DIFFICULTY & GOAL
               ========================================================================= */}
-          <div className="bg-gradient-to-br from-[#07101B] via-[#0c1e30] to-[#072438] rounded-3xl p-6 sm:p-8 text-white border border-white/10 shadow-xl space-y-6 animate-fade-up">
+          <div className="bg-white dark:bg-gradient-to-br dark:from-[#07101B] dark:via-[#0c1e30] dark:to-[#072438] rounded-3xl p-6 sm:p-8 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-xl space-y-6 animate-fade-up">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-100 dark:bg-blue-50 text-blue-700 border border-blue-200">
                     ⚡ TAFAKKUR AI TUTOR
                   </span>
-                  <span className="text-xs text-slate-400 font-mono">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
                     Urganch Davlat Universiteti • Akademik Yordamchi
                   </span>
                 </div>
-                <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-white">
+                <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
                   Intellektual Universitet Repetitori
                 </h1>
-                <p className="text-xs text-slate-300 max-w-2xl">
+                <p className="text-xs text-slate-600 dark:text-slate-300 max-w-2xl">
                   Har bir fanning o'quv rejasi (SOW) bilan to'liq sinxronlangan kontekstual ta'lim muhiti
                 </p>
               </div>
@@ -431,7 +431,7 @@ def insert(root, key):
               <div className="flex items-center gap-2">
                 <Link
                   href="/student/courses"
-                  className="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/15 transition-colors"
+                  className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20 text-slate-800 dark:text-white text-xs font-semibold border border-slate-200 dark:border-white/15 transition-colors"
                 >
                   Kurslar Workspacesi →
                 </Link>
@@ -445,10 +445,10 @@ def insert(root, key):
             </div>
 
             {/* Academic Context Selectors Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 border-t border-white/10 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2 border-t border-slate-200 dark:border-white/10 text-xs">
               {/* Course */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Fan (Course):
                 </label>
                 <select
@@ -458,10 +458,10 @@ def insert(root, key):
                     setSelectedCourseIndex(idx);
                     setSelectedChapter(COURSES[idx].chapters[0]);
                   }}
-                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-blue-500"
+                  className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl px-3 py-2 text-slate-800 dark:text-white font-medium focus:outline-none focus:border-blue-500"
                 >
                   {COURSES.map((c, i) => (
-                    <option key={c.id} value={i} className="bg-slate-900 text-white">
+                    <option key={c.id} value={i} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
                       {c.name}
                     </option>
                   ))}
@@ -470,16 +470,16 @@ def insert(root, key):
 
               {/* Chapter */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Mavzu / Bob (Chapter):
                 </label>
                 <select
                   value={selectedChapter}
                   onChange={(e) => setSelectedChapter(e.target.value)}
-                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-blue-500 truncate"
+                  className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl px-3 py-2 text-slate-800 dark:text-white font-medium focus:outline-none focus:border-blue-500 truncate"
                 >
                   {currentCourse.chapters.map((ch, i) => (
-                    <option key={i} value={ch} className="bg-slate-900 text-white truncate">
+                    <option key={i} value={ch} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white truncate">
                       {ch}
                     </option>
                   ))}
@@ -488,27 +488,27 @@ def insert(root, key):
 
               {/* Difficulty */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Qiyinlik Darajasi:
                 </label>
                 <select
                   value={difficulty}
                   onChange={(e) => setDifficulty(e.target.value as any)}
-                  className="w-full bg-white/10 border border-white/15 rounded-xl px-3 py-2 text-white font-medium focus:outline-none focus:border-blue-500"
+                  className="w-full bg-slate-50 dark:bg-white/10 border border-slate-200 dark:border-white/15 rounded-xl px-3 py-2 text-slate-800 dark:text-white font-medium focus:outline-none focus:border-blue-500"
                 >
-                  <option value="Boshlang'ich" className="bg-slate-900 text-white">Boshlang'ich (Fundamental)</option>
-                  <option value="O'rta" className="bg-slate-900 text-white">O'rta (Universitet standardi)</option>
-                  <option value="Murakkab" className="bg-slate-900 text-white">Murakkab (Chuqurlashtirilgan)</option>
-                  <option value="Olimpiada" className="bg-slate-900 text-white">Olimpiada / Xakaton darajasi</option>
+                  <option value="Boshlang'ich" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Boshlang'ich (Fundamental)</option>
+                  <option value="O'rta" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">O'rta (Universitet standardi)</option>
+                  <option value="Murakkab" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Murakkab (Chuqurlashtirilgan)</option>
+                  <option value="Olimpiada" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Olimpiada / Xakaton darajasi</option>
                 </select>
               </div>
 
               {/* Active Context Status */}
               <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
                   Joriy Maqsad:
                 </label>
-                <div className="w-full bg-blue-500/10 border border-blue-500/20 rounded-xl px-3 py-2 text-blue-300 font-semibold flex items-center justify-between">
+                <div className="w-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-xl px-3 py-2 text-blue-700 dark:text-blue-300 font-semibold flex items-center justify-between">
                   <span>Oraliq nazoratga tayyorgarlik</span>
                   <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                 </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import HeaderControls from "@/app/components/HeaderControls";
 
 const features = [
   {
@@ -21,13 +22,13 @@ const features = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen text-slate-100 overflow-x-hidden bg-[#09090b]">
+    <div className="min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden bg-slate-50 dark:bg-[#09090b] transition-colors">
       {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col justify-between">
         {/* Navigation Bar */}
-        <header className="relative z-20 flex items-center justify-between px-6 md:px-12 py-5 border-b border-white/10 bg-[#09090b]/80 backdrop-blur-md">
+        <header className="relative z-20 flex items-center justify-between px-6 md:px-12 py-5 border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#09090b]/80 backdrop-blur-md">
           <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/10 border border-white/15 p-1.5 transition-transform group-hover:scale-105">
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 p-1.5 transition-transform group-hover:scale-105">
               <div className="relative w-full h-full">
                 <Image 
                   src="/Logo.png" 
@@ -41,14 +42,14 @@ export default function Home() {
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-display font-extrabold text-xl tracking-tight text-white">
-                  tafakkur<span className="text-blue-500">.ai</span>
+                <span className="font-display font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
+                  tafakkur<span className="text-blue-600 dark:text-blue-500">.ai</span>
                 </span>
-                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-white/10 text-slate-300 border border-white/10">
+                <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10">
                   v2.0
                 </span>
               </div>
-              <p className="text-[10px] uppercase font-semibold tracking-[0.2em] text-slate-400">
+              <p className="text-[10px] uppercase font-semibold tracking-[0.2em] text-slate-500 dark:text-slate-400">
                 UrDU University OS
               </p>
             </div>
@@ -57,16 +58,20 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <Link 
               href="/login?redirect=/student/calendar" 
-              className="hidden sm:inline-flex px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+              className="hidden sm:inline-flex px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
             >
               Akademik Taqvim
             </Link>
             <Link 
               href="/login?redirect=/student/events" 
-              className="hidden sm:inline-flex px-4 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+              className="hidden sm:inline-flex px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
             >
               Tadbirlar & Xakaton
             </Link>
+            
+            {/* Header Theme & Simple-Mode Controls */}
+            <HeaderControls />
+
             <Link 
               href="/login" 
               className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs sm:text-sm transition-all shadow-xs"
@@ -82,19 +87,19 @@ export default function Home() {
             
             {/* Left Column: Heading & Value Proposition */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-200 text-xs font-semibold">
-                <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 text-xs font-semibold">
+                <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span>Urganch Davlat Universiteti Integratsiyalangan AI Muhiti</span>
               </div>
 
-              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-white">
+              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-slate-900 dark:text-white">
                 Universitet AI <br />
-                <span className="text-blue-500">
+                <span className="text-blue-600 dark:text-blue-500">
                   Operatsion Tizimi
                 </span>
               </h1>
 
-              <p className="max-w-xl text-base sm:text-lg text-slate-400 leading-relaxed">
+              <p className="max-w-xl text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
                 Talaba, o'qituvchi va ma'muriyat uchun yaxlit intellektual ekotizim: SOW asosidagi AI Tutor, rubrika bo'yicha baholovchi va xavfsiz mahalliy LLM klasteri.
               </p>
 
@@ -111,24 +116,24 @@ export default function Home() {
 
                 <a 
                   href="#imkoniyatlar" 
-                  className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 border border-white/10 text-sm font-semibold transition-all"
+                  className="px-6 py-3.5 rounded-xl bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 text-sm font-semibold transition-all shadow-2xs"
                 >
                   Imkoniyatlarni ko‘rish ↓
                 </a>
               </div>
 
               {/* Quick Specs */}
-              <div className="pt-4 flex items-center gap-6 text-xs text-slate-400 font-mono">
+              <div className="pt-4 flex items-center gap-6 text-xs text-slate-500 dark:text-slate-400 font-mono flex-wrap">
                 <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-emerald-400" />
+                  <span className="size-2 rounded-full bg-emerald-500" />
                   <span>100% Mahalliy Ollama</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-blue-400" />
+                  <span className="size-2 rounded-full bg-blue-500" />
                   <span>HEMIS API Ready</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="size-2 rounded-full bg-amber-400" />
+                  <span className="size-2 rounded-full bg-amber-500" />
                   <span>Zero Data Leakage</span>
                 </div>
               </div>
@@ -137,9 +142,9 @@ export default function Home() {
             {/* Right Column: Hero Showcase Card */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md">
-                <div className="relative rounded-3xl bg-slate-900/90 border border-white/10 p-8 shadow-2xl text-center space-y-6">
+                <div className="relative rounded-3xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-white/10 p-8 shadow-xl dark:shadow-2xl text-center space-y-6">
                   {/* Central Branded Logo Showcase */}
-                  <div className="relative mx-auto w-28 h-28 rounded-2xl bg-white/5 border border-white/10 p-4 shadow-sm flex items-center justify-center transition-transform hover:scale-105">
+                  <div className="relative mx-auto w-28 h-28 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-4 shadow-2xs flex items-center justify-center transition-transform hover:scale-105">
                     <div className="relative w-full h-full">
                       <Image
                         src="/Logo.png"
@@ -153,10 +158,10 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1">
-                    <h3 className="font-display font-extrabold text-2xl text-white tracking-tight">
-                      tafakkur<span className="text-blue-400">.ai</span>
+                    <h3 className="font-display font-extrabold text-2xl text-slate-900 dark:text-white tracking-tight">
+                      tafakkur<span className="text-blue-600 dark:text-blue-400">.ai</span>
                     </h3>
-                    <p className="text-xs text-slate-400 font-medium">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                       O'zbekiston Oliy Ta'limi Uchun Mahalliy AI
                     </p>
                   </div>
@@ -165,30 +170,30 @@ export default function Home() {
                   <div className="space-y-2.5 pt-2 text-left text-xs">
                     <Link 
                       href="/student/tutor" 
-                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/40 flex items-center justify-between transition-all group block"
+                      className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-blue-500/40 flex items-center justify-between transition-all group block"
                     >
-                      <span className="text-slate-300 group-hover:text-white flex items-center gap-2">
+                      <span className="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white flex items-center gap-2">
                         <span>🎓</span> Shaxsiy AI Repetitor (SOW)
                       </span>
-                      <span className="text-blue-400 font-bold font-mono">FAOL →</span>
+                      <span className="text-blue-600 dark:text-blue-400 font-bold font-mono">FAOL →</span>
                     </Link>
                     <Link 
                       href="/student/tutor?mode=PRACTICE" 
-                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/40 flex items-center justify-between transition-all group block"
+                      className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-blue-500/40 flex items-center justify-between transition-all group block"
                     >
-                      <span className="text-slate-300 group-hover:text-white flex items-center gap-2">
+                      <span className="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white flex items-center gap-2">
                         <span>⚡</span> Amaliyot & Oraliq Prep
                       </span>
-                      <span className="text-slate-300 font-bold font-mono">TAYYOR →</span>
+                      <span className="text-slate-700 dark:text-slate-300 font-bold font-mono">TAYYOR →</span>
                     </Link>
                     <Link 
                       href="/student/calendar" 
-                      className="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-500/40 flex items-center justify-between transition-all group block"
+                      className="p-3 rounded-xl bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 hover:border-blue-500/40 flex items-center justify-between transition-all group block"
                     >
-                      <span className="text-slate-300 group-hover:text-white flex items-center gap-2">
+                      <span className="text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white flex items-center gap-2">
                         <span>📅</span> Interaktiv Taqvim & Voqealar
                       </span>
-                      <span className="text-emerald-400 font-bold font-mono">SINXRON →</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-bold font-mono">SINXRON →</span>
                     </Link>
                   </div>
                 </div>
@@ -199,24 +204,24 @@ export default function Home() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="relative z-10 pb-6 flex justify-center opacity-40">
-          <div className="w-5 h-8 rounded-full border border-white/30 flex justify-center pt-1.5">
-            <div className="w-1 h-2 rounded-full bg-slate-300 animate-bounce" />
+        <div className="relative z-10 pb-6 flex justify-center opacity-50">
+          <div className="w-5 h-8 rounded-full border border-slate-400 dark:border-white/30 flex justify-center pt-1.5">
+            <div className="w-1 h-2 rounded-full bg-slate-500 dark:bg-slate-300 animate-bounce" />
           </div>
         </div>
       </section>
 
       {/* Features — Three AI Modules */}
-      <section id="imkoniyatlar" className="relative bg-[#0c0c0e] text-white py-20 md:py-28 px-6 md:px-12 border-t border-white/10">
+      <section id="imkoniyatlar" className="relative bg-white dark:bg-[#0c0c0e] text-slate-900 dark:text-white py-20 md:py-28 px-6 md:px-12 border-t border-slate-200 dark:border-white/10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-500/20 text-xs font-bold mb-3">
               <span>●</span> Asosiy Funksional Modullar
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Ta’lim jarayonini tezlashtiradigan AI agentlar
             </h2>
-            <p className="mt-3 text-slate-400 text-sm md:text-base">
+            <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm md:text-base">
               Talaba o'zlashtirishi, professor baholashi va dekanat hujjat aylanishi uchun yagona tizim.
             </p>
           </div>
@@ -225,13 +230,13 @@ export default function Home() {
             {features.map((f) => (
               <article
                 key={f.title}
-                className="bg-[#121215] rounded-2xl p-8 border border-white/10 shadow-lg hover:-translate-y-1 hover:border-blue-500/50 transition-all duration-200"
+                className="bg-slate-50 dark:bg-[#121215] rounded-2xl p-8 border border-slate-200 dark:border-white/10 shadow-sm hover:-translate-y-1 hover:border-blue-500/50 transition-all duration-200"
               >
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-white flex items-center justify-center mb-6 text-2xl">
+                <div className="w-12 h-12 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white flex items-center justify-center mb-6 text-2xl shadow-2xs">
                   {f.icon}
                 </div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-white">{f.title}</h3>
-                <p className="mt-2 text-sm text-slate-400 leading-relaxed">{f.desc}</p>
+                <h3 className="font-display text-lg font-bold tracking-tight text-slate-900 dark:text-white">{f.title}</h3>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{f.desc}</p>
               </article>
             ))}
           </div>
@@ -239,16 +244,16 @@ export default function Home() {
       </section>
 
       {/* Privacy strip */}
-      <section className="relative bg-slate-900 text-white py-16 md:py-20 px-6 md:px-12 overflow-hidden border-t border-slate-800">
+      <section className="relative bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white py-16 md:py-20 px-6 md:px-12 overflow-hidden border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-400/20 text-xs font-bold mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-bold mb-3">
               🔒 100% Maxfiy va Xavfsiz
             </div>
             <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">
               Inference universitetning o'z serverida
             </h2>
-            <p className="mt-3 text-slate-400 text-sm md:text-base leading-relaxed">
+            <p className="mt-3 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
               Llama / Qwen kabi ochiq modellar Ollama orqali ishlaydi. HEMIS ma’lumotlari sinxronlashadi, lekin chet el bulutlariga chiqmaydi.
             </p>
           </div>
@@ -259,14 +264,14 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#09090b] text-slate-500 text-xs py-10 px-6 md:px-12 border-t border-white/5">
+      <footer className="bg-slate-50 dark:bg-[#09090b] text-slate-500 text-xs py-10 px-6 md:px-12 border-t border-slate-200 dark:border-white/5">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="relative w-6 h-6 rounded-lg overflow-hidden">
               <Image src="/Logo.png" alt="Tafakkur AI" fill sizes="24px" className="object-contain" />
             </div>
-            <span className="font-display font-semibold text-slate-300 text-sm">Tafakkur AI</span>
-            <span className="text-slate-600">|</span>
+            <span className="font-display font-semibold text-slate-700 dark:text-slate-300 text-sm">Tafakkur AI</span>
+            <span className="text-slate-400">|</span>
             <span>Urganch Davlat Universiteti</span>
           </div>
           <span>Umummilliy AI Xakaton · Ta’lim yo‘nalishi · 2026</span>

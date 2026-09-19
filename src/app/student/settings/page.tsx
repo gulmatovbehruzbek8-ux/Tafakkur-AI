@@ -3,6 +3,7 @@
 import Sidebar from "@/app/components/Sidebar";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useThemeAndUI } from "@/app/components/ThemeAndUIModeProvider";
 
 interface SettingsState {
   allowNotifications: boolean;
@@ -33,6 +34,7 @@ const DEFAULT_SETTINGS: SettingsState = {
 };
 
 export default function StudentSettingsPage() {
+  const { theme, uiMode, setTheme, setUIMode } = useThemeAndUI();
   const [settings, setSettings] = useState<SettingsState>(DEFAULT_SETTINGS);
   const [isSavedToast, setIsSavedToast] = useState(false);
   const [browserPermission, setBrowserPermission] = useState<NotificationPermission>('default');
@@ -42,16 +44,19 @@ export default function StudentSettingsPage() {
       const saved = localStorage.getItem('tafakkur_settings');
       if (saved) {
         try {
-          setSettings({ ...DEFAULT_SETTINGS, ...JSON.parse(saved) });
+          const parsed = JSON.parse(saved);
+          setSettings({ ...DEFAULT_SETTINGS, ...parsed, themeMode: theme, uiStyle: uiMode });
         } catch {
           // fallback
         }
+      } else {
+        setSettings(prev => ({ ...prev, themeMode: theme, uiStyle: uiMode }));
       }
       if ('Notification' in window) {
         setBrowserPermission(Notification.permission);
       }
     }
-  }, []);
+  }, [theme, uiMode]);
 
   const handleToggle = (key: keyof SettingsState) => {
     setSettings(prev => ({
@@ -67,8 +72,15 @@ export default function StudentSettingsPage() {
     }
   };
 
-  const handleSelectTheme = (theme: SettingsState['themeMode']) => {
-    setSettings(prev => ({ ...prev, themeMode: theme }));
+  const handleSelectTheme = (thm: SettingsState['themeMode']) => {
+    setSettings(prev => ({ ...prev, themeMode: thm }));
+    if (thm === 'dark' || thm === 'light') {
+      setTheme(thm);
+    } else {
+      // system
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
   };
 
   const handleSelectAccent = (color: SettingsState['accentColor']) => {
@@ -77,6 +89,7 @@ export default function StudentSettingsPage() {
 
   const handleSelectUIStyle = (style: 'default' | 'simple') => {
     setSettings(prev => ({ ...prev, uiStyle: style }));
+    setUIMode(style);
   };
 
   const requestBrowserNotification = async () => {
@@ -125,18 +138,18 @@ export default function StudentSettingsPage() {
           )}
 
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#07101B] to-[#0d2238] rounded-3xl p-6 sm:p-8 text-white border border-white/10 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-up">
+          <div className="bg-white dark:bg-gradient-to-r dark:from-[#07101B] dark:to-[#0d2238] rounded-3xl p-6 sm:p-8 text-slate-900 dark:text-white border border-slate-200 dark:border-white/10 shadow-xs dark:shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-fade-up">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-100 dark:bg-blue-50 text-blue-700 border border-blue-200">
                   ⚙️ FOYDALANUVCHI SOZLAMALARI
                 </span>
-                <span className="text-xs text-slate-400 font-mono">UrDU Platformasi</span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">UrDU Platformasi</span>
               </div>
-              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-white">
+              <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
                 Tizim va Shaxsiy Sozlamalar
               </h1>
-              <p className="text-xs text-slate-300 max-w-xl mt-1">
+              <p className="text-xs text-slate-600 dark:text-slate-300 max-w-xl mt-1">
                 Bildirishnomalar, til tanlovi va interfeys ko'rinishini o'z ta'lim qulayligingizga moslashtiring.
               </p>
             </div>

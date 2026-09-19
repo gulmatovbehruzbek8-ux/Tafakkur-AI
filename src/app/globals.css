@@ -298,6 +298,35 @@ body {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 }
 
+.tf-table {
+  width: 100%;
+}
+
+.tf-table th {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
+
+.tf-progress {
+  height: 0.5rem;
+  width: 100%;
+  border-radius: 9999px;
+  background-color: var(--surface-muted);
+  overflow: hidden;
+  position: relative;
+}
+
+.tf-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 300ms ease;
+}
+
 /* ========================================================
    REFINED DARK MODE (Pure Neutral Zinc / Slate)
    ======================================================== */
@@ -408,6 +437,17 @@ html.dark .tf-header,
   border-color: #27272a;
 }
 
+html.dark .tf-table th,
+.dark .tf-table th {
+  color: #a1a1aa;
+  border-bottom-color: #27272a;
+}
+
+html.dark .tf-progress,
+.dark .tf-progress {
+  background-color: #27272a;
+}
+
 /* Dark Mode Badges */
 html.dark .tf-badge-teal,
 .dark .tf-badge-teal,
@@ -450,55 +490,202 @@ html.dark .tf-badge-danger,
    SIMPLE UI MODE FOR ELDER PROFESSORS
    High contrast, clear text, zero visual distractions
    ======================================================== */
-.tf-simple-mode body,
+/* ========================================================
+   SIMPLE UI MODE FOR ELDER PROFESSORS ("O'qituvchi Rejimi")
+   High contrast, enlarged typography, solid 2px borders,
+   and zero visual clutter across all Tailwind components.
+   ======================================================== */
+html.tf-simple-mode,
+html[data-ui-mode="simple"],
 body.tf-simple-mode {
-  font-size: 16px;
-  line-height: 1.65;
-  letter-spacing: 0;
+  font-size: 115% !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0 !important;
 }
 
-.tf-simple-mode .tf-card,
-.tf-simple-mode .tf-card-solid,
-.tf-simple-mode .tf-panel,
-.tf-simple-mode .tf-metric {
-  border: 2px solid #64748b;
-  border-radius: 6px;
-  box-shadow: none;
+/* Enlarge all small & standard text */
+.tf-simple-mode .text-\[9px\],
+.tf-simple-mode .text-\[10px\],
+.tf-simple-mode .text-\[11px\],
+.tf-simple-mode .text-xs,
+[data-ui-mode="simple"] .text-xs {
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
 }
 
-.dark.tf-simple-mode .tf-card,
-.dark.tf-simple-mode .tf-panel,
-.dark.tf-simple-mode .tf-metric {
-  border: 2px solid #52525b;
+.tf-simple-mode .text-sm,
+[data-ui-mode="simple"] .text-sm {
+  font-size: 1.075rem !important;
+  line-height: 1.55 !important;
 }
 
-.tf-simple-mode .tf-title {
-  font-size: 1.75rem;
-  font-weight: 800;
+.tf-simple-mode .text-base,
+[data-ui-mode="simple"] .text-base {
+  font-size: 1.225rem !important;
+  line-height: 1.6 !important;
 }
 
-.tf-simple-mode .tf-btn {
-  border-radius: 4px;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  font-weight: 700;
-  box-shadow: none;
+.tf-simple-mode .text-lg,
+[data-ui-mode="simple"] .text-lg {
+  font-size: 1.4rem !important;
+  line-height: 1.5 !important;
 }
 
-.tf-simple-mode .tf-input {
-  border: 2px solid #64748b;
-  border-radius: 4px;
-  font-size: 1rem;
-  padding: 0.75rem 1rem;
+.tf-simple-mode .text-xl,
+[data-ui-mode="simple"] .text-xl {
+  font-size: 1.6rem !important;
+  line-height: 1.4 !important;
 }
 
-.dark.tf-simple-mode .tf-input {
-  border-color: #52525b;
+.tf-simple-mode .text-2xl,
+[data-ui-mode="simple"] .text-2xl {
+  font-size: 1.9rem !important;
+  line-height: 1.3 !important;
 }
 
-.tf-simple-mode .tf-chat-bubble-ai {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  border: 2px solid #94a3b8;
-  box-shadow: none;
+.tf-simple-mode .text-3xl,
+[data-ui-mode="simple"] .text-3xl {
+  font-size: 2.25rem !important;
+  line-height: 1.25 !important;
+}
+
+.tf-simple-mode .text-4xl,
+[data-ui-mode="simple"] .text-4xl {
+  font-size: 2.75rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Eliminate faint muted text in Light Mode -> boost to deep high-contrast ink */
+html:not(.dark).tf-simple-mode .text-slate-400,
+html:not(.dark).tf-simple-mode .text-slate-500,
+html:not(.dark).tf-simple-mode .text-slate-600,
+html:not(.dark).tf-simple-mode .text-zinc-400,
+html:not(.dark).tf-simple-mode .text-zinc-500,
+html:not(.dark).tf-simple-mode .text-zinc-600,
+html:not(.dark).tf-simple-mode .text-gray-400,
+html:not(.dark).tf-simple-mode .text-gray-500,
+html:not(.dark).tf-simple-mode .text-gray-600,
+html:not(.dark)[data-ui-mode="simple"] .text-slate-400,
+html:not(.dark)[data-ui-mode="simple"] .text-slate-500,
+html:not(.dark)[data-ui-mode="simple"] .text-slate-600,
+html:not(.dark)[data-ui-mode="simple"] .text-zinc-400,
+html:not(.dark)[data-ui-mode="simple"] .text-zinc-500,
+html:not(.dark)[data-ui-mode="simple"] .text-zinc-600,
+html:not(.dark)[data-ui-mode="simple"] .text-gray-400,
+html:not(.dark)[data-ui-mode="simple"] .text-gray-500,
+html:not(.dark)[data-ui-mode="simple"] .text-gray-600 {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+/* Eliminate faint muted text in Dark Mode -> boost to bright high-contrast slate-100 */
+html.dark.tf-simple-mode .text-slate-400,
+html.dark.tf-simple-mode .text-slate-500,
+html.dark.tf-simple-mode .text-zinc-400,
+html.dark.tf-simple-mode .text-zinc-500,
+html.dark.tf-simple-mode .text-gray-400,
+html.dark.tf-simple-mode .text-gray-500,
+html.dark[data-ui-mode="simple"] .text-slate-400,
+html.dark[data-ui-mode="simple"] .text-slate-500,
+html.dark[data-ui-mode="simple"] .text-zinc-400,
+html.dark[data-ui-mode="simple"] .text-zinc-500,
+html.dark[data-ui-mode="simple"] .text-gray-400,
+html.dark[data-ui-mode="simple"] .text-gray-500 {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+}
+
+/* Kill all shadows, glows, and animations to keep visual rendering pure and calm */
+.tf-simple-mode *,
+[data-ui-mode="simple"] * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Solid, thick 2px borders for clear card boundaries */
+html:not(.dark).tf-simple-mode aside,
+html:not(.dark).tf-simple-mode nav,
+html:not(.dark).tf-simple-mode header,
+html:not(.dark).tf-simple-mode table,
+html:not(.dark).tf-simple-mode th,
+html:not(.dark).tf-simple-mode td,
+html:not(.dark).tf-simple-mode button,
+html:not(.dark).tf-simple-mode input,
+html:not(.dark).tf-simple-mode textarea,
+html:not(.dark).tf-simple-mode select,
+html:not(.dark).tf-simple-mode .tf-card,
+html:not(.dark).tf-simple-mode .tf-panel,
+html:not(.dark).tf-simple-mode .tf-metric,
+html:not(.dark).tf-simple-mode div[class*="rounded-"],
+html:not(.dark).tf-simple-mode section[class*="rounded-"],
+html:not(.dark).tf-simple-mode article[class*="rounded-"],
+html:not(.dark)[data-ui-mode="simple"] aside,
+html:not(.dark)[data-ui-mode="simple"] nav,
+html:not(.dark)[data-ui-mode="simple"] header,
+html:not(.dark)[data-ui-mode="simple"] table,
+html:not(.dark)[data-ui-mode="simple"] th,
+html:not(.dark)[data-ui-mode="simple"] td,
+html:not(.dark)[data-ui-mode="simple"] button,
+html:not(.dark)[data-ui-mode="simple"] input,
+html:not(.dark)[data-ui-mode="simple"] textarea,
+html:not(.dark)[data-ui-mode="simple"] select,
+html:not(.dark)[data-ui-mode="simple"] div[class*="rounded-"],
+html:not(.dark)[data-ui-mode="simple"] section[class*="rounded-"],
+html:not(.dark)[data-ui-mode="simple"] article[class*="rounded-"] {
+  border-width: 2px !important;
+  border-color: #64748b !important;
+}
+
+html.dark.tf-simple-mode aside,
+html.dark.tf-simple-mode nav,
+html.dark.tf-simple-mode header,
+html.dark.tf-simple-mode table,
+html.dark.tf-simple-mode th,
+html.dark.tf-simple-mode td,
+html.dark.tf-simple-mode button,
+html.dark.tf-simple-mode input,
+html.dark.tf-simple-mode textarea,
+html.dark.tf-simple-mode select,
+html.dark.tf-simple-mode .tf-card,
+html.dark.tf-simple-mode .tf-panel,
+html.dark.tf-simple-mode .tf-metric,
+html.dark.tf-simple-mode div[class*="rounded-"],
+html.dark.tf-simple-mode section[class*="rounded-"],
+html.dark.tf-simple-mode article[class*="rounded-"],
+html.dark[data-ui-mode="simple"] aside,
+html.dark[data-ui-mode="simple"] nav,
+html.dark[data-ui-mode="simple"] header,
+html.dark[data-ui-mode="simple"] table,
+html.dark[data-ui-mode="simple"] th,
+html.dark[data-ui-mode="simple"] td,
+html.dark[data-ui-mode="simple"] button,
+html.dark[data-ui-mode="simple"] input,
+html.dark[data-ui-mode="simple"] textarea,
+html.dark[data-ui-mode="simple"] select,
+html.dark[data-ui-mode="simple"] div[class*="rounded-"],
+html.dark[data-ui-mode="simple"] section[class*="rounded-"],
+html.dark[data-ui-mode="simple"] article[class*="rounded-"] {
+  border-width: 2px !important;
+  border-color: #52525b !important;
+}
+
+/* Touch targets and clickables: bigger targets and bold typography */
+.tf-simple-mode button,
+.tf-simple-mode input,
+.tf-simple-mode textarea,
+.tf-simple-mode select,
+.tf-simple-mode a[class*="rounded-"],
+[data-ui-mode="simple"] button,
+[data-ui-mode="simple"] input,
+[data-ui-mode="simple"] textarea,
+[data-ui-mode="simple"] select,
+[data-ui-mode="simple"] a[class*="rounded-"] {
+  min-height: 44px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+.tf-simple-mode svg,
+[data-ui-mode="simple"] svg {
+  stroke-width: 2.2px !important;
 }

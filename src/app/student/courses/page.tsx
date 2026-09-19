@@ -395,39 +395,39 @@ export default function CoursesPage() {
 
             {/* Selected Module Detail Panel */}
             {selectedModuleDetail && (
-              <div className="p-5 rounded-2xl bg-slate-900 text-white border border-slate-800 text-xs space-y-3 animate-fade-up">
+              <div className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 text-xs space-y-3 animate-fade-up shadow-2xs dark:shadow-md">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 font-mono text-[11px] font-bold">
+                    <span className="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 font-mono text-[11px] font-bold border border-blue-200 dark:border-blue-500/30">
                       {selectedModuleDetail.number}
                     </span>
-                    <h3 className="font-display font-bold text-sm text-white">
+                    <h3 className="font-display font-bold text-sm text-slate-900 dark:text-white">
                       {selectedModuleDetail.title}
                     </h3>
                   </div>
                   <button
                     onClick={() => setSelectedModuleDetail(null)}
-                    className="text-slate-400 hover:text-white"
+                    className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                   >
                     ✕
                   </button>
                 </div>
 
                 <div className="space-y-1.5">
-                  <p className="text-slate-300 font-semibold text-[11px] uppercase tracking-wider">
+                  <p className="text-slate-600 dark:text-slate-300 font-semibold text-[11px] uppercase tracking-wider">
                     Ushbu modulda o'rganiladigan asosiy mavzular:
                   </p>
                   <div className="flex items-center gap-2 flex-wrap">
                     {selectedModuleDetail.topics.map((t, i) => (
-                      <span key={i} className="px-3 py-1 rounded-xl bg-white/10 text-white text-xs border border-white/10">
+                      <span key={i} className="px-3 py-1 rounded-xl bg-white dark:bg-white/10 text-slate-700 dark:text-white text-xs border border-slate-200 dark:border-white/10 shadow-2xs">
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-2 flex items-center justify-between border-t border-white/10">
-                  <span className="text-blue-400 font-mono text-[11px]">
+                <div className="pt-2 flex items-center justify-between border-t border-slate-200 dark:border-white/10">
+                  <span className="text-blue-600 dark:text-blue-400 font-mono text-[11px]">
                     Status: {selectedModuleDetail.status === 'completed' ? 'To\'liq yakunlangan' : selectedModuleDetail.status === 'current' ? 'Hozirgi faol modul' : 'Kelgusi reja'}
                   </span>
                   <Link

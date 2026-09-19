@@ -313,7 +313,7 @@ export default function AcademicAnalystPage() {
                     <div className="shrink-0 self-start md:self-center">
                       <Link
                         href={item.actionHref}
-                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-xs"
+                        className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs font-bold transition-colors inline-flex items-center gap-1.5 shadow-xs"
                       >
                         <span>{item.actionLabel}</span>
                         <span>→</span>

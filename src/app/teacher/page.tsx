@@ -52,30 +52,30 @@ export default function TeacherDashboard() {
           {/* =========================================================================
               1. PROFESSOR HERO: GOOD EVENING + AMBIENT HEMIS SYNC
               ========================================================================= */}
-          <div className="relative rounded-3xl bg-slate-900 text-white p-6 sm:p-8 lg:p-10 border border-slate-800 shadow-xl space-y-6 animate-fade-up">
+          <div className="relative rounded-3xl bg-gradient-to-br from-blue-50/80 via-white to-slate-50 dark:bg-slate-900 dark:from-slate-900 dark:to-slate-900 text-slate-900 dark:text-white p-6 sm:p-8 lg:p-10 border border-slate-200 dark:border-slate-800 shadow-xs dark:shadow-xl space-y-6 animate-fade-up">
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2.5 flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white/10 border border-white/15 text-slate-200">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-white/10 border border-emerald-200 dark:border-white/15 text-emerald-800 dark:text-slate-200">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     <span>HEMIS SYNC ● Connected</span>
-                    <span className="text-white/60">| 2 daqiqa oldin</span>
+                    <span className="text-slate-500 dark:text-white/60">| 2 daqiqa oldin</span>
                   </div>
-                  <span className="text-xs text-slate-300 font-mono">
+                  <span className="text-xs text-slate-500 dark:text-slate-300 font-mono">
                     Urganch Davlat Universiteti
                   </span>
                 </div>
 
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                   {greeting}, <span>{teacher.name}</span>.
                 </h1>
 
-                <p className="text-xs sm:text-sm text-slate-300 font-medium flex items-center gap-2 flex-wrap">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium flex items-center gap-2 flex-wrap">
                   <span>Juma, 18-sentyabr, 2026</span>
                   <span>•</span>
                   <span>{teacher.department}</span>
                   <span>•</span>
-                  <span className="text-slate-200 font-semibold">{teacher.room}</span>
+                  <span className="text-slate-800 dark:text-slate-200 font-semibold">{teacher.room}</span>
                 </p>
               </div>
 
@@ -93,22 +93,22 @@ export default function TeacherDashboard() {
             </div>
 
             {/* Quick Stats Ribbon */}
-            <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-white/10 text-xs">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Bugungi Darslar</span>
-                <span className="font-display font-black text-xl text-white font-mono">3 ta mashg'ulot</span>
+            <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-slate-200 dark:border-white/10 text-xs">
+              <div className="p-3 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-2xs">
+                <span className="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold block">Bugungi Darslar</span>
+                <span className="font-display font-black text-xl text-slate-900 dark:text-white font-mono">3 ta mashg'ulot</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Talabalar Soni</span>
-                <span className="font-display font-black text-xl text-slate-100 font-mono">112 nafar</span>
+              <div className="p-3 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-2xs">
+                <span className="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold block">Talabalar Soni</span>
+                <span className="font-display font-black text-xl text-slate-900 dark:text-slate-100 font-mono">112 nafar</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Tekshiruv Kutilmoqda</span>
-                <span className="font-display font-black text-xl text-amber-400 font-mono">48 ta topshiriq</span>
+              <div className="p-3 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-2xs">
+                <span className="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold block">Tekshiruv Kutilmoqda</span>
+                <span className="font-display font-black text-xl text-amber-600 dark:text-amber-400 font-mono">48 ta topshiriq</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-slate-400 text-[10px] uppercase font-bold block">Guruh O'rtacha Bali</span>
-                <span className="font-display font-black text-xl text-emerald-400 font-mono">78%</span>
+              <div className="p-3 rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-2xs">
+                <span className="text-slate-500 dark:text-slate-400 text-[10px] uppercase font-bold block">Guruh O'rtacha Bali</span>
+                <span className="font-display font-black text-xl text-emerald-600 dark:text-emerald-400 font-mono">78%</span>
               </div>
             </div>
           </div>

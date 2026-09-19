@@ -229,17 +229,17 @@ function SOWContent() {
         {/* Right: Slide-in Chatbot Context */}
         {chatOpen && (
           <div className="w-full xl:w-[420px] shrink-0 bg-white dark:bg-[#121215] rounded-2xl border border-slate-200 dark:border-zinc-800 shadow-xl flex flex-col h-[640px] sticky top-8 overflow-hidden">
-            <div className="bg-slate-900 text-white p-4 md:p-5 flex justify-between items-center">
+            <div className="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-white border-b border-slate-200 dark:border-zinc-800 p-4 md:p-5 flex justify-between items-center">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                  <h3 className="font-bold text-base">Tafakkur AI Repetitori</h3>
+                  <h3 className="font-bold text-base text-slate-900 dark:text-white">Tafakkur AI Repetitori</h3>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5 truncate max-w-[280px]">{activeSubject.name}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate max-w-[280px]">{activeSubject.name}</p>
               </div>
               <button 
                 onClick={() => setChatOpen(false)} 
-                className="text-slate-400 hover:text-white text-xl p-1 font-bold"
+                className="text-slate-400 hover:text-slate-700 dark:hover:text-white text-xl p-1 font-bold"
                 aria-label="Yopish"
               >
                 &times;
