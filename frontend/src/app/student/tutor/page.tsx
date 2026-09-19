@@ -4,6 +4,7 @@ import Sidebar from "@/app/components/Sidebar";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { getApiUrl } from "@/lib/api";
 
 interface Message {
   id: string;
@@ -285,23 +286,64 @@ def insert(root, key):
       } else if (lower.includes('xulosa') || lower.includes('konspekt')) {
         aiText = `📝 **Mavzu Xulosasi (Cheat Sheet):**\n\n1. **Asosiy qoida**: Left < Root < Right.\n2. **O'rtacha vaqt**: Qidirish, qo'shish, o'chirish — $O(\\log N)$.\n3. **Eng yomon holat**: $O(N)$ (agar balanslanmagan bo'lsa).\n4. **Inorder aylanib chiqish** (Left, Root, Right) elementlarni tartiblangan holda chiqaradi.`;
       } else {
-        // Check for matching Admin SOW document
-        const matchingSow = sowDocs.find((doc: any) => {
-          const titleLower = (doc.title || '').toLowerCase();
-          const contentLower = (doc.content || '').toLowerCase();
-          const words = lower.split(' ').filter((w: string) => w.length > 3);
-          return words.some((w: string) => titleLower.includes(w) || contentLower.includes(w));
-        });
+        // Asynchronously query live /api/chat with timeout & graceful fallback
+        (async () => {
+          let liveText = "";
+          try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 7000);
+            const res = await fetch(getApiUrl('/api/chat'), {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                question: textToSend,
+                context: `${currentCourse.name}: ${selectedChapter}`,
+                model: 'llama3'
+              }),
+              signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+            if (res.ok) {
+              const data = await res.json();
+              liveText = data.answer || data.response || "";
+            }
+          } catch {}
 
-        if (matchingSow) {
-          aiText = `Assalomu alaykum! Ma'muriyat tomonidan tasdiqlangan rasmiy o'quv dasturi (SOW) asosida ma'lumot topildi:\n\n` +
-            `📚 **Rasmiy Hujjat:** ${matchingSow.title}\n` +
-            `📌 **Modul:** ${matchingSow.moduleName || 'Umumiy Reja'}\n\n` +
-            `${matchingSow.content}\n\n` +
-            `✅ *Ushbu ma'lumot universitet dekanati tomonidan yuklangan rasmiy resurslar asosida berildi.*`;
-        } else {
-          aiText = `Tushunarli! **${selectedChapter}** bo'yicha ko'rib chiqayotgan masalangiz juda muhim. Ushbu algoritm oraliq nazorat imtihonida 20% vaznga ega.\n\nQuyidagi qaysi jihatiga ko'proq to'xtalamiz?`;
-        }
+          if (!liveText) {
+            // Check for matching Admin SOW document
+            const matchingSow = sowDocs.find((doc: any) => {
+              const titleLower = (doc.title || '').toLowerCase();
+              const contentLower = (doc.content || '').toLowerCase();
+              const words = lower.split(' ').filter((w: string) => w.length > 3);
+              return words.some((w: string) => titleLower.includes(w) || contentLower.includes(w));
+            });
+
+            if (matchingSow) {
+              liveText = `Assalomu alaykum! Ma'muriyat tomonidan tasdiqlangan rasmiy o'quv dasturi (SOW) asosida ma'lumot topildi:\n\n` +
+                `📚 **Rasmiy Hujjat:** ${matchingSow.title}\n` +
+                `📌 **Modul:** ${matchingSow.moduleName || 'Umumiy Reja'}\n\n` +
+                `${matchingSow.content}\n\n` +
+                `✅ *Ushbu ma'lumot universitet dekanati tomonidan yuklangan rasmiy resurslar asosida berildi.*`;
+            } else {
+              liveText = `Tushunarli! **${selectedChapter}** bo'yicha ko'rib chiqayotgan masalangiz juda muhim. Ushbu algoritm oraliq nazorat imtihonida 20% vaznga ega.\n\nSavolingiz bo'yicha ma'ruza konspekti yoki amaliy topshiriq kerak bo'lsa, istalgan vaqtda yozishingiz mumkin!`;
+            }
+          }
+
+          setMessages(prev => [
+            ...prev,
+            {
+              id: Date.now().toString(),
+              sender: 'ai',
+              text: liveText,
+              time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+              mode: currentActiveMode,
+              codeSnippet: code,
+              quiz: quiz,
+            }
+          ]);
+          setIsTyping(false);
+        })();
+        return;
       }
 
       setMessages(prev => [

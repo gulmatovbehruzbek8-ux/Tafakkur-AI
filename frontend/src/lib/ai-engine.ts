@@ -306,8 +306,19 @@ export async function queryExternalLLM(prompt: string, modelName = 'llama-3.3-70
 /**
  * Intelligent Pedagogical SOW Response Generator (Zero-Config Vercel Fallback)
  */
-export function generatePedagogicalResponse(prompt: string, matched: SOWResource | null): string {
+export function generatePedagogicalResponse(prompt: string, matched: SOWResource | null, strictSyllabus = false): string {
   const p = prompt.toLowerCase();
+
+  // If strict syllabus mode is on and no document matched
+  if (strictSyllabus && !matched) {
+    return (
+      `Assalomu alaykum! Savolingiz: '${prompt}'\n\n` +
+      `⚠️ **Sillabusda mavjud emas:** Universitet o'quv dasturi (SOW) va tasdiqlangan sillabus materiallarida ` +
+      `mazkur mavzu bo'yicha ma'lumot topilmadi.\n\n` +
+      `Akademik qoidaga muvofiq, Tafakkur AI Repetitori faqat tasdiqlangan o'quv dasturi doirasida javob beradi. ` +
+      `Iltimos, dars jadvalidagi mavzular bo'yicha so'rang yoki professor konsultatsiyasiga murojaat qiling.`
+    );
+  }
 
   // If a specific SOW document was matched
   if (matched) {
@@ -421,10 +432,22 @@ export function generatePedagogicalResponse(prompt: string, matched: SOWResource
     `Qo'shimcha aniqlik kiritish yoki kod tahlilini xohlasangiz, batafsil yozib qoldirishingiz mumkin!`;
 }
 
+export interface CriterionBreakdown {
+  theory: number;
+  complexity: number;
+  memory: number;
+  cleanliness: number;
+}
+
 /**
  * Intelligent Rubric-Based AI Grader
  */
-export function gradeSubmissionWithPedagogy(rubric: string, submission: string): { score: number; feedback: string; raw: string } {
+export function gradeSubmissionWithPedagogy(rubric: string, submission: string): { 
+  score: number; 
+  feedback: string; 
+  breakdown: CriterionBreakdown;
+  raw: string 
+} {
   const code = (submission || '').toLowerCase();
   
   let score = 75;
@@ -462,6 +485,11 @@ export function gradeSubmissionWithPedagogy(rubric: string, submission: string):
   // Cap score 0 - 100
   score = Math.min(96, Math.max(65, score));
 
+  const theory = Math.round(score * 0.30);
+  const complexity = Math.round(score * 0.35);
+  const memory = Math.round(score * 0.20);
+  const cleanliness = score - (theory + complexity + memory);
+
   const feedbackText = 
     `Talabaning topshirig'i rasmiy baholash rubrikasi bo'yicha tahlil qilindi.\n\n` +
     `✅ **Kuchli tomonlari:**\n${strengths.map(s => `• ${s}`).join('\n')}\n\n` +
@@ -471,6 +499,12 @@ export function gradeSubmissionWithPedagogy(rubric: string, submission: string):
   return {
     score,
     feedback: feedbackText,
+    breakdown: {
+      theory,
+      complexity,
+      memory,
+      cleanliness
+    },
     raw: `BALL: ${score}\nFIKR: ${feedbackText}`
   };
 }

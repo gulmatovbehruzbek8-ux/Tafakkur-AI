@@ -41,9 +41,16 @@ export async function POST(req: NextRequest) {
         }
       }
 
+      const finalScore = score ?? 85;
+      const theory = Math.round(finalScore * 0.30);
+      const complexity = Math.round(finalScore * 0.35);
+      const memory = Math.round(finalScore * 0.20);
+      const cleanliness = finalScore - (theory + complexity + memory);
+
       return NextResponse.json({
-        score: score ?? 82,
+        score: finalScore,
         feedback: feedback || externalResult,
+        breakdown: { theory, complexity, memory, cleanliness },
         raw: externalResult,
         source: 'llm'
       });

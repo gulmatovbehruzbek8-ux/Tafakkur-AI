@@ -117,7 +117,7 @@ function SOWContent() {
       });
       if (res.ok) {
         const data = await res.json();
-        setMessages(prev => [...prev, { role: 'ai', text: data.response || "Mavzu bo'yicha ma'lumot tahlil qilindi." }]);
+        setMessages(prev => [...prev, { role: 'ai', text: data.answer || data.response || "Mavzu bo'yicha ma'lumot tahlil qilindi." }]);
       } else {
         throw new Error();
       }

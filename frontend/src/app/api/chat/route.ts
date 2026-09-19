@@ -36,16 +36,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         answer: externalAns,
         response: externalAns,
-        source: 'llm'
+        source: 'llm',
+        inSyllabus: Boolean(matched || context),
+        matched: matched ? { title: matched.title, subject: matched.subjectName } : null
       });
     }
 
     // Built-in Pedagogical Fallback
-    const fallbackAns = generatePedagogicalResponse(question, matched);
+    const fallbackAns = generatePedagogicalResponse(question, matched, true);
     return NextResponse.json({
       answer: fallbackAns,
       response: fallbackAns,
-      source: 'sow_pedagogy'
+      source: matched ? 'sow_pedagogy' : 'out_of_syllabus',
+      inSyllabus: Boolean(matched),
+      matched: matched ? { title: matched.title, subject: matched.subjectName } : null
     });
   } catch (error: any) {
     console.error('Error in /api/chat:', error);
